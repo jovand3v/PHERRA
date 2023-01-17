@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@/styles/variables.scss": ["src/styles/variables.scss"],
+      "@styles/variables.scss": ["src/styles/variables.scss"],
       "@public/*": ["public/*"]
     },
     "target": "es5",

@@ -1,0 +1,13 @@
+@import "@styles/variables.scss";
+
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+body {
+  background-color: $background-base-color;
+  background-image: $background-pattern;
+  background-size: $background-pattern-size;
+  color: $primary-color;
+}

@@ -6,7 +6,12 @@ const nextConfig = {
     config.module.rules.push({
       test: /\.svg$/i,
       issuer: /\.[jt]sx?$/,
-      use: ["@svgr/webpack"],
+      use: [
+        {
+          loader: "@svgr/webpack",
+          options: { icon: "75px", replaceAttrValues: { "#fff": "currentColor" } },
+        },
+      ],
     });
 
     return config;
