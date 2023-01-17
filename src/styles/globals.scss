@@ -5,6 +5,19 @@
   padding: 0px;
   box-sizing: border-box;
 }
+html {
+  scrollbar-width: thin;
+  scrollbar-color: $secondary-color $background-base-color;
+  &::-webkit-scrollbar {
+    width: max(8px, 0.44vw);
+  }
+  &::-webkit-scrollbar-track {
+    background: $background-base-color;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: $secondary-color;
+  }
+}
 body {
   background-color: $background-base-color;
   background-image: $background-pattern;
