@@ -1,0 +1,28 @@
+@import "@styles/variables.scss";
+
+.main {
+  position: relative;
+  width: 76px;
+  height: 68px;
+}
+.icon {
+  color: $secondary-color;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+.amount {
+  position: absolute;
+  background: $background-base-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-variant-numeric: lining-nums;
+  font-size: 33px;
+  line-height: 0.72;
+  right: -6px;
+  bottom: -8px;
+  padding: 8px 6px;
+  min-width: 29px;
+  border-radius: 11px;
+}

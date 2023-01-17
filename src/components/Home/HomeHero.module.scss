@@ -1,0 +1,99 @@
+@import "@styles/variables.scss";
+
+.main {
+  display: flex;
+  justify-content: space-between;
+}
+.textContainer {
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: $padding;
+}
+.title {
+  font-size: 290px;
+  font-weight: $font-bold;
+  line-height: 0.72;
+  margin-left: -20px;
+  margin-right: -137px;
+  color: $secondary-color;
+}
+.subtitle {
+  font-size: 42px;
+  font-weight: $font-light;
+  line-height: 100%;
+  margin-top: 25px;
+}
+.description {
+  line-height: 140%;
+  margin-top: 50px;
+  width: 480px;
+  font-size: 17px;
+  font-weight: $font-light;
+}
+.navContainer {
+  display: flex;
+  position: relative;
+  line-height: 0.72;
+}
+.navTitle {
+  color: $secondary-color-dimmed;
+  text-transform: uppercase;
+  font-size: 100px;
+  font-weight: $font-bold;
+  position: absolute;
+  z-index: -1;
+  transform: translateY(-55%);
+}
+.navLinkBig {
+  font-size: 360px;
+  font-weight: 250;
+  margin-left: -12px;
+}
+.nav {
+  display: flex;
+}
+.navList {
+  display: flex;
+  flex-direction: column;
+  list-style-type: none;
+  justify-content: space-between;
+}
+.navLink {
+  pointer-events: auto;
+  text-transform: uppercase;
+  font-size: 80px;
+  font-weight: $font-light;
+  cursor: pointer;
+  z-index: 2;
+  &:hover {
+    color: $secondary-color;
+  }
+}
+.image {
+  height: 100vh;
+  width: auto;
+}
+.cartSocialsContainer {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: $padding;
+}
+.socials {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: -10px;
+}
+.socialIcon {
+  width: 39px;
+  height: auto;
+  cursor: pointer;
+  &:hover {
+    color: $secondary-color;
+  }
+}
