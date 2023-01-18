@@ -8,14 +8,19 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: $secondary-color $background-base-color;
+  overflow-x: hidden;
   &::-webkit-scrollbar {
     width: max(8px, 0.44vw);
+    height: max(8px, 0.44vw);
   }
   &::-webkit-scrollbar-track {
     background: $background-base-color;
   }
   &::-webkit-scrollbar-thumb {
     background: $secondary-color;
+  }
+  &::-webkit-scrollbar-corner {
+    display: none;
   }
 }
 body {
