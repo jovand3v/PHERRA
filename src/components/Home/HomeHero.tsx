@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import type { NextPage } from "next";
 import Image from "next/image";
 import s from "./HomeHero.module.scss";
@@ -7,20 +8,34 @@ import LinkedInIcon from "@public/assets/icons/linked-in.svg";
 import TwitterIcon from "@public/assets/icons/twitter.svg";
 import InstagramIcon from "@public/assets/icons/instagram.svg";
 import YoutubeIcon from "@public/assets/icons/youtube.svg";
+import useMinHeight from "src/hooks/useMinHeight";
 
 const HomeHero: NextPage = () => {
+  const mainNodesRef = useRef<Array<HTMLElement>>([]);
+  const mainPaddingNodeRef = useRef<HTMLDivElement>(null);
+  const minHeight = useMinHeight(mainNodesRef, mainPaddingNodeRef);
+
+  const handleMainNodes = (el: HTMLElement | null): void => {
+    if (!el || mainNodesRef.current.includes(el)) return;
+    mainNodesRef.current.push(el);
+  };
+
   return (
-    <section className={s.main}>
-      <div className={s.textContainer}>
+    <section className={s.main} style={{ minHeight: `${minHeight}px` }}>
+      <div className={s.textContainer} ref={mainPaddingNodeRef}>
         <header className={s.header}>
-          <div className={s.title}>PHERRA</div>
-          <h1 className={s.subtitle}> A WORLD OF INNOVATION, ELEGANCE AND INSPIRATION</h1>
-          <p className={s.description}>
+          <div className={s.title} ref={(el) => handleMainNodes(el)}>
+            PHERRA
+          </div>
+          <h1 className={s.subtitle} ref={(el) => handleMainNodes(el)}>
+            A WORLD OF INNOVATION, ELEGANCE AND INSPIRATION
+          </h1>
+          <p className={s.description} ref={(el) => handleMainNodes(el)}>
             PHERRA is an Italian high-end luxury fashion house based in Italy established in 2015. Our products are made
             by the finest Italian raw materials, processed & distributed by us.
           </p>
         </header>
-        <div className={s.navContainer}>
+        <div className={s.navContainer} ref={(el) => handleMainNodes(el)}>
           <h2 className={s.navTitle}>Explore:</h2>
           <nav className={s.nav}>
             <span className={s.navLinkBig} aria-hidden="true">
