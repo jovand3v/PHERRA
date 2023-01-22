@@ -11,7 +11,7 @@ const useWindowWidth = (): number => {
       clearTimeout(timeoutId);
       timeoutId = setTimeout(() => {
         setWindowWidth(window.innerWidth);
-      }, 500);
+      }, 100);
     };
 
     window.addEventListener("resize", handleResize);
