@@ -58,6 +58,8 @@
   margin-left: -14px;
   pointer-events: none;
   transition: color 0.2s;
+  overflow: hidden;
+  line-height: 0.74;
 }
 .nav {
   display: flex;
