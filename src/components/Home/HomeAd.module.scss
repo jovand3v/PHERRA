@@ -1,0 +1,38 @@
+@import "@styles/variables.scss";
+
+.main {
+  width: 100%;
+  padding: calc(2 * $padding-medium) 0px $padding-medium 0px;
+}
+.marquee {
+  display: flex;
+  gap: 30px;
+}
+.list {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-around;
+  min-width: 100%;
+  gap: 30px;
+  animation: slide 15s linear infinite;
+}
+.item {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+.title {
+  font-size: 20px;
+}
+.icon {
+  width: 60px;
+  color: $secondary-color;
+}
+@keyframes slide {
+  from {
+    transform: translateX(calc(-100% - 30px));
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
