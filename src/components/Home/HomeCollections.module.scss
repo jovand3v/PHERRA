@@ -1,7 +1,7 @@
 @import "@styles/variables.scss";
 
 .main {
-  padding: $padding-large;
+  padding: $padding-medium;
 }
 .header {
   position: relative;
@@ -13,6 +13,7 @@
   line-height: 0.8;
   margin-left: -10px;
   width: 1100px;
+  overflow: hidden;
   word-break: break-all;
 }
 .subtitle {
