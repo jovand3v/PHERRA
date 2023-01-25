@@ -1,16 +1,15 @@
 import { useRef } from "react";
-import type { NextPage } from "next";
 import Image from "next/image";
 import s from "./HomeHero.module.scss";
 import Cart from "../common/Cart";
-import model from "@public/assets/models/beige-top-white-pants-cup-hold-model.png";
+import model from "@public/assets/models/summer-model-1.png";
 import LinkedInIcon from "@public/assets/icons/linked-in.svg";
 import TwitterIcon from "@public/assets/icons/twitter.svg";
 import InstagramIcon from "@public/assets/icons/instagram.svg";
 import YoutubeIcon from "@public/assets/icons/youtube.svg";
 import useMinHeight from "src/hooks/useMinHeight";
 
-const HomeHero: NextPage = () => {
+const HomeHero = () => {
   const mainNodesRef = useRef<Array<HTMLElement>>([]);
   const mainPaddingNodeRef = useRef<HTMLDivElement>(null);
   const minHeight = useMinHeight(mainNodesRef, mainPaddingNodeRef);
