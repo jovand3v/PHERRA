@@ -1,4 +1,5 @@
 import "../styles/globals.scss";
+import "../styles/variables.scss";
 import type { AppProps } from "next/app";
 import { Raleway } from "@next/font/google";
 

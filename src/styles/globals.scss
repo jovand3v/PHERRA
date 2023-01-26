@@ -1,5 +1,3 @@
-@import "@styles/variables.scss";
-
 * {
   margin: 0px;
   padding: 0px;
@@ -7,26 +5,26 @@
 }
 html {
   scrollbar-width: thin;
-  scrollbar-color: $secondary-color $background-base-color;
+  scrollbar-color: var(--secondary-color) var(--background-base-color);
   overflow-x: hidden;
   &::-webkit-scrollbar {
     width: max(8px, 0.44vw);
     height: max(8px, 0.44vw);
   }
   &::-webkit-scrollbar-track {
-    background: $background-base-color;
+    background: var(--background-base-color);
   }
   &::-webkit-scrollbar-thumb {
-    background: $secondary-color;
+    background: var(--secondary-color);
   }
   &::-webkit-scrollbar-corner {
     display: none;
   }
 }
 body {
-  background-color: $background-base-color;
-  background-image: $background-pattern;
-  background-size: $background-pattern-size;
-  color: $primary-color;
+  background-color: var(--background-base-color);
+  background-image: var(--background-pattern);
+  background-size: var(--background-pattern-size);
+  color: var(--primary-color);
   font-variant-numeric: lining-nums;
 }

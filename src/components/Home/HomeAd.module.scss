@@ -1,8 +1,6 @@
-@import "@styles/variables.scss";
-
 .main {
   width: 100%;
-  padding: calc(2 * $padding-medium) 0px $padding-medium 0px;
+  padding: calc(2 * var(--padding-medium)) 0px var(--padding-medium) 0px;
 }
 .marquee {
   display: flex;
@@ -26,7 +24,7 @@
 }
 .icon {
   width: 60px;
-  color: $secondary-color;
+  color: var(--secondary-color);
 }
 @keyframes slide {
   from {
