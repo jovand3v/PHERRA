@@ -9,7 +9,7 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: var(--padding-large);
+  padding: var(--padding-section);
   position: absolute;
   left: 0px;
   height: 100%;
@@ -116,7 +116,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: var(--padding-large);
+  padding: var(--padding-section);
 }
 .socials {
   display: flex;
@@ -166,14 +166,6 @@
   }
   .socialIcon {
     width: clamp(36px, 2.1vw, 39px);
-  }
-}
-@media screen and (max-width: 1750px) {
-  .textContainer {
-    padding: var(--padding-medium);
-  }
-  .cartSocialsContainer {
-    padding: var(--padding-medium);
   }
 }
 @media screen and (max-width: 1600px) {
