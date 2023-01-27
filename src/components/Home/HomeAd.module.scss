@@ -1,6 +1,6 @@
 .main {
   width: 100%;
-  padding: calc(2 * var(--padding-section)) 0px var(--padding-section) 0px;
+  padding-top: var(--padding-section);
   overflow-x: hidden;
 }
 .marquee {
@@ -21,10 +21,10 @@
   gap: 30px;
 }
 .title {
-  font-size: 20px;
+  font-size: 18px;
 }
 .icon {
-  width: 60px;
+  width: 65px;
   color: var(--secondary-color);
 }
 @keyframes slide {
