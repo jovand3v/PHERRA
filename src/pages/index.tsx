@@ -3,6 +3,7 @@ import Head from "next/head";
 import HomeHero from "../components/Home/HomeHero";
 import HomeAd from "src/components/Home/HomeAd";
 import HomeCollections from "src/components/Home/HomeCollections";
+import HomeCommunity from "src/components/Home/HomeCommunity";
 
 const Home: NextPage = () => {
   return (
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
       <HomeHero />
       <HomeAd />
       <HomeCollections />
+      <HomeCommunity />
     </>
   );
 };
