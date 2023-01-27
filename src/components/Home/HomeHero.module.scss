@@ -17,7 +17,7 @@
 .title {
   font-size: 289px;
   font-weight: var(--font-bold);
-  line-height: 0.72;
+  line-height: var(--line-height-section-title);
   margin-left: -20px;
   color: var(--secondary-color);
 }
