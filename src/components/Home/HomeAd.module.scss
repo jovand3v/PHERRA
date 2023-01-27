@@ -1,6 +1,7 @@
 .main {
   width: 100%;
   padding: calc(2 * var(--padding-section)) 0px var(--padding-section) 0px;
+  overflow-x: hidden;
 }
 .marquee {
   display: flex;
