@@ -2,29 +2,31 @@
   width: 100%;
   padding-top: var(--padding-section);
   overflow-x: hidden;
+  --gap: 30px;
 }
 .marquee {
   display: flex;
-  gap: 30px;
+  gap: var(--gap);
 }
 .list {
   flex-shrink: 0;
   display: flex;
   justify-content: space-around;
   min-width: 100%;
-  gap: 30px;
-  animation: slide 15s linear infinite;
+  gap: var(--gap);
+  animation: slide 16s linear infinite;
 }
 .item {
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: var(--gap);
 }
 .title {
   font-size: 18px;
 }
 .icon {
   width: 65px;
+  height: auto;
   color: var(--secondary-color);
 }
 @keyframes slide {
@@ -33,5 +35,30 @@
   }
   to {
     transform: translateX(0%);
+  }
+}
+@media screen and (max-width: 1900px) {
+  .main {
+    --gap: clamp(27px, 1.6vw, 30px);
+  }
+  .title {
+    font-size: clamp(16px, 1vw, 18px);
+  }
+  .icon {
+    width: clamp(57px, 3.5vw, 65px);
+  }
+}
+@media screen and (max-width: 1600px) {
+  .main {
+    --gap: clamp(25px, 1.7vw, 27px);
+  }
+  .list {
+    animation: slide 18s linear infinite;
+  }
+  .title {
+    font-size: clamp(15px, 1.1vw, 16px);
+  }
+  .icon {
+    width: clamp(53px, 3.6vw, 57px);
   }
 }

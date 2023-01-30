@@ -3,7 +3,7 @@ import s from "./HomeAd.module.scss";
 
 const HomeAd = () => {
   const listCount = 2;
-  const itemPerListCount = 6;
+  const itemPerListCount = 7;
 
   return (
     <div className={s.main}>
