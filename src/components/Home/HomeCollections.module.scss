@@ -25,7 +25,7 @@
 .collections {
   display: flex;
   justify-content: flex-end;
-  gap: 50px;
+  gap: 40px;
   margin-top: -250px;
 }
 .collection {
@@ -56,4 +56,58 @@
 .collectionTitle {
   line-height: 0.7;
   font-size: 95px;
+}
+@media screen and (max-width: 1900px) {
+  .title {
+    margin-left: min(-6px, -0.4vw);
+    width: clamp(1000px, 60.5vw, 1150px);
+  }
+  .subtitle {
+    margin-left: 2px;
+  }
+  .collections {
+    margin-top: min(-215px, -13.2vw);
+  }
+  .collectionImage {
+    width: clamp(530px, 31.1vw, 590px);
+    height: clamp(760px, 44.8vw, 850px);
+  }
+  // .collectionHeader {
+  //   gap: 20px;
+  //   right: 35px;
+  //   bottom: 35px;
+  // }
+  .collectionArrowIcon {
+    width: clamp(86px, 5vw, 95px);
+  }
+  .collectionTitle {
+    font-size: clamp(86px, 5vw, 95px);
+  }
+}
+@media screen and (max-width: 1600px) {
+  .title {
+    width: clamp(820px, 62.9vw, 1000px);
+  }
+  .subtitle {
+    margin-left: 0px;
+  }
+  .collections {
+    gap: clamp(30px, 2.5vw, 40px);
+    margin-top: min(-180px, -13.5vw);
+  }
+  .collectionImage {
+    width: clamp(440px, 33.3vw, 530px);
+    height: clamp(670px, 47.8vw, 760px);
+  }
+  .collectionHeader {
+    gap: clamp(15px, 1.3vw, 20px);
+    right: clamp(28px, 2.2vw, 35px);
+    bottom: clamp(28px, 2.2vw, 35px);
+  }
+  .collectionArrowIcon {
+    width: clamp(78px, 5.4vw, 86px);
+  }
+  .collectionTitle {
+    font-size: clamp(78px, 5.4vw, 86px);
+  }
 }

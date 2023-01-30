@@ -14,6 +14,18 @@
   --line-height-section-title: 0.8;
 }
 
+@media screen and (max-width: 1900px) {
+  :root {
+    --font-size-section-title: clamp(210px, 13.2vw, 250px);
+    --font-size-section-subtitle: clamp(140px, 8.2vw, 155px);
+  }
+}
+@media screen and (max-width: 1600px) {
+  :root {
+    --font-size-section-title: clamp(180px, 13.2vw, 210px);
+    --font-size-section-subtitle: clamp(115px, 8.3vw, 133px);
+  }
+}
 @media screen and (max-width: 1750px) {
   :root {
     --padding-section: 40px;
