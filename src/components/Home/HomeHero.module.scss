@@ -205,6 +205,67 @@
     margin-bottom: -8px;
   }
   .socialIcon {
-    width: clamp(31px, 2.3vw, 36px);
+    width: clamp(32px, 2.3vw, 36px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .title {
+    font-size: clamp(200px, 17.9vw, 240px);
+  }
+  .subtitle {
+    font-size: clamp(30px, 2.6vw, 34px);
+    margin-top: clamp(12px, 1.1vw, 15px);
+  }
+  .description {
+    margin-top: 40px;
+    font-size: 15px;
+  }
+  .navContainer {
+    margin-top: clamp(75px, 15vw, 85px);
+  }
+  .navTitle {
+    font-size: clamp(76px, 6.5vw, 87px);
+  }
+  .navLinkBig {
+    margin-left: -12px;
+    font-size: clamp(252px, 21.2vw, 285px);
+  }
+  .navLink {
+    font-size: clamp(57px, 5.2vw, 69px);
+  }
+  .image {
+    width: clamp(130px, 21vw, 292px);
+    filter: brightness(0.4);
+  }
+  .cartSocialsContainer {
+    height: 100%;
+    width: clamp(120px, 11.2vw, 150px);
+  }
+  // .socials {
+  // gap: 15px;
+  // margin-bottom: -8px;
+  // }
+  .socialIcon {
+    width: clamp(32px, 2.5vw, 33px);
+  }
+}
+@media screen and (max-width: 1200px) {
+  .image {
+    width: clamp(237px, 21vw, 252px);
+  }
+}
+@media screen and (max-width: 1125px) {
+  .image {
+    width: clamp(202px, 18vw, 237px);
+  }
+}
+@media screen and (max-width: 1070px) {
+  .image {
+    width: clamp(168px, 16vw, 192px);
+  }
+}
+@media screen and (max-width: 1050px) {
+  .image {
+    width: clamp(130px, 13vw, 150px);
   }
 }
