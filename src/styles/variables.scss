@@ -20,14 +20,21 @@
     --font-size-section-subtitle: clamp(140px, 8.2vw, 155px);
   }
 }
+@media screen and (max-width: 1750px) {
+  :root {
+    --padding-section: 40px;
+  }
+}
 @media screen and (max-width: 1600px) {
   :root {
     --font-size-section-title: clamp(180px, 13.2vw, 210px);
     --font-size-section-subtitle: clamp(115px, 8.3vw, 133px);
   }
 }
-@media screen and (max-width: 1750px) {
+@media screen and (max-width: 1350px) {
   :root {
-    --padding-section: 40px;
+    --font-size-section-title: clamp(165px, 14.1vw, 190px);
+    --font-size-section-subtitle: clamp(115px, 9.3vw, 125px);
+    --margin-top-section-content: clamp(100px, 0vw, 150px);
   }
 }
