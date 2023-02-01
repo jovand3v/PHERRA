@@ -34,6 +34,16 @@ const HomeHero = () => {
             by the finest Italian raw materials, processed & distributed by us.
           </p>
         </header>
+        {/* cart and socials container for mobile only */}
+        <div className={s.cartSocialsContainerMobile} ref={(el) => handleMainNodes(el)}>
+          <Cart />
+          <div className={s.socials}>
+            <LinkedInIcon className={s.socialIcon} />
+            <TwitterIcon className={s.socialIcon} />
+            <InstagramIcon className={s.socialIcon} />
+            <YoutubeIcon className={s.socialIcon} />
+          </div>
+        </div>
         <div className={s.navContainer} ref={(el) => handleMainNodes(el)}>
           <h2 className={s.navTitle}>Explore:</h2>
           <nav className={s.nav}>
@@ -50,6 +60,14 @@ const HomeHero = () => {
               <li className={s.navLink} aria-label="Contact us">
                 ntact us
               </li>
+            </ul>
+          </nav>
+          {/* nav container for mobile only */}
+          <nav className={s.navMobile}>
+            <ul className={s.navList}>
+              <li className={s.navLink}>Collections</li>
+              <li className={s.navLink}>Community</li>
+              <li className={s.navLink}>Contact us</li>
             </ul>
           </nav>
         </div>

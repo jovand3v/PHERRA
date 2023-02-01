@@ -70,6 +70,9 @@
     }
   }
 }
+.navMobile {
+  display: none;
+}
 .navList {
   display: flex;
   flex-direction: column;
@@ -117,6 +120,9 @@
   justify-content: space-between;
   align-items: center;
   padding: var(--padding-section);
+}
+.cartSocialsContainerMobile {
+  display: none;
 }
 .socials {
   display: flex;
@@ -241,10 +247,6 @@
     height: 100%;
     width: clamp(120px, 11.2vw, 150px);
   }
-  // .socials {
-  // gap: 15px;
-  // margin-bottom: -8px;
-  // }
   .socialIcon {
     width: clamp(32px, 2.5vw, 33px);
   }
@@ -267,5 +269,80 @@
 @media screen and (max-width: 1050px) {
   .image {
     width: clamp(130px, 13vw, 150px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: clamp(196px, 23vw, 230px);
+    margin-left: min(-10px, -1.5vw);
+  }
+  .subtitle {
+    font-size: clamp(36px, 3.7vw, 37px);
+    width: 88%;
+    margin-top: clamp(10px, 1.2vw, 12px);
+  }
+  .description {
+    font-size: 16px;
+  }
+  .navContainer {
+    margin-top: 0px;
+  }
+  .navTitle {
+    font-size: clamp(88px, 9.2vw, 93px);
+  }
+  .navLinkBig {
+    font-size: clamp(285px, 30.1vw, 307px);
+  }
+  .navLink {
+    font-size: clamp(67px, 7.3vw, 74px);
+  }
+  .cartSocialsContainer {
+    display: none;
+  }
+  .cartSocialsContainerMobile {
+    display: flex;
+    margin: 60px 0px 97px 2px;
+  }
+  .socials {
+    flex-direction: row;
+    gap: clamp(15px, 2vw, 20px);
+    margin-left: 50px;
+  }
+  .socialIcon {
+    width: 38px;
+  }
+  .image {
+    position: absolute;
+    right: 0px;
+    width: clamp(120px, 16.3vw, 162px);
+  }
+}
+@media screen and (max-width: 850px) {
+  .cartSocialsContainerMobile {
+    margin: 60px 0px 122px 2px;
+  }
+  .nav {
+    display: none;
+  }
+  .navMobile {
+    display: flex;
+  }
+  .navList {
+    gap: 20px;
+  }
+  .navTitle {
+    font-size: 94px;
+    transform: translateY(-85%);
+  }
+  .navLink {
+    all: unset;
+    text-transform: uppercase;
+    font-size: 68px;
+    font-weight: var(--font-light);
+    cursor: pointer;
+    transition: color 0.2s;
+    &:hover {
+      color: var(--secondary-color);
+    }
   }
 }
