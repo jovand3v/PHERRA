@@ -27,7 +27,7 @@ const HomeHero = () => {
             PHERRA
           </div>
           <h1 className={s.subtitle} ref={(el) => handleMainNodes(el)}>
-            A WORLD OF INNOVATION, ELEGANCE AND INSPIRATION
+            A World of Innovation, Elegenace, and Inspiration.
           </h1>
           <p className={s.description} ref={(el) => handleMainNodes(el)}>
             PHERRA is an Italian high-end luxury fashion house based in Italy established in 2015. Our products are made

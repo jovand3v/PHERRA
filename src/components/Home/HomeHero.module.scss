@@ -27,6 +27,7 @@
   line-height: 100%;
   margin-top: 25px;
   width: 80%;
+  text-transform: uppercase;
 }
 .description {
   line-height: 140%;
@@ -222,10 +223,6 @@
     font-size: clamp(30px, 2.6vw, 34px);
     margin-top: clamp(12px, 1.1vw, 15px);
   }
-  .description {
-    margin-top: 40px;
-    font-size: 15px;
-  }
   .navContainer {
     margin-top: clamp(75px, 6.2vw, 80px);
   }
@@ -277,9 +274,9 @@
     margin-left: min(-10px, -1.5vw);
   }
   .subtitle {
-    font-size: clamp(36px, 3.7vw, 37px);
-    width: 88%;
-    margin-top: clamp(10px, 1.2vw, 12px);
+    font-size: 37px;
+    width: 90%;
+    margin-top: 12px;
   }
   .description {
     font-size: 16px;
@@ -288,13 +285,13 @@
     margin-top: 0px;
   }
   .navTitle {
-    font-size: clamp(88px, 9.2vw, 93px);
+    font-size: clamp(86px, 9.2vw, 93px);
   }
   .navLinkBig {
-    font-size: clamp(285px, 30.1vw, 307px);
+    font-size: clamp(285px, 30.4vw, 310px);
   }
   .navLink {
-    font-size: clamp(67px, 7.3vw, 74px);
+    font-size: clamp(67px, 7.2vw, 73px);
   }
   .cartSocialsContainer {
     display: none;
@@ -305,11 +302,11 @@
   }
   .socials {
     flex-direction: row;
-    gap: clamp(15px, 2vw, 20px);
+    gap: clamp(17px, 2vw, 20px);
     margin-left: 50px;
   }
   .socialIcon {
-    width: 38px;
+    width: 37px;
   }
   .image {
     position: absolute;
