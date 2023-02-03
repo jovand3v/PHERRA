@@ -73,3 +73,23 @@
     width: clamp(52px, 4.4vw, 58px);
   }
 }
+
+@media screen and (max-width: 1024px) {
+  .main {
+    --gap: 30px;
+  }
+  .title {
+    font-size: clamp(16px, 1.7vw, 17px);
+  }
+  .icon {
+    width: clamp(60px, 6.1vw, 62px);
+  }
+}
+@media screen and (max-width: 850px) {
+  .main {
+    --gap: clamp(27px, 3.6vw, 30px);
+  }
+  .icon {
+    width: clamp(57px, 7.2vw, 60px);
+  }
+}

@@ -298,11 +298,10 @@
   }
   .cartSocialsContainerMobile {
     display: flex;
-    margin: 60px 0px 97px 2px;
+    margin: 45px 0px clamp(115px, 11.7vw, 125px) 2px;
   }
   .socials {
     flex-direction: row;
-    gap: clamp(17px, 2vw, 20px);
     margin-left: 50px;
   }
   .socialIcon {
@@ -315,31 +314,49 @@
   }
 }
 @media screen and (max-width: 850px) {
+  .title {
+    font-size: clamp(136px, 22.8vw, 196px);
+  }
+  .subtitle {
+    font-size: clamp(32px, 4.3vw, 37px);
+    width: 95%;
+  }
   .cartSocialsContainerMobile {
-    margin: 60px 0px 122px 2px;
+    margin: 44px 0px 135px 2px;
   }
   .nav {
     display: none;
   }
   .navMobile {
+    margin-bottom: 3px;
     display: flex;
   }
   .navList {
     gap: 20px;
   }
   .navTitle {
-    font-size: 94px;
+    margin-left: -5px;
+    font-size: clamp(80px, 11.1vw, 94px);
     transform: translateY(-85%);
   }
   .navLink {
     all: unset;
     text-transform: uppercase;
-    font-size: 68px;
+    font-size: clamp(58px, 8.1vw, 68px);
     font-weight: var(--font-light);
     cursor: pointer;
     transition: color 0.2s;
     &:hover {
       color: var(--secondary-color);
     }
+  }
+  .socials {
+    margin-left: clamp(45px, 5.9vw, 50px);
+  }
+  .socialIcon {
+    width: clamp(36px, 4.4vw, 37px);
+  }
+  .image {
+    width: clamp(100px, 14.2vw, 120px);
   }
 }

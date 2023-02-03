@@ -60,13 +60,22 @@
 }
 @media screen and (max-width: 1024px) {
   .main {
-    width: 86px;
-    height: 78px;
+    width: 85px;
+    height: 77px;
   }
   .amount {
     font-size: 36px;
     padding: 10px;
     right: -7px;
     bottom: -9px;
+  }
+}
+@media screen and (max-width: 850px) {
+  .main {
+    width: clamp(78px, 10vw, 85px);
+    height: clamp(70px, 9.1vw, 77px);
+  }
+  .amount {
+    font-size: clamp(32px, 4.3vw, 36px);
   }
 }

@@ -22,26 +22,28 @@ const HomeHero = () => {
   return (
     <section className={s.main} style={{ minHeight: `${minHeight}px` }}>
       <div className={s.textContainer} ref={mainPaddingNodeRef}>
-        <header className={s.header}>
-          <div className={s.title} ref={(el) => handleMainNodes(el)}>
-            PHERRA
-          </div>
-          <h1 className={s.subtitle} ref={(el) => handleMainNodes(el)}>
-            A World of Innovation, Elegenace, and Inspiration.
-          </h1>
-          <p className={s.description} ref={(el) => handleMainNodes(el)}>
-            PHERRA is an Italian high-end luxury fashion house based in Italy established in 2015. Our products are made
-            by the finest Italian raw materials, processed & distributed by us.
-          </p>
-        </header>
-        {/* cart and socials container for mobile only */}
-        <div className={s.cartSocialsContainerMobile} ref={(el) => handleMainNodes(el)}>
-          <Cart />
-          <div className={s.socials}>
-            <LinkedInIcon className={s.socialIcon} />
-            <TwitterIcon className={s.socialIcon} />
-            <InstagramIcon className={s.socialIcon} />
-            <YoutubeIcon className={s.socialIcon} />
+        <div className={s.headerContainer}>
+          <header className={s.header}>
+            <div className={s.title} ref={(el) => handleMainNodes(el)}>
+              PHERRA
+            </div>
+            <h1 className={s.subtitle} ref={(el) => handleMainNodes(el)}>
+              A World of Innovation, Elegenace, and Inspiration.
+            </h1>
+            <p className={s.description} ref={(el) => handleMainNodes(el)}>
+              PHERRA is an Italian high-end luxury fashion house based in Italy established in 2015. Our products are
+              made by the finest Italian raw materials, processed & distributed by us.
+            </p>
+          </header>
+          {/* cart and socials container for mobile only */}
+          <div className={s.cartSocialsContainerMobile} ref={(el) => handleMainNodes(el)}>
+            <Cart />
+            <div className={s.socials}>
+              <LinkedInIcon className={s.socialIcon} />
+              <TwitterIcon className={s.socialIcon} />
+              <InstagramIcon className={s.socialIcon} />
+              <YoutubeIcon className={s.socialIcon} />
+            </div>
           </div>
         </div>
         <div className={s.navContainer} ref={(el) => handleMainNodes(el)}>

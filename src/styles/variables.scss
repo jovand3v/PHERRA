@@ -38,8 +38,16 @@
     --margin-top-section-content: clamp(100px, 0vw, 150px);
   }
 }
+@media screen and (max-width: 1024px) {
+  :root {
+    --font-size-section-title: clamp(170px, 18.6vw, 190px);
+    --font-size-section-subtitle: clamp(118px, 12.3vw, 125px);
+  }
+}
 @media screen and (max-width: 850px) {
   :root {
+    --font-size-section-title: clamp(130px, 20.2vw, 170px);
+    --font-size-section-subtitle: clamp(98px, 14vw, 118px);
     --padding-section: 30px;
   }
 }
