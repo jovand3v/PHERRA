@@ -25,7 +25,7 @@
   font-size: 18px;
 }
 .icon {
-  width: 65px;
+  width: 68px;
   height: auto;
   color: var(--secondary-color);
 }
@@ -42,10 +42,10 @@
     --gap: clamp(27px, 1.6vw, 30px);
   }
   .title {
-    font-size: clamp(16px, 1vw, 18px);
+    font-size: clamp(17px, 1vw, 18px);
   }
   .icon {
-    width: clamp(57px, 3.5vw, 65px);
+    width: clamp(60px, 3.7vw, 68px);
   }
 }
 @media screen and (max-width: 1600px) {
@@ -56,24 +56,12 @@
     animation: slide 18s linear infinite;
   }
   .title {
-    font-size: clamp(15px, 1.1vw, 16px);
+    font-size: 16px;
   }
   .icon {
-    width: clamp(53px, 3.6vw, 57px);
+    width: clamp(55px, 3.9vw, 60px);
   }
 }
-@media screen and (max-width: 1350px) {
-  .main {
-    --gap: clamp(22px, 1.9vw, 25px);
-  }
-  .title {
-    font-size: clamp(15px, 1.2vw, 16px);
-  }
-  .icon {
-    width: clamp(52px, 4.4vw, 58px);
-  }
-}
-
 @media screen and (max-width: 1024px) {
   .main {
     --gap: 30px;
