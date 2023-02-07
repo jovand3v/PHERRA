@@ -1,7 +1,7 @@
 .main {
   position: relative;
-  width: 85px;
-  height: 76px;
+  width: 90px;
+  height: 81px;
   cursor: pointer;
 }
 .icon {
@@ -16,34 +16,34 @@
   justify-content: center;
   align-items: center;
   font-variant-numeric: lining-nums;
-  font-size: 35px;
+  font-size: 38px;
   line-height: 0.72;
-  right: -9px;
-  bottom: -10px;
-  padding: 11px;
+  right: -12px;
+  bottom: -9px;
+  padding: 12px;
   border-radius: 15px;
 }
 @media screen and (max-width: 1900px) {
   .main {
-    width: clamp(66px, 4.5vw, 85px);
-    height: clamp(58px, 4vw, 76px);
+    width: clamp(69px, 4.8vw, 90px);
+    height: clamp(61px, 4.3vw, 81px);
   }
   .amount {
-    font-size: clamp(27px, 1.9vw, 35px);
-    padding: clamp(8px, 0.5vw, 9px);
-    right: min(-6px, -0.33vw);
-    bottom: min(-7px, -0.4vw);
+    font-size: clamp(29px, 2.1vw, 38px);
+    padding: clamp(8px, 0.7vw, 12px);
+    right: min(-6px, -0.6vw);
+    bottom: min(-7px, -0.5vw);
   }
 }
 @media screen and (max-width: 1350px) {
   .main {
-    width: clamp(65px, 5.4vw, 72px);
-    height: clamp(57px, 4.7vw, 63px);
+    width: clamp(68px, 5.6vw, 76px);
+    height: clamp(60px, 5vw, 67px);
   }
   .amount {
-    font-size: clamp(28px, 2.3vw, 30px);
+    font-size: clamp(28px, 2.3vw, 31px);
     padding: 9px;
-    right: -8px;
+    right: -7px;
     bottom: -9px;
   }
 }

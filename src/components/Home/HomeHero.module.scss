@@ -170,7 +170,7 @@
     width: clamp(410px, 30vw, 640px);
   }
   .cartSocialsContainer {
-    width: clamp(140px, 9.3vw, 190px);
+    width: clamp(145px, 10vw, 189px);
   }
   .socials {
     gap: clamp(15px, 1.2vw, 18px);
@@ -201,20 +201,20 @@
     font-size: clamp(58px, 5.2vw, 69px);
   }
   .image {
-    width: clamp(130px, 21vw, 292px);
+    width: clamp(182px, 16.5vw, 292px);
     filter: brightness(0.4);
   }
   .cartSocialsContainer {
     height: 100%;
-    width: clamp(120px, 11.2vw, 150px);
+    width: clamp(145px, 11.5vw, 155px);
   }
   .socialIcon {
-    width: clamp(32px, 2.5vw, 33px);
+    width: clamp(31px, 2.5vw, 33px);
   }
 }
 @media screen and (max-width: 1100px) {
   .image {
-    width: clamp(155px, 15.5vw, 220px);
+    width: clamp(110px, 11vw, 220px);
   }
 }
 @media screen and (max-width: 1024px) {
