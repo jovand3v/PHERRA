@@ -53,7 +53,7 @@
   margin-left: -4px;
 }
 .navLinkBig {
-  font-size: 360px;
+  font-size: 365px;
   font-weight: 250;
   margin-left: -13px;
   pointer-events: none;
@@ -82,7 +82,7 @@
 .navLink {
   pointer-events: auto;
   text-transform: uppercase;
-  font-size: 80px;
+  font-size: 82px;
   font-weight: var(--font-light);
   cursor: pointer;
   display: flex;
@@ -132,7 +132,7 @@
   margin-bottom: -10px;
 }
 .socialIcon {
-  width: 39px;
+  width: 38.5px;
   height: auto;
   cursor: pointer;
   &:hover {
@@ -161,10 +161,10 @@
     font-size: clamp(85px, 6.1vw, 115px);
   }
   .navLinkBig {
-    font-size: clamp(275px, 18.6vw, 360px);
+    font-size: clamp(275px, 19.4vw, 365px);
   }
   .navLink {
-    font-size: clamp(62px, 4.1vw, 80px);
+    font-size: clamp(62px, 4.4vw, 82px);
   }
   .image {
     width: clamp(410px, 30vw, 640px);
@@ -176,7 +176,7 @@
     gap: clamp(15px, 1.2vw, 18px);
   }
   .socialIcon {
-    width: clamp(31px, 2.1vw, 39px);
+    width: clamp(31px, 2.1vw, 38.5px);
   }
 }
 @media screen and (max-width: 1350px) {
