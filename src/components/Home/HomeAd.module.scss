@@ -25,7 +25,7 @@
   font-size: 18px;
 }
 .icon {
-  width: 68px;
+  width: 72px;
   height: auto;
   color: var(--secondary-color);
 }
@@ -39,45 +39,33 @@
 }
 @media screen and (max-width: 1900px) {
   .main {
-    --gap: clamp(27px, 1.6vw, 30px);
+    --gap: clamp(28px, 1.6vw, 30px);
   }
   .title {
-    font-size: clamp(17px, 1vw, 18px);
+    font-size: clamp(16px, 1vw, 18px);
   }
   .icon {
-    width: clamp(60px, 3.7vw, 68px);
+    width: clamp(59px, 3.8vw, 72px);
   }
 }
-@media screen and (max-width: 1600px) {
-  .main {
-    --gap: clamp(25px, 1.7vw, 27px);
-  }
-  .list {
-    animation: slide 18s linear infinite;
-  }
-  .title {
-    font-size: 16px;
-  }
+@media screen and (max-width: 1350px) {
   .icon {
-    width: clamp(55px, 3.9vw, 60px);
+    width: clamp(59px, 4.6vw, 62px);
   }
 }
 @media screen and (max-width: 1024px) {
-  .main {
-    --gap: 30px;
-  }
   .title {
-    font-size: clamp(16px, 1.7vw, 17px);
+    font-size: clamp(16px, 1.8vw, 18px);
   }
   .icon {
-    width: clamp(60px, 6.1vw, 62px);
+    width: clamp(60px, 6.8vw, 69px);
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 450px) {
   .main {
-    --gap: clamp(27px, 3.6vw, 30px);
+    --gap: 25px;
   }
   .icon {
-    width: clamp(57px, 7.2vw, 60px);
+    width: clamp(52px, 13.6vw, 60px);
   }
 }
