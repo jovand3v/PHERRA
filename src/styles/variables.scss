@@ -16,8 +16,8 @@
 
 @media screen and (max-width: 1900px) {
   :root {
-    --font-size-section-title: clamp(210px, 13.2vw, 250px);
-    --font-size-section-subtitle: clamp(140px, 8.2vw, 155px);
+    --font-size-section-title: clamp(180px, 13.2vw, 250px);
+    --font-size-section-subtitle: clamp(110px, 8.2vw, 155px);
   }
 }
 @media screen and (max-width: 1750px) {
@@ -25,29 +25,21 @@
     --padding-section: 40px;
   }
 }
-@media screen and (max-width: 1600px) {
-  :root {
-    --font-size-section-title: clamp(180px, 13.2vw, 210px);
-    --font-size-section-subtitle: clamp(115px, 8.3vw, 133px);
-  }
-}
 @media screen and (max-width: 1350px) {
   :root {
-    --font-size-section-title: clamp(165px, 14.1vw, 190px);
-    --font-size-section-subtitle: clamp(115px, 9.3vw, 125px);
+    --font-size-section-title: clamp(170px, 14.9vw, 200px);
+    --font-size-section-subtitle: clamp(110px, 9.7vw, 130px);
     --margin-top-section-content: clamp(100px, 0vw, 150px);
   }
 }
 @media screen and (max-width: 1024px) {
   :root {
-    --font-size-section-title: clamp(170px, 18.6vw, 190px);
-    --font-size-section-subtitle: clamp(118px, 12.3vw, 125px);
+    --font-size-section-title: clamp(100px, 19.2vw, 195px);
+    --font-size-section-subtitle: clamp(80px, 12.8vw, 125px);
   }
 }
 @media screen and (max-width: 850px) {
   :root {
-    --font-size-section-title: clamp(130px, 20.2vw, 170px);
-    --font-size-section-subtitle: clamp(98px, 14vw, 118px);
     --padding-section: 30px;
   }
 }
@@ -60,7 +52,7 @@
 @media screen and (max-width: 450px) {
   :root {
     --background-pattern-size: 125px;
-    --font-size-section-title: 70px;
-    --font-size-section-subtitle: 65px;
+    --font-size-section-title: clamp(67px, 21.1vw, 100px);
+    --font-size-section-subtitle: clamp(58px, 17.9vw, 80px);
   }
 }
