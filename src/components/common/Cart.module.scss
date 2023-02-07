@@ -1,7 +1,7 @@
 .main {
   position: relative;
-  width: 76px;
-  height: 68px;
+  width: 85px;
+  height: 76px;
   cursor: pointer;
 }
 .icon {
@@ -16,34 +16,34 @@
   justify-content: center;
   align-items: center;
   font-variant-numeric: lining-nums;
-  font-size: 33px;
+  font-size: 35px;
   line-height: 0.72;
-  right: -7px;
-  bottom: -7px;
-  padding: 8px;
+  right: -9px;
+  bottom: -10px;
+  padding: 11px;
   border-radius: 15px;
 }
 @media screen and (max-width: 1900px) {
   .main {
-    width: clamp(66px, 4.1vw, 76px);
-    height: clamp(58px, 3.6vw, 68px);
+    width: clamp(66px, 4.5vw, 85px);
+    height: clamp(58px, 4vw, 76px);
   }
   .amount {
-    font-size: clamp(27px, 1.7vw, 33px);
+    font-size: clamp(27px, 1.9vw, 35px);
     padding: clamp(8px, 0.5vw, 9px);
-    right: min(-5px, -0.33vw);
+    right: min(-6px, -0.33vw);
     bottom: min(-7px, -0.4vw);
   }
 }
 @media screen and (max-width: 1350px) {
   .main {
-    width: clamp(62px, 4.9vw, 65px);
-    height: clamp(54px, 4.3vw, 57px);
+    width: clamp(65px, 5.4vw, 72px);
+    height: clamp(57px, 4.7vw, 63px);
   }
   .amount {
-    font-size: clamp(28px, 2.2vw, 29px);
+    font-size: clamp(28px, 2.3vw, 30px);
     padding: 9px;
-    right: -9px;
+    right: -8px;
     bottom: -9px;
   }
 }
