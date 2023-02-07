@@ -51,3 +51,16 @@
     --padding-section: 30px;
   }
 }
+@media screen and (max-width: 600px) {
+  :root {
+    --padding-section: 25px;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  :root {
+    --background-pattern-size: 125px;
+    --font-size-section-title: 70px;
+    --font-size-section-subtitle: 65px;
+  }
+}

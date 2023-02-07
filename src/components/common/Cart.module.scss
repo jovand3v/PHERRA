@@ -29,53 +29,41 @@
     height: clamp(58px, 3.6vw, 68px);
   }
   .amount {
-    font-size: clamp(28.5px, 1.7vw, 33px);
-    padding: clamp(7px, 0.5vw, 9px);
-    right: min(-7px, -0.42vw);
-    bottom: min(-7px, -0.42vw);
-  }
-}
-@media screen and (max-width: 1600px) {
-  .main {
-    width: clamp(60px, 4.2vw, 66px);
-    height: clamp(52px, 3.7vw, 58px);
-  }
-  .amount {
-    font-size: clamp(24px, 1.8vw, 28.5px);
-    right: min(-5px, -0.34vw);
-    bottom: min(-6px, -0.43vw);
+    font-size: clamp(27px, 1.7vw, 33px);
+    padding: clamp(8px, 0.5vw, 9px);
+    right: min(-5px, -0.33vw);
+    bottom: min(-7px, -0.4vw);
   }
 }
 @media screen and (max-width: 1350px) {
   .main {
-    width: clamp(54px, 4.6vw, 62px);
-    height: clamp(46px, 4vw, 54px);
+    width: clamp(62px, 4.9vw, 65px);
+    height: clamp(54px, 4.3vw, 57px);
   }
   .amount {
-    font-size: clamp(25px, 2.2vw, 29px);
-    padding: 7px;
-    right: -7px;
-    bottom: -7px;
+    font-size: clamp(28px, 2.2vw, 29px);
+    padding: 9px;
+    right: -9px;
+    bottom: -9px;
   }
 }
 @media screen and (max-width: 1024px) {
   .main {
-    width: 85px;
-    height: 77px;
+    width: clamp(81px, 8.4vw, 85px);
+    height: clamp(73px, 7.6vw, 77px);
   }
   .amount {
-    font-size: 36px;
+    font-size: clamp(35px, 3.5vw, 36px);
     padding: 10px;
-    right: -7px;
-    bottom: -9px;
   }
 }
-@media screen and (max-width: 850px) {
+@media screen and (max-width: 450px) {
   .main {
-    width: clamp(78px, 10vw, 85px);
-    height: clamp(70px, 9.1vw, 77px);
+    width: clamp(80px, 18.4vw, 81px);
+    height: clamp(67px, 16.7vw, 73px);
   }
   .amount {
-    font-size: clamp(32px, 4.3vw, 36px);
+    font-size: clamp(31px, 8vw, 35px);
+    right: -7px;
   }
 }
