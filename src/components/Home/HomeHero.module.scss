@@ -208,11 +208,6 @@
     width: clamp(30px, 2.4vw, 31px);
   }
 }
-@media screen and (max-width: 1170px) {
-  .title {
-    line-height: 0.7;
-  }
-}
 @media screen and (max-width: 1100px) {
   .image {
     width: clamp(110px, 11vw, 220px);
