@@ -50,22 +50,22 @@
 }
 @media screen and (max-width: 1350px) {
   .icon {
-    width: clamp(59px, 4.6vw, 62px);
+    width: clamp(57px, 4.6vw, 62px);
   }
 }
 @media screen and (max-width: 1024px) {
   .title {
-    font-size: clamp(16px, 1.8vw, 18px);
+    font-size: clamp(15px, 1.7vw, 17px);
   }
   .icon {
-    width: clamp(60px, 6.8vw, 69px);
+    width: clamp(54px, 6.8vw, 64px);
   }
 }
-@media screen and (max-width: 450px) {
+@media screen and (max-width: 400px) {
   .main {
     --gap: 25px;
   }
   .icon {
-    width: clamp(52px, 13.6vw, 60px);
+    width: clamp(51px, 13.4vw, 54px);
   }
 }
