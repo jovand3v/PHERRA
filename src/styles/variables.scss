@@ -51,5 +51,7 @@
 @media screen and (max-width: 400px) {
   :root {
     --background-pattern-size: 125px;
+    --font-size-section-title: clamp(70px, 22.5vw, 90px);
+    --font-size-section-subtitle: clamp(60px, 17.3vw, 69px);
   }
 }

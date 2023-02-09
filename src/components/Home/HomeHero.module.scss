@@ -281,6 +281,11 @@
     width: clamp(120px, 15.7vw, 160px);
   }
 }
+@media screen and (max-width: 600px) {
+  .title {
+    line-height: 0.75;
+  }
+}
 @media screen and (max-width: 480px) {
   .title {
     letter-spacing: -4px;
