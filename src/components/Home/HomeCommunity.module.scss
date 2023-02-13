@@ -115,7 +115,7 @@
   .competeImagesContainer {
     gap: clamp(15px, 1.1vw, 20px);
     grid-template-columns: clamp(245px, 18vw, 330px) clamp(260px, 19.8vw, 360px);
-    height: clamp(805px, 54vw, 980px);
+    height: clamp(760px, 54vw, 980px);
   }
 }
 @media screen and (max-width: 1350px) {

@@ -9,7 +9,7 @@
 .title {
   font-size: var(--font-size-section-title);
   line-height: var(--line-height-section-title);
-  margin-left: -10px;
+  margin-left: -5px;
   width: 1150px;
   overflow: hidden;
   word-break: break-all;
@@ -17,6 +17,7 @@
 .subtitle {
   position: absolute;
   bottom: 0px;
+  margin-left: 4px;
   z-index: -1;
   font-size: var(--font-size-section-subtitle);
   color: var(--secondary-color-dimmed);
@@ -80,7 +81,7 @@
   }
   .collectionImage {
     width: clamp(425px, 31.1vw, 590px);
-    height: clamp(610px, 44.8vw, 850px);
+    height: clamp(630px, 44.8vw, 850px);
   }
   .collectionHeader {
     gap: clamp(20px, 1.6vw, 30px);
