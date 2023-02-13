@@ -16,14 +16,16 @@ const HomeCommunity = () => {
       <div className={s.competeContainer}>
         <div className={s.competeTextContainer}>
           <header className={s.competeHeader}>
-            <h2 className={s.competeTitle}>COMPETE FOR $25,000</h2>
+            <h2 className={s.competeTitle}>
+              COMPETE <br /> FOR $25,000
+            </h2>
           </header>
           <p className={s.competeDescription}>
             PHERRA is launching a $25,000 prize pool community competition. In order to enter all you need to do is
             submit your best photo wearing PHERRA via the button below. Competition ends 01/01/2024.
           </p>
           <a className={s.competeButton}>
-            SUBMIT YOUR PHOTO <ArrowIcon className={s.competeButtonIcon} />
+            SUBMIT YOUR <br /> PHOTO <ArrowIcon className={s.competeButtonIcon} />
           </a>
         </div>
         <div className={s.competeContestantsContainer}>

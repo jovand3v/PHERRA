@@ -24,18 +24,18 @@
 .competeContainer {
   display: flex;
   width: 100%;
-  justify-content: space-evenly;
+  justify-content: space-around;
   margin-top: var(--margin-top-section-content);
 }
 .competeTextContainer {
-  width: 750px;
+  width: 730px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 60px;
 }
 .competeTitle {
-  font-size: 110px;
+  font-size: 112px;
   line-height: 100%;
   font-weight: var(--font-bold);
   color: var(--secondary-color);
@@ -46,39 +46,37 @@
   width: 80%;
   line-height: 140%;
   font-weight: var(--font-light);
-  margin-bottom: 5px;
 }
 .competeButton {
-  font-size: 51px;
-  width: 360px;
+  font-size: 46px;
   cursor: pointer;
   font-weight: var(--font-bold);
   line-height: 100%;
   margin-left: -2px;
-  &:hover {
-    color: var(--secondary-color);
-  }
+  margin-top: 5px;
+  display: block;
 }
 
 .competeButtonIcon {
   width: auto;
   margin-bottom: -7px;
   margin-left: 7px;
-  height: 48px;
+  height: 44px;
 }
 .competeInstagram {
   text-align: end;
   margin-bottom: 15px;
+  font-size: 16px;
 }
 .competeImagesContainer {
   display: grid;
-  gap: 30px;
+  gap: 20px;
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 310px 350px;
-  height: 900px;
-  align-items: start;
+  grid-template-columns: 330px 360px;
+  height: 980px;
 }
 .competeImage {
+  object-fit: cover;
   width: 100%;
   height: 100%;
   &:nth-child(1) {
@@ -89,5 +87,179 @@
   }
   &:nth-child(4) {
     grid-row: span 2;
+  }
+}
+@media screen and (max-width: 1900px) {
+  .competeTextContainer {
+    width: clamp(540px, 38.7vw, 730px);
+    gap: clamp(50px, 3.2vw, 60px);
+  }
+  .competeTitle {
+    font-size: clamp(80px, 5.9vw, 112px);
+    margin-left: min(-4px, -0.4vw);
+  }
+  .competeDescription {
+    font-size: clamp(15px, 0.9vw, 17px);
+  }
+  .competeButton {
+    font-size: clamp(34px, 2.5vw, 46px);
+  }
+  .competeButtonIcon {
+    margin-bottom: min(-3px, -0.4vw);
+    margin-left: clamp(4px, 0.4vw, 7px);
+    height: clamp(33px, 2.4vw, 44px);
+  }
+  .competeInstagram {
+    margin-bottom: clamp(10px, 0.8vw, 15px);
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .competeImagesContainer {
+    gap: clamp(15px, 1.1vw, 20px);
+    grid-template-columns: clamp(245px, 18vw, 330px) clamp(260px, 19.8vw, 360px);
+    height: clamp(805px, 54vw, 980px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .main {
+    padding: calc(1 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
+  }
+  .title {
+    width: clamp(800px, 69.7vw, 940px);
+    text-align: end;
+    word-break: break-all;
+  }
+  .subtitle {
+    right: 0px;
+    left: unset;
+  }
+  .competeDescription {
+    width: 100%;
+  }
+  .competeTextContainer {
+    width: clamp(440px, 40vw, 520px);
+    gap: clamp(40px, 3.8vw, 50px);
+  }
+  .competeTitle {
+    font-size: clamp(68px, 6vw, 80px);
+  }
+  .competeButton {
+    font-size: clamp(31px, 2.6vw, 34px);
+  }
+  .competeButtonIcon {
+    margin-left: 3px;
+    margin-bottom: -5px;
+    height: clamp(31px, 2.5vw, 33px);
+  }
+  .competeImagesContainer {
+    grid-template-columns: clamp(140px, 13.4vw, 180px) clamp(160px, 14.8vw, 200px);
+    height: clamp(650px, 57.9vw, 780px);
+  }
+  .competeInstagram {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    width: 100%;
+  }
+  .competeTextContainer {
+    width: clamp(320px, 54.7vw, 560px);
+    gap: clamp(40px, 4.9vw, 50px);
+  }
+  .competeTitle {
+    font-size: clamp(48px, 8.5vw, 87px);
+  }
+  .competeButton {
+    margin-top: 3px;
+    font-size: clamp(28px, 3.8vw, 39px);
+  }
+  .competeButtonIcon {
+    height: clamp(25px, 3.5vw, 36px);
+  }
+  .competeImagesContainer {
+    grid-template-columns: clamp(140px, 21.5vw, 220px);
+    justify-content: end;
+    grid-template-rows: 1.5fr 1fr;
+    height: clamp(610px, 81.1vw, 830px);
+  }
+  .competeImage {
+    &:nth-child(1) {
+      grid-row: unset;
+    }
+    &:nth-child(2) {
+      display: none;
+    }
+    &:nth-child(3) {
+      display: none;
+    }
+    &:nth-child(4) {
+      grid-row: unset;
+    }
+  }
+  .competeContestantsContainer {
+    display: flex;
+    align-items: flex-start;
+  }
+  .competeInstagram {
+    writing-mode: vertical-lr;
+    margin-right: 5px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .competeTitle {
+    margin-left: -1.8px;
+  }
+  .competeContainer {
+    flex-direction: column;
+  }
+  .competeTextContainer {
+    width: 100%;
+  }
+  .competeButton {
+    margin-left: -1px;
+  }
+  .competeContestantsContainer {
+    margin-top: 60px;
+  }
+  .competeImagesContainer {
+    height: 500px;
+    gap: 10px;
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 150px;
+  }
+  .competeImage {
+    width: 100%;
+    display: block !important;
+    &:nth-child(1) {
+      grid-row: span 2;
+    }
+    &:nth-child(3) {
+      grid-row: 3/4;
+    }
+    &:nth-child(4) {
+      grid-row: span 2;
+    }
+  }
+}
+@media screen and (max-width: 480px) {
+  .competeTextContainer {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 400px) {
+  .competeTitle {
+    font-size: clamp(42px, 12vw, 48px);
+  }
+  .competeButton {
+    font-size: clamp(25px, 7.3vw, 29px);
+  }
+  .competeButtonIcon {
+    height: clamp(25px, 6.8vw, 27px);
+  }
+  .competeImagesContainer {
+    height: clamp(400px, 124.8vw, 500px);
+    gap: clamp(8px, 2.5vw, 10px);
+    grid-template-rows: 1fr 1fr clamp(120px, 37.4vw, 150px);
   }
 }
