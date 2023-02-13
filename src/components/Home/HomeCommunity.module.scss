@@ -151,7 +151,7 @@
   }
   .competeImagesContainer {
     grid-template-columns: clamp(140px, 13.4vw, 180px) clamp(160px, 14.8vw, 200px);
-    height: clamp(650px, 57.9vw, 780px);
+    height: clamp(650px, 54.9vw, 740px);
   }
   .competeInstagram {
     font-size: 13px;
@@ -179,7 +179,7 @@
     grid-template-columns: clamp(140px, 21.5vw, 220px);
     justify-content: end;
     grid-template-rows: 1.5fr 1fr;
-    height: clamp(610px, 81.1vw, 830px);
+    height: clamp(570px, 81.1vw, 830px);
   }
   .competeImage {
     &:nth-child(1) {
