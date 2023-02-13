@@ -25,7 +25,7 @@
   font-size: 18px;
 }
 .icon {
-  width: 72px;
+  width: 71px;
   height: auto;
   color: var(--secondary-color);
 }
@@ -45,7 +45,7 @@
     font-size: clamp(16px, 1vw, 18px);
   }
   .icon {
-    width: clamp(59px, 3.8vw, 72px);
+    width: clamp(59px, 3.8vw, 71px);
   }
 }
 @media screen and (max-width: 1350px) {
@@ -66,6 +66,6 @@
     --gap: 25px;
   }
   .icon {
-    width: clamp(51px, 13.4vw, 54px);
+    width: clamp(52px, 13.4vw, 54px);
   }
 }
