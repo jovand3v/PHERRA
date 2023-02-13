@@ -137,7 +137,7 @@
     width: clamp(395px, 88vw, 900px);
   }
   .collections {
-    margin-top: clamp(75px, 11.7vw, 120px);
+    margin-top: var(--margin-top-section-content);
   }
   .collectionImage {
     width: 100%;
@@ -165,7 +165,6 @@
 }
 @media screen and (max-width: 400px) {
   .collections {
-    margin-top: clamp(60px, 18.5vw, 75px);
     gap: clamp(12px, 3.8vw, 15px);
   }
   .collectionImage {

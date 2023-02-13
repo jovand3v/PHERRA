@@ -36,6 +36,7 @@
   :root {
     --font-size-section-title: clamp(90px, 19.2vw, 195px);
     --font-size-section-subtitle: clamp(69px, 12.8vw, 125px);
+    --margin-top-section-content: clamp(75px, 11.7vw, 120px);
   }
 }
 @media screen and (max-width: 850px) {
@@ -53,5 +54,6 @@
     --background-pattern-size: 125px;
     --font-size-section-title: clamp(70px, 22.5vw, 90px);
     --font-size-section-subtitle: clamp(60px, 17.3vw, 69px);
+    --margin-top-section-content: clamp(60px, 18.5vw, 75px);
   }
 }
