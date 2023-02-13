@@ -138,7 +138,7 @@
     width: clamp(395px, 88vw, 900px);
   }
   .collections {
-    margin-top: var(--margin-top-section-content);
+    margin-top: calc(3 * var(--padding-section));
   }
   .collectionImage {
     width: 100%;

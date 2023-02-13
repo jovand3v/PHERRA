@@ -1,5 +1,5 @@
 .main {
-  padding: calc(2 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
+  padding: calc(3 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
   display: flex;
   align-items: flex-end;
   flex-direction: column;
@@ -24,7 +24,7 @@
   display: flex;
   width: 100%;
   justify-content: space-around;
-  margin-top: var(--margin-top-section-content);
+  margin-top: calc(3 * var(--padding-section));
 }
 .competeTextContainer {
   width: 730px;
