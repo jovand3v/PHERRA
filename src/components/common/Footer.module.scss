@@ -1,0 +1,122 @@
+.main {
+  display: flex;
+  align-items: center;
+  padding: var(--padding-section);
+  background: var(--background-base-color);
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    right: var(--padding-section);
+    left: var(--padding-section);
+    top: 0px;
+    height: 1px;
+    background: var(--secondary-color);
+  }
+}
+.connect {
+  display: flex;
+  flex-direction: column;
+  gap: 45px;
+}
+.title {
+  font-size: 160px;
+  line-height: 0.73;
+  margin-left: -9px;
+  color: var(--secondary-color);
+  font-weight: var(--font-bold);
+}
+.description {
+  font-size: 19px;
+  font-weight: var(--font-light);
+  margin-top: 10px;
+}
+.newsletterTitle {
+  font-size: 25px;
+  font-weight: var(--font-bold);
+  color: var(--secondary-color);
+}
+.newsletterContainer {
+  height: 50px;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+}
+.input {
+  height: 100%;
+  width: 500px;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  background: none;
+  padding: 10px;
+  outline: none;
+  font-size: 15px;
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+}
+.button {
+  height: 100%;
+  width: 160px;
+  background: none;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 14px;
+  cursor: pointer;
+}
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.infoContainer {
+  display: flex;
+  gap: 20px;
+}
+.infoText {
+  font-size: 16px;
+}
+.socials {
+  display: flex;
+  gap: 15px;
+}
+.social {
+  width: 36px;
+  height: 36px;
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary-color);
+  }
+}
+.services {
+  display: flex;
+  flex: 1 1;
+  justify-content: center;
+  gap: 150px;
+  margin-bottom: 12px;
+}
+.serviceTitle {
+  font-size: 32px;
+  color: var(--secondary-color);
+  margin-left: -1px;
+}
+.serviceList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 25px;
+}
+.serviceItem {
+  cursor: pointer;
+  &:hover {
+    color: var(--secondary-color);
+  }
+}
+.note {
+  position: absolute;
+  right: var(--padding-section);
+  bottom: var(--padding-section);
+  color: grey;
+  font-size: 15px;
+}
