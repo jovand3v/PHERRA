@@ -34,7 +34,7 @@
   gap: 60px;
 }
 .competeTitle {
-  font-size: 112px;
+  font-size: 113px;
   line-height: 100%;
   font-weight: var(--font-bold);
   color: var(--secondary-color);
@@ -94,14 +94,14 @@
     gap: clamp(50px, 3.2vw, 60px);
   }
   .competeTitle {
-    font-size: clamp(80px, 5.9vw, 112px);
+    font-size: clamp(83px, 6vw, 113px);
     margin-left: min(-4px, -0.4vw);
   }
   .competeDescription {
     font-size: clamp(15px, 0.9vw, 17px);
   }
   .competeButton {
-    font-size: clamp(34px, 2.5vw, 46px);
+    font-size: clamp(35px, 2.5vw, 46px);
   }
   .competeButtonIcon {
     margin-bottom: min(-3px, -0.4vw);
@@ -115,12 +115,12 @@
   .competeImagesContainer {
     gap: clamp(15px, 1.1vw, 20px);
     grid-template-columns: clamp(245px, 18vw, 330px) clamp(260px, 19.8vw, 360px);
-    height: clamp(760px, 54vw, 980px);
+    height: clamp(770px, 54vw, 980px);
   }
 }
 @media screen and (max-width: 1350px) {
   .main {
-    padding: calc(1 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
+    padding: calc(2 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
   }
   .title {
     width: clamp(800px, 69.7vw, 940px);
@@ -135,23 +135,22 @@
     width: 100%;
   }
   .competeTextContainer {
-    width: clamp(440px, 40vw, 520px);
+    width: clamp(440px, 40vw, 540px);
     gap: clamp(40px, 3.8vw, 50px);
   }
   .competeTitle {
-    font-size: clamp(68px, 6vw, 80px);
+    font-size: clamp(68px, 6.2vw, 83px);
   }
   .competeButton {
-    font-size: clamp(31px, 2.6vw, 34px);
+    font-size: clamp(31px, 2.6vw, 35px);
   }
   .competeButtonIcon {
     margin-left: 3px;
-    margin-bottom: -5px;
     height: clamp(31px, 2.5vw, 33px);
   }
   .competeImagesContainer {
     grid-template-columns: clamp(140px, 13.4vw, 180px) clamp(160px, 14.8vw, 200px);
-    height: clamp(650px, 54.9vw, 740px);
+    height: clamp(670px, 57.6vw, 770px);
   }
   .competeInstagram {
     font-size: 13px;
@@ -166,14 +165,14 @@
     gap: clamp(40px, 4.9vw, 50px);
   }
   .competeTitle {
-    font-size: clamp(48px, 8.5vw, 87px);
+    font-size: clamp(50px, 8.5vw, 87px);
   }
   .competeButton {
     margin-top: 3px;
-    font-size: clamp(28px, 3.8vw, 39px);
+    font-size: clamp(30px, 3.8vw, 39px);
   }
   .competeButtonIcon {
-    height: clamp(25px, 3.5vw, 36px);
+    height: clamp(26px, 3.5vw, 36px);
   }
   .competeImagesContainer {
     grid-template-columns: clamp(140px, 21.5vw, 220px);
@@ -213,15 +212,22 @@
   }
   .competeTextContainer {
     width: 100%;
+    text-align: center;
+    align-items: center;
+  }
+  .competeDescription {
+    width: 90%;
   }
   .competeButton {
     margin-left: -1px;
   }
   .competeContestantsContainer {
     margin-top: 60px;
+    justify-content: center;
   }
   .competeImagesContainer {
     height: 500px;
+    width: 360px;
     gap: 10px;
     justify-content: center;
     grid-template-columns: 1fr 1fr;
@@ -247,8 +253,11 @@
   }
 }
 @media screen and (max-width: 400px) {
+  .competeDescription {
+    width: 100%;
+  }
   .competeTitle {
-    font-size: clamp(42px, 12vw, 48px);
+    font-size: clamp(42px, 12.3vw, 49px);
   }
   .competeButton {
     font-size: clamp(25px, 7.3vw, 29px);
@@ -258,6 +267,7 @@
   }
   .competeImagesContainer {
     height: clamp(400px, 124.8vw, 500px);
+    width: 100%;
     gap: clamp(8px, 2.5vw, 10px);
     grid-template-rows: 1fr 1fr clamp(120px, 37.4vw, 150px);
   }
