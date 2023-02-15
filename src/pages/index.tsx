@@ -4,6 +4,7 @@ import HomeHero from "../components/Home/HomeHero";
 import HomeAd from "src/components/Home/HomeAd";
 import HomeCollections from "src/components/Home/HomeCollections";
 import HomeCommunity from "src/components/Home/HomeCommunity";
+import HomeContact from "src/components/Home/HomeContact";
 import Footer from "src/components/common/Footer";
 
 const Home: NextPage = () => {
@@ -21,6 +22,7 @@ const Home: NextPage = () => {
       <HomeAd />
       <HomeCollections />
       <HomeCommunity />
+      <HomeContact />
       <Footer />
     </>
   );

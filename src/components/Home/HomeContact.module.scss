@@ -1,0 +1,267 @@
+.main {
+  padding: calc(3 * var(--padding-section)) var(--padding-section) calc(4 * var(--padding-section))
+    var(--padding-section);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+.header {
+  position: relative;
+}
+.title {
+  font-size: var(--font-size-section-title);
+  margin-left: -5px;
+  overflow: hidden;
+  line-height: var(--line-height-section-title);
+  word-break: break-all;
+}
+.subtitle {
+  font-size: var(--font-size-section-subtitle);
+  color: var(--secondary-color-dimmed);
+  position: absolute;
+  bottom: 0px;
+  transform: translateY(50%);
+  z-index: -1;
+  right: 0px;
+}
+.contact {
+  padding-top: 225px;
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+.label {
+  display: flex;
+  flex-direction: column;
+  font-size: 16px;
+}
+.input {
+  margin-top: 10px;
+  height: 50px;
+  width: 390px;
+  background: var(--background-base-color);
+  border: 1px solid var(--primary-color);
+  padding: 10px;
+  color: white;
+  outline: none;
+  font-size: 15px;
+  &::placeholder {
+    color: var(--placeholder-color);
+  }
+}
+.messageInput {
+  height: 250px;
+  resize: none;
+}
+.button {
+  width: 140px;
+  height: 50px;
+  background: var(--background-base-color);
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  font-size: 14px;
+  cursor: pointer;
+}
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+.info {
+  list-style-type: none;
+}
+.infoTitle {
+  font-size: 25px;
+  color: var(--secondary-color);
+  line-height: 110%;
+}
+.infoDescription {
+  font-size: 39px;
+  font-weight: var(--font-light);
+}
+.infoCountry {
+  font-size: 50px;
+  line-height: 105%;
+}
+@media screen and (max-width: 1900px) {
+  .title {
+    margin-left: min(-3px, -0.4vw);
+  }
+  .contact {
+    padding-top: clamp(170px, 11.9vw, 225px);
+  }
+  .form {
+    gap: clamp(15px, 1.1vw, 20px);
+  }
+  .label {
+    font-size: clamp(14px, 0.9vw, 16px);
+  }
+  .input {
+    margin-top: clamp(8px, 0.6vw, 10px);
+    height: clamp(42px, 2.7vw, 50px);
+    width: clamp(310px, 20.5vw, 390px);
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
+  .messageInput {
+    height: clamp(210px, 13.2vw, 250px);
+  }
+  .button {
+    width: clamp(120px, 7.4vw, 140px);
+    height: clamp(42px, 2.7vw, 50px);
+    font-size: clamp(13px, 0.8vw, 14px);
+  }
+  .infoTitle {
+    font-size: clamp(22px, 1.4vw, 25px);
+  }
+  .infoDescription {
+    font-size: clamp(30px, 2.1vw, 39px);
+  }
+  .infoCountry {
+    font-size: clamp(38px, 2.7vw, 50px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .main {
+    padding: calc(2 * var(--padding-section)) var(--padding-section) calc(3 * var(--padding-section));
+  }
+  .title {
+    width: 950px;
+  }
+  .subtitle {
+    left: 0px;
+  }
+  .contact {
+    padding-top: clamp(150px, 11.9vw, 160px);
+  }
+  .form {
+    gap: clamp(12px, 1.1vw, 15px);
+  }
+  .label {
+    font-size: clamp(13px, 1.1vw, 14px);
+  }
+  .input {
+    margin-top: clamp(6px, 0.6vw, 8px);
+    height: clamp(40px, 3.2vw, 42px);
+    width: clamp(280px, 23vw, 310px);
+    font-size: clamp(13px, 1.1vw, 14px);
+  }
+  .messageInput {
+    height: clamp(190px, 15.6vw, 210px);
+  }
+  .button {
+    width: clamp(110px, 8.9vw, 120px);
+    height: clamp(40px, 3.2vw, 42px);
+  }
+  .infoTitle {
+    font-size: clamp(20px, 1.7vw, 22px);
+  }
+  .infoDescription {
+    font-size: clamp(27px, 2.3vw, 30px);
+  }
+  .infoCountry {
+    font-size: clamp(34px, 2.9vw, 38px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    width: auto;
+  }
+  .subtitle {
+    line-height: 0.8;
+  }
+  .contact {
+    padding-top: clamp(115px, 16.2vw, 165px);
+    flex-direction: column;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+  }
+  .form {
+    gap: clamp(11px, 1.5vw, 15px);
+  }
+  .label {
+    font-size: clamp(13px, 1.5vw, 15px);
+  }
+  .input {
+    margin-top: clamp(6px, 0.8vw, 8px);
+    height: clamp(40px, 4.4vw, 45px);
+    width: clamp(280px, 33.3vw, 340px);
+    font-size: clamp(13px, 1.4vw, 14px);
+  }
+  .messageInput {
+    height: clamp(190px, 20.6vw, 210px);
+  }
+  .button {
+    width: clamp(110px, 12.8vw, 130px);
+    height: clamp(40px, 4.4vw, 45px);
+    font-size: clamp(13px, 1.4vw, 14px);
+  }
+  .infoContainer {
+    margin-top: clamp(70px, 9.8vw, 100px);
+    gap: clamp(40px, 4.4vw, 45px);
+  }
+  .info {
+    text-align: center;
+    br {
+      &:nth-child(2) {
+        display: none;
+      }
+    }
+  }
+  .infoTitle {
+    font-size: clamp(21px, 2.5vw, 25px);
+  }
+  .infoDescription {
+    font-size: clamp(25px, 3.4vw, 34px);
+  }
+  .infoCountry {
+    line-height: 115%;
+    font-size: clamp(25px, 3.4vw, 34px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .contact {
+    padding-top: calc(3 * var(--padding-section) + 10px);
+  }
+}
+@media screen and (max-width: 535px) {
+  .subtitle {
+    transform: translateY(70%);
+  }
+  .contact {
+    padding-top: 135px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .contact {
+    padding-top: clamp(128px, 33.9vw, 135px);
+  }
+  .input {
+    width: clamp(255px, 69.8vw, 280px);
+  }
+  .messageInput {
+    height: clamp(180px, 47.5vw, 190px);
+  }
+  .button {
+    width: clamp(100px, 27.3vw, 110px);
+  }
+  .infoContainer {
+    margin-top: clamp(55px, 17.5vw, 70px);
+    gap: clamp(35px, 10vw, 40px);
+  }
+  .infoTitle {
+    font-size: clamp(19px, 5.3vw, 21px);
+  }
+  .infoDescription {
+    font-size: clamp(22px, 6.3vw, 25px);
+  }
+  .infoCountry {
+    font-size: clamp(22px, 6.3vw, 25px);
+  }
+}
