@@ -231,6 +231,9 @@
   }
 }
 @media screen and (max-width: 535px) {
+  .title {
+    margin-left: -1px;
+  }
   .subtitle {
     transform: translateY(70%);
   }
