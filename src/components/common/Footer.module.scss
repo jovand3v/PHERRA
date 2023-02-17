@@ -2,37 +2,44 @@
   display: flex;
   align-items: center;
   padding: var(--padding-section);
-  background: var(--background-base-color);
   position: relative;
   &::before {
     content: "";
     position: absolute;
-    right: var(--padding-section);
     left: var(--padding-section);
+    right: var(--padding-section);
     top: 0px;
     height: 1px;
     background: var(--secondary-color);
   }
 }
+.mainContentContainer {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
 .connect {
   display: flex;
   flex-direction: column;
-  gap: 45px;
 }
 .title {
-  font-size: 160px;
+  font-size: 215px;
   line-height: 0.73;
-  margin-left: -9px;
+  margin-left: -14px;
   color: var(--secondary-color);
   font-weight: var(--font-bold);
 }
 .description {
-  font-size: 19px;
+  font-size: 20px;
   font-weight: var(--font-light);
   margin-top: 10px;
 }
+.newsletter {
+  margin: 45px 0px;
+}
 .newsletterTitle {
-  font-size: 25px;
+  line-height: 0.8;
+  font-size: 24px;
   font-weight: var(--font-bold);
   color: var(--secondary-color);
 }
@@ -47,7 +54,7 @@
   width: 500px;
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
-  background: none;
+  background: var(--background-base-color);
   padding: 10px;
   outline: none;
   font-size: 15px;
@@ -58,7 +65,7 @@
 .button {
   height: 100%;
   width: 160px;
-  background: none;
+  background: var(--background-base-color);
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
   font-size: 14px;
@@ -67,11 +74,11 @@
 .info {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 18px;
 }
 .infoContainer {
   display: flex;
-  gap: 20px;
+  gap: 22px;
 }
 .infoText {
   font-size: 16px;
@@ -82,7 +89,7 @@
 }
 .social {
   width: 36px;
-  height: 36px;
+  height: auto;
   cursor: pointer;
   &:hover {
     color: var(--secondary-color);
@@ -96,9 +103,12 @@
   margin-bottom: 12px;
 }
 .serviceTitle {
-  font-size: 32px;
+  font-size: 31px;
   color: var(--secondary-color);
   margin-left: -1px;
+  br {
+    display: none;
+  }
 }
 .serviceList {
   list-style-type: none;
@@ -108,10 +118,14 @@
   margin-top: 25px;
 }
 .serviceItem {
+  font-size: 16px;
   cursor: pointer;
   &:hover {
     color: var(--secondary-color);
   }
+}
+.elevator {
+  display: none;
 }
 .note {
   position: absolute;
@@ -119,4 +133,257 @@
   bottom: var(--padding-section);
   color: grey;
   font-size: 15px;
+}
+@media screen and (max-width: 1900px) {
+  .title {
+    font-size: clamp(150px, 11vw, 215px);
+    margin-left: min(-9px, -0.7vw);
+  }
+  .description {
+    font-size: clamp(18px, 1.1vw, 20px);
+  }
+  .newsletter {
+    margin: clamp(40px, 2.4vw, 45px) 0px;
+  }
+  .newsletterTitle {
+    font-size: clamp(19px, 1.3vw, 24px);
+  }
+  .newsletterContainer {
+    height: clamp(42px, 2.7vw, 50px);
+    gap: clamp(8px, 0.5vw, 10px);
+    margin-top: clamp(8px, 0.5vw, 10px);
+  }
+  .input {
+    width: clamp(400px, 26.4vw, 500px);
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
+  .button {
+    width: clamp(130px, 8.5vw, 160px);
+    font-size: clamp(13px, 0.8vw, 14px);
+  }
+  .infoText {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .socials {
+    gap: clamp(12px, 0.8vw, 15px);
+  }
+  .social {
+    width: clamp(32px, 1.9vw, 36px);
+  }
+  .services {
+    gap: clamp(100px, 7.9vw, 150px);
+  }
+  .serviceTitle {
+    font-size: clamp(24px, 1.7vw, 31px);
+  }
+  .serviceList {
+    gap: clamp(6px, 0.5vw, 8px);
+    margin-top: clamp(18px, 1.3vw, 25px);
+  }
+  .serviceItem {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .note {
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .title {
+    font-size: clamp(130px, 11.2vw, 150px);
+  }
+  .description {
+    font-size: clamp(17px, 1.4vw, 18px);
+    margin-top: 6px;
+  }
+  .newsletterContainer {
+    height: clamp(40px, 3.2vw, 42px);
+  }
+  .input {
+    width: clamp(380px, 29.8vw, 400px);
+    font-size: clamp(13px, 1.1vw, 14px);
+  }
+  .button {
+    width: clamp(120px, 9.7vw, 130px);
+  }
+  .services {
+    flex-direction: column;
+    gap: 40px;
+    align-items: center;
+  }
+  .service {
+    text-align: center;
+    gap: 10px;
+  }
+  .serviceTitle {
+    font-size: clamp(22px, 1.8vw, 24px);
+  }
+  .serviceList {
+    gap: clamp(4px, 0.5vw, 6px);
+    margin-top: clamp(8px, 0.8vw, 10px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .title {
+    font-size: clamp(80px, 16.7vw, 170px);
+    letter-spacing: -5px;
+  }
+  .description {
+    font-size: clamp(18px, 1.9vw, 19px);
+  }
+  .newsletter {
+    margin: clamp(35px, 4.5vw, 45px) 0px;
+  }
+  .newsletterTitle {
+    font-size: clamp(18px, 2.1vw, 21px);
+  }
+  .newsletterContainer {
+    height: clamp(40px, 4.4vw, 45px);
+  }
+  .input {
+    font-size: clamp(13px, 1.4vw, 14px);
+    width: clamp(225px, 41.5vw, 425px);
+  }
+  .button {
+    width: clamp(110px, 13.3vw, 135px);
+    font-size: clamp(13px, 1.4vw, 14px);
+  }
+  .info {
+    gap: clamp(20px, 2.5vw, 25px);
+  }
+  .infoContainer {
+    gap: clamp(20px, 2.5vw, 25px);
+  }
+  .socials {
+    margin-bottom: -3px;
+  }
+  .social {
+    width: clamp(34px, 3.5vw, 35px);
+  }
+  .service {
+    br {
+      display: block;
+    }
+  }
+  .serviceTitle {
+    font-size: clamp(23px, 2.5vw, 25px);
+  }
+}
+
+@media screen and (max-width: 900px) {
+  .title {
+    font-size: clamp(80px, 17.8vw, 160px);
+  }
+  .mainContentContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    width: auto;
+  }
+  .elevator {
+    display: block;
+    flex: 1 1;
+    height: clamp(280px, 39vw, 350px);
+    margin-right: calc(0px - var(--padding-section));
+    color: var(--secondary-color);
+    cursor: pointer;
+  }
+  .title {
+    letter-spacing: -3px;
+  }
+  .services {
+    flex-direction: row;
+    padding: clamp(50px, 6.7vw, 60px) 0px;
+    gap: clamp(40px, 6.7vw, 60px);
+    align-items: flex-start;
+    justify-content: flex-start;
+    width: 100%;
+  }
+  .service {
+    text-align: start;
+    br {
+      display: none;
+    }
+  }
+  .serviceList {
+    margin-top: 10px;
+  }
+}
+@media screen and (max-width: 800px) {
+  .title {
+    letter-spacing: -2px;
+    margin-left: min(-5px, -0.9vw);
+  }
+}
+@media screen and (max-width: 700px) {
+  .title {
+    font-size: calc(var(--font-size-section-title));
+  }
+  .main {
+    flex-direction: column;
+  }
+  .mainContentContainer {
+    width: 100%;
+  }
+  .connect {
+    width: 100%;
+  }
+  .elevator {
+    display: none;
+  }
+  .services {
+    margin: 0px;
+  }
+  .note {
+    position: static;
+    width: 100%;
+  }
+}
+@media screen and (max-width: 490px) {
+  .service {
+    br {
+      display: block;
+    }
+  }
+}
+@media screen and (max-width: 400px) {
+  .title {
+    letter-spacing: -3px;
+  }
+  .description {
+    font-size: clamp(16px, 4.3vw, 17px);
+  }
+  .newsletterTitle {
+    font-size: clamp(16px, 4.5vw, 18px);
+    letter-spacing: -0.2px;
+  }
+  .input {
+    flex: 1 1;
+    width: 100%;
+  }
+  .button {
+    width: clamp(95px, 27.4vw, 110px);
+  }
+  .info {
+    gap: clamp(13px, 3.7vw, 15px);
+  }
+  .infoContainer {
+    flex-direction: column;
+    gap: clamp(13px, 3.7vw, 15px);
+  }
+  .socials {
+    gap: 10px;
+  }
+  .social {
+    width: clamp(33px, 8.5vw, 34px);
+  }
+  .services {
+    padding: clamp(45px, 12.4vw, 50px) 0px;
+    gap: clamp(30px, 10vw, 40px);
+    flex-direction: column;
+  }
+  .serviceTitle {
+    font-size: clamp(22px, 5.8vw, 23px);
+    br {
+      display: none;
+    }
+  }
 }
