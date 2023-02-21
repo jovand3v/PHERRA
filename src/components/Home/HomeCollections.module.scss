@@ -33,6 +33,7 @@
   position: relative;
   cursor: pointer;
   color: var(--primary-color);
+  background: linear-gradient(179.98deg, rgba(0, 0, 0, 0) 55.03%, rgba(0, 0, 0, 0.2) 99.98%);
 }
 .collectionWinter {
   color: var(--background-base-color);
@@ -47,6 +48,8 @@
   width: 590px;
   height: 850px;
   object-fit: cover;
+  position: relative;
+  z-index: -1;
 }
 .collectionHeader {
   display: flex;

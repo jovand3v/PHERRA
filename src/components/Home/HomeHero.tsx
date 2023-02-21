@@ -74,7 +74,9 @@ const HomeHero = () => {
           </nav>
         </div>
       </div>
-      <Image className={s.image} src={model} alt="model smiling, wearing a beige top" priority quality={100} />
+      <div className={s.imageWrapper}>
+        <Image className={s.image} src={model} alt="model smiling, wearing a beige top" priority quality={100} />
+      </div>
       <div className={s.cartSocialsContainer}>
         <Cart />
         <div className={s.socials}>

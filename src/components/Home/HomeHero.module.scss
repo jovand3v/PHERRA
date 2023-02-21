@@ -110,9 +110,14 @@
   }
 }
 .image {
+  object-fit: cover;
   height: 100%;
   width: 550px;
-  object-fit: cover;
+  position: relative;
+  z-index: -1;
+}
+.imageWrapper {
+  background: linear-gradient(135.21deg, rgba(0, 0, 0, 0.2) 5.89%, rgba(0, 0, 0, 0) 30.98%);
 }
 .cartSocialsContainer {
   width: 190px;
