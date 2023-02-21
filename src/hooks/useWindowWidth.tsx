@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-// listens to resize, updates 500ms after resize stop, and returns the current window width
+// listens to resize, updates 100ms after resize stop, and returns the current window width
 const useWindowWidth = (): number => {
   const [windowWidth, setWindowWidth] = useState(0);
 
