@@ -88,7 +88,7 @@
   gap: 15px;
 }
 .social {
-  width: 36px;
+  width: 37px;
   height: auto;
   cursor: pointer;
   &:hover {
@@ -169,7 +169,7 @@
     gap: clamp(12px, 0.8vw, 15px);
   }
   .social {
-    width: clamp(32px, 1.9vw, 36px);
+    width: clamp(32px, 2vw, 37px);
   }
   .services {
     gap: clamp(100px, 7.9vw, 150px);
@@ -221,6 +221,10 @@
   .serviceList {
     gap: clamp(4px, 0.5vw, 6px);
     margin-top: clamp(8px, 0.8vw, 10px);
+    align-items: center;
+  }
+  .social {
+    width: clamp(30px, 2.4vw, 32px);
   }
 }
 @media screen and (max-width: 1024px) {
@@ -258,7 +262,7 @@
     margin-bottom: -3px;
   }
   .social {
-    width: clamp(34px, 3.5vw, 35px);
+    width: clamp(33px, 3.5vw, 35px);
   }
   .service {
     br {
@@ -306,6 +310,7 @@
   }
   .serviceList {
     margin-top: 10px;
+    align-items: flex-start;
   }
 }
 @media screen and (max-width: 800px) {
@@ -374,7 +379,7 @@
     gap: 10px;
   }
   .social {
-    width: clamp(33px, 8.5vw, 34px);
+    width: clamp(32px, 8.3vw, 33px);
   }
   .services {
     padding: clamp(45px, 12.4vw, 50px) 0px;
