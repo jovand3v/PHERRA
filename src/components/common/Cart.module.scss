@@ -21,7 +21,7 @@
   right: -12px;
   bottom: -10px;
   padding: 12px;
-  border-radius: 15px;
+  border-radius: 20px;
 }
 @media screen and (max-width: 1900px) {
   .main {
@@ -32,7 +32,7 @@
     font-size: clamp(29px, 2vw, 38px);
     padding: clamp(8px, 0.7vw, 12px);
     right: min(-6px, -0.6vw);
-    bottom: min(-7px, -0.5vw);
+    bottom: min(-9px, -0.55vw);
   }
 }
 @media screen and (max-width: 1350px) {
@@ -42,7 +42,7 @@
   }
   .amount {
     font-size: 29px;
-    bottom: -8px;
+    bottom: min(-8px, -0.7vw);
   }
 }
 @media screen and (max-width: 1024px) {
@@ -54,7 +54,7 @@
     font-size: clamp(33px, 3.5vw, 35px);
     padding: 10px;
     right: -8px;
-    bottom: -9px;
+    bottom: min(-9px, -0.9vw);
   }
 }
 @media screen and (max-width: 400px) {
