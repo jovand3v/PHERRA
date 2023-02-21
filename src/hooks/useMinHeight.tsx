@@ -2,7 +2,7 @@ import { MutableRefObject, RefObject, useEffect, useState } from "react";
 import useWindowWidth from "./useWindowWidth";
 
 // calculates and returns the smallest possible height of a section based on the passed elements and padding
-const useMinHeight = (nodesRef: MutableRefObject<HTMLElement[]>, paddingNodeRef: RefObject<HTMLDivElement>): number => {
+const useMinHeight = (nodesRef: MutableRefObject<HTMLElement[]>, paddingNodeRef: RefObject<HTMLElement>): number => {
   const [height, setHeight] = useState(0);
   const windowWidth = useWindowWidth();
 
