@@ -1,12 +1,15 @@
-import type { NextPage } from "next";
 import s from "./Cart.module.scss";
 import CartIcon from "@public/assets/icons/cart.svg";
+import CartContainer from "./CartContainer";
 
-const Cart: NextPage = () => {
+const Cart = () => {
   return (
     <div className={s.main}>
-      <CartIcon className={s.icon} />
-      <div className={s.amount}>0</div>
+      <div className={s.iconContainer}>
+        <CartIcon className={s.icon} />
+        <div className={s.iconAmount}>0</div>
+      </div>
+      <CartContainer />
     </div>
   );
 };
