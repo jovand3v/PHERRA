@@ -33,12 +33,12 @@ const HomeHero = () => {
       <div className={s.textContainer} ref={mainPaddingNodeRef}>
         <div className={s.headerContainer}>
           <header className={s.header}>
-            <div className={s.title} ref={(el) => handleMainNodes(el)}>
+            <h1 className={s.title} ref={(el) => handleMainNodes(el)}>
               PHERRA
-            </div>
-            <h1 className={s.subtitle} ref={(el) => handleMainNodes(el)}>
-              A World of Innovation, Elegance, and Inspiration.
             </h1>
+            <p className={s.subtitle} ref={(el) => handleMainNodes(el)}>
+              A World of Innovation, Elegance, and Inspiration.
+            </p>
             <p className={s.description} ref={(el) => handleMainNodes(el)}>
               PHERRA is an Italian high-end luxury fashion house based in Italy established in 2015. Our products are
               made by the finest Italian raw materials, processed & distributed by us.
