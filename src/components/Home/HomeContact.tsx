@@ -2,7 +2,7 @@ import s from "./HomeContact.module.scss";
 
 const HomeContact = () => {
   return (
-    <div className={s.main} id="contact">
+    <section className={s.main} id="contact">
       <header className={s.header}>
         <h1 className={s.title}>CONTACT US</h1>
         <p className={s.subtitle}>GET IN TOUCH</p>
@@ -41,7 +41,7 @@ const HomeContact = () => {
           </li>
         </ul>
       </div>
-    </div>
+    </section>
   );
 };
 
