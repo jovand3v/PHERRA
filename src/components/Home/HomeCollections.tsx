@@ -7,7 +7,7 @@ import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
 
 const HomeCollections = () => {
   return (
-    <section className={s.main}>
+    <section className={s.main} id="collections">
       <header className={s.header}>
         <h1 className={s.title}>COLLECTIONS:</h1>
         <p className={s.subtitle}>2023</p>

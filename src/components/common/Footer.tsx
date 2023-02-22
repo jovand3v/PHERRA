@@ -60,7 +60,9 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <ArrowIcon className={s.elevator} />
+      <div className={s.elevatorContainer}>
+        <ArrowIcon className={s.elevator} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
+      </div>
       <p className={s.note}>NO REAL DATA WAS PROVIDED WHEN BUILDING THIS WEBSITE. PHERRA DOESN'T EXIST.</p>
     </footer>
   );

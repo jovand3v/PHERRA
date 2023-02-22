@@ -1,5 +1,6 @@
 .main {
-  padding: calc(3 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
+  padding: var(--padding-section);
+  margin-top: calc(2 * var(--padding-section));
   display: flex;
   align-items: flex-end;
   flex-direction: column;
@@ -119,7 +120,7 @@
 }
 @media screen and (max-width: 1350px) {
   .main {
-    padding: calc(2 * var(--padding-section)) var(--padding-section) var(--padding-section) var(--padding-section);
+    margin-top: var(--padding-section);
   }
   .title {
     width: clamp(800px, 69.7vw, 940px);

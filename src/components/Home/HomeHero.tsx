@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import Link from "next/link";
 import Image from "next/image";
 import s from "./HomeHero.module.scss";
 import Cart from "../common/Cart";
@@ -17,6 +18,14 @@ const HomeHero = () => {
   const handleMainNodes = (el: HTMLElement | null): void => {
     if (!el || mainNodesRef.current.includes(el)) return;
     mainNodesRef.current.push(el);
+  };
+
+  const handleScroll = (section: string): void => {
+    const el = document.querySelector(`#${section}`);
+    if (el) {
+      const pos = el.getBoundingClientRect().y + window.scrollY;
+      window.scrollTo({ top: pos, behavior: "smooth" });
+    }
   };
 
   return (
@@ -53,13 +62,13 @@ const HomeHero = () => {
               CO
             </span>
             <ul className={s.navList}>
-              <li className={s.navLink} aria-label="Collections">
+              <li className={s.navLink} onClick={() => handleScroll("collections")} aria-label="Collections">
                 llections
               </li>
-              <li className={s.navLink} aria-label="Community">
+              <li className={s.navLink} onClick={() => handleScroll("community")} aria-label="Community">
                 mmunity
               </li>
-              <li className={s.navLink} aria-label="Contact us">
+              <li className={s.navLink} onClick={() => handleScroll("contact")} aria-label="Contact us">
                 ntact us
               </li>
             </ul>
@@ -67,9 +76,15 @@ const HomeHero = () => {
           {/* nav container for mobile only */}
           <nav className={s.navMobile}>
             <ul className={s.navList}>
-              <li className={s.navLink}>Collections</li>
-              <li className={s.navLink}>Community</li>
-              <li className={s.navLink}>Contact us</li>
+              <li className={s.navLink} onClick={() => handleScroll("collections")}>
+                Collections
+              </li>
+              <li className={s.navLink} onClick={() => handleScroll("community")}>
+                Community
+              </li>
+              <li className={s.navLink} onClick={() => handleScroll("contact")}>
+                Contact us
+              </li>
             </ul>
           </nav>
         </div>

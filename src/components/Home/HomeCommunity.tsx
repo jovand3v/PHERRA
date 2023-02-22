@@ -8,7 +8,7 @@ import s from "./HomeCommunity.module.scss";
 
 const HomeCommunity = () => {
   return (
-    <section className={s.main}>
+    <section className={s.main} id="community">
       <header className={s.header}>
         <h1 className={s.title}>COMMUNITY</h1>
         <p className={s.subtitle}>JOIN US</p>

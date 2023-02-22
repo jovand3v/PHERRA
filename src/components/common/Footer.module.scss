@@ -125,7 +125,7 @@
     color: var(--secondary-color);
   }
 }
-.elevator {
+.elevatorContainer {
   display: none;
 }
 .note {
@@ -283,11 +283,14 @@
     align-items: flex-start;
     width: auto;
   }
+  .elevatorContainer {
+    flex: 1 1;
+    display: flex;
+    justify-content: center;
+  }
   .elevator {
     display: block;
-    flex: 1 1;
     height: clamp(280px, 39vw, 350px);
-    margin-right: calc(0px - var(--padding-section));
     color: var(--secondary-color);
     cursor: pointer;
   }
@@ -332,7 +335,7 @@
   .connect {
     width: 100%;
   }
-  .elevator {
+  .elevatorContainer {
     display: none;
   }
   .services {

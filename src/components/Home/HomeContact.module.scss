@@ -1,6 +1,6 @@
 .main {
-  padding: calc(3 * var(--padding-section)) var(--padding-section) calc(4 * var(--padding-section))
-    var(--padding-section);
+  padding: var(--padding-section);
+  margin: calc(2 * var(--padding-section)) 0px calc(3 * var(--padding-section)) 0px;
   display: flex;
   align-items: flex-start;
   flex-direction: column;
@@ -128,7 +128,7 @@
 }
 @media screen and (max-width: 1350px) {
   .main {
-    padding: calc(2 * var(--padding-section)) var(--padding-section) calc(3 * var(--padding-section));
+    margin: var(--padding-section) 0px calc(2 * var(--padding-section)) 0px;
   }
   .title {
     width: 950px;
