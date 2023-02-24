@@ -1,3 +1,5 @@
+@use "./mixins.scss" as mixins;
+
 * {
   margin: 0px;
   padding: 0px;
@@ -5,22 +7,8 @@
   font-family: inherit;
 }
 html {
-  scrollbar-width: thin;
-  scrollbar-color: var(--secondary-color) var(--background-base-color);
   overflow-x: hidden;
-  &::-webkit-scrollbar {
-    width: max(8px, 0.44vw);
-    height: max(8px, 0.44vw);
-  }
-  &::-webkit-scrollbar-track {
-    background: var(--background-base-color);
-  }
-  &::-webkit-scrollbar-thumb {
-    background: var(--secondary-color);
-  }
-  &::-webkit-scrollbar-corner {
-    display: none;
-  }
+  @include mixins.scrollbar;
 }
 body {
   background-color: var(--background-base-color);
