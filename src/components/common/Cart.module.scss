@@ -1,8 +1,8 @@
-.main {
-  position: relative;
+.iconContainer {
+  cursor: pointer;
   width: 88px;
   height: 79px;
-  cursor: pointer;
+  position: relative;
 }
 .icon {
   color: var(--secondary-color);
@@ -23,8 +23,24 @@
   padding: 12px;
   border-radius: 20px;
 }
+.overlay {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  bottom: 0px;
+  left: 0px;
+  background: rgba(black, 0.7);
+  z-index: 3;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.overlayActive {
+  opacity: 1;
+  pointer-events: all;
+}
 @media screen and (max-width: 1900px) {
-  .main {
+  .iconContainer {
     width: clamp(69px, 4.7vw, 88px);
     height: clamp(61px, 4.2vw, 79px);
   }
@@ -36,7 +52,7 @@
   }
 }
 @media screen and (max-width: 1350px) {
-  .main {
+  .iconContainer {
     width: clamp(67px, 5.1vw, 69px);
     height: clamp(59px, 4.6vw, 61px);
   }
@@ -46,7 +62,7 @@
   }
 }
 @media screen and (max-width: 1024px) {
-  .main {
+  .iconContainer {
     width: clamp(76px, 8.4vw, 85px);
     height: clamp(68px, 7.5vw, 76px);
   }
@@ -58,7 +74,7 @@
   }
 }
 @media screen and (max-width: 400px) {
-  .main {
+  .iconContainer {
     width: clamp(73px, 19vw, 76px);
     height: clamp(61px, 17vw, 68px);
   }

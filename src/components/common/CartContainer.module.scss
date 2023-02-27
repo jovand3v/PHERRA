@@ -1,0 +1,95 @@
+@use "../../styles/mixins.scss" as mixins;
+
+.cartContainer {
+  position: fixed;
+  height: 100vh;
+  top: 0px;
+  background: var(--background-base-color);
+  width: 750px;
+  z-index: 4;
+  right: 0px;
+  transform: translateX(100%);
+  transition: transform 0.3s;
+  padding: var(--padding-section);
+  display: flex;
+  flex-direction: column;
+}
+.cartContainerActive {
+  transform: translateX(0%);
+}
+.cartTitle {
+  font-size: 195px;
+  font-weight: var(--font-bold);
+  line-height: 0.72;
+  color: var(--secondary-color);
+  margin-left: -5px;
+}
+.cartDescription {
+  font-size: 33px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+.productsContainer {
+  flex: 1 1;
+  list-style-type: none;
+  margin: 35px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  overflow-y: auto;
+  @include mixins.scrollbar;
+  &::-webkit-scrollbar {
+    width: 36px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-left: 28px solid var(--background-base-color);
+  }
+}
+.productsContainerEmpty {
+  flex: 1 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.productsContainerEmptyText {
+  font-size: 15px;
+  color: var(--primary-color);
+}
+.checkout {
+  border-top: 1px solid rgb(48, 48, 48);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.checkoutInfoContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  padding: 22px 0px 32px 0px;
+}
+.checkoutQuantity {
+  font-size: 16px;
+}
+.checkoutTotal {
+  font-size: 22px;
+}
+.checkoutTotalHighlight {
+  font-weight: var(--font-bold);
+  color: var(--secondary-color);
+}
+.checkoutButton {
+  width: 170px;
+  height: 50px;
+  border: 1px solid var(--primary-color);
+  background: none;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.close {
+  position: absolute;
+  right: var(--padding-section);
+  top: var(--padding-section);
+  width: 28px;
+  height: auto;
+  cursor: pointer;
+}
