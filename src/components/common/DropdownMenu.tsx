@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
 
@@ -10,9 +10,22 @@ const DropdownMenu = (props: Props) => {
   const { items } = props;
   const [active, setActive] = useState(false);
   const [selectedItem, setSelectedItem] = useState(items[0]);
+  const mainRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!active) return;
+    const handleBlur = (e: MouseEvent) => {
+      if (e.target instanceof HTMLElement && !mainRef.current?.contains(e.target)) {
+        setActive(false);
+      }
+    };
+    document.addEventListener("click", handleBlur);
+
+    return () => document.removeEventListener("click", handleBlur);
+  }, [active]);
 
   return (
-    <div className={s.main} onClick={() => setActive(!active)}>
+    <div className={s.main} ref={mainRef} onClick={() => setActive(!active)}>
       <span className={s.selected}>
         {selectedItem.color && <div className={s.colorBox} style={{ background: selectedItem.color }}></div>}
         {selectedItem.value}
