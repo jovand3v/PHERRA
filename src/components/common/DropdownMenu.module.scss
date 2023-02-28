@@ -1,0 +1,45 @@
+.main {
+  position: relative;
+  user-select: none;
+  display: flex;
+}
+.selected {
+  cursor: pointer;
+  display: flex;
+}
+.arrowIcon {
+  width: 11px;
+  margin-left: 5px;
+  height: auto;
+}
+.list {
+  position: absolute;
+  right: 0px;
+  top: 22px;
+  background: var(--background-base-color);
+  width: auto;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgb(32, 32, 32);
+  list-style-type: none;
+  z-index: 2;
+}
+.item {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  padding: 8px;
+  &:hover {
+    background: rgb(32, 32, 32);
+  }
+}
+.itemSelected {
+  background: rgb(32, 32, 32);
+}
+// color box for displaying color of item if present
+.colorBox {
+  width: 6px;
+  height: 18px;
+  margin-right: 2px;
+}
