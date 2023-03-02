@@ -41,7 +41,6 @@ const DropdownMenu = (props: Props) => {
         <ul className={s.list}>
           {items.map((item, i) => {
             const isItemColor = typeof item === "object";
-
             return (
               <li
                 className={`${s.item} ${JSON.stringify(selectedItem) === JSON.stringify(item) ? s.itemSelected : ""}`}

@@ -1,7 +1,6 @@
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 import s from "./CartProduct.module.scss";
 import PhotoNotFoundIcon from "@public/assets/icons/photo-not-found.svg";
-import model from "@public/assets/models/summer-model-2.png";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 
@@ -13,7 +12,7 @@ type Props = {
   price: number;
   sizes: [string, ...string[]];
   colors: [ColorObject, ...ColorObject[]];
-  img: File | null;
+  img: { src: StaticImageData | null; alt: string };
 };
 
 type Quantity = [number, ...number[]];
@@ -24,8 +23,8 @@ const CartProduct = (props: Props) => {
 
   return (
     <li className={s.main}>
-      {img ? (
-        <Image className={s.image} src={model} alt="model" />
+      {img.src ? (
+        <Image className={s.image} src={img.src} alt={img.alt} />
       ) : (
         <div className={s.imageNotFound}>
           <PhotoNotFoundIcon className={s.imageNotFoundIcon} />

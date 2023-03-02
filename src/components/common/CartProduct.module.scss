@@ -15,7 +15,9 @@
   color: var(--primary-color);
 }
 .image {
-  width: 125px;
+  width: 145px;
+  height: auto;
+  object-fit: cover;
 }
 .container {
   margin-left: 20px;
