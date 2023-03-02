@@ -7,8 +7,34 @@ type Props = {
   setActive: (state: boolean) => void;
 };
 
+type ProductColorObject = { name: string; value: string };
+
+type Products = {
+  id: number;
+  name: string;
+  price: number;
+  inStock: boolean;
+  img: null;
+  sizes: [string, ...string[]];
+  colors: [ProductColorObject, ...ProductColorObject[]];
+}[];
+
 const CartContainer = (props: Props) => {
   const { active, setActive } = props;
+  const products: Products = [
+    {
+      id: 1,
+      name: "open shirt",
+      price: 100,
+      inStock: true,
+      img: null,
+      sizes: ["S", "M", "L", "XL", "XXL"],
+      colors: [
+        { name: "Beige", value: "#ffd481" },
+        { name: "Blue", value: "lightblue" },
+      ],
+    },
+  ];
 
   return (
     <div className={`${s.cartContainer} ${active ? s.cartContainerActive : ""}`}>
@@ -16,12 +42,19 @@ const CartContainer = (props: Props) => {
         <h2 className={s.cartTitle}>CART</h2>
         <p className={s.cartDescription}>Your cart items</p>
       </header>
-      {true ? (
+      {products.length !== 0 ? (
         <ul className={s.productsContainer}>
-          <CartProduct />
-          <CartProduct />
-          <CartProduct />
-          <CartProduct />
+          {products.map((p) => (
+            <CartProduct
+              name={p.name}
+              price={p.price}
+              inStock={p.inStock}
+              img={p.img}
+              sizes={p.sizes}
+              colors={p.colors}
+              key={p.id}
+            />
+          ))}
         </ul>
       ) : (
         <div className={s.productsContainerEmpty}>

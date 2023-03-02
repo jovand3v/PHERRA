@@ -5,30 +5,26 @@ import model from "@public/assets/models/summer-model-2.png";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 
-const CartProduct = () => {
-  const image = false;
-  const sizes = [
-    { id: 1, value: "S" },
-    { id: 2, value: "M" },
-    { id: 3, value: "L" },
-    { id: 4, value: "XL" },
-    { id: 5, value: "XXL" },
-  ];
-  const colors = [
-    { id: 1, value: "Beige", color: "#ffd481" },
-    { id: 2, value: "Blue", color: "lightblue" },
-  ];
-  const quantity = [
-    { id: 1, value: 1 },
-    { id: 2, value: 2 },
-    { id: 3, value: 3 },
-    { id: 4, value: 4 },
-    { id: 5, value: 5 },
-  ];
+type ColorObject = { name: string; value: string };
+
+type Props = {
+  name: string;
+  inStock: boolean;
+  price: number;
+  sizes: [string, ...string[]];
+  colors: [ColorObject, ...ColorObject[]];
+  img: File | null;
+};
+
+type Quantity = [number, ...number[]];
+
+const CartProduct = (props: Props) => {
+  const { name, inStock, price, img, sizes, colors } = props;
+  const quantity: Quantity = [1, 2, 3, 4, 5];
 
   return (
     <li className={s.main}>
-      {image ? (
+      {img ? (
         <Image className={s.image} src={model} alt="model" />
       ) : (
         <div className={s.imageNotFound}>
@@ -37,11 +33,11 @@ const CartProduct = () => {
       )}
       <div className={s.container}>
         <header className={s.header}>
-          <h3 className={s.title}>OPEN SHIRT</h3>
+          <h3 className={s.title}>{name}</h3>
           <p className={s.description}>2023 Collection</p>
         </header>
         <ul className={s.info}>
-          <li className={s.stock}>In Stock</li>
+          <li className={s.stock}>{inStock ? "In Stock" : "Out of Stock"}</li>
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
             <span>
@@ -58,7 +54,7 @@ const CartProduct = () => {
           </li>
         </ul>
       </div>
-      <p className={s.price}>$159.99</p>
+      <p className={s.price}>${price}</p>
       <ExitIcon className={s.remove} />
     </li>
   );
