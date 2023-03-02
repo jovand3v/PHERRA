@@ -3,10 +3,12 @@ import s from "./CartProduct.module.scss";
 import PhotoNotFoundIcon from "@public/assets/icons/photo-not-found.svg";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
+import { useContext } from "react";
+import { ProductsContext } from "src/context/products";
 
 type ColorObject = { name: string; value: string };
-
-type Props = {
+type Product = {
+  id: number;
   name: string;
   inStock: boolean;
   price: number;
@@ -14,12 +16,16 @@ type Props = {
   colors: [ColorObject, ...ColorObject[]];
   img: { src: StaticImageData | null; alt: string };
 };
-
 type Quantity = [number, ...number[]];
 
-const CartProduct = (props: Props) => {
-  const { name, inStock, price, img, sizes, colors } = props;
+const CartProduct = (props: Product) => {
+  const { id, name, inStock, price, img, sizes, colors } = props;
+  const { setProducts } = useContext(ProductsContext);
   const quantity: Quantity = [1, 2, 3, 4, 5];
+
+  const handleRemove = () => {
+    setProducts((products) => products.filter((product) => product.id !== id));
+  };
 
   return (
     <li className={s.main}>
@@ -54,7 +60,7 @@ const CartProduct = (props: Props) => {
         </ul>
       </div>
       <p className={s.price}>${price}</p>
-      <ExitIcon className={s.remove} />
+      <ExitIcon className={s.remove} onClick={handleRemove} />
     </li>
   );
 };
