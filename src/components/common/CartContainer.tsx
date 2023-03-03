@@ -1,6 +1,7 @@
 import s from "./CartContainer.module.scss";
 import CartProduct from "./CartProduct";
 import ExitIcon from "@public/assets/icons/x.svg";
+import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
 import { useContext } from "react";
 import { ProductsContext } from "src/context/products";
 
@@ -47,7 +48,9 @@ const CartContainer = (props: Props) => {
             {products.reduce((acc: number, curr: any) => acc + curr.price, 0)}
           </p>
         </div>
-        <button className={s.checkoutButton}>CHECKOUT</button>
+        <button className={s.checkoutButton}>
+          CHECKOUT <ArrowIcon className={s.checkoutArrow} />
+        </button>
       </div>
       <ExitIcon className={s.close} onClick={() => setActive(false)} />
     </div>

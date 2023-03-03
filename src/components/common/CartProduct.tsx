@@ -32,7 +32,7 @@ const CartProduct = (props: Product) => {
       {img.src ? (
         <Image className={s.image} src={img.src} alt={img.alt} />
       ) : (
-        <div className={s.imageNotFound}>
+        <div className={`${s.image} ${s.imageNotFound}`}>
           <PhotoNotFoundIcon className={s.imageNotFoundIcon} />
         </div>
       )}

@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import model from "@public/assets/models/summer-model-2.png";
+import shirt from "@public/assets/products/white-shirt.png";
 
 type ProductColorObject = { name: string; value: string };
 type Products = {
@@ -27,7 +27,7 @@ const ProductsProvider = ({ children }: any) => {
       name: "open shirt",
       price: 100,
       inStock: true,
-      img: { src: model, alt: "model" },
+      img: { src: shirt, alt: "model" },
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Beige", value: "#ffd481" },
@@ -36,7 +36,7 @@ const ProductsProvider = ({ children }: any) => {
     },
     {
       id: 2,
-      name: "open shirt",
+      name: "RIPPED JEANS",
       price: 250,
       inStock: true,
       img: { src: null, alt: "" },
