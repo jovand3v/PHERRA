@@ -69,6 +69,7 @@
   border: 1px solid var(--primary-color);
   color: var(--primary-color);
   font-size: 14px;
+  user-select: none;
   cursor: pointer;
 }
 .info {
@@ -121,6 +122,7 @@
 .serviceItem {
   font-size: 16px;
   cursor: pointer;
+  user-select: none;
   &:hover {
     color: var(--secondary-color);
   }

@@ -60,6 +60,7 @@
   resize: none;
 }
 .button {
+  user-select: none;
   width: 140px;
   height: 50px;
   background: var(--background-base-color);

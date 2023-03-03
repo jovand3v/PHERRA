@@ -31,6 +31,7 @@
 }
 .collection {
   position: relative;
+  user-select: none;
   cursor: pointer;
   color: var(--primary-color);
   background: linear-gradient(179.98deg, rgba(0, 0, 0, 0) 55.03%, rgba(0, 0, 0, 0.2) 99.98%);

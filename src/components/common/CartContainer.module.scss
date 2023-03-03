@@ -80,6 +80,7 @@
   color: var(--secondary-color);
 }
 .checkoutButton {
+  user-select: none;
   border: none;
   background: none;
   color: var(--primary-color);
@@ -91,7 +92,7 @@
   align-items: center;
 }
 .checkoutArrow {
-  height: 62px;
+  height: 61px;
   width: auto;
   margin-left: 25px;
 }
