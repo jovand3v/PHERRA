@@ -30,7 +30,7 @@
   font-weight: var(--font-bold);
 }
 .description {
-  font-size: 20px;
+  font-size: 25px;
   font-weight: var(--font-light);
   margin-top: 10px;
 }
@@ -141,7 +141,7 @@
     margin-left: min(-9px, -0.7vw);
   }
   .description {
-    font-size: clamp(18px, 1.1vw, 20px);
+    font-size: clamp(20px, 1.4vw, 25px);
   }
   .newsletter {
     margin: clamp(40px, 2.4vw, 45px) 0px;
