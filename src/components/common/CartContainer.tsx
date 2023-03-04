@@ -14,6 +14,7 @@ const CartContainer = (props: Props) => {
   const { active, setActive } = props;
   const { products } = useContext(ProductsContext);
   const [quantity, setQuantity] = useState(0);
+  const [total, setTotal] = useState(0);
 
   // calculates and sets total quantity of products
   useEffect(() => {
@@ -22,6 +23,18 @@ const CartContainer = (props: Props) => {
 
     if (quantity !== totalQuantity) {
       setQuantity(totalQuantity);
+    }
+  }, [products]);
+
+  // calculates total price
+  useEffect(() => {
+    const pricesAndQuantities = products.map((p) => ({
+      price: p.price,
+      quantity: p.selected.quantity,
+    }));
+    const totalPrice = pricesAndQuantities.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
+    if (total !== totalPrice) {
+      setTotal(totalPrice);
     }
   }, [products]);
 
@@ -56,8 +69,7 @@ const CartContainer = (props: Props) => {
         <div className={s.checkoutInfoContainer}>
           <p className={s.checkoutQuantity}>{quantity === 1 ? "1 Item" : `${quantity} Items`}</p>
           <p className={s.checkoutTotal}>
-            <span className={s.checkoutTotalHighlight}>TOTAL:</span> $
-            {products.map((p) => p.price).reduce((acc, curr) => acc + curr, 0)}
+            <span className={s.checkoutTotalHighlight}>TOTAL:</span> ${total}
           </p>
         </div>
         <button className={s.checkoutButton}>
