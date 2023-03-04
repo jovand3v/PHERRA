@@ -1,21 +1,12 @@
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 import s from "./CartProduct.module.scss";
 import PhotoNotFoundIcon from "@public/assets/icons/photo-not-found.svg";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 import { useContext } from "react";
 import { ProductsContext } from "src/context/products";
+import { Product, ProductColorObject } from "src/context/products";
 
-type ColorObject = { name: string; value: string };
-type Product = {
-  id: number;
-  name: string;
-  inStock: boolean;
-  price: number;
-  sizes: [string, ...string[]];
-  colors: [ColorObject, ...ColorObject[]];
-  img: { src: StaticImageData | null; alt: string };
-};
 type Quantity = [number, ...number[]];
 
 const CartProduct = (props: Product) => {
@@ -25,6 +16,18 @@ const CartProduct = (props: Product) => {
 
   const handleRemove = () => {
     setProducts((products) => products.filter((product) => product.id !== id));
+  };
+
+  // updates products based on selected dropdown value
+  const handleDropdownChange = (type: string, value: string | number | ProductColorObject) => {
+    setProducts((products) =>
+      products.map((product) => {
+        if (product.id === id) {
+          product.selected = { ...product.selected, [type]: value };
+        }
+        return product;
+      })
+    );
   };
 
   return (
@@ -46,16 +49,16 @@ const CartProduct = (props: Product) => {
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
             <span>
-              <DropdownMenu items={sizes} />
+              <DropdownMenu items={sizes} onSelect={(value) => handleDropdownChange("size", value)} />
             </span>
           </li>
           <li className={s.infoItemDropdown}>
             Color:&nbsp;
-            <DropdownMenu items={colors} />
+            <DropdownMenu items={colors} onSelect={(value) => handleDropdownChange("color", value)} />
           </li>
           <li className={s.infoItemDropdown}>
             Quantity:&nbsp;
-            <DropdownMenu items={quantity} />
+            <DropdownMenu items={quantity} onSelect={(value) => handleDropdownChange("quantity", value)} />
           </li>
         </ul>
       </div>

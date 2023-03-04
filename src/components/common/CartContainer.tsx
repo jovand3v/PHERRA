@@ -2,7 +2,7 @@ import s from "./CartContainer.module.scss";
 import CartProduct from "./CartProduct";
 import ExitIcon from "@public/assets/icons/x.svg";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ProductsContext } from "src/context/products";
 
 type Props = {
@@ -13,6 +13,17 @@ type Props = {
 const CartContainer = (props: Props) => {
   const { active, setActive } = props;
   const { products } = useContext(ProductsContext);
+  const [quantity, setQuantity] = useState(0);
+
+  // calculates and sets total quantity of products
+  useEffect(() => {
+    const quantities = products.map((p) => p.selected.quantity);
+    const totalQuantity = quantities.reduce((acc, curr) => acc + curr, 0);
+
+    if (quantity !== totalQuantity) {
+      setQuantity(totalQuantity);
+    }
+  }, [products]);
 
   return (
     <div className={`${s.cartContainer} ${active ? s.cartContainerActive : ""}`}>
@@ -32,6 +43,7 @@ const CartContainer = (props: Props) => {
               sizes={p.sizes}
               colors={p.colors}
               key={p.id}
+              selected={p.selected}
             />
           ))}
         </ul>
@@ -42,10 +54,10 @@ const CartContainer = (props: Props) => {
       )}
       <div className={s.checkout}>
         <div className={s.checkoutInfoContainer}>
-          <p className={s.checkoutQuantity}>{products.length === 1 ? "1 Item" : `${products.length} Items`}</p>
+          <p className={s.checkoutQuantity}>{quantity === 1 ? "1 Item" : `${quantity} Items`}</p>
           <p className={s.checkoutTotal}>
             <span className={s.checkoutTotalHighlight}>TOTAL:</span> $
-            {products.reduce((acc: number, curr: any) => acc + curr.price, 0)}
+            {products.map((p) => p.price).reduce((acc, curr) => acc + curr, 0)}
           </p>
         </div>
         <button className={s.checkoutButton}>

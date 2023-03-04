@@ -3,8 +3,9 @@ import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
 import shirt from "@public/assets/products/white-shirt.png";
 
-type ProductColorObject = { name: string; value: string };
-type Products = {
+export type ProductColorObject = { name: string; value: string };
+export type ProductSelected = { color: ProductColorObject; size: string; quantity: number };
+export type Product = {
   id: number;
   name: string;
   price: number;
@@ -12,16 +13,17 @@ type Products = {
   img: { src: StaticImageData | null; alt: string };
   sizes: [string, ...string[]];
   colors: [ProductColorObject, ...ProductColorObject[]];
-}[];
+  selected: ProductSelected;
+};
 type Context = {
-  products: Products | [];
-  setProducts: Dispatch<SetStateAction<Products>>;
+  products: Product[] | [];
+  setProducts: Dispatch<SetStateAction<Product[]>>;
 };
 
 export const ProductsContext = createContext<Context>({ products: [], setProducts: () => {} });
 
 const ProductsProvider = ({ children }: any) => {
-  const [products, setProducts] = useState<Products>([
+  const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
       name: "open shirt",
@@ -33,6 +35,7 @@ const ProductsProvider = ({ children }: any) => {
         { name: "Beige", value: "#ffd481" },
         { name: "Blue", value: "lightblue" },
       ],
+      selected: { color: { name: "Beige", value: "#ffd481" }, size: "S", quantity: 1 },
     },
     {
       id: 2,
@@ -45,6 +48,7 @@ const ProductsProvider = ({ children }: any) => {
         { name: "Beige", value: "#ffd481" },
         { name: "Blue", value: "lightblue" },
       ],
+      selected: { color: { name: "Beige", value: "#ffd481" }, size: "S", quantity: 1 },
     },
   ]);
 

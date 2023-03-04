@@ -1,23 +1,21 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
-
-type ColorObject = {
-  name: string;
-  value: string;
-};
+import { ProductColorObject } from "src/context/products";
 
 type Props = {
-  items: [string, ...string[]] | [number, ...number[]] | [ColorObject, ...ColorObject[]];
+  items: [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
+  onSelect: (value: string | number | ProductColorObject) => void;
 };
 
 const DropdownMenu = (props: Props) => {
-  const { items } = props;
+  const { items, onSelect } = props;
   const [active, setActive] = useState(false);
   const [selectedItem, setSelectedItem] = useState(items[0]);
   const mainRef = useRef<HTMLDivElement>(null);
   const isSelectedItemColor = typeof selectedItem === "object";
 
+  // disables dropdown on blur
   useEffect(() => {
     if (!active) return;
     const handleBlur = (e: MouseEvent) => {
@@ -45,7 +43,10 @@ const DropdownMenu = (props: Props) => {
               <li
                 className={`${s.item} ${JSON.stringify(selectedItem) === JSON.stringify(item) ? s.itemSelected : ""}`}
                 key={i}
-                onClick={() => setSelectedItem(item)}
+                onClick={() => {
+                  setSelectedItem(item);
+                  onSelect(item);
+                }}
               >
                 {isItemColor && <div className={s.colorBox} style={{ background: item.value }}></div>}
                 {isItemColor ? item.name : item}
