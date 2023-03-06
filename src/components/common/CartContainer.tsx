@@ -16,7 +16,7 @@ const CartContainer = (props: Props) => {
   const [quantity, setQuantity] = useState(0);
   const [total, setTotal] = useState(0);
 
-  // calculates and sets total quantity of products
+  // calculates total quantity
   useEffect(() => {
     const quantities = products.map((p) => p.selected.quantity);
     const totalQuantity = quantities.reduce((acc, curr) => acc + curr, 0);
