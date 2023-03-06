@@ -26,8 +26,9 @@
 }
 .cartDescription {
   font-size: 38px;
-  margin-top: 10px;
+  margin-top: 16px;
   font-weight: var(--font-light);
+  line-height: 0.8;
   text-transform: uppercase;
 }
 .productsContainer {
@@ -54,7 +55,7 @@
   align-items: center;
 }
 .productsContainerEmptyText {
-  font-size: 15px;
+  font-size: 16px;
   color: var(--primary-color);
 }
 .checkout {
@@ -73,7 +74,7 @@
   font-size: 16px;
 }
 .checkoutTotal {
-  font-size: 24px;
+  font-size: 28px;
 }
 .checkoutTotalHighlight {
   font-weight: var(--font-bold);
@@ -85,15 +86,16 @@
   background: none;
   color: var(--primary-color);
   font-size: 63px;
-  height: 50px;
   font-weight: var(--font-bold);
   cursor: pointer;
   display: flex;
   align-items: center;
+  line-height: 0.77;
 }
 .checkoutArrow {
-  height: 61px;
+  height: 48px;
   width: auto;
+  width: 61px;
   margin-left: 25px;
 }
 .close {
@@ -103,4 +105,116 @@
   width: 26px;
   height: auto;
   cursor: pointer;
+}
+@media screen and (max-width: 1900px) {
+  .cartContainer {
+    width: clamp(600px, 39.5vw, 750px);
+  }
+  .cartTitle {
+    font-size: clamp(160px, 11.4vw, 215px);
+  }
+  .cartDescription {
+    font-size: clamp(32px, 2vw, 38px);
+    margin-top: clamp(12px, 0.9vw, 16px);
+  }
+  .productsContainer {
+    margin: clamp(30px, 2.1vw, 40px) 0px;
+    gap: clamp(20px, 1.4vw, 25px);
+  }
+  .productsContainerEmptyText {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .checkoutInfoContainer {
+    padding: clamp(20px, 1.4vw, 25px) 0px clamp(30px, 2.1vw, 40px) 0px;
+  }
+  .checkoutQuantity {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .checkoutTotal {
+    font-size: clamp(23px, 1.5vw, 28px);
+  }
+  .checkoutButton {
+    font-size: clamp(52px, 3.4vw, 63px);
+  }
+  .checkoutArrow {
+    height: clamp(39px, 2.5vw, 48px);
+    width: clamp(51px, 3.2vw, 61px);
+    margin-left: clamp(20px, 1.4vw, 25px);
+  }
+  .close {
+    width: clamp(21px, 1.4vw, 26px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .cartContainer {
+    width: clamp(580px, 46vw, 620px);
+  }
+  .cartTitle {
+    font-size: clamp(155px, 13vw, 175px);
+  }
+  .cartDescription {
+    font-size: clamp(30px, 2.4vw, 32px);
+  }
+  .checkoutButton {
+    font-size: clamp(51px, 4.1vw, 55px);
+  }
+  .checkoutArrow {
+    height: clamp(38px, 3.1vw, 41px);
+    width: clamp(49px, 4vw, 53px);
+    margin-left: clamp(15px, 1.5vw, 20px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .cartContainer {
+    width: clamp(350px, 64vw, 620px);
+  }
+  .cartTitle {
+    font-size: clamp(90px, 17.6vw, 180px);
+  }
+  .cartDescription {
+    font-size: clamp(27px, 3.3vw, 33px);
+    margin-top: clamp(10px, 1.5vw, 14px);
+  }
+  .productsContainer {
+    gap: clamp(15px, 2vw, 20px);
+  }
+  .checkoutTotal {
+    font-size: clamp(22px, 2.4vw, 24px);
+  }
+  .checkoutButton {
+    font-size: clamp(43px, 6.2vw, 62px);
+    margin-bottom: 4px;
+  }
+  .checkoutArrow {
+    height: clamp(32px, 4.7vw, 48px);
+    width: clamp(41px, 5.9vw, 59px);
+    margin-left: clamp(15px, 0vw, 20px);
+  }
+  .close {
+    width: clamp(19px, 2.1vw, 21px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .cartContainer {
+    width: clamp(320px, 87.8vw, 350px);
+  }
+  .cartTitle {
+    font-size: clamp(75px, 22.6vw, 90px);
+  }
+  .cartDescription {
+    font-size: clamp(24px, 6.8vw, 27px);
+  }
+  .checkoutTotal {
+    font-size: clamp(21px, 5.6vw, 22px);
+  }
+  .checkoutButton {
+    font-size: clamp(36px, 10.8vw, 43px);
+  }
+  .checkoutArrow {
+    height: clamp(29px, 8vw, 32px);
+    width: clamp(36px, 10.2vw, 41px);
+  }
+  .close {
+    width: clamp(18px, 4.7vw, 19px);
+  }
 }

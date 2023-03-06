@@ -43,3 +43,23 @@
   height: 18px;
   margin-right: 2px;
 }
+@media screen and (max-width: 1900px) {
+  .list {
+    top: clamp(20px, 1.2vw, 22px);
+  }
+  .item {
+    padding: clamp(6px, 0.5vw, 8px);
+  }
+  .arrowIcon {
+    width: clamp(10px, 0.6vw, 11px);
+    margin-left: clamp(3px, 0.3vw, 5px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .list {
+    top: clamp(19px, 2vw, 20px);
+  }
+  .colorBox {
+    height: clamp(17px, 1.8vw, 18px);
+  }
+}

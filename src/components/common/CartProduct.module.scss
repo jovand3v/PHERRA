@@ -32,7 +32,7 @@
 }
 .description {
   margin-top: 5px;
-  font-size: 17px;
+  font-size: 18px;
 }
 .info {
   font-size: 16px;
@@ -41,6 +41,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  font-weight: var(--font-light);
   gap: 4px;
   list-style-type: none;
 }
@@ -64,4 +65,120 @@
   width: 17px;
   height: auto;
   cursor: pointer;
+}
+@media screen and (max-width: 1900px) {
+  .main {
+    min-height: clamp(190px, 11.6vw, 220px);
+  }
+  .image {
+    width: clamp(120px, 7.1vw, 135px);
+  }
+  .imageNotFoundIcon {
+    width: clamp(40px, 2.3vw, 42px);
+  }
+  .container {
+    margin-left: clamp(15px, 1.1vw, 20px);
+    width: clamp(230px, 14vw, 260px);
+  }
+  .title {
+    // line-height: 0.76;
+    font-size: clamp(33px, 2vw, 37px);
+  }
+  .description {
+    margin-top: 5px;
+    font-size: clamp(16px, 1vw, 18px);
+  }
+  .info {
+    font-size: clamp(15px, 0.9vw, 16px);
+    gap: clamp(3px, 0.3vw, 4px);
+  }
+  .stock {
+    font-size: clamp(18px, 1.2vw, 21px);
+    margin-bottom: clamp(10px, 0.6vw, 12px);
+    // line-height: 0.72;
+  }
+  .price {
+    font-size: clamp(30px, 1.8vw, 33px);
+    // font-weight: 300;
+  }
+  .remove {
+    width: clamp(15px, 0.9vw, 17px);
+  }
+}
+@media screen and (max-width: 1350px) {
+  .main {
+    min-height: clamp(170px, 14.5vw, 195px);
+  }
+  .image {
+    width: clamp(115px, 9.3vw, 125px);
+  }
+  .container {
+    width: clamp(230px, 17.8vw, 240px);
+  }
+  .title {
+    line-height: 0.8;
+    font-size: clamp(33px, 2.6vw, 34px);
+  }
+  .description {
+    font-size: clamp(16.5px, 1.3vw, 17px);
+  }
+  .info {
+    gap: clamp(1px, 0.3vw, 3px);
+  }
+  .stock {
+    font-size: 17px;
+  }
+  .price {
+    font-size: clamp(29px, 2.4vw, 32px);
+  }
+  .remove {
+    width: clamp(15px, 1.2vw, 16px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main {
+    min-height: unset;
+    height: clamp(150px, 18.6vw, 190px);
+  }
+  .image {
+    width: clamp(75px, 12.3vw, 125px);
+  }
+  .imageNotFoundIcon {
+    width: clamp(31px, 4vw, 40px);
+  }
+  .container {
+    width: auto;
+  }
+  .title {
+    font-size: clamp(26px, 3.5vw, 35px);
+    letter-spacing: -1px;
+  }
+  .description {
+    font-size: 16px;
+    margin-top: clamp(2px, 0.5vw, 5px);
+  }
+  .info {
+    gap: clamp(1px, 0.2vw, 2px);
+  }
+  .stock {
+    font-size: clamp(16px, 1.7vw, 17px);
+  }
+  .price {
+    font-size: clamp(22px, 3.2vw, 32px);
+    position: absolute;
+    bottom: 50%;
+    transform: translateY(50%);
+    right: clamp(15px, 4.9vw, 50px);
+  }
+  .remove {
+    width: clamp(14px, 1.6vw, 16px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .image {
+    width: clamp(52px, 18.8vw, 75px);
+  }
+  .remove {
+    width: clamp(13px, 3.4vw, 14px);
+  }
 }
