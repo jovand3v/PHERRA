@@ -176,9 +176,15 @@
 }
 @media screen and (max-width: 400px) {
   .image {
-    width: clamp(52px, 18.8vw, 75px);
+    width: clamp(52px, 17.6vw, 70px);
+  }
+  .title {
+    font-size: clamp(25px, 6.5vw, 26px);
   }
   .remove {
     width: clamp(13px, 3.4vw, 14px);
+  }
+  .container {
+    margin-left: clamp(12px, 4vw, 15px);
   }
 }
