@@ -12,31 +12,7 @@ type Props = {
 
 const CartContainer = (props: Props) => {
   const { active, setActive } = props;
-  const { products } = useContext(ProductsContext);
-  const [quantity, setQuantity] = useState(0);
-  const [total, setTotal] = useState(0);
-
-  // calculates total quantity
-  useEffect(() => {
-    const quantities = products.map((p) => p.selected.quantity);
-    const totalQuantity = quantities.reduce((acc, curr) => acc + curr, 0);
-
-    if (quantity !== totalQuantity) {
-      setQuantity(totalQuantity);
-    }
-  }, [products]);
-
-  // calculates total price
-  useEffect(() => {
-    const pricesAndQuantities = products.map((p) => ({
-      price: p.price,
-      quantity: p.selected.quantity,
-    }));
-    const totalPrice = pricesAndQuantities.reduce((acc, curr) => acc + curr.price * curr.quantity, 0);
-    if (total !== totalPrice) {
-      setTotal(totalPrice);
-    }
-  }, [products]);
+  const { products, quantity, total } = useContext(ProductsContext);
 
   return (
     <div className={`${s.cartContainer} ${active ? s.cartContainerActive : ""}`}>

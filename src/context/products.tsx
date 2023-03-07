@@ -18,9 +18,16 @@ export type Product = {
 type Context = {
   products: Product[] | [];
   setProducts: Dispatch<SetStateAction<Product[]>>;
+  quantity: number;
+  total: number;
 };
 
-export const ProductsContext = createContext<Context>({ products: [], setProducts: () => {} });
+export const ProductsContext = createContext<Context>({
+  products: [],
+  setProducts: () => {},
+  quantity: 0,
+  total: 0,
+});
 
 const ProductsProvider = ({ children }: any) => {
   const [products, setProducts] = useState<Product[]>([
@@ -51,8 +58,12 @@ const ProductsProvider = ({ children }: any) => {
       selected: { color: { name: "Beige", value: "#ffd481" }, size: "S", quantity: 1 },
     },
   ]);
+  const quantity = products.reduce((acc, curr) => acc + curr.selected.quantity, 0);
+  const total = products.reduce((acc, curr) => acc + curr.price * curr.selected.quantity, 0);
 
-  return <ProductsContext.Provider value={{ products, setProducts }}>{children}</ProductsContext.Provider>;
+  return (
+    <ProductsContext.Provider value={{ products, setProducts, quantity, total }}>{children}</ProductsContext.Provider>
+  );
 };
 
 export default ProductsProvider;
