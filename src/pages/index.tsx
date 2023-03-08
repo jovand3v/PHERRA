@@ -7,7 +7,7 @@ import HomeCommunity from "src/components/Home/HomeCommunity";
 import HomeContact from "src/components/Home/HomeContact";
 import Footer from "src/components/common/Footer";
 
-const Home: NextPage = () => {
+const HomePage: NextPage = () => {
   return (
     <>
       <Head>
@@ -30,4 +30,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default HomePage;
