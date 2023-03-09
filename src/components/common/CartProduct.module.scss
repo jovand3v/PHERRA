@@ -81,7 +81,6 @@
     width: clamp(230px, 14vw, 260px);
   }
   .title {
-    // line-height: 0.76;
     font-size: clamp(33px, 2vw, 37px);
   }
   .description {
@@ -95,11 +94,9 @@
   .stock {
     font-size: clamp(18px, 1.2vw, 21px);
     margin-bottom: clamp(10px, 0.6vw, 12px);
-    // line-height: 0.72;
   }
   .price {
     font-size: clamp(30px, 1.8vw, 33px);
-    // font-weight: 300;
   }
   .remove {
     width: clamp(15px, 0.9vw, 17px);
