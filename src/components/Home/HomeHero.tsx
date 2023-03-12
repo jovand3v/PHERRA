@@ -89,7 +89,7 @@ const HomeHero = () => {
         </div>
       </div>
       <div className={s.imageWrapper}>
-        <Image className={s.image} src={model} alt="model smiling, wearing a beige top" priority quality={100} />
+        <Image className={s.image} src={model} alt="model smiling, wearing a beige top" priority />
       </div>
       <div className={s.cartSocialsContainer}>
         <Cart />

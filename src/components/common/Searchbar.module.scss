@@ -1,1 +1,31 @@
-        
+.main {
+  --search-icon-width: 22px;
+  --search-icon-margin-right: 15px;
+  position: relative;
+  width: 420px;
+  height: 50px;
+  border: 1px solid var(--primary-color);
+}
+
+.input {
+  color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding-left: 15px;
+  padding-right: calc(var(--search-icon-width) + var(--search-icon-margin-right) + 15px);
+  outline: none;
+  font-size: 15px;
+  &::placeholder {
+    font-size: 14.5px;
+  }
+}
+.searchIcon {
+  position: absolute;
+  width: var(--search-icon-width);
+  height: auto;
+  right: var(--search-icon-margin-right);
+  top: 50%;
+  transform: translateY(-50%);
+}

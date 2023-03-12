@@ -14,14 +14,14 @@ const HomeCollections = () => {
       </header>
       <div className={s.collections}>
         <Link className={s.collection} href="/collections/summer">
-          <Image className={s.collectionImage} src={summerModel} alt="summer model" quality={100} />
+          <Image className={s.collectionImage} src={summerModel} alt="summer model" />
           <div className={s.collectionHeader}>
             <ArrowIcon className={s.collectionArrowIcon} />
             <h2 className={s.collectionTitle}>SUMMER</h2>
           </div>
         </Link>
         <Link className={`${s.collection} ${s.collectionWinter}`} href="/collections/winter">
-          <Image className={s.collectionImage} src={winterModel} alt="winter model" quality={100} />
+          <Image className={s.collectionImage} src={winterModel} alt="winter model" />
           <div className={s.collectionHeader}>
             <ArrowIcon className={s.collectionArrowIcon} />
             <h2 className={s.collectionTitle}>WINTER</h2>

@@ -31,10 +31,10 @@ const HomeCommunity = () => {
         <div className={s.competeContestantsContainer}>
           <p className={s.competeInstagram}>INSTAGRAM/PHERRAFASHION</p>
           <div className={s.competeImagesContainer}>
-            <Image className={s.competeImage} src={contestant1} alt="contestant model" quality={100} />
-            <Image className={s.competeImage} src={contestant2} alt="contestant model" quality={100} />
-            <Image className={s.competeImage} src={contestant3} alt="contestant model" quality={100} />
-            <Image className={s.competeImage} src={contestant4} alt="contestant model" quality={100} />
+            <Image className={s.competeImage} src={contestant1} alt="contestant model" />
+            <Image className={s.competeImage} src={contestant2} alt="contestant model" />
+            <Image className={s.competeImage} src={contestant3} alt="contestant model" />
+            <Image className={s.competeImage} src={contestant4} alt="contestant model" />
           </div>
         </div>
       </div>
