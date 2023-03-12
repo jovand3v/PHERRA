@@ -2,7 +2,7 @@ import { useRef } from "react";
 import Image from "next/image";
 import s from "./HomeHero.module.scss";
 import Cart from "../common/Cart";
-import model from "@public/assets/models/summer-model-1.png";
+import model from "@public/assets/thumbnails/summer-model-1.png";
 import LinkedInIcon from "@public/assets/icons/linked-in.svg";
 import TwitterIcon from "@public/assets/icons/twitter.svg";
 import InstagramIcon from "@public/assets/icons/instagram.svg";

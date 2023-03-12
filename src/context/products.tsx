@@ -1,7 +1,7 @@
 import { createContext, useState } from "react";
 import { StaticImageData } from "next/image";
 import { Dispatch, SetStateAction } from "react";
-import shirt from "@public/assets/products/white-shirt.png";
+import shirt from "@public/assets/collections/summer/open-shirt.png";
 
 export type ProductColorObject = { name: string; value: string };
 export type ProductSelected = { color: ProductColorObject; size: string; quantity: number };
