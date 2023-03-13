@@ -27,6 +27,7 @@ const CartContainer = (props: Props) => {
               id={p.id}
               name={p.name}
               price={p.price}
+              discount={p.discount}
               inStock={p.inStock}
               img={{ src: p.img.src, alt: p.img.alt }}
               sizes={p.sizes}

@@ -8,16 +8,6 @@
   height: auto;
   object-fit: cover;
 }
-.imageNotFound {
-  border: 1px solid var(--primary-color);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.imageNotFoundIcon {
-  width: 42px;
-  color: var(--primary-color);
-}
 .container {
   margin-left: 20px;
   width: 260px;
@@ -72,9 +62,6 @@
   }
   .image {
     width: clamp(120px, 7.1vw, 135px);
-  }
-  .imageNotFoundIcon {
-    width: clamp(40px, 2.3vw, 42px);
   }
   .container {
     margin-left: clamp(15px, 1.1vw, 20px);
@@ -139,9 +126,6 @@
   }
   .image {
     width: clamp(75px, 12.3vw, 125px);
-  }
-  .imageNotFoundIcon {
-    width: clamp(31px, 4vw, 40px);
   }
   .container {
     width: auto;

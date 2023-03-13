@@ -1,28 +1,44 @@
 import s from "./CollectionProduct.module.scss";
-import model from "@public/assets/collections/summer/open-shirt.png";
 import Image from "next/image";
+import { Product } from "src/context/products";
 
-const CollectionProduct = () => {
+type Props = {
+  product: Product;
+};
+
+const CollectionProduct = (props: Props) => {
+  const { product } = props;
+
   return (
     <li className={s.main}>
       <div className={s.imageContainer}>
-        <Image src={model} className={s.image} alt="model" />
-        <div className={s.saleBox}>-19%</div>
+        <Image src={product.img.src} className={s.image} alt={product.img.alt} />
+        <div className={s.saleBox} aria-hidden={true}>
+          -{product.discount}%
+        </div>
       </div>
-      <h3 className={s.title}>OPEN SHIRT</h3>
+      <h3 className={s.title}>{product.name}</h3>
       <div className={s.info}>
         <div className={s.priceContainer}>
           <div className={s.oldPriceContainer}>
-            <span className={s.oldPrice}>$159.99</span> <span className={s.discount}>-19%</span>
+            <span className={s.oldPrice}>${product.price}</span>{" "}
+            <span className={s.discount}>-{product.discount}%</span>
           </div>
-          <div className={s.price}>$129.99</div>
+          <div className={s.price}>${Math.round(product.price - (product.discount / 100) * product.price)}</div>
         </div>
         <div className={s.colorsAndSizesContainer}>
-          <ul className={s.colors}>
-            <li className={s.color} style={{ background: "white" }}></li>
-            <li className={s.color} style={{ background: "lightgreen" }}></li>
+          <ul className={s.colors} aria-label="available colors">
+            {product.colors.map((color, index) => (
+              <li className={s.color} style={{ background: color.value }} key={index} aria-label={color.name}></li>
+            ))}
           </ul>
-          <div className={s.sizes}>S, M, L, XL, XXL</div>
+          <ul aria-label="available sizes" className={s.sizes}>
+            {product.sizes.map((size, index) => (
+              <li className={s.size} key={index}>
+                {size}
+              </li>
+            ))}
+          </ul>
         </div>
       </div>
     </li>

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import s from "./CartProduct.module.scss";
-import PhotoNotFoundIcon from "@public/assets/icons/photo-not-found.svg";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 import { useContext } from "react";
@@ -10,7 +9,7 @@ import { Product, ProductColorObject } from "src/context/products";
 type Quantity = [number, ...number[]];
 
 const CartProduct = (props: Product) => {
-  const { id, name, inStock, price, img, sizes, colors } = props;
+  const { id, name, inStock, price, discount, img, sizes, colors } = props;
   const { setProducts } = useContext(ProductsContext);
   const quantity: Quantity = [1, 2, 3, 4, 5];
 
@@ -32,13 +31,7 @@ const CartProduct = (props: Product) => {
 
   return (
     <li className={s.main}>
-      {img.src ? (
-        <Image className={s.image} src={img.src} alt={img.alt} />
-      ) : (
-        <div className={`${s.image} ${s.imageNotFound}`}>
-          <PhotoNotFoundIcon className={s.imageNotFoundIcon} />
-        </div>
-      )}
+      <Image className={s.image} src={img.src} alt={img.alt} />
       <div className={s.container}>
         <header className={s.header}>
           <h3 className={s.title}>{name}</h3>
@@ -62,7 +55,7 @@ const CartProduct = (props: Product) => {
           </li>
         </ul>
       </div>
-      <p className={s.price}>${price}</p>
+      <p className={s.price}>${Math.round(price - (discount / 100) * price)}</p>
       <ExitIcon className={s.remove} onClick={handleRemove} />
     </li>
   );

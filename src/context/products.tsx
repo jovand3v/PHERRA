@@ -9,8 +9,9 @@ export type Product = {
   id: number;
   name: string;
   price: number;
+  discount: number;
   inStock: boolean;
-  img: { src: StaticImageData | null; alt: string };
+  img: { src: StaticImageData; alt: string };
   sizes: [string, ...string[]];
   colors: [ProductColorObject, ...ProductColorObject[]];
   selected: ProductSelected;
@@ -35,6 +36,7 @@ const ProductsProvider = ({ children }: any) => {
       id: 1,
       name: "open shirt",
       price: 100,
+      discount: 20,
       inStock: true,
       img: { src: shirt, alt: "model" },
       sizes: ["S", "M", "L", "XL", "XXL"],
@@ -48,8 +50,9 @@ const ProductsProvider = ({ children }: any) => {
       id: 2,
       name: "RIPPED JEANS",
       price: 250,
+      discount: 15,
       inStock: true,
-      img: { src: null, alt: "" },
+      img: { src: shirt, alt: "model" },
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Beige", value: "#ffd481" },

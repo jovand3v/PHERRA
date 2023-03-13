@@ -1,3 +1,4 @@
+import { useContext } from "react";
 import s from "./Collection.module.scss";
 import CollectionProduct from "./CollectionProduct";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
@@ -8,8 +9,11 @@ import Searchbar from "../common/Searchbar";
 import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
+import { ProductsContext } from "src/context/products";
 
 const Collection = () => {
+  const { products } = useContext(ProductsContext);
+
   return (
     <div className={s.main}>
       <div className={s.thumbnailContainer}>
@@ -17,7 +21,6 @@ const Collection = () => {
           <Link href="/">
             <ArrowIcon className={s.arrowIcon} />
           </Link>
-          <div className={s.productShowcase}></div>
           <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
         </div>
       </div>
@@ -38,7 +41,9 @@ const Collection = () => {
             </div>
           </div>
           <ul className={s.products}>
-            <CollectionProduct />
+            {products.map((product) => (
+              <CollectionProduct product={product} key={product.id} />
+            ))}
           </ul>
         </div>
       </div>
