@@ -13,12 +13,14 @@ const Collection = () => {
   return (
     <div className={s.main}>
       <div className={s.thumbnailContainer}>
-        <Link href="/">
-          <ArrowIcon className={s.arrowIcon} />
-        </Link>
-        <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
+        <div className={s.thumbnailContainerSticky}>
+          <Link href="/">
+            <ArrowIcon className={s.arrowIcon} />
+          </Link>
+          <div className={s.productShowcase}></div>
+          <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
+        </div>
       </div>
-      <div className={s.productShowcase}></div>
       <div className={s.mainContainer}>
         <header className={s.header}>
           <h1 className={s.title}>

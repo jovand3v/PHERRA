@@ -1,9 +1,14 @@
 .main {
   display: flex;
-  --static-image-width: 650px;
 }
 .thumbnailContainer {
-  user-select: none;
+  width: 650px;
+}
+.thumbnailContainerSticky {
+  position: sticky;
+  width: 100%;
+  height: 100vh;
+  top: 0px;
 }
 .arrowIcon {
   left: var(--padding-section);
@@ -17,11 +22,8 @@
   z-index: 5;
 }
 .thumbnailImage {
+  width: 100%;
   height: 100%;
-  width: var(--static-image-width);
-  top: 0px;
-  left: 0px;
-  position: fixed;
   object-fit: cover;
 }
 .productShowcase {
@@ -29,9 +31,7 @@
 .mainContainer {
   height: 1500px;
   z-index: 1;
-  width: 100%;
   padding: var(--padding-section);
-  margin-left: var(--static-image-width);
 }
 .header {
 }
