@@ -25,7 +25,7 @@ const HomePage: NextPage = () => {
         <HomeCommunity />
         <HomeContact />
       </main>
-      <Footer />
+      <Footer separator={true} />
     </>
   );
 };

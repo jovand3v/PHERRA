@@ -3,6 +3,8 @@
   align-items: center;
   padding: var(--padding-section);
   position: relative;
+}
+.separator {
   &::before {
     content: "";
     position: absolute;

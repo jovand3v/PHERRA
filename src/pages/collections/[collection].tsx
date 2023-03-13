@@ -17,7 +17,7 @@ const CollectionPage: NextPage = () => {
       <main>
         <Collection />
       </main>
-      <Footer />
+      <Footer separator={false} />
     </div>
   );
 };

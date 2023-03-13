@@ -5,9 +5,14 @@ import InstagramIcon from "@public/assets/icons/instagram.svg";
 import YoutubeIcon from "@public/assets/icons/youtube.svg";
 import ArrowIcon from "@public/assets/icons/arrow-extra-long-thin.svg";
 
-const Footer = () => {
+type Props = {
+  separator: boolean;
+};
+
+const Footer = (props: Props) => {
+  const { separator } = props;
   return (
-    <footer className={s.main}>
+    <footer className={`${s.main} ${separator ? s.separator : ""}`}>
       <div className={s.mainContentContainer}>
         <div className={s.connect}>
           <div className={s.header}>

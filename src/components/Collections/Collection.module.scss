@@ -33,6 +33,16 @@
   height: 1500px;
   z-index: 1;
   padding: var(--padding-section);
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    left: var(--padding-section);
+    right: var(--padding-section);
+    bottom: 0px;
+    height: 1px;
+    background: var(--secondary-color);
+  }
 }
 .header {
 }
