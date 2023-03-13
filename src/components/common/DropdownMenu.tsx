@@ -19,7 +19,7 @@ const DropdownMenu = (props: Props) => {
   useEffect(() => {
     if (!active) return;
     const handleBlur = (e: MouseEvent) => {
-      if (e.target instanceof HTMLElement && !mainRef.current?.contains(e.target)) {
+      if (e.target instanceof Element && !mainRef.current?.contains(e.target)) {
         setActive(false);
       }
     };
@@ -33,7 +33,7 @@ const DropdownMenu = (props: Props) => {
       <span className={s.selected}>
         {isSelectedItemColor && <div className={s.colorBox} style={{ background: selectedItem.value }}></div>}
         {isSelectedItemColor ? selectedItem.name : selectedItem}
-        <ArrowIcon className={s.arrowIcon} />
+        <ArrowIcon className={`${s.arrowIcon} ${active ? s.arrowIconActive : ""}`} />
       </span>
       {active && (
         <ul className={s.list}>

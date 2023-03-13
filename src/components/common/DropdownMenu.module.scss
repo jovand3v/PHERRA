@@ -12,6 +12,9 @@
   margin-left: 5px;
   height: auto;
 }
+.arrowIconActive {
+  transform: rotate(180deg);
+}
 .list {
   position: absolute;
   right: 0px;
@@ -30,6 +33,7 @@
   align-items: center;
   cursor: pointer;
   padding: 8px;
+  white-space: nowrap;
   &:hover {
     background: rgb(32, 32, 32);
   }
