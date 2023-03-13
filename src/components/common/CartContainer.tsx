@@ -22,19 +22,8 @@ const CartContainer = (props: Props) => {
       </header>
       {products.length !== 0 ? (
         <ul className={s.productsContainer}>
-          {products.map((p) => (
-            <CartProduct
-              id={p.id}
-              name={p.name}
-              price={p.price}
-              discount={p.discount}
-              inStock={p.inStock}
-              img={{ src: p.img.src, alt: p.img.alt }}
-              sizes={p.sizes}
-              colors={p.colors}
-              key={p.id}
-              selected={p.selected}
-            />
+          {products.map((product) => (
+            <CartProduct product={product} />
           ))}
         </ul>
       ) : (
