@@ -23,7 +23,7 @@ const CartContainer = (props: Props) => {
       {products.length !== 0 ? (
         <ul className={s.productsContainer}>
           {products.map((product) => (
-            <CartProduct product={product} />
+            <CartProduct product={product} key={product.id} />
           ))}
         </ul>
       ) : (
