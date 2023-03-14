@@ -4,16 +4,17 @@ import { Product } from "src/context/products";
 
 type Props = {
   product: Product;
+  setSelectedProduct: (p: Product) => void;
 };
 
 const CollectionProduct = (props: Props) => {
-  const { product } = props;
+  const { product, setSelectedProduct } = props;
 
   return (
-    <li className={s.main}>
+    <li className={s.main} onClick={() => setSelectedProduct(product)}>
       <div className={s.imageContainer}>
-        <Image src={product.img.src} className={s.image} alt={product.img.alt} />
-        <div className={s.saleBox} aria-hidden={true}>
+        <Image src={product.img} className={s.image} alt={`${product.colors[0].name} ${product.name}`} />
+        <div className={s.discountBox} aria-hidden={true}>
           -{product.discount}%
         </div>
       </div>

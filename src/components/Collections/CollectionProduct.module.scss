@@ -12,7 +12,7 @@
   object-fit: cover;
   height: 100%;
 }
-.saleBox {
+.discountBox {
   position: absolute;
   right: 0px;
   top: 50px;
@@ -31,6 +31,7 @@
   font-weight: var(--font-light);
   line-height: 0.85;
   margin: 10px 0px 8px 0px;
+  text-transform: uppercase;
 }
 .info {
   display: flex;

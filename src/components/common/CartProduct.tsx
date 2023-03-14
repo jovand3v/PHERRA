@@ -34,7 +34,7 @@ const CartProduct = (props: Props) => {
 
   return (
     <li className={s.main}>
-      <Image className={s.image} src={product.img.src} alt={product.img.alt} />
+      <Image className={s.image} src={product.img} alt={`${product.colors[0].name} ${product.name}`} />
       <div className={s.container}>
         <header className={s.header}>
           <h3 className={s.title}>{product.name}</h3>

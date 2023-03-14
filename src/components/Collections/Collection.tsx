@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import s from "./Collection.module.scss";
 import CollectionProduct from "./CollectionProduct";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
@@ -9,9 +9,11 @@ import Searchbar from "../common/Searchbar";
 import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
-import { ProductsContext } from "src/context/products";
+import CollectionProductInfo from "./CollectionProductInfo";
+import { Product, ProductsContext } from "src/context/products";
 
 const Collection = () => {
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { products } = useContext(ProductsContext);
 
   return (
@@ -21,6 +23,7 @@ const Collection = () => {
           <Link href="/">
             <ArrowIcon className={s.arrowIcon} />
           </Link>
+          <CollectionProductInfo selectedProduct={selectedProduct} setSelectedProduct={(p) => setSelectedProduct(p)} />
           <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
         </div>
       </div>
@@ -42,7 +45,11 @@ const Collection = () => {
           </div>
           <ul className={s.products}>
             {products.map((product) => (
-              <CollectionProduct product={product} key={product.id} />
+              <CollectionProduct
+                product={product}
+                key={product.id}
+                setSelectedProduct={(p: Product) => setSelectedProduct(p)}
+              />
             ))}
           </ul>
         </div>

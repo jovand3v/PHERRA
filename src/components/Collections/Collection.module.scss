@@ -19,15 +19,12 @@
   color: var(--primary-color);
   transform: rotate(180deg);
   cursor: pointer;
-  z-index: 5;
   filter: drop-shadow(0px 0px 20px rgba(black, 0.15));
 }
 .thumbnailImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-.productShowcase {
 }
 .mainContainer {
   flex: 1 1;
@@ -86,4 +83,6 @@
 }
 .products {
   list-style-type: none;
+  display: flex;
+  gap: 30px;
 }

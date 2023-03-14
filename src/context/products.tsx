@@ -11,7 +11,7 @@ export type Product = {
   price: number;
   discount: number;
   inStock: boolean;
-  img: { src: StaticImageData; alt: string };
+  img: StaticImageData;
   sizes: [string, ...string[]];
   colors: [ProductColorObject, ...ProductColorObject[]];
   selected: ProductSelected;
@@ -38,7 +38,7 @@ const ProductsProvider = ({ children }: any) => {
       price: 100,
       discount: 20,
       inStock: true,
-      img: { src: shirt, alt: "model" },
+      img: shirt,
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Beige", value: "#ffd481" },
@@ -52,7 +52,7 @@ const ProductsProvider = ({ children }: any) => {
       price: 250,
       discount: 15,
       inStock: true,
-      img: { src: shirt, alt: "model" },
+      img: shirt,
       sizes: ["S", "M", "L", "XL", "XXL"],
       colors: [
         { name: "Beige", value: "#ffd481" },
