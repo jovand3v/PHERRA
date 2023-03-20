@@ -21,16 +21,7 @@ const CartProduct = (props: Props) => {
   };
 
   // updates products based on selected dropdown value
-  const handleDropdownChange = (type: string, value: string | number | ProductColorObject) => {
-    setProducts((products) =>
-      products.map((p) => {
-        if (p.id === product.id) {
-          p.selected = { ...p.selected, [type]: value };
-        }
-        return p;
-      })
-    );
-  };
+  const handleDropdownChange = (type: string, value: string | number | ProductColorObject) => {};
 
   return (
     <li className={s.main}>

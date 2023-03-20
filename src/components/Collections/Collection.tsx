@@ -13,8 +13,9 @@ import CollectionProductInfo from "./CollectionProductInfo";
 import { Product, ProductsContext } from "src/context/products";
 
 const Collection = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { products } = useContext(ProductsContext);
+  const [selectedProduct, setSelectedProduct] = useState<Product>(products[0]);
+  const [showcaseActive, setShowcaseActive] = useState(false);
 
   return (
     <div className={s.main}>
@@ -23,7 +24,11 @@ const Collection = () => {
           <Link href="/">
             <ArrowIcon className={s.arrowIcon} />
           </Link>
-          <CollectionProductInfo selectedProduct={selectedProduct} setSelectedProduct={(p) => setSelectedProduct(p)} />
+          <CollectionProductInfo
+            selectedProduct={selectedProduct}
+            showcaseActive={showcaseActive}
+            setShowcaseActive={(s) => setShowcaseActive(s)}
+          />
           <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
         </div>
       </div>
@@ -49,6 +54,7 @@ const Collection = () => {
                 product={product}
                 key={product.id}
                 setSelectedProduct={(p: Product) => setSelectedProduct(p)}
+                setShowcaseActive={(s) => setShowcaseActive(s)}
               />
             ))}
           </ul>

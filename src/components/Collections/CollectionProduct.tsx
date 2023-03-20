@@ -5,13 +5,20 @@ import { Product } from "src/context/products";
 type Props = {
   product: Product;
   setSelectedProduct: (p: Product) => void;
+  setShowcaseActive: (s: boolean) => void;
 };
 
 const CollectionProduct = (props: Props) => {
-  const { product, setSelectedProduct } = props;
+  const { product, setSelectedProduct, setShowcaseActive } = props;
 
   return (
-    <li className={s.main} onClick={() => setSelectedProduct(product)}>
+    <li
+      className={s.main}
+      onClick={() => {
+        setSelectedProduct(product);
+        setShowcaseActive(true);
+      }}
+    >
       <div className={s.imageContainer}>
         <Image src={product.img} className={s.image} alt={`${product.colors[0].name} ${product.name}`} />
         <div className={s.discountBox} aria-hidden={true}>
