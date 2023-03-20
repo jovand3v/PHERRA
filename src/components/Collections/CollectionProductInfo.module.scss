@@ -2,11 +2,11 @@
   width: 100%;
   height: 100vh;
   position: absolute;
-  transform: translateX(-100%);
-  transition: transform 0.3s;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
+  transform: translateX(-100%);
+  transition: transform 0.3s;
 }
 .active {
   transform: translateX(0%);
@@ -134,7 +134,7 @@
     content: "";
     bottom: -5px;
     width: 100%;
-    height: 2px;
+    height: 1px;
     background: var(--secondary-color);
     opacity: 0;
   }
@@ -173,6 +173,10 @@
     color: var(--secondary-color);
   }
 }
+.boxListItemActive {
+  border-color: var(--secondary-color);
+  color: var(--secondary-color);
+}
 .buttonContainer {
   display: flex;
   flex-direction: column;
@@ -204,4 +208,8 @@
   text-transform: uppercase;
   font-size: 15px;
   background: transparent;
+  &:hover {
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+  }
 }

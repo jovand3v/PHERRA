@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import s from "./CollectionProductInfo.module.scss";
 import { Product } from "src/context/products";
 import ExitIcon from "@public/assets/icons/x.svg";
@@ -9,12 +9,23 @@ import Image from "next/image";
 type Props = {
   selectedProduct: Product;
   showcaseActive: boolean;
-  setShowcaseActive: (p: boolean) => void;
+  setShowcaseActive: (s: boolean) => void;
 };
 
 const CollectionProductInfo = (props: Props) => {
   const { selectedProduct, showcaseActive, setShowcaseActive } = props;
   const quantity = [1, 2, 3, 4, 5];
+  const defaultSelected = {
+    size: selectedProduct.sizes[0],
+    quantity: quantity[0],
+    color: selectedProduct.colors[0],
+  };
+  const [selected, setSelected] = useState(defaultSelected);
+
+  // updates selected data based on product select, has to be done via effect because of transitions
+  useLayoutEffect(() => {
+    setSelected(defaultSelected);
+  }, [selectedProduct]);
 
   return (
     <div className={`${s.main} ${showcaseActive ? s.active : ""}`}>
@@ -47,8 +58,14 @@ const CollectionProductInfo = (props: Props) => {
                 <p className={s.selectDescription}>AVAILABLE COLORS</p>
               </header>
               <ul className={s.colors}>
-                {selectedProduct.colors.map((color) => (
-                  <li className={`${s.color}`}>
+                {selectedProduct.colors.map((color, index) => (
+                  <li
+                    className={`${s.color} ${
+                      color.name === selected.color.name && color.value === selected.color.value ? s.colorActive : ""
+                    }`}
+                    onClick={() => setSelected((s) => ({ ...s, color: color }))}
+                    key={index}
+                  >
                     <div className={s.colorBox} style={{ background: color.value }}></div>
                     <span className={s.colorName}>{color.name}</span>
                   </li>
@@ -61,8 +78,14 @@ const CollectionProductInfo = (props: Props) => {
                 <p className={s.selectDescription}>AVAILABLE SIZES</p>
               </header>
               <ul className={s.boxList}>
-                {selectedProduct.sizes.map((size) => (
-                  <li className={s.boxListItem}>{size}</li>
+                {selectedProduct.sizes.map((size, index) => (
+                  <li
+                    className={`${s.boxListItem} ${size === selected.size ? s.boxListItemActive : ""}`}
+                    onClick={() => setSelected((s) => ({ ...s, size }))}
+                    key={index}
+                  >
+                    {size}
+                  </li>
                 ))}
               </ul>
             </li>
@@ -72,8 +95,14 @@ const CollectionProductInfo = (props: Props) => {
                 <p className={s.selectDescription}>AVAILABLE QUANTITIES</p>
               </header>
               <ul className={s.boxList}>
-                {quantity.map((quantity) => (
-                  <li className={s.boxListItem}>{quantity}</li>
+                {quantity.map((quantity, index) => (
+                  <li
+                    className={`${s.boxListItem} ${quantity === selected.quantity ? s.boxListItemActive : ""}`}
+                    onClick={() => setSelected((s) => ({ ...s, quantity }))}
+                    key={index}
+                  >
+                    {quantity}
+                  </li>
                 ))}
               </ul>
             </li>
