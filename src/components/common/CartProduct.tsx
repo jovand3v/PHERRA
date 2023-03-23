@@ -4,20 +4,21 @@ import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 import { useContext } from "react";
 import { ProductsContext } from "src/context/products";
-import { Product, ProductColorObject } from "src/context/products";
+import { CartProduct, ProductColorObject } from "src/context/products";
 
 type Quantity = [number, ...number[]];
 type Props = {
-  product: Product;
+  cartProduct: CartProduct;
 };
 
 const CartProduct = (props: Props) => {
-  const { product } = props;
-  const { setProducts } = useContext(ProductsContext);
+  const { cartProduct } = props;
+  const product = cartProduct.product;
+  const { setCart } = useContext(ProductsContext);
   const quantity: Quantity = [1, 2, 3, 4, 5];
 
   const handleRemove = () => {
-    setProducts((products) => products.filter((p) => p.id !== product.id));
+    setCart((cart) => cart.filter((product) => product.id !== cartProduct.id));
   };
 
   // updates products based on selected dropdown value
@@ -36,16 +37,28 @@ const CartProduct = (props: Props) => {
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
             <span>
-              <DropdownMenu items={product.sizes} onSelect={(value) => handleDropdownChange("size", value)} />
+              <DropdownMenu
+                items={product.sizes}
+                customDefault={cartProduct.selected.size}
+                onSelect={(value) => handleDropdownChange("size", value)}
+              />
             </span>
           </li>
           <li className={s.infoItemDropdown}>
             Color:&nbsp;
-            <DropdownMenu items={product.colors} onSelect={(value) => handleDropdownChange("color", value)} />
+            <DropdownMenu
+              items={product.colors}
+              customDefault={cartProduct.selected.color}
+              onSelect={(value) => handleDropdownChange("color", value)}
+            />
           </li>
           <li className={s.infoItemDropdown}>
             Quantity:&nbsp;
-            <DropdownMenu items={quantity} onSelect={(value) => handleDropdownChange("quantity", value)} />
+            <DropdownMenu
+              items={quantity}
+              customDefault={cartProduct.selected.quantity}
+              onSelect={(value) => handleDropdownChange("quantity", value)}
+            />
           </li>
         </ul>
       </div>

@@ -2,7 +2,7 @@ import s from "./CartContainer.module.scss";
 import CartProduct from "./CartProduct";
 import ExitIcon from "@public/assets/icons/x.svg";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { ProductsContext } from "src/context/products";
 
 type Props = {
@@ -12,7 +12,7 @@ type Props = {
 
 const CartContainer = (props: Props) => {
   const { active, setActive } = props;
-  const { products, quantity, total } = useContext(ProductsContext);
+  const { cart, quantity, total } = useContext(ProductsContext);
 
   return (
     <div className={`${s.cartContainer} ${active ? s.cartContainerActive : ""}`}>
@@ -20,16 +20,16 @@ const CartContainer = (props: Props) => {
         <h2 className={s.cartTitle}>CART</h2>
         <p className={s.cartDescription}>Your cart items</p>
       </header>
-      {products.length !== 0 ? (
-        <ul className={s.productsContainer}>
-          {products.map((product) => (
-            <CartProduct product={product} key={product.id} />
-          ))}
-        </ul>
-      ) : (
+      {cart.length === 0 ? (
         <div className={s.productsContainerEmpty}>
           <p className={s.productsContainerEmptyText}>NO PRODUCTS FOUND</p>
         </div>
+      ) : (
+        <ul className={s.productsContainer}>
+          {cart.map((cartProduct) => (
+            <CartProduct cartProduct={cartProduct} key={cartProduct.id} />
+          ))}
+        </ul>
       )}
       <div className={s.checkout}>
         <div className={s.checkoutInfoContainer}>

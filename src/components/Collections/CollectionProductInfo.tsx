@@ -1,9 +1,10 @@
 import { useLayoutEffect, useState } from "react";
 import s from "./CollectionProductInfo.module.scss";
-import { Product } from "src/context/products";
+import { CartProduct, Product, ProductsContext, ProductSelected } from "src/context/products";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
+import { useContext } from "react";
 import Image from "next/image";
 
 type Props = {
@@ -14,8 +15,9 @@ type Props = {
 
 const CollectionProductInfo = (props: Props) => {
   const { selectedProduct, showcaseActive, setShowcaseActive } = props;
+  const { cart, setCart } = useContext(ProductsContext);
   const quantity = [1, 2, 3, 4, 5];
-  const defaultSelected = {
+  const defaultSelected: ProductSelected = {
     size: selectedProduct.sizes[0],
     quantity: quantity[0],
     color: selectedProduct.colors[0],
@@ -26,6 +28,14 @@ const CollectionProductInfo = (props: Props) => {
   useLayoutEffect(() => {
     setSelected(defaultSelected);
   }, [selectedProduct]);
+
+  const handleCartAdd = () => {
+    setCart((cart) => {
+      const id = cart.length === 0 ? 1 : cart[cart.length - 1].id + 1;
+      const cartProduct: CartProduct = { id, product: selectedProduct, selected };
+      return [...cart, cartProduct];
+    });
+  };
 
   return (
     <div className={`${s.main} ${showcaseActive ? s.active : ""}`}>
@@ -117,7 +127,9 @@ const CollectionProductInfo = (props: Props) => {
                 ${Math.round(selectedProduct.price - (selectedProduct.discount / 100) * selectedProduct.price)}
               </p>
             </div>
-            <button className={s.button}>ADD TO CART</button>
+            <button className={s.button} onClick={handleCartAdd}>
+              ADD TO CART
+            </button>
           </div>
         </div>
       </div>

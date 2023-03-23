@@ -5,13 +5,14 @@ import { ProductColorObject } from "src/context/products";
 
 type Props = {
   items: [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
+  customDefault?: string | number | ProductColorObject;
   onSelect: (value: string | number | ProductColorObject) => void;
 };
 
 const DropdownMenu = (props: Props) => {
-  const { items, onSelect } = props;
+  const { items, customDefault, onSelect } = props;
   const [active, setActive] = useState(false);
-  const [selectedItem, setSelectedItem] = useState(items[0]);
+  const [selectedItem, setSelectedItem] = useState(customDefault ?? items[0]);
   const mainRef = useRef<HTMLDivElement>(null);
   const isSelectedItemColor = typeof selectedItem === "object";
 

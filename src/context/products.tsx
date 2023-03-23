@@ -14,10 +14,19 @@ export type Product = {
   img: StaticImageData;
   sizes: [string, ...string[]];
   colors: [ProductColorObject, ...ProductColorObject[]];
+  collection: "summer" | "winter";
 };
+export type ProductSelected = {
+  size: string;
+  quantity: number;
+  color: ProductColorObject;
+};
+export type CartProduct = { id: number; product: Product; selected: ProductSelected };
 type Context = {
-  products: Product[] | [];
+  products: Product[];
   setProducts: Dispatch<SetStateAction<Product[]>>;
+  cart: CartProduct[];
+  setCart: Dispatch<SetStateAction<CartProduct[]>>;
   quantity: number;
   total: number;
 };
@@ -25,6 +34,8 @@ type Context = {
 export const ProductsContext = createContext<Context>({
   products: [],
   setProducts: () => {},
+  cart: [],
+  setCart: () => {},
   quantity: 0,
   total: 0,
 });
@@ -44,6 +55,7 @@ const ProductsProvider = ({ children }: any) => {
         { name: "Lime", value: "#78FF62" },
         { name: "Baby Blue", value: "#43D2FF" },
       ],
+      collection: "summer",
     },
     {
       id: 2,
@@ -57,15 +69,20 @@ const ProductsProvider = ({ children }: any) => {
         { name: "Red", value: "#D81F29" },
         { name: "White", value: "#fff" },
       ],
+      collection: "summer",
     },
   ]);
+  const [cart, setCart] = useState<CartProduct[]>([]);
+
   // const quantity = products.reduce((acc, curr) => acc + curr.selected.quantity, 0);
   // const total = products.reduce((acc, curr) => acc + curr.price * curr.selected.quantity, 0);
   const quantity = 5;
   const total = 100;
 
   return (
-    <ProductsContext.Provider value={{ products, setProducts, quantity, total }}>{children}</ProductsContext.Provider>
+    <ProductsContext.Provider value={{ products, setProducts, cart, setCart, quantity, total }}>
+      {children}
+    </ProductsContext.Provider>
   );
 };
 
