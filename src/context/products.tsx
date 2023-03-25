@@ -74,10 +74,11 @@ const ProductsProvider = ({ children }: any) => {
   ]);
   const [cart, setCart] = useState<CartProduct[]>([]);
 
-  // const quantity = products.reduce((acc, curr) => acc + curr.selected.quantity, 0);
-  // const total = products.reduce((acc, curr) => acc + curr.price * curr.selected.quantity, 0);
-  const quantity = 5;
-  const total = 100;
+  const quantity = cart.reduce((acc, curr) => acc + curr.selected.quantity, 0);
+  const total = cart.reduce(
+    (acc, curr) => acc + Math.round(curr.product.price - (curr.product.discount / 100) * curr.product.price),
+    0
+  );
 
   return (
     <ProductsContext.Provider value={{ products, setProducts, cart, setCart, quantity, total }}>
