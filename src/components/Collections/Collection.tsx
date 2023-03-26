@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import s from "./Collection.module.scss";
 import CollectionProduct from "./CollectionProduct";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
@@ -10,12 +10,18 @@ import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
 import CollectionProductInfo from "./CollectionProductInfo";
-import { Product, ProductsContext } from "src/context/products";
+import { Product } from "src/lib/products";
+import { products } from "src/lib/products";
 
 const Collection = () => {
-  const { products } = useContext(ProductsContext);
   const [selectedProduct, setSelectedProduct] = useState<Product>(products[0]);
   const [showcaseActive, setShowcaseActive] = useState(false);
+  const [showChild, setShowChild] = useState(false);
+
+  // wait until client-side hydration to load child because it uses useLayoutEffect
+  useEffect(() => {
+    setShowChild(true);
+  }, []);
 
   return (
     <div className={s.main}>
@@ -24,11 +30,13 @@ const Collection = () => {
           <Link href="/">
             <ArrowIcon className={s.arrowIcon} />
           </Link>
-          <CollectionProductInfo
-            selectedProduct={selectedProduct}
-            showcaseActive={showcaseActive}
-            setShowcaseActive={(s) => setShowcaseActive(s)}
-          />
+          {showChild && (
+            <CollectionProductInfo
+              selectedProduct={selectedProduct}
+              showcaseActive={showcaseActive}
+              setShowcaseActive={(s) => setShowcaseActive(s)}
+            />
+          )}
           <Image className={s.thumbnailImage} src={summerThumbnail} alt="model" />
         </div>
       </div>

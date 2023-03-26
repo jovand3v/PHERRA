@@ -1,6 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import s from "./CollectionProductInfo.module.scss";
-import { CartProduct, Product, ProductsContext, ProductSelected } from "src/context/products";
+import { CartProduct, CartContext, CartProductSelected } from "src/context/cart";
+import { Product } from "src/lib/products";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
@@ -15,9 +16,9 @@ type Props = {
 
 const CollectionProductInfo = (props: Props) => {
   const { selectedProduct, showcaseActive, setShowcaseActive } = props;
-  const { cart, setCart } = useContext(ProductsContext);
+  const { cartReducer } = useContext(CartContext);
   const quantity = [1, 2, 3, 4, 5];
-  const defaultSelected: ProductSelected = {
+  const defaultSelected: CartProductSelected = {
     size: selectedProduct.sizes[0],
     quantity: quantity[0],
     color: selectedProduct.colors[0],
@@ -30,11 +31,9 @@ const CollectionProductInfo = (props: Props) => {
   }, [selectedProduct]);
 
   const handleCartAdd = () => {
-    setCart((cart) => {
-      const id = cart.length === 0 ? 1 : cart[cart.length - 1].id + 1;
-      const cartProduct: CartProduct = { id, product: selectedProduct, selected };
-      return [...cart, cartProduct];
-    });
+    const id = cartReducer.state.length === 0 ? 1 : cartReducer.state[cartReducer.state.length - 1].id + 1;
+    const product: CartProduct = { id, product: selectedProduct, selected };
+    cartReducer.dispatch({ type: "ADD_PRODUCT", payload: product });
   };
 
   return (

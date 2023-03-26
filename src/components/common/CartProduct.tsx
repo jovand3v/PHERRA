@@ -3,8 +3,9 @@ import s from "./CartProduct.module.scss";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
 import { useContext } from "react";
-import { ProductsContext } from "src/context/products";
-import { CartProduct, ProductColorObject } from "src/context/products";
+import { CartContext } from "src/context/cart";
+import { CartProduct } from "src/context/cart";
+import { ProductColorObject } from "src/lib/products";
 
 type Quantity = [number, ...number[]];
 type Props = {
@@ -14,11 +15,11 @@ type Props = {
 const CartProduct = (props: Props) => {
   const { cartProduct } = props;
   const product = cartProduct.product;
-  const { setCart } = useContext(ProductsContext);
+  const { cartReducer } = useContext(CartContext);
   const quantity: Quantity = [1, 2, 3, 4, 5];
 
   const handleRemove = () => {
-    setCart((cart) => cart.filter((product) => product.id !== cartProduct.id));
+    // setCart((cart) => cart.filter((product) => product.id !== cartProduct.id));
   };
 
   // updates products based on selected dropdown value

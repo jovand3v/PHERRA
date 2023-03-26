@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
-import { ProductColorObject } from "src/context/products";
+import { ProductColorObject } from "src/lib/products";
 
 type Props = {
   items: [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
@@ -15,6 +15,13 @@ const DropdownMenu = (props: Props) => {
   const [selectedItem, setSelectedItem] = useState(customDefault ?? items[0]);
   const mainRef = useRef<HTMLDivElement>(null);
   const isSelectedItemColor = typeof selectedItem === "object";
+
+  // temp
+  useEffect(() => {
+    if (customDefault) {
+      setSelectedItem(customDefault);
+    }
+  }, [customDefault]);
 
   // disables dropdown on blur
   useEffect(() => {

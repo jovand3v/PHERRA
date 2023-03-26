@@ -1,6 +1,6 @@
 import s from "./CollectionProduct.module.scss";
 import Image from "next/image";
-import { Product } from "src/context/products";
+import { Product } from "src/lib/products";
 
 type Props = {
   product: Product;

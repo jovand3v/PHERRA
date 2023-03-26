@@ -213,3 +213,12 @@
     color: var(--secondary-color);
   }
 }
+.buttonDisabled {
+  cursor: not-allowed;
+  border-color: rgb(156, 156, 156);
+  color: rgb(156, 156, 156);
+  &:hover {
+    border-color: rgb(156, 156, 156);
+    color: rgb(156, 156, 156);
+  }
+}
