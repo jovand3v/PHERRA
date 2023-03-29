@@ -9,8 +9,7 @@ export type CartProductSelected = {
 };
 export type CartProduct = { id: number; product: Product; selected: CartProductSelected };
 
-type CartActionType = "ADD_PRODUCT" | "UPDATE_PRODUCT";
-type CartAction = { type: CartActionType; payload: CartProduct | CartProduct[] };
+type CartAction = { type: "ADD_PRODUCT"; payload: CartProduct } | { type: "UPDATE_PRODUCT"; payload: CartProduct[] };
 
 type Context = {
   cartReducer: { state: CartProduct[]; dispatch: Dispatch<CartAction> };
@@ -26,19 +25,11 @@ export const CartContext = createContext<Context>({
 const reducer = (state: CartProduct[], action: CartAction): CartProduct[] => {
   switch (action.type) {
     case "ADD_PRODUCT": {
-      if (!Array.isArray(action.payload)) {
-        return [...state, action.payload];
-      }
-      throw new Error(`Provided type doesn't exist on ${action.type}`);
+      return [...state, action.payload];
     }
     case "UPDATE_PRODUCT": {
-      if (Array.isArray(action.payload)) {
-        return action.payload;
-      }
-      throw new Error(`Provided type doesn't exist on ${action.type}`);
+      return action.payload;
     }
-    default:
-      throw new Error(`Unhandled action type: ${action.type}`);
   }
 };
 
