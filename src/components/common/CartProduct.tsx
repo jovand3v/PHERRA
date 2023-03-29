@@ -2,7 +2,7 @@ import Image from "next/image";
 import s from "./CartProduct.module.scss";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DropdownMenu from "./DropdownMenu";
-import { useContext } from "react";
+import { memo, useContext } from "react";
 import { CartContext } from "src/context/cart";
 import { CartProduct } from "src/context/cart";
 import { ProductColorObject } from "src/lib/products";
@@ -25,7 +25,14 @@ const CartProduct = (props: Props) => {
   };
 
   // updates products based on selected dropdown value
-  const handleDropdownChange = <T extends DropdownType>(type: T, value: DropdownValue[T]) => {};
+  const handleDropdownChange = <T extends DropdownType>(type: T, value: DropdownValue[T]) => {
+    const cartTemp = [...cartReducer.state];
+    const index = cartTemp.findIndex((cp) => cp.id === cartProduct.id);
+    if (index !== -1) {
+      cartTemp[index].selected[type] = value;
+      cartReducer.dispatch({ type: "UPDATE_PRODUCT", payload: cartTemp });
+    }
+  };
 
   return (
     <li className={s.main}>
@@ -71,4 +78,4 @@ const CartProduct = (props: Props) => {
   );
 };
 
-export default CartProduct;
+export default memo(CartProduct);

@@ -8,35 +8,34 @@ export type CartProductSelected = {
   color: ProductColorObject;
 };
 export type CartProduct = { id: number; product: Product; selected: CartProductSelected };
+
+type CartActionType = "ADD_PRODUCT" | "UPDATE_PRODUCT";
+type CartAction = { type: CartActionType; payload: CartProduct | CartProduct[] };
+
 type Context = {
   cartReducer: { state: CartProduct[]; dispatch: Dispatch<CartAction> };
   quantity: number;
   total: number;
 };
-type CartAction = {
-  type: string;
-  payload: CartProduct | CartProduct[];
-};
-
 export const CartContext = createContext<Context>({
   cartReducer: { state: [], dispatch: () => {} },
   quantity: 0,
   total: 0,
 });
 
-const reducer = (state: CartProduct[], action: CartAction) => {
+const reducer = (state: CartProduct[], action: CartAction): CartProduct[] => {
   switch (action.type) {
     case "ADD_PRODUCT": {
       if (!Array.isArray(action.payload)) {
         return [...state, action.payload];
       }
-      throw new Error(`Wrong type provided for ${action.type}`);
+      throw new Error(`Provided type doesn't exist on ${action.type}`);
     }
-    case "ADD_PRODUCT_QUANTITY": {
+    case "UPDATE_PRODUCT": {
       if (Array.isArray(action.payload)) {
         return action.payload;
       }
-      throw new Error(`Wrong type provided for ${action.type}`);
+      throw new Error(`Provided type doesn't exist on ${action.type}`);
     }
     default:
       throw new Error(`Unhandled action type: ${action.type}`);

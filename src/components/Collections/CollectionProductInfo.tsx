@@ -55,7 +55,7 @@ const CollectionProductInfo = (props: Props) => {
         } else {
           cartTemp[index].selected.quantity += selected.quantity;
         }
-        cartReducer.dispatch({ type: "ADD_PRODUCT_QUANTITY", payload: cartTemp });
+        cartReducer.dispatch({ type: "UPDATE_PRODUCT", payload: cartTemp });
       } else {
         cartReducer.dispatch({ type: "ADD_PRODUCT", payload: product });
       }
