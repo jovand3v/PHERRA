@@ -3,13 +3,14 @@ import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
 import { ProductColorObject } from "src/lib/products";
 
-type Props = {
-  items: [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
-  customDefault?: string | number | ProductColorObject;
-  onSelect: (value: string | number | ProductColorObject) => void;
+type Items = [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
+type Props<T extends Items> = {
+  items: T;
+  customDefault?: T[0];
+  onSelect: (value: T[0]) => void;
 };
 
-const DropdownMenu = (props: Props) => {
+const DropdownMenu = <T extends Items>(props: Props<T>) => {
   const { items, customDefault, onSelect } = props;
   const [active, setActive] = useState(false);
   const [selectedItem, setSelectedItem] = useState(customDefault ?? items[0]);

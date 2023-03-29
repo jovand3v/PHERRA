@@ -11,6 +11,8 @@ type Quantity = [number, ...number[]];
 type Props = {
   cartProduct: CartProduct;
 };
+export type DropdownType = "size" | "color" | "quantity";
+export type DropdownValue = { size: string; color: ProductColorObject; quantity: number };
 
 const CartProduct = (props: Props) => {
   const { cartProduct } = props;
@@ -23,7 +25,7 @@ const CartProduct = (props: Props) => {
   };
 
   // updates products based on selected dropdown value
-  const handleDropdownChange = (type: string, value: string | number | ProductColorObject) => {};
+  const handleDropdownChange = <T extends DropdownType>(type: T, value: DropdownValue[T]) => {};
 
   return (
     <li className={s.main}>
