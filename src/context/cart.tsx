@@ -15,7 +15,7 @@ type Context = {
 };
 type CartAction = {
   type: string;
-  payload: CartProduct;
+  payload: CartProduct | CartProduct[];
 };
 
 export const CartContext = createContext<Context>({
@@ -27,14 +27,16 @@ export const CartContext = createContext<Context>({
 const reducer = (state: CartProduct[], action: CartAction) => {
   switch (action.type) {
     case "ADD_PRODUCT": {
-      const cartTemp = [...state];
-      const index = cartTemp.map((cp) => cp.product.name).indexOf("OPEN SHIRT");
-      if (index !== -1) {
-        cartTemp[index].selected.quantity += 1;
-        return cartTemp;
-      } else {
+      if (!Array.isArray(action.payload)) {
         return [...state, action.payload];
       }
+      throw new Error(`Wrong type provided for ${action.type}`);
+    }
+    case "ADD_PRODUCT_QUANTITY": {
+      if (Array.isArray(action.payload)) {
+        return action.payload;
+      }
+      throw new Error(`Wrong type provided for ${action.type}`);
     }
     default:
       throw new Error(`Unhandled action type: ${action.type}`);
@@ -44,14 +46,13 @@ const reducer = (state: CartProduct[], action: CartAction) => {
 const CartProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, []);
   const cartReducer = { state, dispatch };
-  console.log(state[0]?.selected.quantity);
-  // const quantity = cart.reduce((acc, curr) => acc + curr.selected.quantity, 0);
-  // const total = cart.reduce(
-  //   (acc, curr) => acc + Math.round(curr.product.price - (curr.product.discount / 100) * curr.product.price),
-  //   0
-  // );
-  const quantity = 0;
-  const total = 0;
+  const quantity = cartReducer.state.reduce((acc, curr) => acc + curr.selected.quantity, 0);
+  const total = cartReducer.state.reduce(
+    (acc, curr) =>
+      acc +
+      Math.round(curr.product.price - (curr.product.discount / 100) * curr.product.price) * curr.selected.quantity,
+    0
+  );
 
   return <CartContext.Provider value={{ cartReducer, quantity, total }}>{children}</CartContext.Provider>;
 };
