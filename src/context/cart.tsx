@@ -50,9 +50,9 @@ const reducer = <T extends DropdownType>(state: CartProduct[], action: CartActio
       }
     }
     case "UPDATE_PRODUCT": {
-      const productIndex = state.findIndex((cp) => handleProductCompare(cp, action.payload.product));
+      const productIndex = state.findIndex((cp) => cp.id === action.payload.product.id);
       if (productIndex !== -1) {
-        const product = {
+        const product: CartProduct = {
           ...action.payload.product,
           selected: { ...action.payload.product.selected, [action.payload.type]: action.payload.value },
         };
@@ -63,7 +63,7 @@ const reducer = <T extends DropdownType>(state: CartProduct[], action: CartActio
       }
     }
     case "REMOVE_PRODUCT": {
-      const productIndex = state.findIndex((cp) => handleProductCompare(cp, action.payload));
+      const productIndex = state.findIndex((cp) => cp.id === action.payload.id);
       if (productIndex !== -1) {
         const tempState = [...state];
         tempState.splice(productIndex, 1);
