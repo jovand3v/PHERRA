@@ -21,17 +21,11 @@ const CartProduct = (props: Props) => {
   const quantity: Quantity = [1, 2, 3, 4, 5];
 
   const handleRemove = () => {
-    // setCart((cart) => cart.filter((product) => product.id !== cartProduct.id));
+    cartReducer.dispatch({ type: "REMOVE_PRODUCT", payload: cartProduct });
   };
 
-  // updates products based on selected dropdown value
   const handleDropdownChange = <T extends DropdownType>(type: T, value: DropdownValue[T]) => {
-    const cartTemp = [...cartReducer.state];
-    const index = cartTemp.findIndex((cp) => cp.id === cartProduct.id);
-    if (index !== -1) {
-      cartTemp[index].selected[type] = value;
-      cartReducer.dispatch({ type: "UPDATE_PRODUCT", payload: cartTemp });
-    }
+    cartReducer.dispatch({ type: "UPDATE_PRODUCT", payload: { product: cartProduct, type, value } });
   };
 
   return (

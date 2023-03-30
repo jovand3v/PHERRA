@@ -17,7 +17,6 @@ const DropdownMenu = <T extends Items>(props: Props<T>) => {
   const mainRef = useRef<HTMLDivElement>(null);
   const isSelectedItemColor = typeof selectedItem === "object";
 
-  // temp
   useEffect(() => {
     if (customDefault) {
       setSelectedItem(customDefault);

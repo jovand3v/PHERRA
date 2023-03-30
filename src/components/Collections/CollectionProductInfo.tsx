@@ -30,36 +30,10 @@ const CollectionProductInfo = (props: Props) => {
     setSelected(defaultSelected);
   }, [selectedProduct]);
 
-  const handleProductCompare = (obj1: CartProduct, obj2: CartProduct) => {
-    return (
-      JSON.stringify(obj1.selected.color) === JSON.stringify(obj2.selected.color) &&
-      JSON.stringify(obj1.selected.size) === JSON.stringify(obj2.selected.size) &&
-      JSON.stringify(obj1.product) === JSON.stringify(obj2.product)
-    );
-  };
-
-  // if product exists in cart, increase quantity by chosen amount, else, add to cart
   const handleCartAdd = () => {
     const id = cartReducer.state.length === 0 ? 1 : cartReducer.state[cartReducer.state.length - 1].id + 1;
     const product: CartProduct = { id, product: selectedProduct, selected };
-    const cartTemp = [...cartReducer.state];
-    if (cartTemp.length === 0) {
-      cartReducer.dispatch({ type: "ADD_PRODUCT", payload: product });
-    } else {
-      const index = cartTemp.findIndex((cp) => handleProductCompare(cp, product));
-      if (index !== -1) {
-        const quantitySum = cartTemp[index].selected.quantity + selected.quantity;
-        const quantityMax = quantity[quantity.length - 1];
-        if (quantitySum > quantityMax) {
-          cartTemp[index].selected.quantity = quantityMax;
-        } else {
-          cartTemp[index].selected.quantity += selected.quantity;
-        }
-        cartReducer.dispatch({ type: "UPDATE_PRODUCT", payload: cartTemp });
-      } else {
-        cartReducer.dispatch({ type: "ADD_PRODUCT", payload: product });
-      }
-    }
+    cartReducer.dispatch({ type: "ADD_PRODUCT", payload: product });
   };
 
   return (
