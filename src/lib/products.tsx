@@ -1,6 +1,8 @@
 import { StaticImageData } from "next/image";
 import shirt from "@public/assets/collections/summer/open-shirt.png";
 import flessSet from "@public/assets/collections/summer/fless-set.png";
+import cbCoat from "@public/assets/collections/winter/cb-coat.png";
+import ocCoat from "@public/assets/collections/winter/oc-coat.png";
 
 export type ProductColorObject = { name: string; value: string };
 export type Product = {
@@ -26,8 +28,7 @@ export const products: Product[] = [
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
       { name: "White", value: "#fff" },
-      { name: "Lime", value: "#78FF62" },
-      { name: "Baby Blue", value: "#43D2FF" },
+      { name: "Green", value: "#8FFF73" },
     ],
     collection: "summer",
   },
@@ -40,9 +41,38 @@ export const products: Product[] = [
     img: flessSet,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
-      { name: "Red", value: "#D81F29" },
       { name: "White", value: "#fff" },
+      { name: "Red", value: "#D81F29" },
     ],
     collection: "summer",
+  },
+  {
+    id: 3,
+    name: "OC COAT",
+    price: 500,
+    discount: 15,
+    inStock: true,
+    img: ocCoat,
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [
+      { name: "White", value: "#fff" },
+      { name: "Yellow", value: "#FFBE3F" },
+      { name: "Cyan", value: "#57FFF5" },
+    ],
+    collection: "winter",
+  },
+  {
+    id: 4,
+    name: "CB COAT",
+    price: 400,
+    discount: 10,
+    inStock: true,
+    img: cbCoat,
+    sizes: ["S", "M", "L", "XL", "XXL"],
+    colors: [
+      { name: "Pink", value: "#FFC0C0" },
+      { name: "Red", value: "#D81F29" },
+    ],
+    collection: "winter",
   },
 ];
