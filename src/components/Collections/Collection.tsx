@@ -35,7 +35,7 @@ const Collection = (props: StaticProps) => {
         />
       ));
     } else {
-      return <li className={s.productsEmptyMessage}>No products found</li>;
+      return <li className={s.productsEmptyMessage}>No products found...</li>;
     }
   };
 
