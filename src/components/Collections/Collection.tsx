@@ -16,11 +16,28 @@ const Collection = (props: StaticProps) => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(products[0]);
   const [showcaseActive, setShowcaseActive] = useState(false);
   const [showChild, setShowChild] = useState(false);
+  const [search, setSearch] = useState("");
 
   // wait until client-side hydration to load child because it uses useLayoutEffect
   useEffect(() => {
     setShowChild(true);
   }, []);
+
+  const handleSearch = () => {
+    const searchedProducts = products.filter((product) => product.name.toLowerCase().match(search.toLowerCase()));
+    if (searchedProducts.length !== 0) {
+      return searchedProducts.map((sp) => (
+        <CollectionProduct
+          product={sp}
+          key={sp.id}
+          setSelectedProduct={(p: Product) => setSelectedProduct(p)}
+          setShowcaseActive={(s) => setShowcaseActive(s)}
+        />
+      ));
+    } else {
+      return <li className={s.productsEmptyMessage}>No products found</li>;
+    }
+  };
 
   return (
     <div className={s.main}>
@@ -49,22 +66,13 @@ const Collection = (props: StaticProps) => {
         </header>
         <div className={s.productsContainer}>
           <div className={s.filters}>
-            <Searchbar />
+            <Searchbar setSearch={(value) => setSearch(value)} placeholder="SEARCH FOR A PRODUCT..." />
             <div className={s.dropdown}>
               SORT BY:&nbsp;
               <DropdownMenu items={["POPULARITY", "PRICE ASCENDING", "PRICE DESCENDING"]} onSelect={() => {}} />
             </div>
           </div>
-          <ul className={s.products}>
-            {products.map((product) => (
-              <CollectionProduct
-                product={product}
-                key={product.id}
-                setSelectedProduct={(p: Product) => setSelectedProduct(p)}
-                setShowcaseActive={(s) => setShowcaseActive(s)}
-              />
-            ))}
-          </ul>
+          <ul className={s.products}>{handleSearch()}</ul>
         </div>
       </div>
       <div className={s.cartWrapper}>

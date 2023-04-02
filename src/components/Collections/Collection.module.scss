@@ -81,9 +81,21 @@
 }
 .products {
   // on smaller res increase product size and gap size
+  --product-height: 480px;
   list-style-type: none;
   display: grid;
   grid-template-columns: repeat(auto-fill, 270px);
   gap: 30px;
   grid-auto-flow: row dense;
+  min-height: 480px;
+  position: relative;
+}
+.productsEmptyMessage {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  top: calc(var(--product-height) / 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
