@@ -72,7 +72,7 @@ const Collection = (props: StaticProps) => {
               setShowcaseActive={(s) => setShowcaseActive(s)}
             />
           )}
-          <Image className={s.thumbnailImage} src={thumbnail} alt="model" />
+          <Image className={s.thumbnailImage} src={thumbnail} alt="model" priority={true} />
         </div>
       </div>
       <div className={s.mainContainer}>
