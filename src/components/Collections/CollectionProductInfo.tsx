@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import s from "./CollectionProductInfo.module.scss";
 import { CartProduct, CartContext, CartProductSelected } from "src/context/cart";
-import { Product } from "src/lib/products";
+import { Product, discountedPrice } from "src/lib/products";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
@@ -122,9 +122,7 @@ const CollectionProductInfo = (props: Props) => {
                 <span className={s.oldPrice}>${selectedProduct.price}</span>
                 <span className={s.discount}>-{selectedProduct.discount}%</span>
               </div>
-              <p className={s.price}>
-                ${Math.round(selectedProduct.price - (selectedProduct.discount / 100) * selectedProduct.price)}
-              </p>
+              <p className={s.price}>${discountedPrice(selectedProduct.price, selectedProduct.discount)}</p>
             </div>
             <button className={s.button} onClick={handleCartAdd}>
               ADD TO CART

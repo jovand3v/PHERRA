@@ -1,7 +1,7 @@
 import { createContext, useReducer } from "react";
 import { Dispatch } from "react";
 import { DropdownType, DropdownValue } from "src/components/common/CartProduct";
-import { ProductColorObject, Product } from "src/lib/products";
+import { ProductColorObject, Product, discountedPrice } from "src/lib/products";
 
 export type CartProductSelected = {
   size: string;
@@ -82,8 +82,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const quantity = cartReducer.state.reduce((acc, curr) => acc + curr.selected.quantity, 0);
   const total = cartReducer.state.reduce(
     (acc, curr) =>
-      acc +
-      Math.round(curr.product.price - (curr.product.discount / 100) * curr.product.price) * curr.selected.quantity,
+      acc + Math.round(discountedPrice(curr.product.price, curr.product.discount) * curr.selected.quantity),
     0
   );
 

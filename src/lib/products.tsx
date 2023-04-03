@@ -76,3 +76,7 @@ export const products: Product[] = [
     collection: "winter",
   },
 ];
+
+export const discountedPrice = (price: Product["price"], discount: Product["discount"]): number => {
+  return Math.round(price - (discount / 100) * price);
+};

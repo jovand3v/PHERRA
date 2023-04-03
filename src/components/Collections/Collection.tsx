@@ -8,8 +8,10 @@ import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
 import CollectionProductInfo from "./CollectionProductInfo";
-import { Product } from "src/lib/products";
+import { Product, discountedPrice } from "src/lib/products";
 import { StaticProps } from "src/pages/collections/[collection]";
+
+type SortOptions = "POPULARITY" | "PRICE ASCENDING" | "PRICE DESCENDING";
 
 const Collection = (props: StaticProps) => {
   const { collection, products, thumbnail } = props;
@@ -17,6 +19,8 @@ const Collection = (props: StaticProps) => {
   const [showcaseActive, setShowcaseActive] = useState(false);
   const [showChild, setShowChild] = useState(false);
   const [search, setSearch] = useState("");
+  const sortingOptions: [SortOptions, ...SortOptions[]] = ["POPULARITY", "PRICE ASCENDING", "PRICE DESCENDING"];
+  const [productsLocal, setProductsLocal] = useState([...products]);
 
   // wait until client-side hydration to load child because it uses useLayoutEffect
   useEffect(() => {
@@ -24,7 +28,7 @@ const Collection = (props: StaticProps) => {
   }, []);
 
   const handleSearch = () => {
-    const searchedProducts = products.filter((product) => product.name.toLowerCase().match(search.toLowerCase()));
+    const searchedProducts = productsLocal.filter((product) => product.name.toLowerCase().match(search.toLowerCase()));
     if (searchedProducts.length !== 0) {
       return searchedProducts.map((sp) => (
         <CollectionProduct
@@ -36,6 +40,21 @@ const Collection = (props: StaticProps) => {
       ));
     } else {
       return <li className={s.productsEmptyMessage}>NO PRODUCTS FOUND</li>;
+    }
+  };
+
+  const handleSelect = (selected: SortOptions) => {
+    switch (selected) {
+      case "POPULARITY":
+        return setProductsLocal([...products]);
+      case "PRICE ASCENDING":
+        return setProductsLocal((pl) =>
+          [...pl].sort((a, b) => discountedPrice(a.price, a.discount) - discountedPrice(b.price, b.discount))
+        );
+      case "PRICE DESCENDING":
+        return setProductsLocal((pl) =>
+          [...pl].sort((a, b) => discountedPrice(b.price, b.discount) - discountedPrice(a.price, a.discount))
+        );
     }
   };
 
@@ -69,7 +88,7 @@ const Collection = (props: StaticProps) => {
             <Searchbar setSearch={(value) => setSearch(value)} placeholder="SEARCH FOR A PRODUCT..." />
             <div className={s.dropdown}>
               SORT BY:&nbsp;
-              <DropdownMenu items={["POPULARITY", "PRICE ASCENDING", "PRICE DESCENDING"]} onSelect={() => {}} />
+              <DropdownMenu items={sortingOptions} onSelect={(selected) => handleSelect(selected)} />
             </div>
           </div>
           <ul className={s.products}>{handleSearch()}</ul>

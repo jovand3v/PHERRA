@@ -1,6 +1,6 @@
 import s from "./CollectionProduct.module.scss";
 import Image from "next/image";
-import { Product } from "src/lib/products";
+import { Product, discountedPrice } from "src/lib/products";
 
 type Props = {
   product: Product;
@@ -32,7 +32,7 @@ const CollectionProduct = (props: Props) => {
             <span className={s.oldPrice}>${product.price}</span>{" "}
             <span className={s.discount}>-{product.discount}%</span>
           </div>
-          <div className={s.price}>${Math.round(product.price - (product.discount / 100) * product.price)}</div>
+          <div className={s.price}>${discountedPrice(product.price, product.discount)}</div>
         </div>
         <div className={s.colorsAndSizesContainer}>
           <ul className={s.colors} aria-label="available colors">
