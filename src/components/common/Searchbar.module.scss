@@ -13,8 +13,8 @@
   height: 100%;
   background: none;
   border: none;
-  padding-left: 15px;
-  padding-right: calc(var(--search-icon-width) + var(--search-icon-margin-right) + 15px);
+  padding-left: var(--search-icon-margin-right);
+  padding-right: calc(var(--search-icon-width) + 2 * var(--search-icon-margin-right));
   outline: none;
   font-size: 15px;
   &::placeholder {
@@ -28,4 +28,18 @@
   right: var(--search-icon-margin-right);
   top: 50%;
   transform: translateY(-50%);
+}
+
+@media screen and (max-width: 1900px) {
+  .main {
+    --search-icon-width: clamp(20px, 1.2vw, 22px);
+    --search-icon-margin-right: clamp(13px, 0.8vw, 15px);
+    width: clamp(360px, 22.1vw, 420px);
+    height: clamp(47px, 2.7vw, 50px);
+  }
+  .input {
+    &::placeholder {
+      font-size: clamp(14px, 0.8vw, 14.5px);
+    }
+  }
 }

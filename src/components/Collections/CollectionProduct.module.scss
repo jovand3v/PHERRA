@@ -1,17 +1,17 @@
 .main {
-  width: 270px;
-  cursor: pointer;
-  height: 480px;
+  display: grid;
+  position: relative;
+  aspect-ratio: 1 / 1.97;
+  & > * {
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
+  }
 }
 .imageContainer {
-  width: 100%;
-  height: 390px;
-  position: relative;
 }
 .image {
-  width: 100%;
+  aspect-ratio: 1 / 1.6;
   object-fit: cover;
-  height: 100%;
 }
 .discountBox {
   position: absolute;
@@ -31,17 +31,18 @@
   font-size: 32px;
   font-weight: var(--font-light);
   line-height: 0.85;
-  margin: 10px 0px 8px 0px;
   text-transform: uppercase;
 }
 .info {
+  align-self: end;
+}
+.details {
+  margin-top: 9px;
   display: flex;
   justify-content: space-between;
 }
 .priceContainer {
   font-weight: var(--font-light);
-}
-.oldPriceContainer {
 }
 .oldPrice {
   font-size: 19px;
@@ -76,4 +77,14 @@
   display: flex;
   list-style-type: none;
   gap: 5px;
+}
+@media screen and (max-width: 1800px) {
+  .main {
+    aspect-ratio: 1 / 2.04;
+  }
+}
+@media screen and (max-width: 1607px) {
+  .main {
+    aspect-ratio: 1 / 2;
+  }
 }

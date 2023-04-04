@@ -40,13 +40,11 @@ const CartProduct = (props: Props) => {
           <li className={s.stock}>{product.inStock ? "In Stock" : "Out of Stock"}</li>
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
-            <span>
-              <DropdownMenu
-                items={product.sizes}
-                customDefault={cartProduct.selected.size}
-                onSelect={(value) => handleDropdownChange("size", value)}
-              />
-            </span>
+            <DropdownMenu
+              items={product.sizes}
+              customDefault={cartProduct.selected.size}
+              onSelect={(value) => handleDropdownChange("size", value)}
+            />
           </li>
           <li className={s.infoItemDropdown}>
             Color:&nbsp;

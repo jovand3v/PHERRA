@@ -82,13 +82,12 @@
 .products {
   // on smaller res increase product size and gap size
   --product-height: 480px;
+  min-height: var(--product-height);
   list-style-type: none;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, 270px);
-  gap: 30px;
-  grid-auto-flow: row dense;
-  min-height: 480px;
   position: relative;
+  display: grid;
+  gap: 30px;
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
 }
 .productsEmptyMessage {
   position: absolute;
@@ -98,4 +97,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 16px;
+}
+@media screen and (max-width: 1900px) {
+  .thumbnailContainer {
+    width: clamp(480px, 34.2vw, 650px);
+  }
+  .arrowIcon {
+    width: clamp(78px, 5vw, 95px);
+    height: clamp(57px, 4vw, 75px);
+  }
+  .title {
+    font-size: clamp(149px, 10.8vw, 205px);
+    margin-left: min(-140px, -10.3vw);
+  }
+  .dropdown {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .subtitle {
+    right: clamp(60px, 4.2vw, 80px);
+    font-size: clamp(200px, 14.7vw, 280px);
+  }
+  .products {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+}
+@media screen and (max-width: 1350px) {
+}
+@media screen and (max-width: 1024px) {
+}
+@media screen and (max-width: 400px) {
 }
