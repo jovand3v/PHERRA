@@ -87,7 +87,7 @@
   position: relative;
   display: grid;
   gap: 30px;
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+  grid-template-columns: repeat(4, minmax(190px, 1fr));
 }
 .productsEmptyMessage {
   position: absolute;
@@ -108,7 +108,7 @@
     height: clamp(57px, 4vw, 75px);
   }
   .title {
-    font-size: clamp(149px, 10.8vw, 205px);
+    font-size: clamp(140px, 10.8vw, 205px);
     margin-left: min(-140px, -10.3vw);
   }
   .dropdown {
@@ -118,8 +118,10 @@
     right: clamp(60px, 4.2vw, 80px);
     font-size: clamp(200px, 14.7vw, 280px);
   }
+}
+@media screen and (max-width: 1625px) {
   .products {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
   }
 }
 @media screen and (max-width: 1350px) {
