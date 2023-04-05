@@ -11,6 +11,15 @@
 .active {
   transform: translateX(0%);
 }
+.mainContent {
+  display: flex;
+  align-items: flex-end;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
 .imageOverlay {
   background: linear-gradient(0deg, rgba(0, 0, 0, 0.52) 43.96%, rgba(0, 0, 0, 0) 76.82%);
   width: 100%;
@@ -25,6 +34,7 @@
   z-index: -1;
 }
 .mainContainer {
+  width: 100%;
   z-index: 1;
   padding: var(--padding-section);
 }
@@ -285,5 +295,40 @@
     width: clamp(140px, 9vw, 170px);
     height: clamp(48px, 2.9vw, 55px);
     font-size: clamp(14px, 0.8vw, 15px);
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main {
+    transform: unset;
+    width: 100%;
+    height: 100%;
+    background: rgba(black, 0.5);
+    z-index: 3;
+    display: none;
+  }
+  .mainContent {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 80%;
+    min-height: 700px;
+    display: flex;
+    width: 500px;
+    align-items: flex-end;
+  }
+  .imageOverlay {
+    background: linear-gradient(213.38deg, rgba(0, 0, 0, 0.25) 14.72%, rgba(0, 0, 0, 0) 23.97%),
+      linear-gradient(0deg, rgba(0, 0, 0, 0.52) 43.96%, rgba(0, 0, 0, 0) 76.82%);
+  }
+  .mainContainer {
+    width: 100%;
+  }
+  .close {
+    right: var(--padding-section);
+    left: unset;
+  }
+  .active {
+    display: flex;
   }
 }

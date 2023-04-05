@@ -1,6 +1,12 @@
 .main {
   display: flex;
 }
+.productInfoMobileContainer {
+  display: none;
+}
+.productInfoDesktopContainer {
+  display: flex;
+}
 .thumbnailContainer {
   width: 650px;
 }
@@ -161,6 +167,107 @@
   }
 }
 @media screen and (max-width: 1024px) {
+  .productInfoDesktopContainer {
+    display: none;
+  }
+  .productInfoMobileContainer {
+    display: flex;
+  }
+  .main {
+    flex-direction: column;
+  }
+  .thumbnailContainer {
+    height: clamp(140px, 14.7vw, 150px);
+    width: 100%;
+  }
+  .thumbnailContainerSticky {
+    height: 100%;
+  }
+  .thumbnailImage {
+    height: 100%;
+  }
+  .arrowIcon {
+    left: var(--padding-section);
+    top: 50%;
+    transform: translateY(-50%) rotate(180deg);
+    width: clamp(78px, 8.4vw, 86px);
+    height: clamp(61px, 6.6vw, 67px);
+  }
+  .header {
+    position: relative;
+  }
+  .title {
+    font-size: clamp(77px, 16.2vw, 165px);
+    margin: 0px;
+
+    margin-left: -3px;
+  }
+  .titleSmall {
+    font-size: clamp(40px, 8.9vw, 90px);
+  }
+  .subtitle {
+    bottom: 0px;
+    top: unset;
+    height: auto;
+    transform: unset;
+    font-size: clamp(60px, 13.2vw, 135px);
+    bottom: 0px;
+    right: 0px;
+  }
+  .products {
+    grid-template-columns: repeat(3, minmax(190px, 1fr));
+  }
+}
+@media screen and (max-width: 850px) {
+  .thumbnailContainer {
+    height: 125px;
+  }
+}
+@media screen and (max-width: 700px) {
+  .products {
+    gap: 30px;
+    grid-template-columns: repeat(2, minmax(190px, 1fr));
+  }
+}
+@media screen and (max-width: 600px) {
+  .thumbnailContainer {
+    height: 116px;
+  }
+  .arrowIcon {
+    width: 74px;
+    height: 58px;
+  }
+  .products {
+    gap: var(--padding-section);
+  }
+}
+@media screen and (max-width: 500px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-end;
+    gap: calc(var(--padding-section) - 5px);
+  }
+}
+@media screen and (max-width: 470px) {
+  .products {
+    grid-template-columns: repeat(1, minmax(190px, 1fr));
+  }
 }
 @media screen and (max-width: 400px) {
+  .thumbnailContainer {
+    height: clamp(110px, 29vw, 116px);
+  }
+  .arrowIcon {
+    width: clamp(67px, 18.5vw, 74px);
+    height: clamp(53px, 14.5vw, 58px);
+  }
+  .title {
+    font-size: clamp(61px, 19.3vw, 77px);
+  }
+  .titleSmall {
+    font-size: clamp(32px, 10vw, 40px);
+  }
+  .subtitle {
+    font-size: clamp(50px, 15vw, 60px);
+  }
 }

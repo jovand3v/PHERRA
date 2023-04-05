@@ -156,3 +156,129 @@
     aspect-ratio: 1 / 2.05;
   }
 }
+@media screen and (max-width: 1024px) {
+  .main {
+    aspect-ratio: 1 / 2;
+  }
+  .discountBox {
+    top: 10%;
+    width: clamp(72px, 8.8vw, 90px);
+    height: clamp(42px, 4.9vw, 50px);
+    font-size: clamp(17px, 1.9vw, 19px);
+  }
+  .title {
+    font-size: clamp(29px, 3.5vw, 35px);
+  }
+  .oldPrice {
+    font-size: clamp(18px, 1.9vw, 19px);
+  }
+  .discount {
+    font-size: clamp(15px, 1.6vw, 16px);
+  }
+  .price {
+    font-size: clamp(24px, 2.8vw, 28px);
+  }
+  .colorsAndSizesContainer {
+    gap: 8px;
+  }
+  .color {
+    width: clamp(17px, 1.8vw, 18px);
+    height: clamp(17px, 1.8vw, 18px);
+  }
+  .sizes {
+    font-size: clamp(15px, 1.6vw, 16px);
+  }
+}
+@media screen and (max-width: 880px) {
+  .main {
+    aspect-ratio: 1 / 2.05;
+  }
+}
+@media screen and (max-width: 770px) {
+  .main {
+    aspect-ratio: 1 / 2.1;
+  }
+}
+@media screen and (max-width: 700px) {
+  .main {
+    aspect-ratio: 1 / 1.99;
+  }
+  .discountBox {
+    width: clamp(72px, 12.9vw, 90px);
+    height: clamp(42px, 7.1vw, 50px);
+    font-size: clamp(17px, 2.7vw, 19px);
+  }
+  .title {
+    font-size: clamp(29px, 4.9vw, 34px);
+  }
+  .oldPrice {
+    font-size: clamp(18px, 2.7vw, 19px);
+  }
+  .discount {
+    font-size: clamp(15px, 2.3vw, 16px);
+  }
+  .price {
+    font-size: clamp(24px, 3.9vw, 27px);
+  }
+  .color {
+    width: clamp(17px, 2.7vw, 19px);
+    height: clamp(17px, 2.7vw, 19px);
+  }
+  .sizes {
+    font-size: clamp(15px, 2.3vw, 16px);
+  }
+}
+@media screen and (max-width: 600px) {
+  .main {
+    aspect-ratio: 1 / 2.02;
+  }
+}
+@media screen and (max-width: 540px) {
+  .main {
+    aspect-ratio: 1 / 2.08;
+  }
+}
+@media screen and (max-width: 470px) {
+  .main {
+    aspect-ratio: 1 / 1.92;
+  }
+  .discountBox {
+    width: clamp(94px, 23.4vw, 110px);
+    height: clamp(55px, 12.8vw, 60px);
+    font-size: clamp(19px, 4.3vw, 20px);
+  }
+  .title {
+    font-size: clamp(34px, 8.5vw, 40px);
+  }
+  .oldPrice {
+    font-size: clamp(19px, 4.2vw, 20px);
+  }
+  .discount {
+    font-size: clamp(16px, 3.6vw, 17px);
+  }
+  .price {
+    font-size: clamp(28px, 6.6vw, 31px);
+  }
+  .color {
+    width: clamp(19px, 4.5vw, 21px);
+    height: clamp(19px, 4.5vw, 21px);
+  }
+  .sizes {
+    font-size: clamp(16px, 3.6vw, 17px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .main {
+    aspect-ratio: 1 / 1.94;
+  }
+}
+@media screen and (max-width: 370px) {
+  .main {
+    aspect-ratio: 1 / 1.97;
+  }
+}
+@media screen and (max-width: 350px) {
+  .main {
+    aspect-ratio: 1 / 1.99;
+  }
+}

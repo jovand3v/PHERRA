@@ -154,13 +154,13 @@
     font-size: clamp(19px, 1.3vw, 24px);
   }
   .newsletterContainer {
-    height: clamp(45px, 2.7vw, 50px);
+    height: clamp(46px, 2.7vw, 50px);
     gap: clamp(8px, 0.5vw, 10px);
     margin-top: clamp(8px, 0.5vw, 10px);
   }
   .input {
-    width: clamp(400px, 26.4vw, 500px);
     font-size: clamp(14px, 0.8vw, 15px);
+    width: clamp(400px, 26.4vw, 500px);
   }
   .button {
     width: clamp(130px, 8.5vw, 160px);
@@ -204,7 +204,7 @@
     height: 45px;
   }
   .input {
-    width: clamp(380px, 29.8vw, 400px);
+    width: clamp(360px, 29.8vw, 400px);
     font-size: clamp(13px, 1.1vw, 14px);
   }
   .button {
@@ -246,7 +246,7 @@
     font-size: clamp(18px, 2.1vw, 21px);
   }
   .newsletterContainer {
-    height: clamp(42px, 4.4vw, 45px);
+    height: clamp(42px, 4.7vw, 48px);
   }
   .input {
     font-size: clamp(13px, 1.4vw, 14px);

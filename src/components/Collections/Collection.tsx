@@ -60,18 +60,29 @@ const Collection = (props: StaticProps) => {
 
   return (
     <div className={s.main}>
+      <div className={s.productInfoMobileContainer}>
+        {showChild && selectedProduct && (
+          <CollectionProductInfo
+            selectedProduct={selectedProduct}
+            showcaseActive={showcaseActive}
+            setShowcaseActive={(s) => setShowcaseActive(s)}
+          />
+        )}
+      </div>
       <div className={s.thumbnailContainer}>
         <div className={s.thumbnailContainerSticky}>
           <Link href="/">
             <ArrowIcon className={s.arrowIcon} />
           </Link>
-          {showChild && selectedProduct && (
-            <CollectionProductInfo
-              selectedProduct={selectedProduct}
-              showcaseActive={showcaseActive}
-              setShowcaseActive={(s) => setShowcaseActive(s)}
-            />
-          )}
+          <div className={s.productInfoDesktopContainer}>
+            {showChild && selectedProduct && (
+              <CollectionProductInfo
+                selectedProduct={selectedProduct}
+                showcaseActive={showcaseActive}
+                setShowcaseActive={(s) => setShowcaseActive(s)}
+              />
+            )}
+          </div>
           <Image className={s.thumbnailImage} src={thumbnail} alt="model" priority={true} />
         </div>
       </div>

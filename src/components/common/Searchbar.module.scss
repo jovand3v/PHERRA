@@ -48,3 +48,15 @@
     width: clamp(260px, 25.4vw, 360px);
   }
 }
+@media screen and (max-width: 1024px) {
+  .main {
+    width: clamp(240px, 32.2vw, 330px);
+    height: clamp(42px, 4.7vw, 48px);
+    font-size: clamp(13px, 1.4vw, 14px);
+  }
+}
+@media screen and (max-width: 500px) {
+  .main {
+    width: 100%;
+  }
+}
