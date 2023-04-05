@@ -35,11 +35,16 @@
     --search-icon-width: clamp(20px, 1.2vw, 22px);
     --search-icon-margin-right: clamp(13px, 0.8vw, 15px);
     width: clamp(360px, 22.1vw, 420px);
-    height: clamp(47px, 2.7vw, 50px);
+    height: clamp(45px, 2.7vw, 50px);
   }
   .input {
     &::placeholder {
       font-size: clamp(14px, 0.8vw, 14.5px);
     }
+  }
+}
+@media screen and (max-width: 1390px) {
+  .main {
+    width: clamp(260px, 25.4vw, 360px);
   }
 }

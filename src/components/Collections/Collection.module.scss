@@ -124,7 +124,41 @@
     gap: 20px;
   }
 }
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1390px) {
+  .thumbnailContainer {
+    width: clamp(450px, 39.6vw, 550px);
+  }
+  .title {
+    font-size: clamp(120px, 10.1vw, 140px);
+  }
+  .products {
+    gap: 30px;
+    grid-template-columns: repeat(3, minmax(190px, 1fr));
+  }
+  .subtitle {
+    right: clamp(60px, 4.2vw, 80px);
+    font-size: clamp(160px, 14.4vw, 200px);
+  }
+}
+@media screen and (max-width: 1190px) {
+  .title {
+    font-size: clamp(120px, 10.9vw, 130px);
+    line-height: 0.8;
+    margin-top: -5px;
+    display: flex;
+    flex-direction: column;
+    margin-left: -165px;
+  }
+  .titleSmall {
+    font-size: clamp(83px, 7.6vw, 90px);
+  }
+  .thumbnailContainer {
+    width: clamp(450px, 46.4vw, 550px);
+  }
+  .products {
+    gap: clamp(25px, 3vw, 35px);
+    grid-template-columns: repeat(2, minmax(190px, 1fr));
+  }
 }
 @media screen and (max-width: 1024px) {
 }
