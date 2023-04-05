@@ -86,7 +86,6 @@
   display: flex;
 }
 .products {
-  // on smaller res increase product size and gap size
   --product-height: 480px;
   min-height: var(--product-height);
   list-style-type: none;
@@ -237,9 +236,6 @@
     width: 74px;
     height: 58px;
   }
-  .products {
-    gap: var(--padding-section);
-  }
 }
 @media screen and (max-width: 500px) {
   .filters {
@@ -250,6 +246,7 @@
 }
 @media screen and (max-width: 470px) {
   .products {
+    gap: var(--padding-section);
     grid-template-columns: repeat(1, minmax(190px, 1fr));
   }
 }
