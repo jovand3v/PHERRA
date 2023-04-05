@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import s from "./CollectionProductInfo.module.scss";
 import { CartProduct, CartContext, CartProductSelected } from "src/context/cart";
 import { Product, discountedPrice } from "src/lib/products";
@@ -12,10 +12,11 @@ type Props = {
   selectedProduct: Product;
   showcaseActive: boolean;
   setShowcaseActive: (s: boolean) => void;
+  mobile?: boolean;
 };
 
 const CollectionProductInfo = (props: Props) => {
-  const { selectedProduct, showcaseActive, setShowcaseActive } = props;
+  const { selectedProduct, showcaseActive, setShowcaseActive, mobile } = props;
   const { cartReducer } = useContext(CartContext);
   const quantity = [1, 2, 3, 4, 5];
   const defaultSelected: CartProductSelected = {
@@ -24,6 +25,12 @@ const CollectionProductInfo = (props: Props) => {
     color: selectedProduct.colors[0],
   };
   const [selected, setSelected] = useState(defaultSelected);
+
+  useEffect(() => {
+    if (mobile) {
+      document.getElementsByTagName("html")[0].style.overflowY = showcaseActive ? "hidden" : "visible";
+    }
+  }, [mobile, showcaseActive]);
 
   // updates selected data based on product select, has to be done via effect because of transitions
   useLayoutEffect(() => {
@@ -38,6 +45,7 @@ const CollectionProductInfo = (props: Props) => {
 
   return (
     <div className={`${s.main} ${showcaseActive ? s.active : ""}`}>
+      <div className={s.mainOverlay} onClick={() => setShowcaseActive(false)}></div>
       <div className={s.mainContent}>
         <div className={s.imageOverlay}></div>
         <Image
