@@ -251,7 +251,7 @@
     font-size: clamp(18px, 4.3vw, 20px);
   }
   .title {
-    font-size: clamp(32px, 8.1vw, 38px);
+    font-size: clamp(30px, 8.1vw, 38px);
   }
   .oldPrice {
     font-size: clamp(18px, 4.2vw, 20px);
@@ -260,7 +260,7 @@
     font-size: clamp(16px, 3.6vw, 17px);
   }
   .price {
-    font-size: clamp(27px, 6.6vw, 31px);
+    font-size: clamp(25px, 6.6vw, 31px);
   }
   .color {
     width: clamp(18px, 4.5vw, 21px);
@@ -272,16 +272,16 @@
 }
 @media screen and (max-width: 400px) {
   .main {
-    aspect-ratio: 1 / 1.32;
+    aspect-ratio: 1 / 1.31;
   }
 }
 @media screen and (max-width: 370px) {
   .main {
-    aspect-ratio: 1 / 1.36;
+    aspect-ratio: 1 / 1.33;
   }
 }
 @media screen and (max-width: 340px) {
   .main {
-    aspect-ratio: 1 / 1.39;
+    aspect-ratio: 1 / 1.37;
   }
 }
