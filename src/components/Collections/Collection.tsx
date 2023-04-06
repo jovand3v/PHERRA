@@ -66,7 +66,6 @@ const Collection = (props: StaticProps) => {
             selectedProduct={selectedProduct}
             showcaseActive={showcaseActive}
             setShowcaseActive={(s) => setShowcaseActive(s)}
-            mobile={true}
           />
         )}
       </div>

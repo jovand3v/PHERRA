@@ -7,16 +7,16 @@ import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
 import { useContext } from "react";
 import Image from "next/image";
+import useWindowWidth from "src/hooks/useWindowWidth";
 
 type Props = {
   selectedProduct: Product;
   showcaseActive: boolean;
   setShowcaseActive: (s: boolean) => void;
-  mobile?: boolean;
 };
 
 const CollectionProductInfo = (props: Props) => {
-  const { selectedProduct, showcaseActive, setShowcaseActive, mobile } = props;
+  const { selectedProduct, showcaseActive, setShowcaseActive } = props;
   const { cartReducer } = useContext(CartContext);
   const quantity = [1, 2, 3, 4, 5];
   const defaultSelected: CartProductSelected = {
@@ -25,12 +25,13 @@ const CollectionProductInfo = (props: Props) => {
     color: selectedProduct.colors[0],
   };
   const [selected, setSelected] = useState(defaultSelected);
+  const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    if (mobile) {
+    if (windowWidth <= 1024) {
       document.getElementsByTagName("html")[0].style.overflowY = showcaseActive ? "hidden" : "visible";
     }
-  }, [mobile, showcaseActive]);
+  }, [showcaseActive, windowWidth]);
 
   // updates selected data based on product select, has to be done via effect because of transitions
   useLayoutEffect(() => {
