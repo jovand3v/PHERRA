@@ -44,7 +44,7 @@ const CollectionPage: NextPage<StaticProps> = (props) => {
   const title = `PHERRA | ${handleCapitalize(collection)} Collection 2023`;
 
   return (
-    <div>
+    <>
       <Head>
         <title>{title}</title>
         <meta
@@ -57,7 +57,7 @@ const CollectionPage: NextPage<StaticProps> = (props) => {
         <Collection collection={collection} products={products} thumbnail={thumbnail} />
       </main>
       <Footer separator={false} />
-    </div>
+    </>
   );
 };
 
