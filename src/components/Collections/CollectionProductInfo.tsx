@@ -28,7 +28,7 @@ const CollectionProductInfo = (props: Props) => {
   const windowWidth = useWindowWidth();
 
   useEffect(() => {
-    if (windowWidth <= 1024) {
+    if (windowWidth !== 0 && windowWidth <= 1024) {
       document.getElementsByTagName("html")[0].style.overflowY = showcaseActive ? "hidden" : "visible";
     }
   }, [showcaseActive, windowWidth]);
