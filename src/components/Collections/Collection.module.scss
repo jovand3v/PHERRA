@@ -102,6 +102,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100%;
   font-size: 16px;
 }
 @media screen and (max-width: 1900px) {
@@ -122,6 +123,9 @@
   .subtitle {
     right: clamp(60px, 4.2vw, 80px);
     font-size: clamp(200px, 14.7vw, 280px);
+  }
+  .productsEmptyMessage {
+    font-size: clamp(15px, 0.9vw, 16px);
   }
 }
 @media screen and (max-width: 1625px) {
