@@ -102,9 +102,7 @@ const Collection = (props: StaticProps) => {
               <DropdownMenu items={sortingOptions} onSelect={(selected) => handleSelect(selected)} />
             </div>
           </div>
-          <ul className={s.products}>
-            {handleSearch()} {handleSearch()} {handleSearch()}
-          </ul>
+          <ul className={s.products}>{handleSearch()}</ul>
         </div>
       </div>
       <div className={s.cartWrapper}>
