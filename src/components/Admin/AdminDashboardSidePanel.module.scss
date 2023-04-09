@@ -1,0 +1,100 @@
+.main {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: rgb(6, 6, 6);
+  padding: var(--padding-section);
+  align-items: flex-start;
+}
+.titleContainer {
+  display: flex;
+  flex-direction: column;
+  line-height: 0.8;
+}
+.title {
+  font-size: 115px;
+  font-weight: var(--font-bold);
+  margin-left: -6px;
+  color: var(--secondary-color);
+}
+.subtitle {
+  font-size: 33px;
+  margin-top: 5px;
+  font-weight: var(--font-light);
+}
+.viewLiveContainer {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  margin: var(--padding-section) 0px;
+}
+.viewLiveText {
+  font-size: 23px;
+  font-weight: var(--font-light);
+  line-height: 0.7;
+}
+.viewLiveIcon {
+  width: 24px;
+  margin-left: 20px;
+  height: auto;
+}
+.section {
+  flex: 1 1;
+}
+.sectionHeader {
+}
+.sectionTitle {
+  line-height: 0.8;
+  font-size: 45px;
+  font-weight: var(--font-bold);
+  color: var(--secondary-color);
+}
+.sectionSubtitle {
+  font-size: 18px;
+  font-weight: var(--font-light);
+}
+.sectionList {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: calc(var(--padding-section) / 2) 0px;
+  gap: 5px;
+}
+.sectionListItem {
+  font-size: 33px;
+  line-height: 1;
+  font-weight: var(--font-light);
+  cursor: pointer;
+  &:first-child {
+    color: var(--secondary-color);
+  }
+}
+.footer {
+  width: 100%;
+  padding-top: var(--padding-section);
+  display: flex;
+  border-top: 1px solid var(--secondary-color);
+  justify-content: space-between;
+}
+.user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.userIcon {
+  width: 24px;
+  height: auto;
+  color: var(--secondary-color);
+}
+.userName {
+  color: var(--secondary-color);
+  font-size: 16px;
+  font-weight: var(--font-light);
+}
+.logoutIcon {
+  width: 18px;
+  height: auto;
+  color: var(--secondary-color);
+  cursor: pointer;
+}
