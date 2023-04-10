@@ -10,6 +10,7 @@ export type Product = {
   name: string;
   price: number;
   discount: number;
+  inStock: boolean;
   img: StaticImageData;
   sizes: [string, ...string[]];
   colors: [ProductColorObject, ...ProductColorObject[]];
@@ -22,6 +23,7 @@ export const products: Product[] = [
     name: "OPEN SHIRT",
     price: 100,
     discount: 20,
+    inStock: true,
     img: shirt,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
@@ -35,6 +37,7 @@ export const products: Product[] = [
     name: "FLESS SET",
     price: 400,
     discount: 10,
+    inStock: true,
     img: flessSet,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
@@ -48,6 +51,7 @@ export const products: Product[] = [
     name: "OC COAT",
     price: 500,
     discount: 15,
+    inStock: true,
     img: ocCoat,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
@@ -62,6 +66,7 @@ export const products: Product[] = [
     name: "CB COAT",
     price: 400,
     discount: 10,
+    inStock: true,
     img: cbCoat,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
