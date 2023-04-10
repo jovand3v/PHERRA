@@ -1,0 +1,47 @@
+.title {
+  font-size: 90px;
+  line-height: 0.7;
+}
+.filters {
+  display: flex;
+  align-items: center;
+  margin: var(--padding-section) 0px 30px 0px;
+  gap: 30px;
+}
+
+.dropdown {
+  display: flex;
+}
+.table,
+.tableHeader,
+.tableData {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+.tableHeader,
+.tableData {
+  padding: 12px;
+}
+.colorList {
+  display: flex;
+  list-style-type: none;
+  gap: 8px;
+}
+.colorItem {
+  display: flex;
+  gap: 3px;
+}
+.colorBox {
+  width: 6px;
+  height: 95%;
+}
+.button {
+  margin-top: 30px;
+  height: 46px;
+  padding: 0px 22px;
+  cursor: pointer;
+  border: none;
+  background: var(--secondary-color);
+  font-weight: 500;
+  font-size: 14px;
+}

@@ -1,0 +1,19 @@
+.main {
+  display: flex;
+  gap: 30px;
+  list-style-type: none;
+}
+.category {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.title {
+  font-size: 18px;
+  font-weight: var(--font-light);
+  line-height: 0.8;
+}
+.amount {
+  font-size: 35px;
+  font-weight: var(--font-light);
+}
