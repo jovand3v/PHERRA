@@ -33,6 +33,11 @@ const AdminDashboardSidePanel = () => {
         </div>
         <ExitIcon className={s.logoutIcon} />
       </div>
+      <div className={s.grip}>
+        <div className={s.gripLine}></div>
+        <div className={s.gripLine}></div>
+        <div className={s.gripLine}></div>
+      </div>
     </div>
   );
 };
