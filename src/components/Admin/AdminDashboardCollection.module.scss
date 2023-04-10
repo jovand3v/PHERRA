@@ -1,5 +1,6 @@
 .title {
   font-size: 95px;
+  letter-spacing: -3px;
   line-height: 0.7;
   font-weight: var(--font-bold);
 }
@@ -10,12 +11,12 @@
   gap: 30px;
 }
 .searchbar {
-  --search-icon-width: 22px;
+  --search-icon-width: 20px;
   --search-icon-margin-right: 15px;
   position: relative;
   border: 1px solid var(--primary-color);
-  width: 420px;
-  height: 50px;
+  width: 320px;
+  height: 48px;
 }
 .searchbarInput {
   color: var(--primary-color);
@@ -27,9 +28,6 @@
   padding-right: calc(var(--search-icon-width) + 2 * var(--search-icon-margin-right));
   outline: none;
   font-size: 15px;
-  &::placeholder {
-    font-size: 14.5px;
-  }
 }
 .searchbarIcon {
   position: absolute;
@@ -41,6 +39,10 @@
 }
 .dropdown {
   display: flex;
+  font-weight: var(--font-light);
+}
+.table {
+  background: var(--background-base-color);
 }
 .table,
 .tableHeader,
@@ -48,10 +50,14 @@
   border: 1px solid;
   font-size: 16px;
   border-collapse: collapse;
+  text-align: start;
 }
 .tableHeader,
 .tableData {
   padding: 12px;
+}
+.tableData {
+  font-weight: var(--font-light);
 }
 .colorList {
   display: flex;
@@ -68,11 +74,11 @@
 }
 .button {
   margin-top: 30px;
-  height: 46px;
+  height: 48px;
   padding: 0px 22px;
   cursor: pointer;
   border: none;
   background: var(--secondary-color);
   font-weight: 500;
-  font-size: 14px;
+  font-size: 15px;
 }
