@@ -1,7 +1,7 @@
 import { useState } from "react";
 import DropdownMenu from "../common/DropdownMenu";
 import s from "./AdminDashboardCollection.module.scss";
-import Searchbar from "../common/Searchbar";
+import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 
 type DropdownType = [string, ...string[]];
 
@@ -14,7 +14,14 @@ const AdminDashboardCollection = () => {
     <div className={s.main}>
       <h4 className={s.title}>1. SUMMER</h4>
       <div className={s.filters}>
-        <Searchbar setSearch={(s) => setSearch(s)} placeholder="Search for a product" />
+        <div className={s.searchbar}>
+          <input
+            className={s.searchbarInput}
+            placeholder="SEARCH FOR A PRODUCT..."
+            onChange={(e) => setSearch(e.target.value)}
+          />
+          <MagnifyingGlassIcon className={s.searchbarIcon} />
+        </div>
         <div className={s.dropdown}>
           SORT BY: &nbsp; <DropdownMenu items={sortOptions} onSelect={(val) => setSortBy(val)} />
         </div>

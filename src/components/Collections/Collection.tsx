@@ -3,13 +3,13 @@ import s from "./Collection.module.scss";
 import CollectionProduct from "./CollectionProduct";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
 import Image from "next/image";
-import Searchbar from "../common/Searchbar";
 import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
 import CollectionProductInfo from "./CollectionProductInfo";
 import { Product, discountedPrice } from "src/lib/products";
 import { StaticProps } from "src/pages/collections/[collection]";
+import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 
 type SortOptions = "POPULARITY" | "PRICE ASCENDING" | "PRICE DESCENDING";
 
@@ -96,7 +96,14 @@ const Collection = (props: StaticProps) => {
         </header>
         <div className={s.productsContainer}>
           <div className={s.filters}>
-            <Searchbar setSearch={(value) => setSearch(value)} placeholder="SEARCH FOR A PRODUCT..." />
+            <div className={s.searchbar}>
+              <input
+                className={s.searchbarInput}
+                placeholder="SEARCH FOR A PRODUCT..."
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              <MagnifyingGlassIcon className={s.searchbarIcon} />
+            </div>
             <div className={s.dropdown}>
               SORT BY:&nbsp;
               <DropdownMenu items={sortingOptions} onSelect={(selected) => handleSelect(selected)} />

@@ -1,6 +1,7 @@
 .title {
-  font-size: 90px;
+  font-size: 95px;
   line-height: 0.7;
+  font-weight: var(--font-bold);
 }
 .filters {
   display: flex;
@@ -8,7 +9,36 @@
   margin: var(--padding-section) 0px 30px 0px;
   gap: 30px;
 }
-
+.searchbar {
+  --search-icon-width: 22px;
+  --search-icon-margin-right: 15px;
+  position: relative;
+  border: 1px solid var(--primary-color);
+  width: 420px;
+  height: 50px;
+}
+.searchbarInput {
+  color: var(--primary-color);
+  width: 100%;
+  height: 100%;
+  background: none;
+  border: none;
+  padding-left: var(--search-icon-margin-right);
+  padding-right: calc(var(--search-icon-width) + 2 * var(--search-icon-margin-right));
+  outline: none;
+  font-size: 15px;
+  &::placeholder {
+    font-size: 14.5px;
+  }
+}
+.searchbarIcon {
+  position: absolute;
+  width: var(--search-icon-width);
+  height: auto;
+  right: var(--search-icon-margin-right);
+  top: 50%;
+  transform: translateY(-50%);
+}
 .dropdown {
   display: flex;
 }
@@ -16,6 +46,7 @@
 .tableHeader,
 .tableData {
   border: 1px solid;
+  font-size: 16px;
   border-collapse: collapse;
 }
 .tableHeader,
