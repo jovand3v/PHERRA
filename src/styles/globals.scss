@@ -5,6 +5,7 @@
   padding: 0px;
   box-sizing: border-box;
   font-family: inherit;
+  font-variant-numeric: lining-nums;
 }
 html {
   overflow-x: hidden;
@@ -15,7 +16,6 @@ body {
   background-image: var(--background-pattern);
   background-size: var(--background-pattern-size);
   color: var(--primary-color);
-  font-variant-numeric: lining-nums;
 }
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {

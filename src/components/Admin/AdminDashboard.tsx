@@ -1,4 +1,5 @@
 import s from "./AdminDashboard.module.scss";
+import AdminDashboardAddProduct from "./AdminDashboardAddProduct";
 import AdminDashboardCollection from "./AdminDashboardCollection";
 import AdminDashboardInventory from "./AdminDashboardInventory";
 import AdminDashboardSection from "./AdminDashboardSection";
@@ -17,6 +18,7 @@ const AdminDashboard = () => {
         />
       </div>
       <span className={s.year}>2023</span>
+      <AdminDashboardAddProduct />
     </div>
   );
 };
