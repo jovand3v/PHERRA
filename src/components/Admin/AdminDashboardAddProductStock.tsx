@@ -11,6 +11,7 @@ type Inputs = {
 };
 
 type Details = {
+  id: number;
   colorName: string;
   colorHex: string;
   quantity: number;
@@ -20,9 +21,10 @@ type Details = {
 const AdminDashboardAddProductStock = () => {
   const [stock, setStock] = useState<Details[]>([]);
   const [details, setDetails] = useState<Details>({
+    id: 0,
     colorName: "",
     colorHex: "",
-    quantity: 0,
+    quantity: 1,
     selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
   });
 
@@ -31,24 +33,31 @@ const AdminDashboardAddProductStock = () => {
   };
 
   const handleSubmit = () => {
-    setStock((prevState) => [...prevState, { ...details }]);
+    const id = stock[stock.length - 1] ? stock[stock.length - 1].id + 1 : 0;
+    setStock((prevState) => [...prevState, { ...details, id }]);
+    handleClear();
   };
 
   const handleClear = () => {
     setDetails({
+      id: 0,
       colorName: "",
       colorHex: "",
-      quantity: 0,
+      quantity: 1,
       selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
     });
   };
 
-  //   const handleSizeSelect = (size: keyof Details["selectedSizes"]) => {
-  //     setDetails((prevState) => ({
-  //       ...prevState,
-  //       selectedSizes: { ...prevState.selectedSizes, [size]: !prevState.selectedSizes[size] },
-  //     }));
-  //   };
+  const handleSizeSelect = (size: keyof Details["selectedSizes"]) => {
+    setDetails((prevState) => ({
+      ...prevState,
+      selectedSizes: { ...prevState.selectedSizes, [size]: !prevState.selectedSizes[size] },
+    }));
+  };
+
+  const handleDelete = (item: Details) => {
+    setStock((prevState) => [...prevState].filter((pi) => pi.id !== item.id));
+  };
 
   return (
     <div className={s.main}>
@@ -64,35 +73,30 @@ const AdminDashboardAddProductStock = () => {
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {stock.map((item) => (
-            <tr className={s.tableRow}>
-              <td className={s.tableData}>{item.colorName}</td>
-              <td className={s.tableData}>#{item.colorHex}</td>
-              <td className={s.tableData}>{item.quantity}</td>
-              <td className={s.tableData}>
-                {/* <ul className={s.tableSizesList}>
-                  {Object.keys(item.selectedSizes).map(
-                    (size, index) => item.selectedSizes[size] && <li key={index}>{size}</li>
-                  )}
-                </ul> */}{" "}
-                <ul className={s.tableSizesList}>
-                  {Object.keys(details.selectedSizes).map((size, index) => (
-                    <li key={index} className={s.tableSize}>
-                      {size}
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              <td className={s.tableData}>
-                <EditIcon className={s.icon} /> <TrashcanIcon className={s.icon} />
-              </td>
-            </tr>
-          ))}
+          {stock.map((item) => {
+            const sizes = Object.keys(item.selectedSizes) as Array<keyof typeof item.selectedSizes>;
+            return (
+              <tr className={s.tableRow} key={item.id}>
+                <td className={s.tableData}>{item.colorName}</td>
+                <td className={s.tableData}>{item.colorHex}</td>
+                <td className={s.tableData}>{item.quantity}</td>
+                <td className={s.tableData}>
+                  <ul className={s.tableSizesList}>
+                    {sizes.map((size, index) => item.selectedSizes[size] && <li key={index}>{size}</li>)}
+                  </ul>
+                </td>
+                <td className={s.tableData}>
+                  <EditIcon className={s.icon} /> <TrashcanIcon className={s.icon} onClick={() => handleDelete(item)} />
+                </td>
+              </tr>
+            );
+          })}
           <tr className={`${s.tableRow} ${s.tableRowAdd}`}>
             <td className={s.tableData}>
               <input
                 className={s.input}
                 placeholder="White"
+                value={details.colorName}
                 onChange={(e) => handleChange("colorName", e.target.value)}
               />
             </td>
@@ -100,6 +104,7 @@ const AdminDashboardAddProductStock = () => {
               <input
                 className={s.input}
                 placeholder="#FFFFFF"
+                value={details.colorHex}
                 onChange={(e) => handleChange("colorHex", e.target.value)}
               />
             </td>
@@ -107,31 +112,28 @@ const AdminDashboardAddProductStock = () => {
               <input
                 className={s.input}
                 placeholder="5"
+                value={details.quantity}
                 onChange={(e) => handleChange("quantity", parseInt(e.target.value))}
                 type="number"
               />
             </td>
             <td className={s.tableData}>
-              {/* <ul className={s.tableSizesList}>
-                {Object.keys(details.selectedSizes).map((size, index) => {
-                  const match = Boolean(details.selectedSizes[size]);
-                  return (
-                    <li
-                      key={index}
-                      className={`${s.tableSize} ${match ? s.tableSizeActive : ""}`}
-                      onClick={() => handleSizeSelect(size)}
-                    >
-                      {size}
-                    </li>
-                  );
-                })}
-              </ul> */}
               <ul className={s.tableSizesList}>
-                {Object.keys(details.selectedSizes).map((size, index) => (
-                  <li key={index} className={s.tableSize}>
-                    {size}
-                  </li>
-                ))}
+                {(() => {
+                  const sizes: ["XS", "S", "M", "L", "XL", "XXL"] = ["XS", "S", "M", "L", "XL", "XXL"];
+                  return sizes.map((size, index) => {
+                    const match = Boolean(details.selectedSizes[size]);
+                    return (
+                      <li
+                        key={index}
+                        className={`${s.tableSize} ${match ? s.tableSizeActive : ""}`}
+                        onClick={() => handleSizeSelect(size)}
+                      >
+                        {size}
+                      </li>
+                    );
+                  });
+                })()}
               </ul>
             </td>
             <td className={s.tableData}>
