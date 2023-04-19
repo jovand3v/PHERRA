@@ -43,10 +43,9 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
     if (Object.values(errors).every((e) => !e)) {
       setEditing(false);
       setStock((prevState) => {
-        const temp = [...prevState];
-        const currProductId = prevState.findIndex((prevItem) => prevItem.id === item.id);
-        temp.splice(currProductId, 1, { ...local });
-        return temp;
+        const index = prevState.findIndex((prevItem) => prevItem.id === item.id);
+        const updatedItem = { ...local, selectedSizes: { ...local.selectedSizes } };
+        return [...prevState.slice(0, index), updatedItem, ...prevState.slice(index + 1)];
       });
     }
   };
