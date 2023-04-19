@@ -34,9 +34,9 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
 
   const handleSubmit = () => {
     const errors = {
-      colorName: local.colorName === "",
-      colorHex: local.colorHex === "",
-      quantity: local.quantity === "" || (local.quantity !== "" && JSON.parse(local.quantity) < 1),
+      colorName: !local.colorName,
+      colorHex: !local.colorHex,
+      quantity: !local.quantity || JSON.parse(local.quantity) < 1,
       sizes: Object.values(local.selectedSizes).every((s) => !s),
     };
     setErr({ ...errors });
@@ -52,11 +52,7 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
 
   const handleEdit = () => {
     setEditing(true);
-    setTimeout(() => {
-      if (colorNameInputRef.current) {
-        colorNameInputRef.current.focus();
-      }
-    }, 0);
+    setTimeout(() => colorNameInputRef.current?.focus(), 0);
   };
 
   const handleDelete = () => {
