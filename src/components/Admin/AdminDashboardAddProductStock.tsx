@@ -1,9 +1,17 @@
 import s from "./AdminDashboardAddProductStock.module.scss";
 import { useState } from "react";
 import AdminDashboardAddProductStockProduct from "./AdminDashboardAddProductStockProduct";
-import AdminDashboardAddProductStockProductAdd, { Details } from "./AdminDashboardAddProductStockProductAdd";
+import AdminDashboardAddProductStockProductAdd from "./AdminDashboardAddProductStockProductAdd";
 
 export type Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+export type Inputs = Omit<Details, "id">;
+export type Details = {
+  id: number;
+  colorName: string;
+  colorHex: string;
+  quantity: string;
+  selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
+};
 
 const AdminDashboardAddProductStock = () => {
   const [stock, setStock] = useState<Details[]>([]);
@@ -31,7 +39,7 @@ const AdminDashboardAddProductStock = () => {
               sizes={sizes}
             />
           ))}
-          <AdminDashboardAddProductStockProductAdd setStock={(stock) => setStock(stock)} stock={stock} sizes={sizes} />
+          <AdminDashboardAddProductStockProductAdd setStock={(stock) => setStock(stock)} sizes={sizes} />
         </tbody>
       </table>
     </div>

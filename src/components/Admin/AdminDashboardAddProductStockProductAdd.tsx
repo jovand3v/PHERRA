@@ -2,74 +2,46 @@ import s from "./AdminDashboardAddProductStock.module.scss";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import { useState, SetStateAction } from "react";
-import { Sizes } from "./AdminDashboardAddProductStock";
-
-type Inputs = {
-  colorName: string;
-  colorHex: string;
-  quantity: string;
-};
-
-export type Details = {
-  id: number;
-  colorName: string;
-  colorHex: string;
-  quantity: string;
-  selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
-};
+import { Details, Inputs, Sizes } from "./AdminDashboardAddProductStock";
 
 type Props = {
-  stock: Details[];
   setStock: (stock: SetStateAction<Details[]>) => void;
   sizes: Sizes;
 };
 
 const AdminDashboardAddProductStockProductAdd = (props: Props) => {
-  const { stock, setStock, sizes } = props;
-  const [err, setErr] = useState({ colorName: false, colorHex: false, quantity: false, sizes: false });
-  const [details, setDetails] = useState<Details>({
+  const { setStock, sizes } = props;
+  const errDefault = { colorName: false, colorHex: false, quantity: false, sizes: false };
+  const detailsDefault = {
     id: 0,
     colorName: "",
     colorHex: "",
     quantity: "1",
     selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
-  });
+  };
+  const [err, setErr] = useState(errDefault);
+  const [details, setDetails] = useState<Details>(detailsDefault);
 
   const handleSubmit = () => {
-    if (
-      details.colorName !== "" &&
-      details.colorHex !== "" &&
-      JSON.parse(details.quantity) > 0 &&
-      Object.values(details.selectedSizes).some((s) => s)
-    ) {
-      const id = stock[stock.length - 1] ? stock[stock.length - 1].id + 1 : 0;
-      setStock((prevState) => [...prevState, { ...details, id }]);
+    const errors = {
+      colorName: !details.colorName,
+      colorHex: !details.colorHex,
+      quantity: !details.quantity || JSON.parse(details.quantity) < 1,
+      sizes: Object.values(details.selectedSizes).every((s) => !s),
+    };
+    setErr(errors);
+    if (Object.values(errors).every((e) => !e)) {
+      setStock((prevState) => {
+        const id = prevState[prevState.length - 1]?.id + 1 || 0;
+        return [...prevState, { ...details, id }];
+      });
       handleClear();
     }
-    setErr({
-      colorName: details.colorName === "",
-      colorHex: details.colorHex === "",
-      quantity: details.quantity === "" || (details.quantity !== "" && JSON.parse(details.quantity) < 1),
-      sizes: Object.values(details.selectedSizes).every((s) => !s),
-    });
   };
 
   const handleClear = () => {
-    setDetails({
-      id: 0,
-      colorName: "",
-      colorHex: "",
-      quantity: "1",
-      selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
-    });
-    setErr({ colorName: false, colorHex: false, quantity: false, sizes: false });
-  };
-
-  const handleSizeSelect = (size: keyof Details["selectedSizes"]) => {
-    setDetails((prevState) => ({
-      ...prevState,
-      selectedSizes: { ...prevState.selectedSizes, [size]: !prevState.selectedSizes[size] },
-    }));
+    setDetails(detailsDefault);
+    setErr(errDefault);
   };
 
   const handleChange = <T extends keyof Inputs>(field: T, value: Inputs[T]) => {
@@ -110,7 +82,9 @@ const AdminDashboardAddProductStockProductAdd = (props: Props) => {
               <li
                 key={index}
                 className={`${s.tableSize} ${match ? s.tableSizeActive : ""}`}
-                onClick={() => handleSizeSelect(size)}
+                onClick={() =>
+                  handleChange("selectedSizes", { ...details.selectedSizes, [size]: !details.selectedSizes[size] })
+                }
               >
                 {size}
               </li>

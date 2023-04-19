@@ -4,15 +4,13 @@ import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import { useRef, useState } from "react";
 import { SetStateAction } from "react";
-import { Details } from "./AdminDashboardAddProductStockProductAdd";
-import { Sizes } from "./AdminDashboardAddProductStock";
+import { Details, Inputs, Sizes } from "./AdminDashboardAddProductStock";
 
 type Props = {
   item: Details;
   setStock: (stock: SetStateAction<Details[]>) => void;
   sizes: Sizes;
 };
-type Inputs = Omit<Details, "id">;
 
 const AdminDashboardAddProductStockProduct = (props: Props) => {
   const { item, setStock, sizes } = props;
@@ -24,8 +22,8 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
     selectedSizes: { ...item.selectedSizes },
   });
   const [editing, setEditing] = useState(false);
-  const colorNameInputRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState({ colorName: false, colorHex: false, quantity: false, sizes: false });
+  const colorNameInputRef = useRef<HTMLInputElement>(null);
 
   const handleChange = <K extends keyof Inputs>(field: K, value: Inputs[K]) => {
     if (!editing) return;
@@ -39,7 +37,7 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
       quantity: !local.quantity || JSON.parse(local.quantity) < 1,
       sizes: Object.values(local.selectedSizes).every((s) => !s),
     };
-    setErr({ ...errors });
+    setErr(errors);
     if (Object.values(errors).every((e) => !e)) {
       setEditing(false);
       setStock((prevState) => {
