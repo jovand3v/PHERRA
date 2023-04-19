@@ -56,7 +56,7 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
   };
 
   const handleDelete = () => {
-    setStock((prevState) => [...prevState].filter((pi) => pi.id !== item.id));
+    setStock((prevState) => [...prevState].filter((prevItem) => prevItem.id !== item.id));
   };
 
   return (
