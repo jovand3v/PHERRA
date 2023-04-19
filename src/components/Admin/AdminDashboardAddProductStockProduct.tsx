@@ -12,13 +12,7 @@ type Props = {
   setStock: (stock: SetStateAction<Details[]>) => void;
   sizes: Sizes;
 };
-type SelectableSizes = "XS" | "S" | "M" | "L" | "XL" | "XXL";
-type InputChange = {
-  colorName: string;
-  colorHex: string;
-  quantity: string;
-  size: SelectableSizes;
-};
+type Inputs = Omit<Details, "id">;
 
 const AdminDashboardAddProductStockProduct = (props: Props) => {
   const { item, setStock, sizes } = props;
@@ -33,22 +27,9 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
   const colorNameInputRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState({ colorName: false, colorHex: false, quantity: false, sizes: false });
 
-  const handleChange = <K extends keyof InputChange>(field: K, value: InputChange[K]) => {
+  const handleChange = <K extends keyof Inputs>(field: K, value: Inputs[K]) => {
     if (!editing) return;
-    setLocal((prevState) => {
-      if (field === "size") {
-        const val = value as SelectableSizes;
-        return {
-          ...prevState,
-          selectedSizes: {
-            ...prevState.selectedSizes,
-            [val]: !prevState.selectedSizes[val],
-          },
-        };
-      } else {
-        return { ...prevState, [field]: value };
-      }
-    });
+    setLocal((prevState) => ({ ...prevState, [field]: value }));
   };
 
   const handleSubmit = () => {
@@ -121,8 +102,10 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
               return (
                 <li
                   key={index}
-                  className={local.selectedSizes[size] ? s.tableSizeActive : ""}
-                  onClick={() => handleChange("size", size)}
+                  className={`${s.tableSize} ${local.selectedSizes[size] ? s.tableSizeActive : ""}`}
+                  onClick={() =>
+                    handleChange("selectedSizes", { ...local.selectedSizes, [size]: !local.selectedSizes[size] })
+                  }
                 >
                   {size}
                 </li>
