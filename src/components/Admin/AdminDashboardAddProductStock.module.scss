@@ -3,12 +3,12 @@
 }
 .table {
   margin-top: 2px;
+  border-collapse: collapse;
+  border-spacing: 0;
 }
-.table,
 .tableHeader,
 .tableData {
   border: 1px solid white;
-  border-collapse: collapse;
   text-align: start;
   font-size: 16px;
 }
@@ -28,6 +28,9 @@
 }
 .tableData {
   font-weight: var(--font-light);
+}
+.tableDataErr {
+  border-bottom: 1px solid red !important;
 }
 .tableRowAdd {
   .tableData {
@@ -73,4 +76,7 @@
 }
 .tableSizeActive {
   color: var(--secondary-color);
+}
+.tableDataInputWrapper {
+  padding: 0px;
 }
