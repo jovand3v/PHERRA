@@ -33,12 +33,14 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
   };
 
   const handleSubmit = () => {
-    if (
-      local.colorName !== "" &&
-      local.colorHex !== "" &&
-      (local.quantity !== "" && JSON.parse(local.quantity)) > 0 &&
-      Object.values(local.selectedSizes).some((s) => s)
-    ) {
+    const errors = {
+      colorName: local.colorName === "",
+      colorHex: local.colorHex === "",
+      quantity: local.quantity === "" || (local.quantity !== "" && JSON.parse(local.quantity) < 1),
+      sizes: Object.values(local.selectedSizes).every((s) => !s),
+    };
+    setErr({ ...errors });
+    if (Object.values(errors).every((e) => !e)) {
       setEditing(false);
       setStock((prevState) => {
         const temp = [...prevState];
@@ -47,12 +49,6 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
         return temp;
       });
     }
-    setErr({
-      colorName: local.colorName === "",
-      colorHex: local.colorHex === "",
-      quantity: local.quantity === "" || (local.quantity !== "" && JSON.parse(local.quantity) < 1),
-      sizes: Object.values(local.selectedSizes).every((s) => !s),
-    });
   };
 
   const handleEdit = () => {
