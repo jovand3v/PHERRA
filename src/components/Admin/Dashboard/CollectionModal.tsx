@@ -2,7 +2,7 @@ import s from "./CollectionModal.module.scss";
 import PlusIcon from "@public/assets/icons/plus-thin.svg";
 import { ChangeEvent, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
-import AdminDashboardAddProductStock from "./CollectionModalStock";
+import CollectionModalStock from "./CollectionModalStock";
 
 const CollectionModal = () => {
   const [img, setImg] = useState<string | null>(null);
@@ -43,7 +43,7 @@ const CollectionModal = () => {
                 <input className={`${s.input} ${s.inputDiscount}`} placeholder="10" />
               </label>
             </div>
-            <AdminDashboardAddProductStock />
+            <CollectionModalStock />
             <button className={s.button}>ADD PRODUCT</button>
           </div>
           <div className={s.imgContainer}>

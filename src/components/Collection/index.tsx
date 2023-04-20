@@ -6,7 +6,7 @@ import Image from "next/image";
 import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
-import CollectionProductInfo from "./ProductInfo";
+import ProductInfo from "./ProductInfo";
 import { CollectionProduct, discountedPrice } from "src/lib/products";
 import { StaticProps } from "src/pages/collections/[collection]";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
@@ -62,7 +62,7 @@ const Collection = (props: StaticProps) => {
     <div className={s.main}>
       <div className={s.productInfoMobileContainer}>
         {showChild && selectedProduct && (
-          <CollectionProductInfo
+          <ProductInfo
             selectedProduct={selectedProduct}
             showcaseActive={showcaseActive}
             setShowcaseActive={(s) => setShowcaseActive(s)}
@@ -76,7 +76,7 @@ const Collection = (props: StaticProps) => {
           </Link>
           <div className={s.productInfoDesktopContainer}>
             {showChild && selectedProduct && (
-              <CollectionProductInfo
+              <ProductInfo
                 selectedProduct={selectedProduct}
                 showcaseActive={showcaseActive}
                 setShowcaseActive={(s) => setShowcaseActive(s)}

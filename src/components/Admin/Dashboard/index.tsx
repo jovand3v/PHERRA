@@ -1,20 +1,16 @@
 import s from "./index.module.scss";
-import AdminDashboardCollection from "./Collection";
-import AdminDashboardInventory from "./Inventory";
-import AdminDashboardSection from "./Section";
-import AdminDashboardSidePanel from "./SidePanel";
+import Collection from "./Collection";
+import Inventory from "./Inventory";
+import Section from "./Section";
+import SidePanel from "./SidePanel";
 
 const Dashboard = () => {
   return (
     <div className={s.main}>
-      <AdminDashboardSidePanel />
+      <SidePanel />
       <div className={s.content}>
-        <AdminDashboardSection title="INVENTORY" description="INVENTORY STATE" main={<AdminDashboardInventory />} />
-        <AdminDashboardSection
-          title="COLLECTIONS"
-          description="AVAILABLE COLLECTIONS"
-          main={<AdminDashboardCollection />}
-        />
+        <Section title="INVENTORY" description="INVENTORY STATE" main={<Inventory />} />
+        <Section title="COLLECTIONS" description="AVAILABLE COLLECTIONS" main={<Collection />} />
       </div>
       <span className={s.year}>2023</span>
     </div>

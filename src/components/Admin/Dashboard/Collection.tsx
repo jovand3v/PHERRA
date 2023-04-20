@@ -2,7 +2,7 @@ import { useState } from "react";
 import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
-import AdminDashboardCollectionModal from "./CollectionModal";
+import CollectionModal from "./CollectionModal";
 
 type DropdownType = [string, ...string[]];
 
@@ -75,7 +75,7 @@ const Collection = () => {
         </tbody>
       </table>
       <button className={s.button}>ADD PRODUCT</button>
-      <AdminDashboardCollectionModal />
+      <CollectionModal />
     </div>
   );
 };
