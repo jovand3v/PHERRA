@@ -1,14 +1,14 @@
 import { createContext, useReducer } from "react";
 import { Dispatch } from "react";
 import { DropdownType, DropdownValue } from "src/components/common/CartProduct";
-import { ProductColorObject, Product, discountedPrice } from "src/lib/products";
+import { CollectionProductColorObject, CollectionProduct, discountedPrice } from "src/lib/products";
 
 export type CartProductSelected = {
   size: string;
   quantity: number;
-  color: ProductColorObject;
+  color: CollectionProductColorObject;
 };
-export type CartProduct = { id: number; product: Product; selected: CartProductSelected };
+export type CartProduct = { id: number; product: CollectionProduct; selected: CartProductSelected };
 type CartAction<T extends DropdownType> =
   | { type: "ADD_PRODUCT"; payload: CartProduct }
   | { type: "UPDATE_PRODUCT"; payload: { product: CartProduct; type: DropdownType; value: DropdownValue[T] } }

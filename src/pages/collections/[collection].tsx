@@ -1,15 +1,15 @@
 import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
 import Head from "next/head";
 import { StaticImageData } from "next/image";
-import Collection from "src/components/Collections/Collection";
+import Collection from "src/components/Collection";
 import Footer from "src/components/common/Footer";
-import { Product, products } from "src/lib/products";
+import { CollectionProduct, products } from "src/lib/products";
 import summerThumbnail from "@public/assets/thumbnails/summer-model-2.png";
 import winterThumbnail from "@public/assets/thumbnails/winter-model-1.png";
 
 type Collections = "summer" | "winter";
 type StaticPaths = { params: { collection: Collections } }[];
-export type StaticProps = { collection: Collections; products: Product[]; thumbnail: StaticImageData };
+export type StaticProps = { collection: Collections; products: CollectionProduct[]; thumbnail: StaticImageData };
 
 export const getStaticPaths: GetStaticPaths = async () => {
   const paths: StaticPaths = [{ params: { collection: "summer" } }, { params: { collection: "winter" } }];

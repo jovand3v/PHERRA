@@ -1,7 +1,7 @@
-import s from "./AdminDashboardAddProductStock.module.scss";
+import s from "./CollectionModalStock.module.scss";
 import { useState } from "react";
-import AdminDashboardAddProductStockProduct from "./AdminDashboardAddProductStockProduct";
-import AdminDashboardAddProductStockProductAdd from "./AdminDashboardAddProductStockProductAdd";
+import CollectionModalStockProduct from "./CollectionModalStockProduct";
+import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
 
 export type Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 export type Inputs = Omit<Details, "id">;
@@ -13,7 +13,7 @@ export type Details = {
   selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
 };
 
-const AdminDashboardAddProductStock = () => {
+const CollectionModalStock = () => {
   const [stock, setStock] = useState<Details[]>([]);
   const sizes: Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
@@ -32,18 +32,18 @@ const AdminDashboardAddProductStock = () => {
         </thead>
         <tbody className={s.tableBody}>
           {stock.map((item) => (
-            <AdminDashboardAddProductStockProduct
+            <CollectionModalStockProduct
               item={item}
               key={item.id}
               setStock={(stock) => setStock(stock)}
               sizes={sizes}
             />
           ))}
-          <AdminDashboardAddProductStockProductAdd setStock={(stock) => setStock(stock)} sizes={sizes} />
+          <CollectionModalStockProductAdd setStock={(stock) => setStock(stock)} sizes={sizes} />
         </tbody>
       </table>
     </div>
   );
 };
 
-export default AdminDashboardAddProductStock;
+export default CollectionModalStock;

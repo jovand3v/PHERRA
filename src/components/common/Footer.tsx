@@ -68,7 +68,7 @@ const Footer = (props: Props) => {
       <div className={s.elevatorContainer}>
         <ArrowIcon className={s.elevator} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} />
       </div>
-      <p className={s.note}>NO REAL DATA WAS PROVIDED WHEN BUILDING THIS WEBSITE. PHERRA DOESN'T EXIST.</p>
+      <p className={s.note}>NO REAL DATA WAS PROVIDED WHEN BUILDING THIS WEBSITE. PHERRA DOESN&apos;T EXIST.</p>
     </footer>
   );
 };

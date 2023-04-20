@@ -1,10 +1,10 @@
-import s from "./AdminDashboardAddProduct.module.scss";
+import s from "./CollectionModal.module.scss";
 import PlusIcon from "@public/assets/icons/plus-thin.svg";
 import { ChangeEvent, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
-import AdminDashboardAddProductStock from "./AdminDashboardAddProductStock";
+import AdminDashboardAddProductStock from "./CollectionModalStock";
 
-const AdminDashboardAddProduct = () => {
+const CollectionModal = () => {
   const [img, setImg] = useState<string | null>(null);
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
@@ -62,4 +62,4 @@ const AdminDashboardAddProduct = () => {
   );
 };
 
-export default AdminDashboardAddProduct;
+export default CollectionModal;

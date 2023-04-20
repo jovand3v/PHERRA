@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react";
-import s from "./Collection.module.scss";
-import CollectionProduct from "./CollectionProduct";
+import s from "./index.module.scss";
+import Product from "./Product";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
 import Image from "next/image";
 import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
-import CollectionProductInfo from "./CollectionProductInfo";
-import { Product, discountedPrice } from "src/lib/products";
+import CollectionProductInfo from "./ProductInfo";
+import { CollectionProduct, discountedPrice } from "src/lib/products";
 import { StaticProps } from "src/pages/collections/[collection]";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 
@@ -15,7 +15,7 @@ type SortOptions = "POPULARITY" | "PRICE ASCENDING" | "PRICE DESCENDING";
 
 const Collection = (props: StaticProps) => {
   const { collection, products, thumbnail } = props;
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(products[0]);
+  const [selectedProduct, setSelectedProduct] = useState<CollectionProduct | null>(products[0]);
   const [showcaseActive, setShowcaseActive] = useState(false);
   const [showChild, setShowChild] = useState(false);
   const [search, setSearch] = useState("");
@@ -31,10 +31,10 @@ const Collection = (props: StaticProps) => {
     const searchedProducts = productsLocal.filter((product) => product.name.toLowerCase().match(search.toLowerCase()));
     if (searchedProducts.length !== 0) {
       return searchedProducts.map((sp) => (
-        <CollectionProduct
+        <Product
           product={sp}
           key={sp.id}
-          setSelectedProduct={(p: Product) => setSelectedProduct(p)}
+          setSelectedProduct={(p: CollectionProduct) => setSelectedProduct(p)}
           setShowcaseActive={(s) => setShowcaseActive(s)}
         />
       ));

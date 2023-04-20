@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-import s from "./CollectionProductInfo.module.scss";
+import s from "./ProductInfo.module.scss";
 import { CartProduct, CartContext, CartProductSelected } from "src/context/cart";
-import { Product, discountedPrice } from "src/lib/products";
+import { CollectionProduct, discountedPrice } from "src/lib/products";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
@@ -10,12 +10,12 @@ import Image from "next/image";
 import useWindowWidth from "src/hooks/useWindowWidth";
 
 type Props = {
-  selectedProduct: Product;
+  selectedProduct: CollectionProduct;
   showcaseActive: boolean;
   setShowcaseActive: (s: boolean) => void;
 };
 
-const CollectionProductInfo = (props: Props) => {
+const ProductInfo = (props: Props) => {
   const { selectedProduct, showcaseActive, setShowcaseActive } = props;
   const { cartReducer } = useContext(CartContext);
   const quantity = [1, 2, 3, 4, 5];
@@ -145,4 +145,4 @@ const CollectionProductInfo = (props: Props) => {
   );
 };
 
-export default CollectionProductInfo;
+export default ProductInfo;

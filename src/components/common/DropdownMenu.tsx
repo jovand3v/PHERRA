@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
-import { ProductColorObject } from "src/lib/products";
+import { CollectionProductColorObject } from "src/lib/products";
 
-type Items = [string, ...string[]] | [number, ...number[]] | [ProductColorObject, ...ProductColorObject[]];
+type Items =
+  | [string, ...string[]]
+  | [number, ...number[]]
+  | [CollectionProductColorObject, ...CollectionProductColorObject[]];
 type Props<T extends Items> = {
   items: T;
   customDefault?: T[0];

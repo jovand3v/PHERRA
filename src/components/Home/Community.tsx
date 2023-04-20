@@ -4,9 +4,9 @@ import contestant2 from "@public/assets/community/contestant-2.png";
 import contestant3 from "@public/assets/community/contestant-3.png";
 import contestant4 from "@public/assets/community/contestant-4.png";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
-import s from "./HomeCommunity.module.scss";
+import s from "./Community.module.scss";
 
-const HomeCommunity = () => {
+const Community = () => {
   return (
     <section className={s.main} id="community">
       <header className={s.header}>
@@ -42,4 +42,4 @@ const HomeCommunity = () => {
   );
 };
 
-export default HomeCommunity;
+export default Community;

@@ -1,10 +1,6 @@
 import type { NextPage } from "next";
+import Home from "src/components/Home";
 import Head from "next/head";
-import HomeHero from "../components/Home/HomeHero";
-import HomeAd from "src/components/Home/HomeAd";
-import HomeCollections from "src/components/Home/HomeCollections";
-import HomeCommunity from "src/components/Home/HomeCommunity";
-import HomeContact from "src/components/Home/HomeContact";
 import Footer from "src/components/common/Footer";
 
 const HomePage: NextPage = () => {
@@ -19,11 +15,7 @@ const HomePage: NextPage = () => {
         <link rel="icon" href="/assets/icons/favicon.ico" />
       </Head>
       <main>
-        <HomeHero />
-        <HomeAd />
-        <HomeCollections />
-        <HomeCommunity />
-        <HomeContact />
+        <Home />
       </main>
       <Footer separator={true} />
     </>

@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import s from "./AdminDashboardSection.module.scss";
+import s from "./Section.module.scss";
 
 type Props = {
   title: string;
@@ -7,7 +7,7 @@ type Props = {
   main: ReactNode;
 };
 
-const AdminDashboardSection = (props: Props) => {
+const Section = (props: Props) => {
   const { title, description, main } = props;
 
   return (
@@ -21,4 +21,4 @@ const AdminDashboardSection = (props: Props) => {
   );
 };
 
-export default AdminDashboardSection;
+export default Section;

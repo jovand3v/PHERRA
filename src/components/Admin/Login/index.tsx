@@ -1,10 +1,10 @@
 import { useState } from "react";
-import s from "./AdminLogin.module.scss";
+import s from "./index.module.scss";
 import UserIcon from "@public/assets/icons/user.svg";
 import EyeOpenIcon from "@public/assets/icons/eye-open.svg";
 import EyeClosedIcon from "@public/assets/icons/eye-closed.svg";
 
-const AdminLogin = () => {
+const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
 
   return (
@@ -37,4 +37,4 @@ const AdminLogin = () => {
   );
 };
 
-export default AdminLogin;
+export default Login;

@@ -4,8 +4,8 @@ import flessSet from "@public/assets/collections/summer/fless-set.png";
 import cbCoat from "@public/assets/collections/winter/cb-coat.png";
 import ocCoat from "@public/assets/collections/winter/oc-coat.png";
 
-export type ProductColorObject = { name: string; value: string };
-export type Product = {
+export type CollectionProductColorObject = { name: string; value: string };
+export type CollectionProduct = {
   id: number;
   name: string;
   price: number;
@@ -13,11 +13,11 @@ export type Product = {
   inStock: boolean;
   img: StaticImageData;
   sizes: [string, ...string[]];
-  colors: [ProductColorObject, ...ProductColorObject[]];
+  colors: [CollectionProductColorObject, ...CollectionProductColorObject[]];
   collection: "summer" | "winter";
 };
 
-export const products: Product[] = [
+export const products: CollectionProduct[] = [
   {
     id: 1,
     name: "OPEN SHIRT",
@@ -77,6 +77,6 @@ export const products: Product[] = [
   },
 ];
 
-export const discountedPrice = (price: Product["price"], discount: Product["discount"]): number => {
+export const discountedPrice = (price: CollectionProduct["price"], discount: CollectionProduct["discount"]): number => {
   return Math.round(price - (discount / 100) * price);
 };

@@ -1,6 +1,6 @@
-import s from "./HomeContact.module.scss";
+import s from "./Contact.module.scss";
 
-const HomeContact = () => {
+const Contact = () => {
   return (
     <section className={s.main} id="contact">
       <header className={s.header}>
@@ -45,4 +45,4 @@ const HomeContact = () => {
   );
 };
 
-export default HomeContact;
+export default Contact;

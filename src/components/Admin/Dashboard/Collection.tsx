@@ -1,14 +1,29 @@
 import { useState } from "react";
-import DropdownMenu from "../common/DropdownMenu";
-import s from "./AdminDashboardCollection.module.scss";
+import DropdownMenu from "src/components/common/DropdownMenu";
+import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
+import AdminDashboardCollectionModal from "./CollectionModal";
 
 type DropdownType = [string, ...string[]];
 
-const AdminDashboardCollection = () => {
+const Collection = () => {
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
+  const [product, setProduct] = useState({
+    name: "",
+    price: "",
+    discount: "",
+    stock: [
+      {
+        colorName: "",
+        colorHex: "",
+        quantity: "",
+        sizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
+      },
+    ],
+    image: null,
+  });
 
   return (
     <div className={s.main}>
@@ -60,8 +75,9 @@ const AdminDashboardCollection = () => {
         </tbody>
       </table>
       <button className={s.button}>ADD PRODUCT</button>
+      <AdminDashboardCollectionModal />
     </div>
   );
 };
 
-export default AdminDashboardCollection;
+export default Collection;

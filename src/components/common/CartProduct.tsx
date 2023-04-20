@@ -5,14 +5,14 @@ import DropdownMenu from "./DropdownMenu";
 import { memo, useContext } from "react";
 import { CartContext } from "src/context/cart";
 import { CartProduct } from "src/context/cart";
-import { ProductColorObject } from "src/lib/products";
+import { CollectionProductColorObject } from "src/lib/products";
 
 type Quantity = [number, ...number[]];
 type Props = {
   cartProduct: CartProduct;
 };
 export type DropdownType = "size" | "color" | "quantity";
-export type DropdownValue = { size: string; color: ProductColorObject; quantity: number };
+export type DropdownValue = { size: string; color: CollectionProductColorObject; quantity: number };
 
 const CartProduct = (props: Props) => {
   const { cartProduct } = props;

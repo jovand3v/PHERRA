@@ -1,10 +1,10 @@
-import s from "./AdminDashboardAddProductStock.module.scss";
+import s from "./CollectionModalStock.module.scss";
 import EditIcon from "@public/assets/icons/edit.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import { useRef, useState } from "react";
 import { SetStateAction } from "react";
-import { Details, Inputs, Sizes } from "./AdminDashboardAddProductStock";
+import { Details, Inputs, Sizes } from "./CollectionModalStock";
 
 type Props = {
   item: Details;
@@ -12,7 +12,7 @@ type Props = {
   sizes: Sizes;
 };
 
-const AdminDashboardAddProductStockProduct = (props: Props) => {
+const CollectionModalStockProduct = (props: Props) => {
   const { item, setStock, sizes } = props;
   const [local, setLocal] = useState<Details>({
     id: item.id,
@@ -117,4 +117,4 @@ const AdminDashboardAddProductStockProduct = (props: Props) => {
   );
 };
 
-export default AdminDashboardAddProductStockProduct;
+export default CollectionModalStockProduct;

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
-import s from "./HomeCollections.module.scss";
+import s from "./Collections.module.scss";
 import summerModel from "@public/assets/thumbnails/summer-model-2.png";
 import winterModel from "@public/assets/thumbnails/winter-model-1.png";
 import ArrowIcon from "@public/assets/icons/arrow-long-fat.svg";
 
-const HomeCollections = () => {
+const Collections = () => {
   return (
     <section className={s.main} id="collections">
       <header className={s.header}>
@@ -32,4 +32,4 @@ const HomeCollections = () => {
   );
 };
 
-export default HomeCollections;
+export default Collections;

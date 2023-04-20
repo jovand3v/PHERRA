@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import AdminDashboard from "src/components/Admin/AdminDashboard";
+import AdminDashboard from "src/components/Admin/Dashboard";
 
 const AdminDashboardPage: NextPage = () => {
   return (

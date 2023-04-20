@@ -1,7 +1,7 @@
 import GlobeIcon from "@public/assets/icons/globe.svg";
-import s from "./HomeAd.module.scss";
+import s from "./Ad.module.scss";
 
-const HomeAd = () => {
+const Ad = () => {
   const listCount = 2;
   const itemPerListCount = 7;
 
@@ -23,4 +23,4 @@ const HomeAd = () => {
   );
 };
 
-export default HomeAd;
+export default Ad;

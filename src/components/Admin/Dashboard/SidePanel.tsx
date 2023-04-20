@@ -1,9 +1,9 @@
-import s from "./AdminDashboardSidePanel.module.scss";
+import s from "./SidePanel.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-long-thin.svg";
 import UserIcon from "@public/assets/icons/user.svg";
 import ExitIcon from "@public/assets/icons/exit.svg";
 
-const AdminDashboardSidePanel = () => {
+const SidePanel = () => {
   return (
     <div className={s.main}>
       <header className={s.header}>
@@ -42,4 +42,4 @@ const AdminDashboardSidePanel = () => {
   );
 };
 
-export default AdminDashboardSidePanel;
+export default SidePanel;

@@ -1,6 +1,6 @@
 import { NextPage } from "next";
 import Head from "next/head";
-import AdminLogin from "src/components/Admin/AdminLogin";
+import AdminLogin from "src/components/Admin/Login";
 
 const AdminLoginPage: NextPage = () => {
   return (

@@ -1,14 +1,14 @@
-import s from "./CollectionProduct.module.scss";
+import s from "./Product.module.scss";
 import Image from "next/image";
-import { Product, discountedPrice } from "src/lib/products";
+import { CollectionProduct, discountedPrice } from "src/lib/products";
 
 type Props = {
-  product: Product;
-  setSelectedProduct: (p: Product) => void;
+  product: CollectionProduct;
+  setSelectedProduct: (p: CollectionProduct) => void;
   setShowcaseActive: (s: boolean) => void;
 };
 
-const CollectionProduct = (props: Props) => {
+const Product = (props: Props) => {
   const { product, setSelectedProduct, setShowcaseActive } = props;
 
   return (
@@ -60,4 +60,4 @@ const CollectionProduct = (props: Props) => {
   );
 };
 
-export default CollectionProduct;
+export default Product;

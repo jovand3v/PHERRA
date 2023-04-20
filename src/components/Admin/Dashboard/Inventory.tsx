@@ -1,6 +1,6 @@
-import s from "./AdminDashboardInventory.module.scss";
+import s from "./Inventory.module.scss";
 
-const AdminDashboardInventory = () => {
+const Inventory = () => {
   return (
     <ul className={s.main}>
       <li className={s.category}>
@@ -19,4 +19,4 @@ const AdminDashboardInventory = () => {
   );
 };
 
-export default AdminDashboardInventory;
+export default Inventory;

@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import Image from "next/image";
-import s from "./HomeHero.module.scss";
+import s from "./Hero.module.scss";
 import Cart from "../common/Cart";
 import model from "@public/assets/thumbnails/summer-model-1.png";
 import LinkedInIcon from "@public/assets/icons/linked-in.svg";
@@ -9,7 +9,7 @@ import InstagramIcon from "@public/assets/icons/instagram.svg";
 import YoutubeIcon from "@public/assets/icons/youtube.svg";
 import useMinHeight from "src/hooks/useMinHeight";
 
-const HomeHero = () => {
+const Hero = () => {
   const mainNodesRef = useRef<Array<HTMLElement>>([]);
   const mainPaddingNodeRef = useRef<HTMLDivElement>(null);
   const minHeight = useMinHeight(mainNodesRef, mainPaddingNodeRef);
@@ -104,4 +104,4 @@ const HomeHero = () => {
   );
 };
 
-export default HomeHero;
+export default Hero;
