@@ -12,6 +12,7 @@ type Props = {
 };
 
 type Inputs = Pick<AdminDashboardCollectionProduct, "name" | "price" | "discount" | "img">;
+export type InputErrors = { name: boolean; price: boolean; discount: boolean; img: boolean; stock: boolean };
 
 const CollectionModal = (props: Props) => {
   const { setModalOpen, setProducts } = props;
@@ -25,6 +26,7 @@ const CollectionModal = (props: Props) => {
     dateAdded: "",
   });
   const inputImgRef = useRef<HTMLInputElement>(null);
+  const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -45,12 +47,22 @@ const CollectionModal = (props: Props) => {
   };
 
   const handleAddProduct = () => {
-    setProducts((prevState) => {
-      const id = prevState[prevState.length - 1]?.id + 1 || 0;
-      const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
-      return [...prevState, { ...product, id, dateAdded: date }];
-    });
-    setModalOpen(false);
+    const errors: InputErrors = {
+      name: !product.name,
+      price: !product.price,
+      discount: !product.discount,
+      img: !product.img.src,
+      stock: product.stock.length === 0,
+    };
+    if (Object.values(errors).every((err) => !err)) {
+      setProducts((prevState) => {
+        const id = prevState[prevState.length - 1]?.id + 1 || 0;
+        const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
+        return [...prevState, { ...product, id, dateAdded: date }];
+      });
+      setModalOpen(false);
+    }
+    setErr(errors);
   };
 
   return (
@@ -64,42 +76,48 @@ const CollectionModal = (props: Props) => {
         <div className={s.form}>
           <div className={s.formLeft}>
             <div className={s.inputsContainer}>
-              <label className={`${s.inputLabel} ${s.inputLabelName}`}>
-                NAME
+              <label className={`${s.inputLabel} ${s.inputLabelName} ${err.name ? s.inputErr : ""}`}>
+                NAME*
                 <input
-                  className={`${s.input} ${s.inputName}`}
+                  className={`${s.input} ${s.inputName} ${err.name ? s.inputErr : ""}`}
                   placeholder="Enter product name"
                   value={product.name}
                   onChange={(e) => handleChange("name", e.target.value)}
                 />
               </label>
-              <label className={s.inputLabel}>
-                PRICE
-                <input
-                  className={`${s.input} ${s.inputPrice}`}
-                  placeholder="100"
-                  value={product.price}
-                  onChange={(e) => e.target.value.match("^(?!0)[0-9]*$") && handleChange("price", e.target.value)}
-                />
+              <label className={`${s.inputLabel} ${err.price ? s.inputErr : ""}`}>
+                PRICE*
+                <div className={`${s.inputConstantWrapper} ${s.inputConstantWrapperPrice}`}>
+                  <p className={s.inputConstant}>$</p>
+                  <input
+                    className={`${s.input} ${err.price ? s.inputErr : ""}`}
+                    placeholder="100"
+                    value={product.price}
+                    onChange={(e) => e.target.value.match("^(?!0)[0-9]*$") && handleChange("price", e.target.value)}
+                  />
+                </div>
               </label>
-              <label className={s.inputLabel}>
-                DISCOUNT
-                <input
-                  className={`${s.input} ${s.inputDiscount}`}
-                  placeholder="10"
-                  value={product.discount}
-                  onChange={(e) => e.target.value.match("^(?!0)[0-9]*$") && handleChange("discount", e.target.value)}
-                />
+              <label className={`${s.inputLabel} ${err.discount ? s.inputErr : ""}`}>
+                DISCOUNT*
+                <div className={`${s.inputConstantWrapper} ${s.inputConstantWrapperDiscount}`}>
+                  <p className={s.inputConstant}>%</p>
+                  <input
+                    className={`${s.input} ${s.inputDiscount}`}
+                    placeholder="10"
+                    value={product.discount}
+                    onChange={(e) => e.target.value.match("^(?!0)[0-9]*$") && handleChange("discount", e.target.value)}
+                  />
+                </div>
               </label>
             </div>
-            <CollectionModalStock product={product} setProduct={setProduct} />
+            <CollectionModalStock product={product} setProduct={setProduct} err={err} />
             <button className={s.button} onClick={handleAddProduct}>
               ADD PRODUCT
             </button>
           </div>
           <div className={s.imgContainer}>
-            <label className={s.inputLabel} htmlFor="#inputImg">
-              IMAGE
+            <label className={`${s.inputLabel} ${err.img ? s.inputErr : ""}`} htmlFor="#inputImg">
+              IMAGE*
             </label>
             <div className={s.inputImgContainer}>
               {product.img.src ? (

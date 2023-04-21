@@ -2,8 +2,8 @@
   font-size: 16px;
 }
 .table {
-  margin-top: 2px;
   border-collapse: collapse;
+  margin-top: 2px;
   border-spacing: 0;
 }
 .tableHeader,
@@ -26,6 +26,9 @@
     width: 108px;
   }
 }
+.inputErr {
+  color: red;
+}
 .tableData {
   font-weight: var(--font-light);
 }
@@ -40,6 +43,19 @@
       padding: 0px;
     }
   }
+}
+.inputConstantWrapper {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  .input {
+    padding: 0px;
+    padding-right: 12px;
+  }
+}
+.inputConstant {
+  padding: 0px 2px 0px 10px;
 }
 .input {
   background: transparent;

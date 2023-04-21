@@ -61,13 +61,13 @@ const Collection = () => {
             <tr className={s.tableRow} key={product.id}>
               <td className={s.tableData}>{product.id}</td>
               <td className={s.tableData}>{product.name}</td>
-              <td className={s.tableData}>{product.price}</td>
-              <td className={s.tableData}>{product.discount}</td>
+              <td className={s.tableData}>${product.price}</td>
+              <td className={s.tableData}>{product.discount}%</td>
               <td className={s.tableData}>
                 <ul className={s.colorList}>
                   {product.stock.map((item) => (
                     <li className={s.colorItem} key={item.id}>
-                      <div className={s.colorBox} style={{ background: item.colorHex }}></div>
+                      <div className={s.colorBox} style={{ background: `#${item.colorHex}` }}></div>
                       {item.colorName}
                     </li>
                   ))}

@@ -76,12 +76,15 @@ const CollectionModalStockProduct = (props: Props) => {
         />
       </td>
       <td className={`${s.tableData} ${s.tableDataInputWrapper} ${err.colorHex ? s.tableDataErr : ""} `}>
-        <input
-          className={s.input}
-          value={local.colorHex}
-          onChange={(e) => handleChange("colorHex", e.target.value)}
-          disabled={!editing}
-        />
+        <div className={s.inputConstantWrapper}>
+          <p className={s.inputConstant}>#</p>
+          <input
+            className={s.input}
+            value={local.colorHex}
+            onChange={(e) => handleChange("colorHex", e.target.value)}
+            disabled={!editing}
+          />
+        </div>
       </td>
       <td className={`${s.tableData} ${s.tableDataInputWrapper} ${err.quantity ? s.tableDataErr : ""} `}>
         <input

@@ -3,20 +3,22 @@ import { Dispatch, SetStateAction } from "react";
 import CollectionModalStockProduct from "./CollectionModalStockProduct";
 import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
 import { AdminDashboardCollectionProduct } from "./Collection";
+import { InputErrors } from "./CollectionModal";
 
 export type Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 type Props = {
   product: AdminDashboardCollectionProduct;
   setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
+  err: InputErrors;
 };
 
 const CollectionModalStock = (props: Props) => {
-  const { product, setProduct } = props;
+  const { product, setProduct, err } = props;
   const sizes: Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
     <div className={s.main}>
-      <p className={s.label}>STOCK</p>
+      <p className={`${s.label} ${err.stock ? s.inputErr : ""}`}>STOCK*</p>
       <table className={s.table}>
         <thead className={s.tableHead}>
           <tr className={s.tableRow}>

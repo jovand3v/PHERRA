@@ -31,7 +31,7 @@ const CollectionModalStockProductAdd = (props: Props) => {
     id: 0,
     colorName: "",
     colorHex: "",
-    quantity: "1",
+    quantity: "",
     selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
   };
   const [err, setErr] = useState(errDefault);
@@ -74,12 +74,15 @@ const CollectionModalStockProductAdd = (props: Props) => {
         />
       </td>
       <td className={`${s.tableData} ${err.colorHex ? s.tableDataErr : ""} `}>
-        <input
-          className={s.input}
-          placeholder="#FFFFFF"
-          value={item.colorHex}
-          onChange={(e) => handleChange("colorHex", e.target.value)}
-        />
+        <div className={s.inputConstantWrapper}>
+          <p className={s.inputConstant}>#</p>
+          <input
+            className={s.input}
+            placeholder="FFFFFF"
+            value={item.colorHex}
+            onChange={(e) => handleChange("colorHex", e.target.value)}
+          />
+        </div>
       </td>
       <td className={`${s.tableData} ${err.quantity ? s.tableDataErr : ""} `}>
         <input
