@@ -72,7 +72,7 @@ const Collection = () => {
                   ))}
                 </ul>
               </td>
-              <td className={s.tableData}>image.png</td>
+              <td className={s.tableData}>{product.img.name}</td>
               <td className={s.tableData}>10/04/2023</td>
             </tr>
           ))}
