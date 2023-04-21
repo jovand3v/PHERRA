@@ -22,6 +22,7 @@ const CollectionModal = (props: Props) => {
     discount: "",
     stock: [],
     img: { name: "", src: "" },
+    dateAdded: "",
   });
   const inputImgRef = useRef<HTMLInputElement>(null);
 
@@ -46,7 +47,8 @@ const CollectionModal = (props: Props) => {
   const handleAddProduct = () => {
     setProducts((prevState) => {
       const id = prevState[prevState.length - 1]?.id + 1 || 0;
-      return [...prevState, { ...product, id }];
+      const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
+      return [...prevState, { ...product, id, dateAdded: date }];
     });
     setModalOpen(false);
   };

@@ -18,6 +18,7 @@ export type AdminDashboardCollectionProduct = {
     selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
   }[];
   img: { name: string; src: string };
+  dateAdded: string;
 };
 
 const Collection = () => {
@@ -73,7 +74,7 @@ const Collection = () => {
                 </ul>
               </td>
               <td className={s.tableData}>{product.img.name}</td>
-              <td className={s.tableData}>10/04/2023</td>
+              <td className={s.tableData}>{product.dateAdded}</td>
             </tr>
           ))}
         </tbody>
