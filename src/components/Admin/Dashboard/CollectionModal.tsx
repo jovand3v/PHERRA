@@ -1,21 +1,17 @@
 import s from "./CollectionModal.module.scss";
 import PlusIcon from "@public/assets/icons/plus-thin.svg";
-import { ChangeEvent, Dispatch, SetStateAction, useState } from "react";
+import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
 import CollectionModalStock from "./CollectionModalStock";
 import { AdminDashboardCollectionProduct } from "./Collection";
+import EditIcon from "@public/assets/icons/edit.svg";
 
 type Props = {
   setModalOpen: Dispatch<SetStateAction<boolean>>;
   setProducts: Dispatch<SetStateAction<AdminDashboardCollectionProduct[]>>;
 };
 
-type Inputs = {
-  name: string;
-  price: string;
-  discount: string;
-  img: string;
-};
+type Inputs = Pick<AdminDashboardCollectionProduct, "name" | "price" | "discount" | "img">;
 
 const CollectionModal = (props: Props) => {
   const { setModalOpen, setProducts } = props;
@@ -25,17 +21,20 @@ const CollectionModal = (props: Props) => {
     price: "",
     discount: "",
     stock: [],
-    img: "",
+    img: { name: "", src: "" },
   });
+  const inputImgRef = useRef<HTMLInputElement>(null);
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       const imgFile = e.target.files[0];
+      const name = e.target.files[0].name;
       const reader = new FileReader();
       reader.readAsDataURL(imgFile);
       reader.onload = () => {
         if (!reader.result) return;
-        handleChange("img", typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString());
+        const src = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
+        handleChange("img", { name, src });
       };
     }
   };
@@ -49,6 +48,7 @@ const CollectionModal = (props: Props) => {
       const id = prevState[prevState.length - 1]?.id + 1 || 0;
       return [...prevState, { ...product, id }];
     });
+    setModalOpen(false);
   };
 
   return (
@@ -96,13 +96,29 @@ const CollectionModal = (props: Props) => {
             </button>
           </div>
           <div className={s.imgContainer}>
-            <label className={`${s.inputLabel} ${s.inputLabelImg}`}>
+            <label className={s.inputLabel} htmlFor="#inputImg">
               IMAGE
-              <div className={s.inputImgContainer}>
-                {product.img ? <img src={product.img} alt="" className={s.img} /> : <PlusIcon className={s.plusIcon} />}
-                <input type="file" className={`${s.input} ${s.inputImg}`} onChange={(e) => handleImagePreview(e)} />
-              </div>
             </label>
+            <div className={s.inputImgContainer}>
+              {product.img.src ? (
+                <>
+                  <EditIcon className={s.editIcon} onClick={() => inputImgRef.current?.click()} />
+                  <img src={product.img.src} alt="" className={s.img} />
+                  <p className={s.imgName}>{product.img.name}</p>
+                </>
+              ) : (
+                <div className={s.inputImgAddContainer} onClick={() => inputImgRef.current?.click()}>
+                  <PlusIcon className={s.plusIcon} />
+                </div>
+              )}
+              <input
+                type="file"
+                ref={inputImgRef}
+                id="#inputImg"
+                className={`${s.input} ${s.inputImg}`}
+                onChange={(e) => handleImagePreview(e)}
+              />
+            </div>
           </div>
         </div>
         <ExitIcon className={s.exit} onClick={() => setModalOpen(false)} />

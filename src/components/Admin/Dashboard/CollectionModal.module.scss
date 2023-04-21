@@ -76,17 +76,17 @@
 .inputDiscount {
   width: 90px;
 }
-
 .imgContainer {
   width: 150px;
-  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 .inputImgContainer {
   width: 100%;
   height: 100%;
   position: relative;
   border: 1px solid var(--primary-color);
-  cursor: pointer;
+  overflow: hidden;
 }
 .inputLabelImg {
   width: 100%;
@@ -99,6 +99,29 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+.imgName {
+  position: absolute;
+  width: 90%;
+  bottom: 4px;
+  left: 5px;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.inputImgAddContainer {
+  cursor: pointer;
+  width: 100%;
+  height: 100%;
+}
+.editIcon {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 7px;
+  top: 7px;
+  cursor: pointer;
 }
 .plusIcon {
   position: absolute;

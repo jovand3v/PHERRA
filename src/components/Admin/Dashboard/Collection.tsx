@@ -17,7 +17,7 @@ export type AdminDashboardCollectionProduct = {
     quantity: string;
     selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
   }[];
-  img: string;
+  img: { name: string; src: string };
 };
 
 const Collection = () => {
