@@ -1,20 +1,17 @@
 import s from "./CollectionModalStock.module.scss";
-import { useState } from "react";
+import { Dispatch, SetStateAction } from "react";
 import CollectionModalStockProduct from "./CollectionModalStockProduct";
 import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
+import { AdminDashboardCollectionProduct } from "./Collection";
 
 export type Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
-export type Inputs = Omit<Details, "id">;
-export type Details = {
-  id: number;
-  colorName: string;
-  colorHex: string;
-  quantity: string;
-  selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
+type Props = {
+  product: AdminDashboardCollectionProduct;
+  setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
 };
 
-const CollectionModalStock = () => {
-  const [stock, setStock] = useState<Details[]>([]);
+const CollectionModalStock = (props: Props) => {
+  const { product, setProduct } = props;
   const sizes: Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
@@ -31,15 +28,10 @@ const CollectionModalStock = () => {
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {stock.map((item) => (
-            <CollectionModalStockProduct
-              item={item}
-              key={item.id}
-              setStock={(stock) => setStock(stock)}
-              sizes={sizes}
-            />
+          {product.stock.map((item) => (
+            <CollectionModalStockProduct item={item} key={item.id} sizes={sizes} setProduct={setProduct} />
           ))}
-          <CollectionModalStockProductAdd setStock={(stock) => setStock(stock)} sizes={sizes} />
+          <CollectionModalStockProductAdd sizes={sizes} setProduct={setProduct} />
         </tbody>
       </table>
     </div>

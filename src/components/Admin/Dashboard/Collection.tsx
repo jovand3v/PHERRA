@@ -5,25 +5,27 @@ import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 import CollectionModal from "./CollectionModal";
 
 type DropdownType = [string, ...string[]];
+export type AdminDashboardCollectionProduct = {
+  id: number;
+  name: string;
+  price: string;
+  discount: string;
+  stock: {
+    id: number;
+    colorName: string;
+    colorHex: string;
+    quantity: string;
+    selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
+  }[];
+  img: string;
+};
 
 const Collection = () => {
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
-  const [product, setProduct] = useState({
-    name: "",
-    price: "",
-    discount: "",
-    stock: [
-      {
-        colorName: "",
-        colorHex: "",
-        quantity: "",
-        sizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
-      },
-    ],
-    image: null,
-  });
+  const [products, setProducts] = useState<AdminDashboardCollectionProduct[]>([]);
+  const [modalOpen, setModalOpen] = useState(false);
 
   return (
     <div className={s.main}>
@@ -54,28 +56,32 @@ const Collection = () => {
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          <tr className={s.tableRow}>
-            <td className={s.tableData}>0</td>
-            <td className={s.tableData}>Product 1</td>
-            <td className={s.tableData}>$159.99</td>
-            <td className={s.tableData}>20%</td>
-            <td className={s.tableData}>
-              <ul className={s.colorList}>
-                <li className={s.colorItem}>
-                  <div className={s.colorBox} style={{ background: "white" }}></div> White,
-                </li>
-                <li className={s.colorItem}>
-                  <div className={s.colorBox} style={{ background: "red" }}></div> Red
-                </li>
-              </ul>
-            </td>
-            <td className={s.tableData}>shirt.jpg</td>
-            <td className={s.tableData}>10/04/2023</td>
-          </tr>
+          {products.map((product) => (
+            <tr className={s.tableRow} key={product.id}>
+              <td className={s.tableData}>{product.id}</td>
+              <td className={s.tableData}>{product.name}</td>
+              <td className={s.tableData}>{product.price}</td>
+              <td className={s.tableData}>{product.discount}</td>
+              <td className={s.tableData}>
+                <ul className={s.colorList}>
+                  {product.stock.map((item) => (
+                    <li className={s.colorItem} key={item.id}>
+                      <div className={s.colorBox} style={{ background: item.colorHex }}></div>
+                      {item.colorName}
+                    </li>
+                  ))}
+                </ul>
+              </td>
+              <td className={s.tableData}>image.png</td>
+              <td className={s.tableData}>10/04/2023</td>
+            </tr>
+          ))}
         </tbody>
       </table>
-      <button className={s.button}>ADD PRODUCT</button>
-      <CollectionModal />
+      <button className={s.button} onClick={() => setModalOpen(true)}>
+        ADD PRODUCT
+      </button>
+      {modalOpen && <CollectionModal setModalOpen={setModalOpen} setProducts={setProducts} />}
     </div>
   );
 };

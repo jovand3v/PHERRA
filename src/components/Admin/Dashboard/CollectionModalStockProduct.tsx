@@ -2,19 +2,21 @@ import s from "./CollectionModalStock.module.scss";
 import EditIcon from "@public/assets/icons/edit.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
-import { useRef, useState } from "react";
+import { Dispatch, useRef, useState } from "react";
 import { SetStateAction } from "react";
-import { Details, Inputs, Sizes } from "./CollectionModalStock";
+import { Sizes } from "./CollectionModalStock";
+import { StockItem } from "./CollectionModalStockProductAdd";
+import { AdminDashboardCollectionProduct } from "./Collection";
 
 type Props = {
-  item: Details;
-  setStock: (stock: SetStateAction<Details[]>) => void;
+  item: StockItem;
   sizes: Sizes;
+  setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
 };
 
 const CollectionModalStockProduct = (props: Props) => {
-  const { item, setStock, sizes } = props;
-  const [local, setLocal] = useState<Details>({
+  const { item, sizes, setProduct } = props;
+  const [local, setLocal] = useState<StockItem>({
     id: item.id,
     colorName: item.colorName,
     colorHex: item.colorHex,
@@ -25,7 +27,7 @@ const CollectionModalStockProduct = (props: Props) => {
   const [err, setErr] = useState({ colorName: false, colorHex: false, quantity: false, sizes: false });
   const colorNameInputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = <K extends keyof Inputs>(field: K, value: Inputs[K]) => {
+  const handleChange = <K extends keyof StockItem>(field: K, value: StockItem[K]) => {
     if (!editing) return;
     setLocal((prevState) => ({ ...prevState, [field]: value }));
   };
@@ -40,10 +42,12 @@ const CollectionModalStockProduct = (props: Props) => {
     setErr(errors);
     if (Object.values(errors).every((e) => !e)) {
       setEditing(false);
-      setStock((prevState) => {
-        const index = prevState.findIndex((prevItem) => prevItem.id === item.id);
-        const updatedItem = { ...local, selectedSizes: { ...local.selectedSizes } };
-        return [...prevState.slice(0, index), updatedItem, ...prevState.slice(index + 1)];
+      setProduct((prevState) => {
+        const index = prevState.stock.findIndex((stockItem) => stockItem.id === item.id);
+        return {
+          ...prevState,
+          stock: [...prevState.stock.slice(0, index), local, ...prevState.stock.slice(index + 1)],
+        };
       });
     }
   };
@@ -54,7 +58,10 @@ const CollectionModalStockProduct = (props: Props) => {
   };
 
   const handleDelete = () => {
-    setStock((prevState) => [...prevState].filter((prevItem) => prevItem.id !== item.id));
+    setProduct((prevState) => ({
+      ...prevState,
+      stock: prevState.stock.filter((stockItem) => stockItem.id !== item.id),
+    }));
   };
 
   return (
