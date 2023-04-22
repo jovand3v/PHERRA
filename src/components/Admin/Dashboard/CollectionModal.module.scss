@@ -64,10 +64,12 @@
 .inputConstantWrapper {
   display: flex;
   border: 1px solid white;
+  background: var(--background-base-color);
   align-items: center;
   .input {
     border: none;
     padding: 0px;
+    margin: 1px 0px;
   }
 }
 .inputConstantWrapperPrice {
