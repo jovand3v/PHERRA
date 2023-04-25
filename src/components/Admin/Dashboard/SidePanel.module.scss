@@ -29,6 +29,8 @@
   display: flex;
   align-items: center;
   margin: var(--padding-section) 0px;
+  text-decoration: none;
+  color: var(--primary-color);
 }
 .viewLiveText {
   font-size: 21px;

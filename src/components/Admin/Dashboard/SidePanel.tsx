@@ -2,6 +2,7 @@ import s from "./SidePanel.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-long-thin.svg";
 import UserIcon from "@public/assets/icons/user.svg";
 import ExitIcon from "@public/assets/icons/exit.svg";
+import Link from "next/link";
 
 const SidePanel = () => {
   return (
@@ -12,10 +13,10 @@ const SidePanel = () => {
           <span className={s.subtitle}>ADMIN DASHBOARD</span>
         </h1>
       </header>
-      <div className={s.viewLiveContainer}>
+      <Link href="/" className={s.viewLiveContainer}>
         <p className={s.viewLiveText}>VIEW LIVE SITE</p>
         <ArrowIcon className={s.viewLiveIcon} />
-      </div>
+      </Link>
       <div className={s.section}>
         <header className={s.sectionHeader}>
           <h3 className={s.sectionTitle}>COLLECTIONS</h3>
