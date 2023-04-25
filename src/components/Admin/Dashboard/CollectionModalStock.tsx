@@ -5,7 +5,7 @@ import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
 import { AdminDashboardCollectionProduct } from "./Collection";
 import { InputErrors } from "./CollectionModal";
 
-export type Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+export type AdminDashboardCollectionProductSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 type Props = {
   product: AdminDashboardCollectionProduct;
   setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
@@ -14,7 +14,7 @@ type Props = {
 
 const CollectionModalStock = (props: Props) => {
   const { product, setProduct, err } = props;
-  const sizes: Sizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const sizes: AdminDashboardCollectionProductSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 
   return (
     <div className={s.main}>

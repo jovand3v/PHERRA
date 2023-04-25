@@ -2,14 +2,14 @@ import s from "./CollectionModalStock.module.scss";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import { useState, SetStateAction, Dispatch } from "react";
-import { Sizes } from "./CollectionModalStock";
+import { AdminDashboardCollectionProductSizes } from "./CollectionModalStock";
 import { AdminDashboardCollectionProduct } from "./Collection";
 
 type Props = {
-  sizes: Sizes;
+  sizes: AdminDashboardCollectionProductSizes;
   setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
 };
-export type StockItem = {
+export type AdminDashboardCollectionStockItem = {
   id: number;
   colorName: string;
   colorHex: string;
@@ -35,7 +35,7 @@ const CollectionModalStockProductAdd = (props: Props) => {
     selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
   };
   const [err, setErr] = useState(errDefault);
-  const [item, setItem] = useState<StockItem>(itemDefault);
+  const [item, setItem] = useState<AdminDashboardCollectionStockItem>(itemDefault);
 
   const handleSubmit = () => {
     const errors = {
@@ -59,7 +59,10 @@ const CollectionModalStockProductAdd = (props: Props) => {
     setErr(errDefault);
   };
 
-  const handleChange = <K extends keyof StockItem>(field: K, value: StockItem[K]) => {
+  const handleChange = <K extends keyof AdminDashboardCollectionStockItem>(
+    field: K,
+    value: AdminDashboardCollectionStockItem[K]
+  ) => {
     setItem((prevState) => ({ ...prevState, [field]: value }));
   };
 

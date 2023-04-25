@@ -3,6 +3,7 @@ import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 import CollectionModal from "./CollectionModal";
+import { AdminDashboardCollectionStockItem } from "./CollectionModalStockProductAdd";
 
 type DropdownType = [string, ...string[]];
 export type AdminDashboardCollectionProduct = {
@@ -10,15 +11,13 @@ export type AdminDashboardCollectionProduct = {
   name: string;
   price: string;
   discount: string;
-  stock: {
-    id: number;
-    colorName: string;
-    colorHex: string;
-    quantity: string;
-    selectedSizes: { XS: boolean; S: boolean; M: boolean; L: boolean; XL: boolean; XXL: boolean };
-  }[];
+  stock: AdminDashboardCollectionStockItem[];
   img: { name: string; src: string };
-  dateAdded: string;
+  modifiedDate: string;
+};
+export type AdminDashboardCollectionModal = {
+  open: boolean;
+  customDefaultInputs?: AdminDashboardCollectionProduct;
 };
 
 const Collection = () => {
@@ -26,7 +25,9 @@ const Collection = () => {
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
   const [products, setProducts] = useState<AdminDashboardCollectionProduct[]>([]);
-  const [modalOpen, setModalOpen] = useState(false);
+  const [modal, setModal] = useState<AdminDashboardCollectionModal>({
+    open: false,
+  });
 
   return (
     <div className={s.main}>
@@ -53,13 +54,18 @@ const Collection = () => {
             <th className={s.tableHeader}>DISCOUNT</th>
             <th className={s.tableHeader}>STOCK</th>
             <th className={s.tableHeader}>IMAGE</th>
-            <th className={s.tableHeader}>DATE ADDED</th>
+            <th className={s.tableHeader}>MODIFIED</th>
           </tr>
         </thead>
         <tbody className={s.tableBody}>
           {products.map((product) => (
             <tr className={s.tableRow} key={product.id}>
-              <td className={s.tableData}>{product.id}</td>
+              <td
+                className={`${s.tableData} ${s.tableDataId}`}
+                onClick={() => setModal({ open: true, customDefaultInputs: product })}
+              >
+                {product.id}
+              </td>
               <td className={s.tableData}>{product.name}</td>
               <td className={s.tableData}>${product.price}</td>
               <td className={s.tableData}>{product.discount}%</td>
@@ -74,15 +80,15 @@ const Collection = () => {
                 </ul>
               </td>
               <td className={s.tableData}>{product.img.name}</td>
-              <td className={s.tableData}>{product.dateAdded}</td>
+              <td className={s.tableData}>{product.modifiedDate}</td>
             </tr>
           ))}
         </tbody>
       </table>
-      <button className={s.button} onClick={() => setModalOpen(true)}>
+      <button className={s.button} onClick={() => setModal({ open: true })}>
         ADD PRODUCT
       </button>
-      {modalOpen && <CollectionModal setModalOpen={setModalOpen} setProducts={setProducts} />}
+      {modal.open && <CollectionModal modal={modal} setModal={setModal} setProducts={setProducts} />}
     </div>
   );
 };

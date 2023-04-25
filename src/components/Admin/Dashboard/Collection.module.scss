@@ -59,6 +59,9 @@
 .tableData {
   font-weight: var(--font-light);
 }
+.tableDataId {
+  cursor: pointer;
+}
 .colorList {
   display: flex;
   list-style-type: none;

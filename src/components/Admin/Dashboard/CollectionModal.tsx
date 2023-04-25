@@ -3,11 +3,12 @@ import PlusIcon from "@public/assets/icons/plus-thin.svg";
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
 import CollectionModalStock from "./CollectionModalStock";
-import { AdminDashboardCollectionProduct } from "./Collection";
+import { AdminDashboardCollectionProduct, AdminDashboardCollectionModal } from "./Collection";
 import EditIcon from "@public/assets/icons/edit.svg";
 
 type Props = {
-  setModalOpen: Dispatch<SetStateAction<boolean>>;
+  modal: AdminDashboardCollectionModal;
+  setModal: Dispatch<SetStateAction<AdminDashboardCollectionModal>>;
   setProducts: Dispatch<SetStateAction<AdminDashboardCollectionProduct[]>>;
 };
 
@@ -15,16 +16,18 @@ type Inputs = Pick<AdminDashboardCollectionProduct, "name" | "price" | "discount
 export type InputErrors = { name: boolean; price: boolean; discount: boolean; img: boolean; stock: boolean };
 
 const CollectionModal = (props: Props) => {
-  const { setModalOpen, setProducts } = props;
-  const [product, setProduct] = useState<AdminDashboardCollectionProduct>({
+  const { modal, setModal, setProducts } = props;
+  const defaultInputs = {
     id: 0,
     name: "",
     price: "",
     discount: "",
     stock: [],
     img: { name: "", src: "" },
-    dateAdded: "",
-  });
+    modifiedDate: "",
+  };
+  const modalType = modal.customDefaultInputs ? "edit_product" : "add_product";
+  const [product, setProduct] = useState<AdminDashboardCollectionProduct>(modal.customDefaultInputs ?? defaultInputs);
   const inputImgRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
 
@@ -55,12 +58,21 @@ const CollectionModal = (props: Props) => {
       stock: product.stock.length === 0,
     };
     if (Object.values(errors).every((err) => !err)) {
-      setProducts((prevState) => {
-        const id = prevState[prevState.length - 1]?.id + 1 || 0;
-        const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
-        return [...prevState, { ...product, id, dateAdded: date }];
+      const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
+      if (modalType === "add_product") {
+        setProducts((prevState) => {
+          const id = prevState[prevState.length - 1]?.id + 1 || 0;
+          return [...prevState, { ...product, id, modifiedDate: date }];
+        });
+      } else {
+        setProducts((prevState) => {
+          const index = prevState.findIndex((p) => p.id === modal.customDefaultInputs!.id);
+          return [...prevState.slice(0, index), { ...product, modifiedDate: date }, ...prevState.slice(index + 1)];
+        });
+      }
+      setModal({
+        open: false,
       });
-      setModalOpen(false);
     }
     setErr(errors);
   };
@@ -70,7 +82,7 @@ const CollectionModal = (props: Props) => {
       <div className={s.overlay}></div>
       <div className={s.modal}>
         <header className={s.header}>
-          <h4 className={s.title}>ADD PRODUCT</h4>
+          <h4 className={s.title}>{modalType === "add_product" ? "ADD PRODUCT" : "EDIT PRODUCT"}</h4>
           <p className={s.subtitle}>ALL FIELDS ARE MANDATORY</p>
         </header>
         <div className={s.form}>
@@ -112,7 +124,7 @@ const CollectionModal = (props: Props) => {
             </div>
             <CollectionModalStock product={product} setProduct={setProduct} err={err} />
             <button className={s.button} onClick={handleAddProduct}>
-              ADD PRODUCT
+              SUBMIT
             </button>
           </div>
           <div className={s.imgContainer}>
@@ -141,7 +153,14 @@ const CollectionModal = (props: Props) => {
             </div>
           </div>
         </div>
-        <ExitIcon className={s.exit} onClick={() => setModalOpen(false)} />
+        <ExitIcon
+          className={s.exit}
+          onClick={() =>
+            setModal({
+              open: false,
+            })
+          }
+        />
       </div>
     </div>
   );

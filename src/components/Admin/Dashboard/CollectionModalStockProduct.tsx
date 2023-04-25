@@ -4,19 +4,19 @@ import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import { Dispatch, useRef, useState } from "react";
 import { SetStateAction } from "react";
-import { Sizes } from "./CollectionModalStock";
-import { StockItem } from "./CollectionModalStockProductAdd";
+import { AdminDashboardCollectionProductSizes } from "./CollectionModalStock";
+import { AdminDashboardCollectionStockItem } from "./CollectionModalStockProductAdd";
 import { AdminDashboardCollectionProduct } from "./Collection";
 
 type Props = {
-  item: StockItem;
-  sizes: Sizes;
+  item: AdminDashboardCollectionStockItem;
+  sizes: AdminDashboardCollectionProductSizes;
   setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
 };
 
 const CollectionModalStockProduct = (props: Props) => {
   const { item, sizes, setProduct } = props;
-  const [local, setLocal] = useState<StockItem>({
+  const [local, setLocal] = useState<AdminDashboardCollectionStockItem>({
     id: item.id,
     colorName: item.colorName,
     colorHex: item.colorHex,
@@ -27,7 +27,10 @@ const CollectionModalStockProduct = (props: Props) => {
   const [err, setErr] = useState({ colorName: false, colorHex: false, quantity: false, sizes: false });
   const colorNameInputRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = <K extends keyof StockItem>(field: K, value: StockItem[K]) => {
+  const handleChange = <K extends keyof AdminDashboardCollectionStockItem>(
+    field: K,
+    value: AdminDashboardCollectionStockItem[K]
+  ) => {
     if (!editing) return;
     setLocal((prevState) => ({ ...prevState, [field]: value }));
   };
