@@ -29,6 +29,38 @@ const Collection = () => {
     open: false,
   });
 
+  const handleProductsFilters = () => {
+    const sortedProducts = [...products].sort((a, b) => {
+      if (sortBy === "ID ASCENDING") {
+        return a.id - b.id;
+      } else if (sortBy === "ID DESCENDING") {
+        return b.id - a.id;
+      }
+      return a.id - b.id;
+    });
+    const handleMatch = (value: string | number): boolean => {
+      const pattern = new RegExp(search.toLowerCase().replace(/[$]/g, "\\$"));
+      return Boolean(JSON.stringify(value).toLowerCase().match(pattern));
+    };
+    const searchedProducts = sortedProducts.filter((product) => {
+      return (
+        handleMatch(product.id) ||
+        handleMatch(product.name) ||
+        handleMatch(`$${product.price}`) ||
+        handleMatch(`${product.discount}%`) ||
+        handleMatch(product.img.name) ||
+        handleMatch(product.modifiedDate) ||
+        Object.values(product.stock)
+          .map(
+            (productStockValue) =>
+              handleMatch(productStockValue.colorName) || handleMatch(`#${productStockValue.colorHex}`)
+          )
+          .some((productStockValue) => productStockValue)
+      );
+    });
+    return searchedProducts;
+  };
+
   return (
     <div className={s.main}>
       <h4 className={s.title}>1. SUMMER</h4>
@@ -58,7 +90,7 @@ const Collection = () => {
           </tr>
         </thead>
         <tbody className={s.tableBody}>
-          {products.map((product) => (
+          {handleProductsFilters().map((product) => (
             <tr className={s.tableRow} key={product.id}>
               <td
                 className={`${s.tableData} ${s.tableDataId}`}
