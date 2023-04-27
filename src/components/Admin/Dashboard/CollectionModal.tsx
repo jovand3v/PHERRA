@@ -3,20 +3,21 @@ import PlusIcon from "@public/assets/icons/plus-thin.svg";
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
 import CollectionModalStock from "./CollectionModalStock";
-import { AdminDashboardCollectionProduct, AdminDashboardCollectionModal } from "./Collection";
+import { AdminDashboardCollectionProduct, AdminDashboardCollectionModal, AdminDashboardCollection } from "./Collection";
 import EditIcon from "@public/assets/icons/edit.svg";
 
 type Props = {
   modal: AdminDashboardCollectionModal;
   setModal: Dispatch<SetStateAction<AdminDashboardCollectionModal>>;
-  setProducts: Dispatch<SetStateAction<AdminDashboardCollectionProduct[]>>;
+  collectionId: AdminDashboardCollection["id"];
+  setCollections: Dispatch<SetStateAction<AdminDashboardCollection[]>>;
 };
 
 type Inputs = Pick<AdminDashboardCollectionProduct, "name" | "price" | "discount" | "img">;
 export type InputErrors = { name: boolean; price: boolean; discount: boolean; img: boolean; stock: boolean };
 
 const CollectionModal = (props: Props) => {
-  const { modal, setModal, setProducts } = props;
+  const { modal, setModal, collectionId, setCollections } = props;
   const defaultInputs = {
     id: 0,
     name: "",
@@ -59,15 +60,44 @@ const CollectionModal = (props: Props) => {
     };
     if (Object.values(errors).every((err) => !err)) {
       const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
+      // handle product add
       if (modalType === "add_product") {
-        setProducts((prevState) => {
-          const id = prevState[prevState.length - 1]?.id + 1 || 0;
-          return [...prevState, { ...product, id, modifiedDate: date }];
+        setCollections((collections) => {
+          return collections.map((collection) => {
+            if (collection.id === collectionId) {
+              const id = collection.products[collection.products.length - 1]?.id + 1 || 0;
+              const productToAdd: AdminDashboardCollectionProduct = {
+                ...product,
+                id,
+                modifiedDate: date,
+              };
+              return {
+                ...collection,
+                products: [...collection.products, productToAdd],
+              };
+            }
+            return collection;
+          });
         });
-      } else {
-        setProducts((prevState) => {
-          const index = prevState.findIndex((p) => p.id === modal.customDefaultInputs!.id);
-          return [...prevState.slice(0, index), { ...product, modifiedDate: date }, ...prevState.slice(index + 1)];
+      }
+      // handle product edit
+      else {
+        setCollections((collections) => {
+          return collections.map((collection) => {
+            if (collection.id === collectionId) {
+              const index = collection.products.findIndex((p) => p.id === modal.customDefaultInputs!.id);
+              const productToAdd: AdminDashboardCollectionProduct = { ...product, modifiedDate: date };
+              return {
+                ...collection,
+                products: [
+                  ...collection.products.slice(0, index),
+                  productToAdd,
+                  ...collection.products.slice(index + 1),
+                ],
+              };
+            }
+            return collection;
+          });
         });
       }
       setModal({

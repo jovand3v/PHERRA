@@ -38,6 +38,7 @@ const Sidebar = (props: Props) => {
           {collections.map((collection) => (
             <li
               className={s.sectionListItem}
+              key={collection.id}
               onClick={() => handleScrollIntoView("collection", collection.id, collection.title)}
             >
               {collection.id}. {collection.title}

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
@@ -6,6 +6,11 @@ import CollectionModal from "./CollectionModal";
 import { AdminDashboardCollectionStockItem } from "./CollectionModalStockProductAdd";
 
 type DropdownType = [string, ...string[]];
+export type AdminDashboardCollection = {
+  id: number;
+  title: string;
+  products: AdminDashboardCollectionProduct[];
+};
 export type AdminDashboardCollectionProduct = {
   id: number;
   name: string;
@@ -19,17 +24,19 @@ export type AdminDashboardCollectionModal = {
   open: boolean;
   customDefaultInputs?: AdminDashboardCollectionProduct;
 };
+
 type Props = {
-  id: number;
-  title: string;
+  id: AdminDashboardCollection["id"];
+  title: AdminDashboardCollection["title"];
+  products: AdminDashboardCollection["products"];
+  setCollections: Dispatch<SetStateAction<AdminDashboardCollection[]>>;
 };
 
 const Collection = (props: Props) => {
-  const { id, title } = props;
+  const { id, title, products, setCollections } = props;
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
-  const [products, setProducts] = useState<AdminDashboardCollectionProduct[]>([]);
   const [modal, setModal] = useState<AdminDashboardCollectionModal>({
     open: false,
   });
@@ -127,7 +134,9 @@ const Collection = (props: Props) => {
       <button className={s.button} onClick={() => setModal({ open: true })}>
         ADD PRODUCT
       </button>
-      {modal.open && <CollectionModal modal={modal} setModal={setModal} setProducts={setProducts} />}
+      {modal.open && (
+        <CollectionModal modal={modal} setModal={setModal} collectionId={id} setCollections={setCollections} />
+      )}
     </div>
   );
 };

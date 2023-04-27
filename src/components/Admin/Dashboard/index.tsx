@@ -1,15 +1,19 @@
 import s from "./index.module.scss";
-import Collection from "./Collection";
+import Collection, { AdminDashboardCollection } from "./Collection";
 import Inventory from "./Inventory";
 import Section from "./Section";
 import Sidebar from "./Sidebar";
 import { useState } from "react";
 
 const Dashboard = () => {
-  const collections = [
-    { id: 1, title: "SUMMER" },
-    { id: 2, title: "WINTER" },
-  ];
+  const [collections, setCollections] = useState<AdminDashboardCollection[]>([
+    {
+      id: 1,
+      title: "SUMMER",
+      products: [],
+    },
+    { id: 2, title: "WINTER", products: [] },
+  ]);
   const [sidebarActive, setSidebarActive] = useState(true);
 
   return (
@@ -26,7 +30,13 @@ const Dashboard = () => {
           main={
             <div className={s.collections}>
               {collections.map((collection) => (
-                <Collection title={collection.title} id={collection.id} key={collection.id} />
+                <Collection
+                  title={collection.title}
+                  id={collection.id}
+                  products={collection.products}
+                  key={collection.id}
+                  setCollections={setCollections}
+                />
               ))}
             </div>
           }
