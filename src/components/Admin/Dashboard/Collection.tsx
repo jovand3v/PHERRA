@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
@@ -40,6 +40,19 @@ const Collection = (props: Props) => {
   const [modal, setModal] = useState<AdminDashboardCollectionModal>({
     open: false,
   });
+  const tableWrapperRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLTableElement>(null);
+
+  // get height of first 11 table rows and set as max height
+  useEffect(() => {
+    if (tableWrapperRef.current && tableRef.current && tableRef.current.rows.length > 10) {
+      let maxHeight = 1;
+      for (let i = 0; i < 11; i++) {
+        maxHeight += tableRef.current.rows[i].getBoundingClientRect().height;
+      }
+      tableWrapperRef.current.style.maxHeight = `${maxHeight}px`;
+    }
+  }, [products]);
 
   const handleProductsFilters = () => {
     const sortedProducts = [...products].sort((a, b) => {
@@ -91,46 +104,48 @@ const Collection = (props: Props) => {
           SORT BY: &nbsp; <DropdownMenu items={sortOptions} onSelect={(val) => setSortBy(val)} />
         </div>
       </div>
-      <table className={s.table}>
-        <thead className={s.tableHead}>
-          <tr className={s.tableRow}>
-            <th className={s.tableHeader}>ID</th>
-            <th className={s.tableHeader}>NAME</th>
-            <th className={s.tableHeader}>PRICE</th>
-            <th className={s.tableHeader}>DISCOUNT</th>
-            <th className={s.tableHeader}>STOCK</th>
-            <th className={s.tableHeader}>IMAGE</th>
-            <th className={s.tableHeader}>MODIFIED</th>
-          </tr>
-        </thead>
-        <tbody className={s.tableBody}>
-          {handleProductsFilters().map((product) => (
-            <tr className={s.tableRow} key={product.id}>
-              <td
-                className={`${s.tableData} ${s.tableDataId}`}
-                onClick={() => setModal({ open: true, customDefaultInputs: product })}
-              >
-                {product.id}
-              </td>
-              <td className={s.tableData}>{product.name}</td>
-              <td className={s.tableData}>${product.price}</td>
-              <td className={s.tableData}>{product.discount}%</td>
-              <td className={s.tableData}>
-                <ul className={s.colorList}>
-                  {product.stock.map((item) => (
-                    <li className={s.colorItem} key={item.id}>
-                      <div className={s.colorBox} style={{ background: `#${item.colorHex}` }}></div>
-                      {item.colorName}
-                    </li>
-                  ))}
-                </ul>
-              </td>
-              <td className={s.tableData}>{product.img.name}</td>
-              <td className={s.tableData}>{product.modifiedDate}</td>
+      <div className={s.tableWrapper} ref={tableWrapperRef}>
+        <table className={s.table} ref={tableRef}>
+          <thead className={s.tableHead}>
+            <tr className={s.tableRow}>
+              <th className={s.tableHeader}>ID</th>
+              <th className={s.tableHeader}>NAME</th>
+              <th className={s.tableHeader}>PRICE</th>
+              <th className={s.tableHeader}>DISCOUNT</th>
+              <th className={s.tableHeader}>STOCK</th>
+              <th className={s.tableHeader}>IMAGE</th>
+              <th className={s.tableHeader}>MODIFIED</th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody className={s.tableBody}>
+            {handleProductsFilters().map((product) => (
+              <tr className={s.tableRow} key={product.id}>
+                <td
+                  className={`${s.tableData} ${s.tableDataId}`}
+                  onClick={() => setModal({ open: true, customDefaultInputs: product })}
+                >
+                  {product.id}
+                </td>
+                <td className={s.tableData}>{product.name}</td>
+                <td className={s.tableData}>${product.price}</td>
+                <td className={s.tableData}>{product.discount}%</td>
+                <td className={s.tableData}>
+                  <ul className={s.colorList}>
+                    {product.stock.map((item) => (
+                      <li className={s.colorItem} key={item.id}>
+                        <div className={s.colorBox} style={{ background: `#${item.colorHex}` }}></div>
+                        {item.colorName}
+                      </li>
+                    ))}
+                  </ul>
+                </td>
+                <td className={s.tableData}>{product.img.name}</td>
+                <td className={s.tableData}>{product.modifiedDate}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <button className={s.button} onClick={() => setModal({ open: true })}>
         ADD PRODUCT
       </button>

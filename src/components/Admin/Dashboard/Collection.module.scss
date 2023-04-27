@@ -1,3 +1,5 @@
+@use "../../../styles/mixins.scss" as mixins;
+
 .title {
   font-size: 95px;
   letter-spacing: -3px;
@@ -41,6 +43,16 @@
   display: flex;
   font-weight: var(--font-light);
 }
+.tableWrapper {
+  @include mixins.scrollbar;
+  &::-webkit-scrollbar {
+    width: 20px;
+  }
+  &::-webkit-scrollbar-thumb {
+    border-left: 12px solid var(--background-base-color);
+  }
+  overflow-y: auto;
+}
 .table {
   background: var(--background-base-color);
 }
@@ -51,6 +63,7 @@
   font-size: 16px;
   border-collapse: collapse;
   text-align: start;
+  vertical-align: top;
 }
 .tableHeader,
 .tableData {
