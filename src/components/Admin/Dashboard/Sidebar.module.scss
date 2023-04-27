@@ -5,7 +5,13 @@
   background: rgb(6, 6, 6);
   padding: var(--padding-section);
   align-items: flex-start;
-  position: relative;
+  transform: translateX(-495px);
+  transition: transform 0.3s;
+  position: fixed;
+  width: 495px;
+}
+.mainActive {
+  transform: translateX(0px);
 }
 .titleContainer {
   display: flex;
@@ -45,8 +51,6 @@
 .section {
   flex: 1 1;
 }
-.sectionHeader {
-}
 .sectionTitle {
   line-height: 0.8;
   font-size: 42px;
@@ -71,9 +75,6 @@
   line-height: 1;
   font-weight: var(--font-light);
   cursor: pointer;
-  &:first-child {
-    color: var(--secondary-color);
-  }
 }
 .footer {
   width: 100%;
@@ -102,21 +103,4 @@
   height: auto;
   color: var(--secondary-color);
   cursor: pointer;
-}
-.grip {
-  position: absolute;
-  right: 0px;
-  top: 50%;
-  width: calc(3 * 1px + 2 * 3px);
-  transform: translate(40%, -50%);
-  height: 65px;
-  display: flex;
-  gap: 3px;
-  user-select: none;
-  cursor: grab;
-}
-.gripLine {
-  width: 1px;
-  height: 100%;
-  background: var(--secondary-color);
 }

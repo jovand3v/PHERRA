@@ -1,12 +1,24 @@
-import s from "./SidePanel.module.scss";
+import s from "./Sidebar.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-long-thin.svg";
 import UserIcon from "@public/assets/icons/user.svg";
 import ExitIcon from "@public/assets/icons/exit.svg";
 import Link from "next/link";
 
-const SidePanel = () => {
+type Props = {
+  sidebarActive: boolean;
+  collections: { id: number; title: string }[];
+};
+
+const Sidebar = (props: Props) => {
+  const { sidebarActive, collections } = props;
+
+  const handleScrollIntoView = (type: string, id: number, title: string) => {
+    const el = document.getElementById(`${type}_${title}_${id}`);
+    el?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className={s.main}>
+    <div className={`${s.main} ${sidebarActive ? s.mainActive : ""}`}>
       <header className={s.header}>
         <h1 className={s.titleContainer}>
           <span className={s.title}>PHERRA</span>
@@ -23,8 +35,14 @@ const SidePanel = () => {
           <p className={s.sectionSubtitle}>AVAILABLE COLLECTIONS</p>
         </header>
         <ul className={s.sectionList}>
-          <li className={s.sectionListItem}>1. SUMMER</li>
-          <li className={s.sectionListItem}>2. WINTER</li>
+          {collections.map((collection) => (
+            <li
+              className={s.sectionListItem}
+              onClick={() => handleScrollIntoView("collection", collection.id, collection.title)}
+            >
+              {collection.id}. {collection.title}
+            </li>
+          ))}
         </ul>
       </div>
       <div className={s.footer}>
@@ -34,13 +52,8 @@ const SidePanel = () => {
         </div>
         <ExitIcon className={s.logoutIcon} />
       </div>
-      <div className={s.grip}>
-        <div className={s.gripLine}></div>
-        <div className={s.gripLine}></div>
-        <div className={s.gripLine}></div>
-      </div>
     </div>
   );
 };
 
-export default SidePanel;
+export default Sidebar;

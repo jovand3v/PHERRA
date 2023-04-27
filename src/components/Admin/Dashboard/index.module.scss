@@ -4,6 +4,12 @@
 }
 .content {
   padding: var(--padding-section);
+  flex: 1 1;
+  margin-left: 0px;
+  transition: margin 0.3s;
+}
+.contentActive {
+  margin-left: 495px;
 }
 .year {
   position: absolute;
@@ -13,4 +19,24 @@
   font-size: 220px;
   font-weight: var(--font-light);
   color: var(--secondary-color-dimmed);
+}
+.collections {
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+}
+.sidebarVisibilityButton {
+  position: fixed;
+  top: var(--padding-section);
+  right: var(--padding-section);
+  z-index: 2;
+  cursor: pointer;
+  height: 48px;
+  padding: 0px 22px;
+  background: transparent;
+  font-size: 15px;
+  background: var(--secondary-color);
+  color: var(--background-base-color);
+  font-weight: 500;
+  border: none;
 }

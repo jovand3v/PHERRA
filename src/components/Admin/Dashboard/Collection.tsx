@@ -19,8 +19,13 @@ export type AdminDashboardCollectionModal = {
   open: boolean;
   customDefaultInputs?: AdminDashboardCollectionProduct;
 };
+type Props = {
+  id: number;
+  title: string;
+};
 
-const Collection = () => {
+const Collection = (props: Props) => {
+  const { id, title } = props;
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
@@ -62,8 +67,10 @@ const Collection = () => {
   };
 
   return (
-    <div className={s.main}>
-      <h4 className={s.title}>1. SUMMER</h4>
+    <div className={s.main} id={`collection_${title}_${id}`}>
+      <h4 className={s.title}>
+        {id}. {title}
+      </h4>
       <div className={s.filters}>
         <div className={s.searchbar}>
           <input
