@@ -2,13 +2,15 @@ import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
 import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
+import EditIcon from "@public/assets/icons/edit.svg";
+import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import CollectionModal from "./CollectionModal";
 import { AdminDashboardCollectionStockItem } from "./CollectionModalStockProductAdd";
 
 type DropdownType = [string, ...string[]];
 export type AdminDashboardCollection = {
   id: number;
-  title: string;
+  title: "SUMMER" | "WINTER";
   products: AdminDashboardCollectionProduct[];
 };
 export type AdminDashboardCollectionProduct = {
@@ -90,6 +92,18 @@ const Collection = (props: Props) => {
     return searchedProducts;
   };
 
+  const handleDelete = (id: number) => {
+    setCollections((collections) =>
+      collections.map((collection) => {
+        if (collection.title === title) {
+          const filteredArr = collection.products.filter((collectionProduct) => collectionProduct.id !== id);
+          return { ...collection, products: [...filteredArr] };
+        }
+        return collection;
+      })
+    );
+  };
+
   return (
     <div className={s.main} id={`collection_${title}_${id}`}>
       <h4 className={s.title}>
@@ -105,7 +119,7 @@ const Collection = (props: Props) => {
           <MagnifyingGlassIcon className={s.searchbarIcon} />
         </div>
         <div className={s.dropdown}>
-          SORT BY: &nbsp; <DropdownMenu items={sortOptions} onSelect={(val) => setSortBy(val)} />
+          SORT BY:&nbsp; <DropdownMenu items={sortOptions} onSelect={(val) => setSortBy(val)} />
         </div>
       </div>
       <div className={s.tableWrapper} ref={tableWrapperRef}>
@@ -119,17 +133,13 @@ const Collection = (props: Props) => {
               <th className={s.tableHeader}>STOCK</th>
               <th className={s.tableHeader}>IMAGE</th>
               <th className={s.tableHeader}>MODIFIED</th>
+              <th className={s.tableHeader}>FUNC</th>
             </tr>
           </thead>
           <tbody className={s.tableBody}>
             {handleProductsFilters().map((product) => (
               <tr className={s.tableRow} key={product.id}>
-                <td
-                  className={`${s.tableData} ${s.tableDataId}`}
-                  onClick={() => setModal({ open: true, customDefaultInputs: product })}
-                >
-                  {product.id}
-                </td>
+                <td className={s.tableData}>{product.id}</td>
                 <td className={s.tableData}>{product.name}</td>
                 <td className={s.tableData}>${product.price}</td>
                 <td className={s.tableData}>{product.discount}%</td>
@@ -145,6 +155,15 @@ const Collection = (props: Props) => {
                 </td>
                 <td className={s.tableData}>{product.img.name}</td>
                 <td className={s.tableData}>{product.modifiedDate}</td>
+                <td className={s.tableData}>
+                  <div className={s.tableDataIconsWrapper}>
+                    <EditIcon
+                      className={s.tableDataIcon}
+                      onClick={() => setModal({ open: true, customDefaultInputs: product })}
+                    />
+                    <TrashcanIcon className={s.tableDataIcon} onClick={() => handleDelete(product.id)} />
+                  </div>
+                </td>
               </tr>
             ))}
           </tbody>

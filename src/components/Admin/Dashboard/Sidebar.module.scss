@@ -37,6 +37,9 @@
   margin: var(--padding-section) 0px;
   text-decoration: none;
   color: var(--primary-color);
+  &:hover {
+    color: var(--secondary-color);
+  }
 }
 .viewLiveText {
   font-size: 21px;
@@ -75,6 +78,9 @@
   line-height: 1;
   font-weight: var(--font-light);
   cursor: pointer;
+  &:hover {
+    color: var(--secondary-color);
+  }
 }
 .footer {
   width: 100%;

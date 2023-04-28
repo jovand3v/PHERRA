@@ -48,7 +48,7 @@
 }
 .tableWrapper {
   @include mixins.scrollbar;
-  width: calc(100vw - var(--sidepanel-width) - (2 * var(--padding-section)));
+  max-width: calc(100vw - var(--sidepanel-width) - (2 * var(--padding-section)));
   &::-webkit-scrollbar {
     width: 20px;
   }
@@ -77,8 +77,20 @@
 .tableData {
   font-weight: var(--font-light);
 }
-.tableDataId {
+.tableDataIconsWrapper {
+  display: flex;
+  user-select: none;
+  justify-content: center;
+  gap: 5px;
+  align-items: flex-start;
+}
+.tableDataIcon {
   cursor: pointer;
+  width: 18px;
+  height: auto;
+  &:hover {
+    color: var(--secondary-color);
+  }
 }
 .colorList {
   display: flex;
