@@ -1,6 +1,7 @@
 .main {
   display: flex;
   position: relative;
+  --sidepanel-width: 495px;
 }
 .content {
   padding: var(--padding-section);
@@ -9,7 +10,7 @@
   transition: margin 0.3s;
 }
 .contentActive {
-  margin-left: 495px;
+  margin-left: var(--sidepanel-width);
 }
 .year {
   position: absolute;

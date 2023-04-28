@@ -1,5 +1,8 @@
 @use "../../../styles/mixins.scss" as mixins;
 
+.main {
+  --sidepanel-width: 495px;
+}
 .title {
   font-size: 95px;
   letter-spacing: -3px;
@@ -45,6 +48,7 @@
 }
 .tableWrapper {
   @include mixins.scrollbar;
+  width: calc(100vw - var(--sidepanel-width) - (2 * var(--padding-section)));
   &::-webkit-scrollbar {
     width: 20px;
   }
@@ -54,6 +58,7 @@
   overflow-y: auto;
 }
 .table {
+  width: 100%;
   background: var(--background-base-color);
 }
 .table,
