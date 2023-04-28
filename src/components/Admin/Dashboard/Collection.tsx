@@ -54,6 +54,10 @@ const Collection = (props: Props) => {
     }
   }, [products]);
 
+  useEffect(() => {
+    document.getElementsByTagName("html")[0].style.overflowY = modal.open ? "hidden" : "visible";
+  }, [modal]);
+
   const handleProductsFilters = () => {
     const sortedProducts = [...products].sort((a, b) => {
       if (sortBy === "ID ASCENDING") {
