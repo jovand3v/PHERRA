@@ -109,7 +109,7 @@ const CollectionModal = (props: Props) => {
 
   return (
     <div className={s.main}>
-      <div className={s.overlay}></div>
+      <div className={s.overlay} onClick={() => setModal({ open: false })}></div>
       <div className={s.modal}>
         <header className={s.header}>
           <h4 className={s.title}>{modalType === "add_product" ? "ADD PRODUCT" : "EDIT PRODUCT"}</h4>
