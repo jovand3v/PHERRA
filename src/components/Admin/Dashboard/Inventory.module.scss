@@ -17,3 +17,14 @@
   font-size: 33px;
   font-weight: var(--font-light);
 }
+@media screen and (max-width: 1900px) {
+  .main {
+    gap: clamp(25px, 1.6vw, 30px);
+  }
+  .title {
+    font-size: clamp(17px, 1vw, 18px);
+  }
+  .amount {
+    font-size: clamp(26px, 1.8vw, 33px);
+  }
+}

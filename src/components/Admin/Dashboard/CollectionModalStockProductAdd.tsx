@@ -114,8 +114,10 @@ const CollectionModalStockProductAdd = (props: Props) => {
         </ul>
       </td>
       <td className={s.tableData}>
-        <CheckmarkIcon className={s.icon} onClick={handleSubmit} />{" "}
-        <TrashcanIcon className={s.icon} onClick={handleClear} />
+        <div className={s.tableDataFuncWrapper}>
+          <CheckmarkIcon className={s.icon} onClick={handleSubmit} />{" "}
+          <TrashcanIcon className={s.icon} onClick={handleClear} />
+        </div>
       </td>
     </tr>
   );

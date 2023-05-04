@@ -25,3 +25,11 @@
   font-size: 18px;
   font-weight: var(--font-light);
 }
+@media screen and (max-width: 1900px) {
+  .title {
+    font-size: clamp(35px, 2.25vw, 42px);
+  }
+  .subtitle {
+    font-size: clamp(17px, 1vw, 18px);
+  }
+}

@@ -119,12 +119,14 @@ const CollectionModalStockProduct = (props: Props) => {
         </ul>
       </td>
       <td className={s.tableData}>
-        {editing ? (
-          <CheckmarkIcon className={s.icon} onClick={handleSubmit} />
-        ) : (
-          <EditIcon className={s.icon} onClick={handleEdit} />
-        )}{" "}
-        <TrashcanIcon className={s.icon} onClick={handleDelete} />
+        <div className={s.tableDataFuncWrapper}>
+          {editing ? (
+            <CheckmarkIcon className={s.icon} onClick={handleSubmit} />
+          ) : (
+            <EditIcon className={s.icon} onClick={handleEdit} />
+          )}{" "}
+          <TrashcanIcon className={s.icon} onClick={handleDelete} />
+        </div>
       </td>
     </tr>
   );

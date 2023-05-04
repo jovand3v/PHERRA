@@ -6,7 +6,7 @@
 .title {
   font-size: 95px;
   letter-spacing: -3px;
-  line-height: 0.7;
+  line-height: 0.73;
   font-weight: var(--font-bold);
 }
 .filters {
@@ -56,6 +56,9 @@
     border-left: 12px solid var(--background-base-color);
   }
   overflow-y: auto;
+}
+.tableWrapperActive {
+  max-width: 100%;
 }
 .table {
   width: 100%;
@@ -114,4 +117,49 @@
   background: var(--secondary-color);
   font-weight: 500;
   font-size: 15px;
+}
+@media screen and (max-width: 1900px) {
+  .main {
+    --sidepanel-width: clamp(395px, 26.1vw, 495px);
+  }
+  .title {
+    font-size: clamp(75px, 5vw, 95px);
+  }
+  .filters {
+    margin: var(--padding-section) 0px clamp(25px, 1.6vw, 30px) 0px;
+    gap: clamp(25px, 1.6vw, 30px);
+  }
+  .searchbar {
+    --search-icon-width: clamp(18px, 1.1vw, 20px);
+    --search-icon-margin-right: clamp(12px, 0.8vw, 15px);
+    width: clamp(280px, 16.9vw, 320px);
+    height: clamp(47px, 2.6vw, 48px);
+  }
+  .searchbarInput {
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
+  .table,
+  .tableHeader,
+  .tableData {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .tableHeader,
+  .tableData {
+    padding: clamp(10px, 0.7vw, 12px);
+  }
+  .tableDataIcon {
+    width: clamp(15px, 1vw, 18px);
+  }
+  .colorBox {
+    width: clamp(4px, 0.4vw, 6px);
+  }
+  .button {
+    margin-top: clamp(25px, 1.6vw, 30px);
+    height: clamp(47px, 2.6vw, 48px);
+    padding: 0px clamp(20px, 1.2vw, 22px);
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
+  .dropdown {
+    font-size: 15px;
+  }
 }

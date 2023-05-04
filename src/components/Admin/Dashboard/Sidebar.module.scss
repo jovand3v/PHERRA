@@ -110,3 +110,46 @@
   color: var(--secondary-color);
   cursor: pointer;
 }
+@media screen and (max-width: 1900px) {
+  .main {
+    transform: translateX(-495px);
+    width: clamp(395px, 26.1vw, 495px);
+  }
+  .mainActive {
+    transform: translateX(0px);
+  }
+  .title {
+    font-size: clamp(87px, 5.8vw, 110px);
+    letter-spacing: max(-4px, -0.3vw);
+    line-height: 0.72;
+  }
+  .subtitle {
+    font-size: clamp(26px, 1.6vw, 30px);
+    margin-top: clamp(7px, 0.5vw, 10px);
+  }
+  .viewLiveText {
+    font-size: clamp(18px, 1.2vw, 21px);
+  }
+  .viewLiveIcon {
+    width: clamp(20px, 1.2vw, 22px);
+    margin-left: clamp(10px, 0.8vw, 15px);
+  }
+  .sectionTitle {
+    font-size: clamp(35px, 2.25vw, 42px);
+  }
+  .sectionSubtitle {
+    font-size: clamp(17px, 1vw, 18px);
+  }
+  .sectionListItem {
+    font-size: clamp(29px, 1.9vw, 35px);
+  }
+  .userIcon {
+    width: clamp(20px, 1.2vw, 22px);
+  }
+  .userName {
+    font-size: clamp(15px, 0.9vw, 16px);
+  }
+  .logoutIcon {
+    width: clamp(15px, 0.9vw, 17px);
+  }
+}

@@ -24,7 +24,7 @@
 .collections {
   display: flex;
   flex-direction: column;
-  gap: 50px;
+  gap: 60px;
 }
 .sidebarVisibilityButton {
   position: fixed;
@@ -40,4 +40,20 @@
   color: var(--background-base-color);
   font-weight: 500;
   border: none;
+}
+@media screen and (max-width: 1900px) {
+  .main {
+    --sidepanel-width: clamp(395px, 26.1vw, 495px);
+  }
+  .year {
+    font-size: clamp(180px, 11.6vw, 220px);
+  }
+  .collections {
+    gap: clamp(50px, 3.2vw, 60px);
+  }
+  .sidebarVisibilityButton {
+    height: clamp(47px, 2.5vw, 48px);
+    padding: 0px clamp(20px, 1.2vw, 22px);
+    font-size: clamp(14px, 0.8vw, 15px);
+  }
 }

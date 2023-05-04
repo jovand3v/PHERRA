@@ -32,10 +32,11 @@ type Props = {
   title: AdminDashboardCollection["title"];
   products: AdminDashboardCollection["products"];
   setCollections: Dispatch<SetStateAction<AdminDashboardCollection[]>>;
+  sidebarActive: boolean;
 };
 
 const Collection = (props: Props) => {
-  const { id, title, products, setCollections } = props;
+  const { id, title, products, setCollections, sidebarActive } = props;
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
@@ -122,7 +123,7 @@ const Collection = (props: Props) => {
           SORT BY:&nbsp; <DropdownMenu items={sortOptions} onSelect={(val) => setSortBy(val)} />
         </div>
       </div>
-      <div className={s.tableWrapper} ref={tableWrapperRef}>
+      <div className={`${s.tableWrapper} ${!sidebarActive ? s.tableWrapperActive : ""}`} ref={tableWrapperRef}>
         <table className={s.table} ref={tableRef}>
           <thead className={s.tableHead}>
             <tr className={s.tableRow}>

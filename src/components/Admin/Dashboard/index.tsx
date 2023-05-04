@@ -20,7 +20,7 @@ const Dashboard = () => {
     <div className={s.main}>
       <Sidebar sidebarActive={sidebarActive} collections={collections} />
       <div className={`${s.content} ${sidebarActive ? s.contentActive : ""}`}>
-        <Section title="INVENTORY" description="INVENTORY STATE" main={<Inventory />} />
+        <Section title="INVENTORY" description="INVENTORY STATE" main={<Inventory collections={collections} />} />
         <button className={s.sidebarVisibilityButton} onClick={() => setSidebarActive(!sidebarActive)}>
           {sidebarActive ? "HIDE SIDEBAR" : "SHOW SIDEBAR"}
         </button>
@@ -35,6 +35,7 @@ const Dashboard = () => {
                   id={collection.id}
                   products={collection.products}
                   key={collection.id}
+                  sidebarActive={sidebarActive}
                   setCollections={setCollections}
                 />
               ))}
