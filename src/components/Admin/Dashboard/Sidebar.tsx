@@ -25,7 +25,7 @@ const Sidebar = (props: Props) => {
           <span className={s.subtitle}>ADMIN DASHBOARD</span>
         </h1>
       </header>
-      <Link href="/" className={s.viewLiveContainer}>
+      <Link href="/" className={s.viewLiveContainer} target="_blank">
         <p className={s.viewLiveText}>VIEW LIVE SITE</p>
         <ArrowIcon className={s.viewLiveIcon} />
       </Link>
