@@ -55,6 +55,14 @@
   &::-webkit-scrollbar-thumb {
     border-left: 12px solid var(--background-base-color);
   }
+  &::-webkit-scrollbar:horizontal {
+    width: unset;
+    height: 20px;
+  }
+  &::-webkit-scrollbar-thumb:horizontal {
+    border: 0px;
+    border-top: 12px solid var(--background-base-color);
+  }
   overflow-y: auto;
 }
 .tableWrapperActive {
