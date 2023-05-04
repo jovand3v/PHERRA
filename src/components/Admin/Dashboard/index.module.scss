@@ -6,7 +6,7 @@
 .content {
   padding: var(--padding-section);
   flex: 1 1;
-  margin-left: 0px;
+  margin-left: var(--padding-section);
   transition: margin 0.3s;
 }
 .contentActive {
@@ -27,21 +27,6 @@
   flex-direction: column;
   gap: 60px;
 }
-.sidebarVisibilityButton {
-  position: fixed;
-  top: var(--padding-section);
-  right: var(--padding-section);
-  z-index: 2;
-  cursor: pointer;
-  height: 48px;
-  padding: 0px 22px;
-  background: transparent;
-  font-size: 15px;
-  background: var(--secondary-color);
-  color: var(--background-base-color);
-  font-weight: 500;
-  border: none;
-}
 @media screen and (max-width: 1900px) {
   .main {
     --sidepanel-width: clamp(395px, 26.1vw, 495px);
@@ -51,10 +36,5 @@
   }
   .collections {
     gap: clamp(50px, 3.2vw, 60px);
-  }
-  .sidebarVisibilityButton {
-    height: clamp(47px, 2.5vw, 48px);
-    padding: 0px clamp(20px, 1.2vw, 22px);
-    font-size: clamp(14px, 0.8vw, 15px);
   }
 }

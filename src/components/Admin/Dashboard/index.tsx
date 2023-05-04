@@ -18,12 +18,9 @@ const Dashboard = () => {
 
   return (
     <div className={s.main}>
-      <Sidebar sidebarActive={sidebarActive} collections={collections} />
+      <Sidebar sidebarActive={sidebarActive} collections={collections} setSidebarActive={setSidebarActive} />
       <div className={`${s.content} ${sidebarActive ? s.contentActive : ""}`}>
         <Section title="INVENTORY" description="INVENTORY STATE" main={<Inventory collections={collections} />} />
-        <button className={s.sidebarVisibilityButton} onClick={() => setSidebarActive(!sidebarActive)}>
-          {sidebarActive ? "HIDE SIDEBAR" : "SHOW SIDEBAR"}
-        </button>
         <Section
           title="COLLECTIONS"
           description="AVAILABLE COLLECTIONS"

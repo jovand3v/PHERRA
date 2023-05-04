@@ -5,7 +5,7 @@
   background: rgb(6, 6, 6);
   padding: var(--padding-section);
   align-items: flex-start;
-  transform: translateX(-495px);
+  transform: translateX(calc(-495px + var(--padding-section) - 1px));
   transition: transform 0.3s;
   position: fixed;
   width: 495px;
@@ -50,6 +50,22 @@
   width: 22px;
   margin-left: 15px;
   height: auto;
+}
+.arrowShortIcon {
+  width: 36px;
+  height: auto;
+  position: absolute;
+  top: var(--padding-section);
+  right: 0px;
+  cursor: pointer;
+  transform: translateX(45%) rotate(-90deg);
+  transition: transform 0.3s;
+  &:hover {
+    color: var(--secondary-color);
+  }
+}
+.arrowShortIconActive {
+  transform: translateX(45%) rotate(90deg);
 }
 .section {
   flex: 1 1;
@@ -112,8 +128,11 @@
 }
 @media screen and (max-width: 1900px) {
   .main {
-    transform: translateX(-495px);
     width: clamp(395px, 26.1vw, 495px);
+    transform: translateX(calc(clamp(-495px, -26.2vw, -395px) + var(--padding-section)));
+  }
+  .arrowShortIcon {
+    width: clamp(30px, 1.9vw, 36px);
   }
   .mainActive {
     transform: translateX(0px);
@@ -131,7 +150,7 @@
     font-size: clamp(18px, 1.2vw, 21px);
   }
   .viewLiveIcon {
-    width: clamp(20px, 1.2vw, 22px);
+    width: clamp(18px, 1.2vw, 22px);
     margin-left: clamp(10px, 0.8vw, 15px);
   }
   .sectionTitle {

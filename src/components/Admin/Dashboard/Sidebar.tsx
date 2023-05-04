@@ -2,15 +2,18 @@ import s from "./Sidebar.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-long-thin.svg";
 import UserIcon from "@public/assets/icons/user.svg";
 import ExitIcon from "@public/assets/icons/exit.svg";
+import ArrowShortIcon from "@public/assets/icons/arrow-short.svg";
 import Link from "next/link";
+import { Dispatch, SetStateAction } from "react";
 
 type Props = {
   sidebarActive: boolean;
   collections: { id: number; title: string }[];
+  setSidebarActive: Dispatch<SetStateAction<boolean>>;
 };
 
 const Sidebar = (props: Props) => {
-  const { sidebarActive, collections } = props;
+  const { sidebarActive, collections, setSidebarActive } = props;
 
   const handleScrollIntoView = (type: string, id: number, title: string) => {
     const el = document.getElementById(`${type}_${title}_${id}`);
@@ -53,6 +56,10 @@ const Sidebar = (props: Props) => {
         </div>
         <ExitIcon className={s.logoutIcon} />
       </div>
+      <ArrowShortIcon
+        className={`${s.arrowShortIcon} ${sidebarActive ? s.arrowShortIconActive : ""}`}
+        onClick={() => setSidebarActive(!sidebarActive)}
+      />
     </div>
   );
 };
