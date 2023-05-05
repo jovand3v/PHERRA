@@ -18,15 +18,15 @@ const Inventory = (props: Props) => {
   return (
     <ul className={s.main}>
       <li className={s.category}>
-        <p className={s.title}>CATEGORIES</p>
+        <p className={s.title}>CATEGORIES:</p>
         <p className={s.amount}>{categoryAmount}</p>
       </li>
       <li className={s.category}>
-        <p className={s.title}>TOTAL PRODUCTS</p>
+        <p className={s.title}>TOTAL PRODUCTS:</p>
         <p className={s.amount}>{productAmount}</p>
       </li>
       <li className={s.category}>
-        <p className={s.title}>OUT OF STOCK</p>
+        <p className={s.title}>OUT OF STOCK:</p>
         <p className={s.amount}>{outOfStockAmount}</p>
       </li>
     </ul>

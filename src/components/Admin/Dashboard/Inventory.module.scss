@@ -28,3 +28,33 @@
     font-size: clamp(26px, 1.8vw, 33px);
   }
 }
+@media screen and (max-width: 1024px) {
+  .main {
+    gap: clamp(20px, 2.5vw, 25px);
+  }
+  .category {
+    justify-content: space-between;
+  }
+  .title {
+    font-size: clamp(16px, 1.7vw, 17px);
+    line-height: 1;
+  }
+  .amount {
+    font-size: clamp(25px, 2.6vw, 26px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .main {
+    gap: 15px;
+    flex-direction: column;
+  }
+  .category {
+    justify-content: flex-start;
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 10px;
+  }
+  .amount {
+    line-height: 0.8;
+  }
+}

@@ -159,6 +159,7 @@
     width: clamp(15px, 1vw, 18px);
   }
   .colorBox {
+    height: 90%;
     width: clamp(4px, 0.4vw, 6px);
   }
   .button {
@@ -175,5 +176,27 @@
   .tableWrapper {
     max-width: unset;
     width: calc(100vw - 3 * var(--padding-section));
+  }
+  .title {
+    font-size: clamp(60px, 7.4vw, 75px);
+  }
+  .filters {
+    margin: var(--padding-section) 0px;
+    gap: clamp(20px, 2.5vw, 25px);
+  }
+}
+@media screen and (max-width: 650px) {
+  .filters {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .searchbar {
+    width: 100%;
+    max-width: 340px;
+  }
+}
+@media screen and (max-width: 400px) {
+  .title {
+    font-size: clamp(46px, 15.1vw, 60px);
   }
 }

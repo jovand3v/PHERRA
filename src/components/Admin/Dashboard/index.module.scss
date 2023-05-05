@@ -42,4 +42,12 @@
   .contentActive {
     margin-left: var(--padding-section);
   }
+  .year {
+    font-size: clamp(110px, 17.6vw, 180px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .year {
+    font-size: clamp(100px, 27.6vw, 110px);
+  }
 }

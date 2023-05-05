@@ -3,7 +3,7 @@ import Collection, { AdminDashboardCollection } from "./Collection";
 import Inventory from "./Inventory";
 import Section from "./Section";
 import Sidebar from "./Sidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Dashboard = () => {
   const [collections, setCollections] = useState<AdminDashboardCollection[]>([
@@ -15,6 +15,12 @@ const Dashboard = () => {
     { id: 2, title: "WINTER", products: [] },
   ]);
   const [sidebarActive, setSidebarActive] = useState(true);
+
+  useEffect(() => {
+    if (sidebarActive && window.innerWidth <= 1024) {
+      setSidebarActive(false);
+    }
+  }, []);
 
   return (
     <div className={s.main}>
