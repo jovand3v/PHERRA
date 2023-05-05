@@ -171,3 +171,9 @@
     font-size: 15px;
   }
 }
+@media screen and (max-width: 1024px) {
+  .tableWrapper {
+    max-width: unset;
+    width: calc(100vw - 3 * var(--padding-section));
+  }
+}

@@ -9,6 +9,7 @@
   transition: transform 0.3s;
   position: fixed;
   width: 495px;
+  z-index: 2;
 }
 .mainActive {
   transform: translateX(0px);
