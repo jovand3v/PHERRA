@@ -116,17 +116,17 @@ const CollectionModal = (props: Props) => {
           <p className={s.subtitle}>ALL FIELDS ARE MANDATORY</p>
         </header>
         <div className={s.form}>
-          <div className={s.formLeft}>
-            <div className={s.inputsContainer}>
-              <label className={`${s.inputLabel} ${s.inputLabelName} ${err.name ? s.inputErr : ""}`}>
-                NAME*
-                <input
-                  className={`${s.input} ${s.inputName} ${err.name ? s.inputErr : ""}`}
-                  placeholder="Enter product name"
-                  value={product.name}
-                  onChange={(e) => handleChange("name", e.target.value)}
-                />
-              </label>
+          <div className={s.inputsContainer}>
+            <label className={`${s.inputLabel} ${s.inputLabelName} ${err.name ? s.inputErr : ""}`}>
+              NAME*
+              <input
+                className={`${s.input} ${s.inputName} ${err.name ? s.inputErr : ""}`}
+                placeholder="Enter product name"
+                value={product.name}
+                onChange={(e) => handleChange("name", e.target.value)}
+              />
+            </label>
+            <div className={s.priceAndDiscountContainer}>
               <label className={`${s.inputLabel} ${err.price ? s.inputErr : ""}`}>
                 PRICE*
                 <div className={`${s.inputConstantWrapper} ${s.inputConstantWrapperPrice}`}>
@@ -152,11 +152,8 @@ const CollectionModal = (props: Props) => {
                 </div>
               </label>
             </div>
-            <CollectionModalStock product={product} setProduct={setProduct} err={err} />
-            <button className={s.button} onClick={handleAddProduct}>
-              SUBMIT
-            </button>
           </div>
+          <CollectionModalStock product={product} setProduct={setProduct} err={err} />
           <div className={s.imgContainer}>
             <label className={`${s.inputLabel} ${err.img ? s.inputErr : ""}`} htmlFor="#inputImg">
               IMAGE*
@@ -183,6 +180,9 @@ const CollectionModal = (props: Props) => {
             </div>
           </div>
         </div>
+        <button className={s.button} onClick={handleAddProduct}>
+          SUBMIT
+        </button>
         <ExitIcon
           className={s.exit}
           onClick={() =>

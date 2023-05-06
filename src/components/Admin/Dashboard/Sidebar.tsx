@@ -5,6 +5,7 @@ import ExitIcon from "@public/assets/icons/exit.svg";
 import ArrowShortIcon from "@public/assets/icons/arrow-short.svg";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
+import useWindowWidth from "src/hooks/useWindowWidth";
 
 type Props = {
   sidebarActive: boolean;
@@ -14,10 +15,14 @@ type Props = {
 
 const Sidebar = (props: Props) => {
   const { sidebarActive, collections, setSidebarActive } = props;
+  const windowWidth = useWindowWidth();
 
   const handleScrollIntoView = (type: string, id: number, title: string) => {
     const el = document.getElementById(`${type}_${title}_${id}`);
     el?.scrollIntoView({ behavior: "smooth" });
+    if (window.innerWidth < 1024 || (windowWidth !== 0 && windowWidth < 1024)) {
+      setSidebarActive(false);
+    }
   };
 
   return (

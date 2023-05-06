@@ -1,9 +1,27 @@
+@use "../../../styles/mixins.scss" as mixins;
+
+.main {
+  grid-column: 1;
+  grid-row: 2;
+}
 .label {
   font-size: 16px;
 }
+.tableWrapper {
+  max-height: calc(4 * 48px + 1px);
+  overflow-y: auto;
+  @include mixins.scrollbar;
+  margin-top: 2px;
+  &::-webkit-scrollbar:vertical {
+    width: 15px;
+  }
+  &::-webkit-scrollbar-thumb:vertical {
+    background-clip: content-box;
+    border-left: 7px solid var(--background-base-color);
+  }
+}
 .table {
   border-collapse: collapse;
-  margin-top: 2px;
   border-spacing: 0;
   table-layout: auto;
   width: 150px;
@@ -56,7 +74,7 @@
 }
 .input {
   background: transparent;
-  font-size: 16px;
+  font-size: 15px;
   color: var(--primary-color);
   width: 100%;
   height: 100%;
@@ -103,6 +121,9 @@
   .tableData {
     font-size: clamp(15px, 0.9vw, 16px);
   }
+  .tableWrapper {
+    max-height: calc(4 * clamp(45px, 2.6vw, 48px) + 1px);
+  }
   .tableHeader,
   .tableData {
     height: clamp(45px, 2.6vw, 48px);
@@ -125,5 +146,22 @@
   }
   .tableDataInputWrapper {
     padding: 0px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .main {
+    grid-column: span 2;
+  }
+  .tableWrapper {
+    overflow-x: auto;
+    max-height: calc(4 * 45px + 2px + 20px);
+    &::-webkit-scrollbar:horizontal {
+      height: 20px;
+    }
+    &::-webkit-scrollbar-thumb:horizontal {
+      background: var(--secondary-color);
+      background-clip: content-box;
+      border-top: 12px solid var(--background-base-color);
+    }
   }
 }

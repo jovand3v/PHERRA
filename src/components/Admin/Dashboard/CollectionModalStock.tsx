@@ -19,23 +19,25 @@ const CollectionModalStock = (props: Props) => {
   return (
     <div className={s.main}>
       <p className={`${s.label} ${err.stock ? s.inputErr : ""}`}>STOCK*</p>
-      <table className={s.table}>
-        <thead className={s.tableHead}>
-          <tr className={s.tableRow}>
-            <th className={s.tableHeader}>COLOR NAME</th>
-            <th className={s.tableHeader}>COLOR HEX</th>
-            <th className={s.tableHeader}>QUANTITY</th>
-            <th className={s.tableHeader}>SIZES</th>
-            <th className={s.tableHeader}>FUNC</th>
-          </tr>
-        </thead>
-        <tbody className={s.tableBody}>
-          {product.stock.map((item) => (
-            <CollectionModalStockProduct item={item} key={item.id} sizes={sizes} setProduct={setProduct} />
-          ))}
-          <CollectionModalStockProductAdd sizes={sizes} setProduct={setProduct} />
-        </tbody>
-      </table>
+      <div className={s.tableWrapper}>
+        <table className={s.table}>
+          <thead className={s.tableHead}>
+            <tr className={s.tableRow}>
+              <th className={s.tableHeader}>COLOR NAME</th>
+              <th className={s.tableHeader}>COLOR HEX</th>
+              <th className={s.tableHeader}>QUANTITY</th>
+              <th className={s.tableHeader}>SIZES</th>
+              <th className={s.tableHeader}>FUNC</th>
+            </tr>
+          </thead>
+          <tbody className={s.tableBody}>
+            {product.stock.map((item) => (
+              <CollectionModalStockProduct item={item} key={item.id} sizes={sizes} setProduct={setProduct} />
+            ))}
+            <CollectionModalStockProductAdd sizes={sizes} setProduct={setProduct} />
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 };
