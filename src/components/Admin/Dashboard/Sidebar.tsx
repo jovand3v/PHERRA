@@ -6,6 +6,7 @@ import ArrowShortIcon from "@public/assets/icons/arrow-short.svg";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import useWindowWidth from "src/hooks/useWindowWidth";
+import Router from "next/router";
 
 type Props = {
   sidebarActive: boolean;
@@ -23,6 +24,16 @@ const Sidebar = (props: Props) => {
     if (window.innerWidth < 1024 || (windowWidth !== 0 && windowWidth < 1024)) {
       setSidebarActive(false);
     }
+  };
+
+  const handleLogout = () => {
+    fetch("/api/logout")
+      .then((res) => {
+        if (res.redirected) {
+          Router.push("/admin/login");
+        }
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -59,7 +70,7 @@ const Sidebar = (props: Props) => {
           <UserIcon className={s.userIcon} />
           <p className={s.userName}>Dremiq</p>
         </div>
-        <ExitIcon className={s.logoutIcon} />
+        <ExitIcon className={s.logoutIcon} onClick={handleLogout} />
       </div>
       <ArrowShortIcon
         className={`${s.arrowShortIcon} ${sidebarActive ? s.arrowShortIconActive : ""}`}
