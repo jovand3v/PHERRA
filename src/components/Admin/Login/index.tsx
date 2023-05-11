@@ -12,7 +12,6 @@ const Login = () => {
   const handleSubmit = async () => {
     fetch("/api/login", {
       method: "POST",
-      redirect: "follow",
       body: JSON.stringify(details),
       headers: { "Content-Type": "application/json" },
     })
