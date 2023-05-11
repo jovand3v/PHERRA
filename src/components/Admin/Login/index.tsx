@@ -3,11 +3,12 @@ import s from "./index.module.scss";
 import UserIcon from "@public/assets/icons/user.svg";
 import EyeOpenIcon from "@public/assets/icons/eye-open.svg";
 import EyeClosedIcon from "@public/assets/icons/eye-closed.svg";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const [isPasswordShown, setIsPasswordShown] = useState(false);
   const [details, setDetails] = useState({ name: "", password: "" });
+  const router = useRouter();
 
   const handleSubmit = async () => {
     fetch("/api/login", {
@@ -17,7 +18,7 @@ const Login = () => {
     })
       .then((res) => {
         if (res.redirected) {
-          Router.push("/admin/dashboard");
+          router.push("/admin/dashboard");
         }
       })
       .catch((err) => console.log(err));

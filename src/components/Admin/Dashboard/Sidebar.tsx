@@ -6,7 +6,7 @@ import ArrowShortIcon from "@public/assets/icons/arrow-short.svg";
 import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import useWindowWidth from "src/hooks/useWindowWidth";
-import Router from "next/router";
+import { useRouter } from "next/router";
 
 type Props = {
   sidebarActive: boolean;
@@ -17,6 +17,7 @@ type Props = {
 const Sidebar = (props: Props) => {
   const { sidebarActive, collections, setSidebarActive } = props;
   const windowWidth = useWindowWidth();
+  const router = useRouter();
 
   const handleScrollIntoView = (type: string, id: number, title: string) => {
     const el = document.getElementById(`${type}_${title}_${id}`);
@@ -30,7 +31,7 @@ const Sidebar = (props: Props) => {
     fetch("/api/logout")
       .then((res) => {
         if (res.redirected) {
-          Router.push("/admin/login");
+          router.push("/admin/login");
         }
       })
       .catch((err) => console.log(err));
