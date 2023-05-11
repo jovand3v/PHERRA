@@ -8,7 +8,7 @@ const handler = (req: NextApiRequest, res: NextApiResponse) => {
   if (req.body.name === admin.name && req.body.password === admin.password) {
     const secret = process.env.JWT_SECRET;
     if (!secret) {
-      res.status(404).json({ error: "jwt secret not found" });
+      res.status(404).json({ message: "error: jwt secret not found" });
     } else {
       const jwtToken = jwt.sign({ sub: admin.id, name: admin.name, admin: true }, secret, { expiresIn: "1d" });
       setCookie("jwt_token", jwtToken, {
