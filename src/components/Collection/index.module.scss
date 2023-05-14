@@ -8,7 +8,7 @@
   display: flex;
 }
 .thumbnailContainer {
-  width: 650px;
+  width: max(650px, 33.8vw);
 }
 .thumbnailContainerSticky {
   position: sticky;
@@ -20,12 +20,12 @@
   left: var(--padding-section);
   top: var(--padding-section);
   position: absolute;
-  width: 95px;
-  height: 75px;
+  width: max(95px, 4.94vw);
+  height: max(75px, 3.9vw);
   color: var(--primary-color);
   transform: rotate(180deg);
   cursor: pointer;
-  filter: drop-shadow(0px 0px 20px rgba(black, 0.5));
+  filter: drop-shadow(0px 0px max(20px, 1.04vw) rgba(black, 0.5));
 }
 .thumbnailImage {
   width: 100%;
@@ -43,26 +43,26 @@
     left: var(--padding-section);
     right: var(--padding-section);
     bottom: 0px;
-    height: 1px;
+    height: max(1px, 0.052vw);
     background: var(--secondary-color);
   }
 }
 .title {
   font-weight: var(--font-bold);
-  font-size: 205px;
+  font-size: max(205px, 10.66vw);
   line-height: 0.8;
   text-transform: uppercase;
-  margin: -8px 0px;
-  margin-left: -195px;
-  text-shadow: 0px 0px 20px rgba(black, 0.15);
+  margin: min(-8px, -0.416vw) 0px;
+  margin-left: min(-195px, -10.14vw);
+  text-shadow: 0px 0px max(20px, 1.04vw) rgba(black, 0.15);
 }
 .subtitle {
   position: absolute;
-  right: 80px;
+  right: max(80px, 4.16vw);
   top: 0px;
   line-height: 0.75;
   transform: translateY(-30%);
-  font-size: 280px;
+  font-size: max(280px, 14.56vw);
   color: var(--secondary-color-dimmed);
   font-weight: var(--font-light);
   z-index: -1;
@@ -83,12 +83,12 @@
   margin: var(--padding-section) 0px;
 }
 .searchbar {
-  --search-icon-width: 22px;
-  --search-icon-margin-right: 15px;
+  --search-icon-width: max(22px, 1.14vw);
+  --search-icon-margin-right: max(15px, 0.78vw);
   position: relative;
-  border: 1px solid var(--primary-color);
-  width: 420px;
-  height: 50px;
+  border: max(1px, 0.052vw) solid var(--primary-color);
+  width: max(420px, 21.84vw);
+  height: max(50px, 2.6vw);
 }
 .searchbarInput {
   color: var(--primary-color);
@@ -99,9 +99,9 @@
   padding-left: var(--search-icon-margin-right);
   padding-right: calc(var(--search-icon-width) + 2 * var(--search-icon-margin-right));
   outline: none;
-  font-size: 15px;
+  font-size: max(15px, 0.78vw);
   &::placeholder {
-    font-size: 14.5px;
+    font-size: max(14.5px, 0.754vw);
   }
 }
 .searchbarIcon {
@@ -114,14 +114,15 @@
 }
 .dropdown {
   display: flex;
+  font-size: max(16px, 0.832vw);
 }
 .products {
-  --product-height: 480px;
+  --product-height: max(480px, 25vw);
   min-height: var(--product-height);
   list-style-type: none;
   position: relative;
   display: grid;
-  gap: 30px;
+  gap: max(30px, 1.56vw);
   grid-template-columns: repeat(4, minmax(190px, 1fr));
 }
 .productsEmptyMessage {
@@ -133,7 +134,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  font-size: 16px;
+  font-size: max(16px, 0.832vw);
 }
 @media screen and (max-width: 1900px) {
   .thumbnailContainer {
