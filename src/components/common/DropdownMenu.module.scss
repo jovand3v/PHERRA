@@ -8,8 +8,8 @@
   display: flex;
 }
 .arrowIcon {
-  width: 11px;
-  margin-left: 5px;
+  width: max(11px, 0.57vw);
+  margin-left: max(5px, 0.26vw);
   height: auto;
 }
 .arrowIconActive {
@@ -18,12 +18,12 @@
 .list {
   position: absolute;
   right: 0px;
-  top: 22px;
+  top: max(22px, 1.14vw);
   background: var(--background-base-color);
   width: auto;
   display: flex;
   flex-direction: column;
-  border: 1px solid rgb(32, 32, 32);
+  border: max(1px, 0.052vw) solid rgb(32, 32, 32);
   list-style-type: none;
   z-index: 2;
 }
@@ -32,7 +32,7 @@
   justify-content: flex-start;
   align-items: center;
   cursor: pointer;
-  padding: 8px;
+  padding: max(8px, 0.416vw);
   white-space: nowrap;
   &:hover {
     background: rgb(32, 32, 32);
@@ -43,9 +43,9 @@
 }
 // color box for displaying color of item if present
 .colorBox {
-  width: 6px;
-  height: 18px;
-  margin-right: 2px;
+  width: max(6px, 0.312vw);
+  height: max(18px, 0.936vw);
+  margin-right: max(2px, 0.104vw);
 }
 @media screen and (max-width: 1900px) {
   .list {

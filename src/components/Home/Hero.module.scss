@@ -15,47 +15,47 @@
   height: 100%;
 }
 .title {
-  font-size: 320px;
+  font-size: max(320px, 16.6vw);
   font-weight: var(--font-bold);
   line-height: 0.73;
-  margin-left: -20px;
+  margin-left: min(-20px, -1vw);
   color: var(--secondary-color);
 }
 .subtitle {
-  font-size: 42px;
+  font-size: max(42px, 2.18vw);
   font-weight: var(--font-light);
   line-height: 100%;
-  margin-top: 25px;
+  margin-top: max(25px, 1.3vw);
   width: 80%;
   text-transform: uppercase;
 }
 .description {
   line-height: 140%;
-  margin-top: 50px;
-  width: 480px;
-  font-size: 17px;
+  margin-top: max(50px, 2.6vw);
+  width: max(480px, 25vw);
+  font-size: max(17px, 0.88vw);
   font-weight: var(--font-light);
 }
 .navContainer {
   display: flex;
   position: relative;
   line-height: 0.72;
-  margin-top: 100px;
+  margin-top: max(100px, 5.2vw);
 }
 .navTitle {
   color: var(--secondary-color-dimmed);
   text-transform: uppercase;
-  font-size: 115px;
+  font-size: max(115px, 6vw);
   font-weight: 500;
   position: absolute;
   z-index: -1;
   transform: translateY(-55%);
-  margin-left: -4px;
+  margin-left: min(-4px, -0.2vw);
 }
 .navLinkBig {
-  font-size: 350px;
+  font-size: max(350px, 18vw);
   font-weight: 250;
-  margin-left: -13px;
+  margin-left: min(-13px, -0.7vw);
   pointer-events: none;
   transition: color 0.2s;
   overflow: hidden;
@@ -83,7 +83,7 @@
 .navLink {
   pointer-events: auto;
   text-transform: uppercase;
-  font-size: 85px;
+  font-size: max(85px, 4.42vw);
   font-weight: var(--font-light);
   cursor: pointer;
   display: flex;
@@ -113,7 +113,7 @@
 .image {
   object-fit: cover;
   height: 100%;
-  width: 550px;
+  width: max(550px, 28.6vw);
   position: relative;
   z-index: -1;
 }
@@ -121,7 +121,7 @@
   background: linear-gradient(135.21deg, rgba(0, 0, 0, 0.2) 5.89%, rgba(0, 0, 0, 0) 30.98%);
 }
 .cartSocialsContainer {
-  width: 190px;
+  width: max(190px, 9.9vw);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -134,11 +134,11 @@
 .socials {
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: max(20px, 1.04vw);
   margin-bottom: -10px;
 }
 .socialIcon {
-  width: 37px;
+  width: max(37px, 1.92vw);
   height: auto;
   cursor: pointer;
   &:hover {

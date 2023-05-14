@@ -5,7 +5,7 @@
   height: 100vh;
   top: 0px;
   background: var(--background-base-color);
-  width: 750px;
+  width: max(750px, 39vw);
   z-index: 4;
   right: 0px;
   transform: translateX(100%);
@@ -18,15 +18,15 @@
   transform: translateX(0%);
 }
 .cartTitle {
-  font-size: 215px;
+  font-size: max(215px, 11.18vw);
   font-weight: var(--font-bold);
   line-height: 0.72;
   color: var(--secondary-color);
-  margin-left: -5px;
+  margin-left: min(-5px, -0.26vw);
 }
 .cartDescription {
-  font-size: 38px;
-  margin-top: 16px;
+  font-size: max(38px, 2vw);
+  margin-top: max(16px, 0.832vw);
   font-weight: var(--font-light);
   line-height: 0.8;
   text-transform: uppercase;
@@ -34,17 +34,17 @@
 .productsContainer {
   flex: 1 1;
   list-style-type: none;
-  margin: 40px 0px;
+  margin: max(40px, 2.08vw) 0px;
   display: flex;
   flex-direction: column;
-  gap: 25px;
+  gap: max(25px, 1.3vw);
   overflow-y: auto;
   @include mixins.scrollbar;
   &::-webkit-scrollbar {
-    width: 26px;
+    width: max(26px, 1.35vw);
   }
   &::-webkit-scrollbar-thumb {
-    border-left: 18px solid var(--background-base-color);
+    border-left: max(18px, 0.94vw) solid var(--background-base-color);
   }
 }
 .productsContainerEmpty {
@@ -54,7 +54,7 @@
   align-items: center;
 }
 .productsContainerEmptyText {
-  font-size: 16px;
+  font-size: max(16px, 0.832vw);
   color: var(--primary-color);
 }
 .checkout {
@@ -67,13 +67,13 @@
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 25px 0px 40px 0px;
+  padding: max(25px, 1.3vw) 0px max(40px, 2.08vw) 0px;
 }
 .checkoutQuantity {
-  font-size: 16px;
+  font-size: max(16px, 0.832vw);
 }
 .checkoutTotal {
-  font-size: 28px;
+  font-size: max(28px, 1.45vw);
 }
 .checkoutTotalHighlight {
   font-weight: var(--font-bold);
@@ -84,7 +84,7 @@
   border: none;
   background: none;
   color: var(--primary-color);
-  font-size: 63px;
+  font-size: max(63px, 3.3vw);
   font-weight: var(--font-bold);
   cursor: pointer;
   display: flex;
@@ -92,16 +92,16 @@
   line-height: 0.77;
 }
 .checkoutArrow {
-  height: 48px;
+  height: max(48px, 2.5vw);
   width: auto;
-  width: 61px;
-  margin-left: 25px;
+  width: max(61px, 3.17vw);
+  margin-left: max(25px, 1.3vw);
 }
 .close {
   position: absolute;
   right: var(--padding-section);
   top: var(--padding-section);
-  width: 26px;
+  width: max(26px, 1.35vw);
   height: auto;
   cursor: pointer;
 }

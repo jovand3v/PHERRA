@@ -1,7 +1,7 @@
 .iconContainer {
   cursor: pointer;
-  width: 88px;
-  height: 79px;
+  width: max(88px, 4.57vw);
+  height: max(79px, 4.1vw);
   position: relative;
   user-select: none;
   z-index: 2;
@@ -18,12 +18,12 @@
   justify-content: center;
   align-items: center;
   font-variant-numeric: lining-nums;
-  font-size: 37px;
+  font-size: max(37px, 1.92vw);
   line-height: 0.72;
-  right: -12px;
-  bottom: -10px;
-  padding: 12px;
-  border-radius: 20px;
+  right: min(-12px, -0.624vw);
+  bottom: min(-10px, -0.52vw);
+  padding: max(12px, 0.624vw);
+  border-radius: max(20px, 1.04vw);
 }
 .overlay {
   position: fixed;
