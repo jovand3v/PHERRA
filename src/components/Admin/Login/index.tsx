@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <div className={s.main}>
       <h1 className={s.heading}>
-        PHERRA <span className={s.headingAdmin}>ADMIN</span>
+        <span className={s.headingTitle}>PHERRA</span> <span className={s.headingSubtitle}>ADMIN</span>
       </h1>
       <div className={s.loginContainer}>
         <UserIcon className={s.userIcon} />

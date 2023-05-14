@@ -9,12 +9,15 @@
 .heading {
   display: flex;
   flex-direction: column;
-  font-size: 225px;
   font-weight: var(--font-bold);
-  color: var(--secondary-color);
   line-height: 0.7;
 }
-.headingAdmin {
+.headingTitle {
+  color: var(--secondary-color);
+  font-size: 225px;
+  margin-left: -16px;
+}
+.headingSubtitle {
   margin-top: 20px;
   font-size: 115px;
   color: var(--primary-color);
@@ -23,7 +26,7 @@
   display: flex;
   flex-direction: column;
   --input-padding: 10px;
-  --input-width: 320px;
+  --input-width: 300px;
   --input-height: 50px;
 }
 .userIcon {
@@ -89,4 +92,84 @@
   font-size: 14px;
   margin-top: 30px;
   cursor: pointer;
+}
+@media screen and (max-width: 1900px) {
+  .main {
+    gap: clamp(130px, 10.5vw, 200px);
+  }
+  .headingTitle {
+    font-size: clamp(170px, 11.9vw, 225px);
+    margin-left: clamp(-16px, -0.9vw, -12px);
+  }
+  .headingSubtitle {
+    margin-top: clamp(15px, 1vw, 20px);
+    font-size: clamp(95px, 6.1vw, 115px);
+  }
+  .loginContainer {
+    --input-width: clamp(280px, 16.9vw, 320px);
+    --input-height: clamp(49px, 2.7vw, 50px);
+  }
+  .userIcon {
+    width: clamp(123px, 7.4vw, 140px);
+  }
+  .button {
+    width: clamp(110px, 6.3vw, 120px);
+  }
+}
+@media screen and (max-width: 1400px) {
+  .main {
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 0px;
+    padding: var(--padding-section);
+    align-items: flex-start;
+  }
+  .headingTitle {
+    margin-left: clamp(-12px, -0.9vw, -5px);
+    font-size: clamp(82px, 12.2vw, 170px);
+  }
+  .headingSubtitle {
+    margin-top: clamp(10px, 1.1vw, 15px);
+    font-size: clamp(46px, 6.1vw, 85px);
+  }
+  .label {
+    &:first-child {
+      margin-bottom: clamp(13px, 1.2vw, 16px);
+    }
+  }
+  .loginContainer {
+    flex: 1 1;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    --input-width: clamp(250px, 20vw, 280px);
+    --input-height: clamp(48px, 3.5vw, 49px);
+  }
+  .userIcon {
+    width: clamp(100px, 8.8vw, 123px);
+    margin-bottom: clamp(30px, 2.9vw, 40px);
+  }
+  .form {
+    align-items: center;
+  }
+  .button {
+    width: clamp(100px, 7.8vw, 110px);
+  }
+}
+@media screen and (max-width: 400px) {
+  .headingTitle {
+    font-size: clamp(66px, 20.5vw, 82px);
+  }
+  .headingSubtitle {
+    font-size: clamp(41px, 11.5vw, 46px);
+  }
+  .loginContainer {
+    --input-width: clamp(220px, 62.3vw, 250px);
+  }
+  .userIcon {
+    width: clamp(93px, 24.9vw, 100px);
+  }
+  .button {
+    margin-top: clamp(28px, 7.5vw, 30px);
+  }
 }
