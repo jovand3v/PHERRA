@@ -8,15 +8,15 @@
 .title {
   font-size: var(--font-size-section-title);
   line-height: var(--line-height-section-title);
-  margin-left: -5px;
-  width: 1150px;
+  margin-left: min(-5px, -0.26vw);
+  width: max(1150px, 59.8vw);
   overflow: hidden;
   word-break: break-all;
 }
 .subtitle {
   position: absolute;
   bottom: 0px;
-  margin-left: 4px;
+  margin-left: max(4px, 0.208vw);
   z-index: -1;
   font-size: var(--font-size-section-subtitle);
   color: var(--secondary-color-dimmed);
@@ -25,8 +25,8 @@
 .collections {
   display: flex;
   justify-content: flex-end;
-  gap: 40px;
-  margin-top: -250px;
+  gap: max(40px, 2.08vw);
+  margin-top: min(-250px, -13vw);
 }
 .collection {
   position: relative;
@@ -38,15 +38,15 @@
 .collectionWinter {
   color: var(--background-base-color);
   .collectionTitle {
-    text-shadow: 0px 0px 20px rgba(white, 0.15);
+    text-shadow: 0px 0px max(20px, 1.04vw) rgba(white, 0.15);
   }
   .collectionArrowIcon {
-    filter: drop-shadow(0px 0px 20px rgba(white, 0.15));
+    filter: drop-shadow(0px 0px max(20px, 1.04vw) rgba(white, 0.15));
   }
 }
 .collectionImage {
-  width: 590px;
-  height: 850px;
+  width: max(590px, 30.7vw);
+  height: max(850px, 44.2vw);
   object-fit: cover;
   position: relative;
   z-index: -1;
@@ -55,20 +55,20 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: 30px;
+  gap: max(30px, 1.56vw);
   position: absolute;
-  right: 35px;
-  bottom: 35px;
+  right: max(35px, 1.82vw);
+  bottom: max(35px, 1.82vw);
 }
 .collectionArrowIcon {
-  width: 102px;
-  height: 80px;
-  filter: drop-shadow(0px 0px 20px rgba(black, 0.15));
+  width: max(102px, 5.3vw);
+  height: max(80px, 4.16vw);
+  filter: drop-shadow(0px 0px max(20px, 1.04vw) rgba(black, 0.15));
 }
 .collectionTitle {
   line-height: 0.7;
-  font-size: 105px;
-  text-shadow: 0px 0px 20px rgba(black, 0.15);
+  font-size: max(105px, 5.46vw);
+  text-shadow: 0px 0px max(20px, 1.04vw) rgba(black, 0.15);
 }
 @media screen and (max-width: 1900px) {
   .title {

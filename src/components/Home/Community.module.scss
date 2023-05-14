@@ -28,52 +28,52 @@
   margin-top: calc(3 * var(--padding-section));
 }
 .competeTextContainer {
-  width: 800px;
+  width: max(800px, 41.6vw);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 60px;
+  gap: max(60px, 3.12vw);
 }
 .competeTitle {
-  font-size: 118px;
+  font-size: max(118px, 6.136vw);
   line-height: 100%;
   font-weight: var(--font-bold);
   color: var(--secondary-color);
-  margin-left: -8px;
+  margin-left: min(-8px, -0.416vw);
 }
 .competeDescription {
-  font-size: 17px;
+  font-size: max(17px, 0.884vw);
   width: 80%;
   line-height: 140%;
   font-weight: var(--font-light);
 }
 .competeButton {
-  font-size: 50px;
+  font-size: max(50px, 2.6vw);
   cursor: pointer;
   font-weight: var(--font-bold);
   line-height: 100%;
-  margin-left: -2px;
+  margin-left: min(-2px, -0.104vw);
   user-select: none;
-  margin-top: 5px;
+  margin-top: max(5px, 0.26vw);
 }
 .competeButtonIcon {
   width: auto;
-  margin-bottom: -7px;
-  margin-left: 7px;
-  height: 49px;
+  margin-bottom: min(-7px, -0.364vw);
+  margin-left: max(7px, 0.364vw);
+  height: max(49px, 2.548vw);
 }
 .competeInstagram {
   text-align: end;
-  margin-bottom: 15px;
-  font-size: 16px;
+  margin-bottom: max(15px, 0.78vw);
+  font-size: max(16px, 0.832vw);
 }
 .competeImagesContainer {
   display: grid;
-  gap: 20px;
+  gap: max(20px, 1.04vw);
   grid-template-rows: 1fr 1fr 1fr;
-  grid-template-columns: 330px 360px;
-  height: 980px;
+  grid-template-columns: max(330px, 17.16vw) max(360px, 18.72vw);
+  height: max(980px, 51vw);
 }
 .competeImage {
   object-fit: cover;

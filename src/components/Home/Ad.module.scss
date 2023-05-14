@@ -2,7 +2,7 @@
   width: 100%;
   padding-top: var(--padding-section);
   overflow-x: hidden;
-  --gap: 30px;
+  --gap: max(30px, 1.56vw);
 }
 .marquee {
   display: flex;
@@ -22,16 +22,16 @@
   gap: var(--gap);
 }
 .title {
-  font-size: 18px;
+  font-size: max(18px, 0.936vw);
 }
 .icon {
-  width: 71px;
+  width: max(71px, 3.69vw);
   height: auto;
   color: var(--secondary-color);
 }
 @keyframes slide {
   from {
-    transform: translateX(calc(-100% - 30px));
+    transform: translateX(calc(-100% - max(30px, 1.56vw)));
   }
   to {
     transform: translateX(0%);
