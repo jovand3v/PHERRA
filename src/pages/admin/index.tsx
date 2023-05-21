@@ -8,7 +8,7 @@ type Props = {
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
-  const authResponse = await fetch("http://localhost:3000/api/auth", {
+  const authResponse = await fetch(`${process.env.API_URL}/api/auth`, {
     headers: { Cookie: req.headers.cookie ?? "" },
   })
     .then((res) => res.ok && res.json())
