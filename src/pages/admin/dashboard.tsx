@@ -13,11 +13,11 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   const authResponse = await fetch("http://localhost:3000/api/auth", {
     headers: { Cookie: req.headers.cookie ?? "" },
   })
-    .then((res) => res.json())
+    .then((res) => res.ok && res.json())
     .catch((err) => console.log(err));
 
   return {
-    props: { authenticated: authResponse.authenticated },
+    props: { authenticated: authResponse?.authenticated ?? false },
   };
 }
 
