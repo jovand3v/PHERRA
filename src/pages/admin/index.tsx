@@ -4,18 +4,17 @@ import { useEffect } from "react";
 
 type Props = {
   authenticated: boolean;
+  error?: string;
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
   const { req } = context;
   const authResponse = await fetch("http://localhost:3000/api/auth", {
     headers: { Cookie: req.headers.cookie ?? "" },
-  })
-    .then((res) => res.json())
-    .catch((err) => console.log(err));
+  }).then((res) => res.ok && res.json());
 
   return {
-    props: { authenticated: authResponse.authenticated },
+    props: { authenticated: authResponse?.authenticated ?? false },
   };
 }
 
