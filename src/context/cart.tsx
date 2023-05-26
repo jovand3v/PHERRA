@@ -1,14 +1,15 @@
 import { createContext, useReducer } from "react";
 import { Dispatch } from "react";
 import { DropdownType, DropdownValue } from "src/components/common/CartProduct";
-import { CollectionProductColorObject, CollectionProduct, discountedPrice } from "src/lib/products";
+import { Product, ProductColorObject } from "src/db/init_db";
+import { handlePriceDiscount } from "src/lib/products";
 
 export type CartProductSelected = {
   size: string;
   quantity: number;
-  color: CollectionProductColorObject;
+  color: ProductColorObject;
 };
-export type CartProduct = { id: number; product: CollectionProduct; selected: CartProductSelected };
+export type CartProduct = { id: number; product: Product; selected: CartProductSelected };
 type CartAction<T extends DropdownType> =
   | { type: "ADD_PRODUCT"; payload: CartProduct }
   | { type: "UPDATE_PRODUCT"; payload: { product: CartProduct; type: DropdownType; value: DropdownValue[T] } }
@@ -82,7 +83,7 @@ const CartProvider = ({ children }: { children: React.ReactNode }) => {
   const quantity = cartReducer.state.reduce((acc, curr) => acc + curr.selected.quantity, 0);
   const total = cartReducer.state.reduce(
     (acc, curr) =>
-      acc + Math.round(discountedPrice(curr.product.price, curr.product.discount) * curr.selected.quantity),
+      acc + Math.round(handlePriceDiscount(curr.product.price, curr.product.discount) * curr.selected.quantity),
     0
   );
 

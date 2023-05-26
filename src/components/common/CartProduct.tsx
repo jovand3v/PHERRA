@@ -30,14 +30,20 @@ const CartProduct = (props: Props) => {
 
   return (
     <li className={s.main}>
-      <Image className={s.image} src={product.img} alt={`${product.colors[0].name} ${product.name}`} />
+      <Image
+        className={s.image}
+        src={product.img}
+        width={140}
+        height={220}
+        alt={`${product.colors[0].name} ${product.name}`}
+      />
       <div className={s.container}>
         <header className={s.header}>
           <h3 className={s.title}>{product.name}</h3>
           <p className={s.description}>2023 Collection</p>
         </header>
         <ul className={s.info}>
-          <li className={s.stock}>{product.inStock ? "In Stock" : "Out of Stock"}</li>
+          <li className={s.stock}>{product["in_stock"] ? "In Stock" : "Out of Stock"}</li>
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
             <DropdownMenu

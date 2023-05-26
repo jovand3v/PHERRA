@@ -7,15 +7,16 @@ import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
 import ProductInfo from "./ProductInfo";
-import { CollectionProduct, discountedPrice } from "src/lib/products";
+import { handlePriceDiscount } from "src/lib/products";
 import { StaticProps } from "src/pages/collections/[collection]";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
+import { Product as ProductType } from "src/db/init_db";
 
 type SortOptions = "POPULARITY" | "PRICE ASCENDING" | "PRICE DESCENDING";
 
 const Collection = (props: StaticProps) => {
   const { collection, products, thumbnail } = props;
-  const [selectedProduct, setSelectedProduct] = useState<CollectionProduct | null>(products[0]);
+  const [selectedProduct, setSelectedProduct] = useState<ProductType>(products[0]);
   const [showcaseActive, setShowcaseActive] = useState(false);
   const [showChild, setShowChild] = useState(false);
   const [search, setSearch] = useState("");
@@ -34,7 +35,7 @@ const Collection = (props: StaticProps) => {
         <Product
           product={sp}
           key={sp.id}
-          setSelectedProduct={(p: CollectionProduct) => setSelectedProduct(p)}
+          setSelectedProduct={(p: ProductType) => setSelectedProduct(p)}
           setShowcaseActive={(s) => setShowcaseActive(s)}
         />
       ));
@@ -49,11 +50,11 @@ const Collection = (props: StaticProps) => {
         return setProductsLocal([...products]);
       case "PRICE ASCENDING":
         return setProductsLocal((pl) =>
-          [...pl].sort((a, b) => discountedPrice(a.price, a.discount) - discountedPrice(b.price, b.discount))
+          [...pl].sort((a, b) => handlePriceDiscount(a.price, a.discount) - handlePriceDiscount(b.price, b.discount))
         );
       case "PRICE DESCENDING":
         return setProductsLocal((pl) =>
-          [...pl].sort((a, b) => discountedPrice(b.price, b.discount) - discountedPrice(a.price, a.discount))
+          [...pl].sort((a, b) => handlePriceDiscount(b.price, b.discount) - handlePriceDiscount(a.price, a.discount))
         );
     }
   };
@@ -83,7 +84,7 @@ const Collection = (props: StaticProps) => {
               />
             )}
           </div>
-          <Image className={s.thumbnailImage} src={thumbnail} alt="model" priority={true} />
+          <Image className={s.thumbnailImage} src={thumbnail} width={650} height={1000} alt="model" priority={true} />
         </div>
       </div>
       <div className={s.mainContainer}>

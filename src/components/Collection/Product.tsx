@@ -1,10 +1,11 @@
 import s from "./Product.module.scss";
-import Image from "next/image";
-import { CollectionProduct, discountedPrice } from "src/lib/products";
+import Image from "next/legacy/image";
+import { Product } from "src/db/init_db";
+import { handlePriceDiscount } from "src/lib/products";
 
 type Props = {
-  product: CollectionProduct;
-  setSelectedProduct: (p: CollectionProduct) => void;
+  product: Product;
+  setSelectedProduct: (p: Product) => void;
   setShowcaseActive: (s: boolean) => void;
 };
 
@@ -23,6 +24,8 @@ const Product = (props: Props) => {
         <Image
           src={product.img}
           className={s.image}
+          width={275}
+          height={450}
           alt={`${product.colors[0].name} ${product.name}`}
           layout="responsive"
         />
@@ -38,7 +41,7 @@ const Product = (props: Props) => {
               <span className={s.oldPrice}>${product.price}</span>{" "}
               <span className={s.discount}>-{product.discount}%</span>
             </div>
-            <div className={s.price}>${discountedPrice(product.price, product.discount)}</div>
+            <div className={s.price}>${handlePriceDiscount(product.price, product.discount)}</div>
           </div>
           <div className={s.colorsAndSizesContainer}>
             <ul className={s.colors} aria-label="available colors">

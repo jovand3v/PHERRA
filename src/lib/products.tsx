@@ -3,18 +3,19 @@ import shirt from "@public/assets/collections/summer/open-shirt.png";
 import flessSet from "@public/assets/collections/summer/fless-set.png";
 import cbCoat from "@public/assets/collections/winter/cb-coat.png";
 import ocCoat from "@public/assets/collections/winter/oc-coat.png";
+import { Product } from "src/db/init_db";
 
+// temp, will be deleted once admin is re-factored
 export type CollectionProductColorObject = { name: string; value: string };
 export type CollectionProduct = {
   id: number;
   name: string;
   price: number;
   discount: number;
-  inStock: boolean;
+  in_stock: boolean;
   img: StaticImageData;
   sizes: [string, ...string[]];
   colors: [CollectionProductColorObject, ...CollectionProductColorObject[]];
-  collection: "summer" | "winter";
 };
 
 export const products: CollectionProduct[] = [
@@ -23,35 +24,33 @@ export const products: CollectionProduct[] = [
     name: "OPEN SHIRT",
     price: 100,
     discount: 20,
-    inStock: true,
+    in_stock: true,
     img: shirt,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
       { name: "White", value: "#fff" },
       { name: "Green", value: "#8FFF73" },
     ],
-    collection: "summer",
   },
   {
     id: 2,
     name: "FLESS SET",
     price: 400,
     discount: 10,
-    inStock: true,
+    in_stock: true,
     img: flessSet,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
       { name: "White", value: "#fff" },
       { name: "Red", value: "#D81F29" },
     ],
-    collection: "summer",
   },
   {
     id: 3,
     name: "OC COAT",
     price: 500,
     discount: 15,
-    inStock: true,
+    in_stock: true,
     img: ocCoat,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
@@ -59,24 +58,22 @@ export const products: CollectionProduct[] = [
       { name: "Yellow", value: "#FFBE3F" },
       { name: "Cyan", value: "#57FFF5" },
     ],
-    collection: "winter",
   },
   {
     id: 4,
     name: "CB COAT",
     price: 400,
     discount: 10,
-    inStock: true,
+    in_stock: true,
     img: cbCoat,
     sizes: ["S", "M", "L", "XL", "XXL"],
     colors: [
       { name: "Pink", value: "#FFC0C0" },
       { name: "Red", value: "#D81F29" },
     ],
-    collection: "winter",
   },
 ];
 
-export const discountedPrice = (price: CollectionProduct["price"], discount: CollectionProduct["discount"]): number => {
+export const handlePriceDiscount = (price: Product["price"], discount: Product["discount"]): number => {
   return Math.round(price - (discount / 100) * price);
 };

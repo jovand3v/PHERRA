@@ -28,5 +28,5 @@ model Products {
   discount      Int
   sizes         String[]
   in_stock      Boolean
-  colors        Json[]
+  colors        Json
 }

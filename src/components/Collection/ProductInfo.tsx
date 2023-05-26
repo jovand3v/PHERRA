@@ -1,16 +1,17 @@
 import { useEffect, useLayoutEffect, useState } from "react";
 import s from "./ProductInfo.module.scss";
 import { CartProduct, CartContext, CartProductSelected } from "src/context/cart";
-import { CollectionProduct, discountedPrice } from "src/lib/products";
+import { handlePriceDiscount } from "src/lib/products";
 import ExitIcon from "@public/assets/icons/x.svg";
 import DiscountIcon from "@public/assets/icons/discount.svg";
 import TankTopIcon from "@public/assets/icons/tank-top.svg";
 import { useContext } from "react";
 import Image from "next/image";
 import useWindowWidth from "src/hooks/useWindowWidth";
+import { Product } from "src/db/init_db";
 
 type Props = {
-  selectedProduct: CollectionProduct;
+  selectedProduct: Product;
   showcaseActive: boolean;
   setShowcaseActive: (s: boolean) => void;
 };
@@ -51,6 +52,8 @@ const ProductInfo = (props: Props) => {
         <div className={s.imageOverlay}></div>
         <Image
           className={s.image}
+          width={650}
+          height={1000}
           src={selectedProduct.img}
           alt={`${selectedProduct.colors[0].name} ${selectedProduct.name}`}
         />
@@ -132,7 +135,7 @@ const ProductInfo = (props: Props) => {
                   <span className={s.oldPrice}>${selectedProduct.price}</span>
                   <span className={s.discount}>-{selectedProduct.discount}%</span>
                 </div>
-                <p className={s.price}>${discountedPrice(selectedProduct.price, selectedProduct.discount)}</p>
+                <p className={s.price}>${handlePriceDiscount(selectedProduct.price, selectedProduct.discount)}</p>
               </div>
               <button className={s.button} onClick={handleCartAdd}>
                 ADD TO CART
