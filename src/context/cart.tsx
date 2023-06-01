@@ -1,13 +1,13 @@
 import { createContext, useReducer } from "react";
 import { Dispatch } from "react";
 import { DropdownType, DropdownValue } from "src/components/common/CartProduct";
-import { Product, ProductColorObject } from "src/db/init_db";
+import { Product, ProductSize } from "src/db/init_db";
 import { handlePriceDiscount } from "src/lib/products";
 
 export type CartProductSelected = {
-  size: string;
+  size: ProductSize;
   quantity: number;
-  color: ProductColorObject;
+  color: { colorName: string; colorHex: string };
 };
 export type CartProduct = { id: number; product: Product; selected: CartProductSelected };
 type CartAction<T extends DropdownType> =

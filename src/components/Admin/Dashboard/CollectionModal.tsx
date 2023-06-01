@@ -3,50 +3,62 @@ import PlusIcon from "@public/assets/icons/plus-thin.svg";
 import { ChangeEvent, Dispatch, SetStateAction, useRef, useState } from "react";
 import ExitIcon from "@public/assets/icons/x.svg";
 import CollectionModalStock from "./CollectionModalStock";
-import { AdminDashboardCollectionProduct, AdminDashboardCollectionModal, AdminDashboardCollection } from "./Collection";
 import EditIcon from "@public/assets/icons/edit.svg";
+import { Collections } from "@prisma/client";
+import { ProductSize, ProductStock } from "src/db/init_db";
 
 type Props = {
-  modal: AdminDashboardCollectionModal;
-  setModal: Dispatch<SetStateAction<AdminDashboardCollectionModal>>;
-  collectionId: AdminDashboardCollection["id"];
-  setCollections: Dispatch<SetStateAction<AdminDashboardCollection[]>>;
+  modal: CollectionModal;
+  setModal: Dispatch<SetStateAction<CollectionModal>>;
+  collectionId: Collections["id"];
 };
 
-type Inputs = Pick<AdminDashboardCollectionProduct, "name" | "price" | "discount" | "img">;
+export type CollectionModal = {
+  open: boolean;
+  customDefaultInputs?: CollectionModalProductInputs;
+};
+export type CollectionModalProductStock = Omit<ProductStock, "sizes"> & {
+  sizes: { size: ProductSize; quantity: string }[];
+};
+export type CollectionModalProductInputs = {
+  name: string;
+  price: string;
+  discount: string;
+  stock: CollectionModalProductStock[];
+  img: string;
+};
+
 export type InputErrors = { name: boolean; price: boolean; discount: boolean; img: boolean; stock: boolean };
 
 const CollectionModal = (props: Props) => {
-  const { modal, setModal, collectionId, setCollections } = props;
-  const defaultInputs = {
-    id: 0,
+  const { modal, setModal, collectionId } = props;
+  const defaultInputs: CollectionModalProductInputs = {
     name: "",
     price: "",
     discount: "",
-    stock: [],
-    img: { name: "", src: "" },
-    modifiedDate: "",
+    stock: [{ colorName: "", colorHex: "", sizes: [{ size: "XS", quantity: "" }] }],
+    img: "",
   };
   const modalType = modal.customDefaultInputs ? "edit_product" : "add_product";
-  const [product, setProduct] = useState<AdminDashboardCollectionProduct>(modal.customDefaultInputs ?? defaultInputs);
+  const [product, setProduct] = useState<CollectionModalProductInputs>(modal.customDefaultInputs ?? defaultInputs);
   const inputImgRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
 
-  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
-    if (e.target.files && e.target.files[0]) {
-      const imgFile = e.target.files[0];
-      const name = e.target.files[0].name;
-      const reader = new FileReader();
-      reader.readAsDataURL(imgFile);
-      reader.onload = () => {
-        if (!reader.result) return;
-        const src = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
-        handleChange("img", { name, src });
-      };
-    }
-  };
+  // const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+  //   if (e.target.files && e.target.files[0]) {
+  //     const imgFile = e.target.files[0];
+  //     const name = e.target.files[0].name;
+  //     const reader = new FileReader();
+  //     reader.readAsDataURL(imgFile);
+  //     reader.onload = () => {
+  //       if (!reader.result) return;
+  //       const value = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
+  //       handleChange("img", { name, value });
+  //     };
+  //   }
+  // };
 
-  const handleChange = <K extends keyof Inputs>(input: K, value: Inputs[K]) => {
+  const handleChange = (input: "name" | "price" | "discount" | "img", value: string) => {
     setProduct((prevState) => ({ ...prevState, [input]: value }));
   };
 
@@ -55,50 +67,50 @@ const CollectionModal = (props: Props) => {
       name: !product.name,
       price: !product.price,
       discount: !product.discount,
-      img: !product.img.src,
+      img: !product.img,
       stock: product.stock.length === 0,
     };
     if (Object.values(errors).every((err) => !err)) {
-      const date = new Date().toLocaleDateString("en", { year: "numeric", day: "2-digit", month: "2-digit" });
+      const date = new Date().toLocaleDateString("en-GB");
       // handle product add
       if (modalType === "add_product") {
-        setCollections((collections) => {
-          return collections.map((collection) => {
-            if (collection.id === collectionId) {
-              const id = collection.products[collection.products.length - 1]?.id + 1 || 0;
-              const productToAdd: AdminDashboardCollectionProduct = {
-                ...product,
-                id,
-                modifiedDate: date,
-              };
-              return {
-                ...collection,
-                products: [...collection.products, productToAdd],
-              };
-            }
-            return collection;
-          });
-        });
+        // setCollections((collections) => {
+        //   return collections.map((collection) => {
+        //     if (collection.id === collectionId) {
+        //       const id = collection.products[collection.products.length - 1]?.id + 1 || 0;
+        //       const productToAdd: AdminDashboardCollectionProduct = {
+        //         ...product,
+        //         id,
+        //         modifiedDate: date,
+        //       };
+        //       return {
+        //         ...collection,
+        //         products: [...collection.products, productToAdd],
+        //       };
+        //     }
+        //     return collection;
+        //   });
+        // });
       }
       // handle product edit
       else {
-        setCollections((collections) => {
-          return collections.map((collection) => {
-            if (collection.id === collectionId) {
-              const index = collection.products.findIndex((p) => p.id === modal.customDefaultInputs!.id);
-              const productToAdd: AdminDashboardCollectionProduct = { ...product, modifiedDate: date };
-              return {
-                ...collection,
-                products: [
-                  ...collection.products.slice(0, index),
-                  productToAdd,
-                  ...collection.products.slice(index + 1),
-                ],
-              };
-            }
-            return collection;
-          });
-        });
+        // setCollections((collections) => {
+        //   return collections.map((collection) => {
+        //     if (collection.id === collectionId) {
+        //       const index = collection.products.findIndex((p) => p.id === modal.customDefaultInputs!.id);
+        //       const productToAdd: AdminDashboardCollectionProduct = { ...product, modifiedDate: date };
+        //       return {
+        //         ...collection,
+        //         products: [
+        //           ...collection.products.slice(0, index),
+        //           productToAdd,
+        //           ...collection.products.slice(index + 1),
+        //         ],
+        //       };
+        //     }
+        //     return collection;
+        //   });
+        // });
       }
       setModal({
         open: false,
@@ -159,11 +171,11 @@ const CollectionModal = (props: Props) => {
               IMAGE*
             </label>
             <div className={s.inputImgContainer}>
-              {product.img.src ? (
+              {product.img ? (
                 <>
                   <EditIcon className={s.editIcon} onClick={() => inputImgRef.current?.click()} />
-                  <img src={product.img.src} alt="" className={s.img} />
-                  <p className={s.imgName}>{product.img.name}</p>
+                  <img src={product.img} alt="" className={s.img} />
+                  <p className={s.imgName}>{product.img}</p>
                 </>
               ) : (
                 <div className={s.inputImgAddContainer} onClick={() => inputImgRef.current?.click()}>
@@ -175,7 +187,7 @@ const CollectionModal = (props: Props) => {
                 ref={inputImgRef}
                 id="#inputImg"
                 className={`${s.input} ${s.inputImg}`}
-                onChange={(e) => handleImagePreview(e)}
+                // onChange={(e) => handleImagePreview(e)}
               />
             </div>
           </div>

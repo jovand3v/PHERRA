@@ -5,20 +5,18 @@ import DropdownMenu from "./DropdownMenu";
 import { memo, useContext } from "react";
 import { CartContext } from "src/context/cart";
 import { CartProduct } from "src/context/cart";
-import { CollectionProductColorObject } from "src/lib/products";
+import { ProductSize } from "src/db/init_db";
 
-type Quantity = [number, ...number[]];
 type Props = {
   cartProduct: CartProduct;
 };
 export type DropdownType = "size" | "color" | "quantity";
-export type DropdownValue = { size: string; color: CollectionProductColorObject; quantity: number };
+export type DropdownValue = { size: ProductSize; color: { colorName: string; colorHex: string }; quantity: number };
 
 const CartProduct = (props: Props) => {
   const { cartProduct } = props;
-  const product = cartProduct.product;
   const { cartReducer } = useContext(CartContext);
-  const quantity: Quantity = [1, 2, 3, 4, 5];
+  const quantity = [1, 2, 3, 4, 5];
 
   const handleRemove = () => {
     cartReducer.dispatch({ type: "REMOVE_PRODUCT", payload: cartProduct });
@@ -32,22 +30,26 @@ const CartProduct = (props: Props) => {
     <li className={s.main}>
       <Image
         className={s.image}
-        src={product.img}
+        src={cartProduct.product.img}
         width={140}
         height={220}
-        alt={`${product.colors[0].name} ${product.name}`}
+        alt={`${cartProduct.selected.color.colorName} ${cartProduct.product.name}`}
       />
       <div className={s.container}>
         <header className={s.header}>
-          <h3 className={s.title}>{product.name}</h3>
+          <h3 className={s.title}>{cartProduct.product.name}</h3>
           <p className={s.description}>2023 Collection</p>
         </header>
         <ul className={s.info}>
-          <li className={s.stock}>{product["in_stock"] ? "In Stock" : "Out of Stock"}</li>
+          <li className={s.stock}>In Stock</li>
           <li className={s.infoItemDropdown}>
             Size:&nbsp;
             <DropdownMenu
-              items={product.sizes}
+              items={
+                cartProduct.product.stock
+                  .find((stockObj) => stockObj.colorName === cartProduct.selected.color.colorName)
+                  ?.sizes.map((s) => s.size)!
+              }
               customDefault={cartProduct.selected.size}
               onSelect={(value) => handleDropdownChange("size", value)}
             />
@@ -55,7 +57,10 @@ const CartProduct = (props: Props) => {
           <li className={s.infoItemDropdown}>
             Color:&nbsp;
             <DropdownMenu
-              items={product.colors}
+              items={cartProduct.product.stock.map((stockObj) => ({
+                colorName: stockObj.colorName,
+                colorHex: stockObj.colorHex,
+              }))}
               customDefault={cartProduct.selected.color}
               onSelect={(value) => handleDropdownChange("color", value)}
             />
@@ -70,7 +75,9 @@ const CartProduct = (props: Props) => {
           </li>
         </ul>
       </div>
-      <p className={s.price}>${Math.round(product.price - (product.discount / 100) * product.price)}</p>
+      <p className={s.price}>
+        ${Math.round(cartProduct.product.price - (cartProduct.product.discount / 100) * cartProduct.product.price)}
+      </p>
       <ExitIcon className={s.remove} onClick={handleRemove} />
     </li>
   );

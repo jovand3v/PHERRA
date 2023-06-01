@@ -1,9 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import s from "./DropdownMenu.module.scss";
 import ArrowIcon from "@public/assets/icons/arrow-short.svg";
-import { ProductColorObject } from "src/db/init_db";
 
-type Items = string[] | number[] | ProductColorObject[];
+type Items = string[] | number[] | { colorName: string; colorHex: string }[];
 type Props<T extends Items> = {
   items: T;
   customDefault?: T[0];
@@ -39,8 +38,8 @@ const DropdownMenu = <T extends Items>(props: Props<T>) => {
   return (
     <div className={s.main} ref={mainRef} onClick={() => setActive(!active)}>
       <span className={s.selected}>
-        {isSelectedItemColor && <div className={s.colorBox} style={{ background: selectedItem.value }}></div>}
-        {isSelectedItemColor ? selectedItem.name : selectedItem}
+        {isSelectedItemColor && <div className={s.colorBox} style={{ background: `#${selectedItem.colorHex}` }}></div>}
+        {isSelectedItemColor ? selectedItem.colorName : selectedItem}
         <ArrowIcon className={`${s.arrowIcon} ${active ? s.arrowIconActive : ""}`} />
       </span>
       {active && (
@@ -56,8 +55,8 @@ const DropdownMenu = <T extends Items>(props: Props<T>) => {
                   onSelect(item);
                 }}
               >
-                {isItemColor && <div className={s.colorBox} style={{ background: item.value }}></div>}
-                {isItemColor ? item.name : item}
+                {isItemColor && <div className={s.colorBox} style={{ background: `#${item.colorHex}` }}></div>}
+                {isItemColor ? item.colorName : item}
               </li>
             );
           })}

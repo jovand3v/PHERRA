@@ -50,15 +50,6 @@
 .tableDataErr {
   border-bottom: 1px solid red !important;
 }
-.tableRowAdd {
-  .tableData {
-    &:nth-child(1),
-    &:nth-child(2),
-    &:nth-child(3) {
-      padding: 0px;
-    }
-  }
-}
 .inputConstantWrapper {
   display: flex;
   align-items: center;
@@ -66,11 +57,10 @@
   height: 100%;
   .input {
     padding: 0px;
-    padding-right: 12px;
   }
 }
 .inputConstant {
-  padding: 0px 2px 0px 12px;
+  padding: 0px 2px 0px 0px;
 }
 .input {
   background: transparent;
@@ -81,7 +71,25 @@
   border: none;
   outline: none;
   font-weight: var(--font-light);
-  padding: 0 12px;
+}
+.sizesContainer {
+  display: flex;
+  gap: 10px;
+}
+.sizesLabel {
+  display: flex;
+  align-items: center;
+}
+.sizesInput {
+  width: 30px;
+  height: 20px;
+  border: none;
+  border-bottom: 1px solid white;
+  background: none;
+  outline: none;
+  color: var(--primary-color);
+  font-size: 15px;
+  margin-left: 5px;
 }
 .tableDataFuncWrapper {
   display: flex;
@@ -110,9 +118,7 @@
 .tableSizeActive {
   color: var(--secondary-color);
 }
-.tableDataInputWrapper {
-  padding: 0px;
-}
+
 @media screen and (max-width: 1900px) {
   .label {
     font-size: clamp(15px, 0.9vw, 16px);
@@ -129,23 +135,11 @@
     height: clamp(45px, 2.6vw, 48px);
     padding: 0px clamp(10px, 0.7vw, 12px);
   }
-  .inputConstantWrapper {
-    .input {
-      padding-right: clamp(10px, 0.7vw, 12px);
-    }
-  }
-  .inputConstant {
-    padding: 0px 2px 0px clamp(10px, 0.7vw, 12px);
-  }
   .input {
     font-size: clamp(15px, 0.9vw, 16px);
-    padding: 0 clamp(10px, 0.7vw, 12px);
   }
   .icon {
     width: clamp(16px, 0.9vw, 17px);
-  }
-  .tableDataInputWrapper {
-    padding: 0px;
   }
 }
 @media screen and (max-width: 1024px) {

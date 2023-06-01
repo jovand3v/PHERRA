@@ -1,46 +1,26 @@
-import { Dispatch, SetStateAction, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import DropdownMenu from "src/components/common/DropdownMenu";
 import s from "./Collection.module.scss";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 import EditIcon from "@public/assets/icons/edit.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
-import CollectionModal from "./CollectionModal";
-import { AdminDashboardCollectionStockItem } from "./CollectionModalStockProductAdd";
+import { Collections } from "@prisma/client";
+import { Product } from "src/db/init_db";
+import CollectionModal, { CollectionModal as CollectionModalType } from "./CollectionModal";
 
 type DropdownType = [string, ...string[]];
-export type AdminDashboardCollection = {
-  id: number;
-  title: "SUMMER" | "WINTER";
-  products: AdminDashboardCollectionProduct[];
-};
-export type AdminDashboardCollectionProduct = {
-  id: number;
-  name: string;
-  price: string;
-  discount: string;
-  stock: AdminDashboardCollectionStockItem[];
-  img: { name: string; src: string };
-  modifiedDate: string;
-};
-export type AdminDashboardCollectionModal = {
-  open: boolean;
-  customDefaultInputs?: AdminDashboardCollectionProduct;
-};
-
 type Props = {
-  id: AdminDashboardCollection["id"];
-  title: AdminDashboardCollection["title"];
-  products: AdminDashboardCollection["products"];
-  setCollections: Dispatch<SetStateAction<AdminDashboardCollection[]>>;
+  collection: Collections;
+  products: Product[];
   sidebarActive: boolean;
 };
 
 const Collection = (props: Props) => {
-  const { id, title, products, setCollections, sidebarActive } = props;
+  const { collection, products, sidebarActive } = props;
   const sortOptions: DropdownType = ["ID ASCENDING", "ID DESCENDING"];
   const [sortBy, setSortBy] = useState(sortOptions[0]);
   const [search, setSearch] = useState("");
-  const [modal, setModal] = useState<AdminDashboardCollectionModal>({
+  const [modal, setModal] = useState<CollectionModalType>({
     open: false,
   });
   const tableWrapperRef = useRef<HTMLDivElement>(null);
@@ -80,35 +60,32 @@ const Collection = (props: Props) => {
         handleMatch(product.name) ||
         handleMatch(`$${product.price}`) ||
         handleMatch(`${product.discount}%`) ||
-        handleMatch(product.img.name) ||
-        handleMatch(product.modifiedDate) ||
+        handleMatch(product.img) ||
+        handleMatch(product.modified) ||
         Object.values(product.stock)
-          .map(
-            (productStockValue) =>
-              handleMatch(productStockValue.colorName) || handleMatch(`#${productStockValue.colorHex}`)
-          )
-          .some((productStockValue) => productStockValue)
+          .map((s) => handleMatch(s.colorName) || handleMatch(`${s.colorHex}`))
+          .some((s) => s)
       );
     });
     return searchedProducts;
   };
 
   const handleDelete = (id: number) => {
-    setCollections((collections) =>
-      collections.map((collection) => {
-        if (collection.title === title) {
-          const filteredArr = collection.products.filter((collectionProduct) => collectionProduct.id !== id);
-          return { ...collection, products: [...filteredArr] };
-        }
-        return collection;
-      })
-    );
+    // setCollections((collections) =>
+    //   collections.map((collection) => {
+    //     if (collection.title === title) {
+    //       const filteredArr = collection.products.filter((collectionProduct) => collectionProduct.id !== id);
+    //       return { ...collection, products: [...filteredArr] };
+    //     }
+    //     return collection;
+    //   })
+    // );
   };
 
   return (
-    <div className={s.main} id={`collection_${title}_${id}`}>
+    <div className={s.main} id={`collection_${collection.name}_${collection.id}`}>
       <h4 className={s.title}>
-        {id}. {title}
+        {collection.id}. {collection.name}
       </h4>
       <div className={s.filters}>
         <div className={s.searchbar}>
@@ -146,21 +123,38 @@ const Collection = (props: Props) => {
                 <td className={s.tableData}>{product.discount}%</td>
                 <td className={s.tableData}>
                   <ul className={s.colorList}>
-                    {product.stock.map((item) => (
-                      <li className={s.colorItem} key={item.id}>
-                        <div className={s.colorBox} style={{ background: `#${item.colorHex}` }}></div>
-                        {item.colorName}
+                    {product.stock.map((stock, index) => (
+                      <li className={s.colorItem} key={index}>
+                        <div className={s.colorBox} style={{ background: `#${stock.colorHex}` }}></div>
+                        {stock.colorName}
                       </li>
                     ))}
                   </ul>
                 </td>
-                <td className={s.tableData}>{product.img.name}</td>
-                <td className={s.tableData}>{product.modifiedDate}</td>
+                <td className={s.tableData}>{product.img}</td>
+                <td className={s.tableData}>{product.modified}</td>
                 <td className={s.tableData}>
                   <div className={s.tableDataIconsWrapper}>
                     <EditIcon
                       className={s.tableDataIcon}
-                      onClick={() => setModal({ open: true, customDefaultInputs: product })}
+                      onClick={() =>
+                        setModal({
+                          open: true,
+                          customDefaultInputs: {
+                            name: product.name,
+                            price: JSON.stringify(product.price),
+                            discount: JSON.stringify(product.discount),
+                            stock: product.stock.map((stockObj) => ({
+                              ...stockObj,
+                              sizes: stockObj.sizes.map((sizeObj) => ({
+                                ...sizeObj,
+                                quantity: JSON.stringify(sizeObj.quantity),
+                              })),
+                            })),
+                            img: product.img,
+                          },
+                        })
+                      }
                     />
                     <TrashcanIcon className={s.tableDataIcon} onClick={() => handleDelete(product.id)} />
                   </div>
@@ -173,9 +167,7 @@ const Collection = (props: Props) => {
       <button className={s.button} onClick={() => setModal({ open: true })}>
         ADD PRODUCT
       </button>
-      {modal.open && (
-        <CollectionModal modal={modal} setModal={setModal} collectionId={id} setCollections={setCollections} />
-      )}
+      {modal.open && <CollectionModal modal={modal} setModal={setModal} collectionId={collection.id} />}
     </div>
   );
 };

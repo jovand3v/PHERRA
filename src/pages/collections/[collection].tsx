@@ -32,7 +32,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   // parse db products values to match with Product type
   const parsedProducts: Product[] = products.map((product) => ({
     ...product,
-    colors: JSON.parse(product.colors as string),
+    stock: JSON.parse(product.stock as string),
   }));
 
   return {

@@ -55,6 +55,7 @@
 }
 .productsContainerEmptyText {
   font-size: max(16px, 0.832vw);
+  user-select: none;
   color: var(--primary-color);
 }
 .checkout {

@@ -5,7 +5,7 @@ import { handlePriceDiscount } from "src/lib/products";
 
 type Props = {
   product: Product;
-  setSelectedProduct: (p: Product) => void;
+  setSelectedProduct: (sp: Product) => void;
   setShowcaseActive: (s: boolean) => void;
 };
 
@@ -21,14 +21,7 @@ const Product = (props: Props) => {
       }}
     >
       <div className={s.imageContainer}>
-        <Image
-          src={product.img}
-          className={s.image}
-          width={275}
-          height={450}
-          alt={`${product.colors[0].name} ${product.name}`}
-          layout="responsive"
-        />
+        <Image src={product.img} className={s.image} width={275} height={450} alt={product.name} layout="responsive" />
         <div className={s.discountBox} aria-hidden={true}>
           -{product.discount}%
         </div>
@@ -45,14 +38,20 @@ const Product = (props: Props) => {
           </div>
           <div className={s.colorsAndSizesContainer}>
             <ul className={s.colors} aria-label="available colors">
-              {product.colors.map((color, index) => (
-                <li className={s.color} style={{ background: color.value }} key={index} aria-label={color.name}></li>
+              {product.stock.map((stockObj, index) => (
+                <li
+                  className={s.color}
+                  style={{ background: `#${stockObj.colorHex}` }}
+                  key={index}
+                  aria-label={stockObj.colorName}
+                ></li>
               ))}
             </ul>
             <ul aria-label="available sizes" className={s.sizes}>
-              {product.sizes.map((size, index) => (
+              {/* temp displays only sizes of first found product in stock */}
+              {product.stock[0].sizes.map((sizeObj, index) => (
                 <li className={s.size} key={index}>
-                  {size}
+                  {sizeObj.size}
                 </li>
               ))}
             </ul>

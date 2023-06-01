@@ -26,7 +26,6 @@ model Products {
   img           String
   price         Int
   discount      Int
-  sizes         String[]
-  in_stock      Boolean
-  colors        Json
+  stock         Json
+  modified      String
 }

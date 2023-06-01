@@ -7,10 +7,11 @@ import Link from "next/link";
 import { Dispatch, SetStateAction } from "react";
 import useWindowWidth from "src/hooks/useWindowWidth";
 import { useRouter } from "next/router";
+import { Collections } from "@prisma/client";
 
 type Props = {
   sidebarActive: boolean;
-  collections: { id: number; title: string }[];
+  collections: Collections[];
   setSidebarActive: Dispatch<SetStateAction<boolean>>;
 };
 
@@ -59,9 +60,9 @@ const Sidebar = (props: Props) => {
             <li
               className={s.sectionListItem}
               key={collection.id}
-              onClick={() => handleScrollIntoView("collection", collection.id, collection.title)}
+              onClick={() => handleScrollIntoView("collection", collection.id, collection.name)}
             >
-              {collection.id}. {collection.title}
+              {collection.id}. {collection.name}
             </li>
           ))}
         </ul>

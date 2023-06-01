@@ -1,6 +1,9 @@
+import { Collections } from "@prisma/client";
 import prisma from "../lib/prisma.js";
 
-export type ProductColorObject = { name: string; value: string };
+export type ProductSize = "XS" | "S" | "M" | "L" | "XL";
+export type ProductSizes = ["XS", "S", "M", "L", "XL"];
+export type ProductStock = { colorName: string; colorHex: string; sizes: { size: ProductSize; quantity: number }[] };
 export type Product = {
   id: number;
   collection_id: number;
@@ -8,70 +11,145 @@ export type Product = {
   img: string;
   price: number;
   discount: number;
-  sizes: string[];
-  in_stock: boolean;
-  colors: [ProductColorObject, ...ProductColorObject[]];
+  stock: ProductStock[];
+  modified: string;
 };
 
 const handleInit = async () => {
   // temp defined here
-  const collections = [
+  const collections: Collections[] = [
     { id: 1, name: "summer", thumbnail: "/assets/thumbnails/summer-model-2.png", year: 2023 },
     { id: 2, name: "winter", thumbnail: "/assets/thumbnails/winter-model-1.png", year: 2023 },
   ];
-  const products = [
+  const date = new Date().toLocaleDateString("en-GB");
+  const products: Omit<Product, "id">[] = [
     {
       collection_id: 1,
       name: "open shirt",
       price: 100,
-      discount: 20,
-      in_stock: true,
+      discount: 10,
       img: "/assets/collections/summer/open-shirt.png",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [
-        { name: "White", value: "#fff" },
-        { name: "Green", value: "#8FFF73" },
+      stock: [
+        {
+          colorName: "White",
+          colorHex: "fff",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
+        {
+          colorName: "Green",
+          colorHex: "8fff73",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
       ],
+      modified: date,
     },
     {
       collection_id: 1,
       name: "fless set",
-      price: 400,
+      price: 100,
       discount: 10,
-      in_stock: true,
       img: "/assets/collections/summer/fless-set.png",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [
-        { name: "White", value: "#fff" },
-        { name: "Red", value: "#D81F29" },
+      stock: [
+        {
+          colorName: "White",
+          colorHex: "fff",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
+        {
+          colorName: "Green",
+          colorHex: "8fff73",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
       ],
+      modified: date,
     },
     {
       collection_id: 2,
       name: "oc coat",
-      price: 500,
-      discount: 15,
-      in_stock: true,
+      price: 100,
+      discount: 10,
       img: "/assets/collections/winter/oc-coat.png",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [
-        { name: "White", value: "#fff" },
-        { name: "Yellow", value: "#FFBE3F" },
-        { name: "Cyan", value: "#57FFF5" },
+      stock: [
+        {
+          colorName: "White",
+          colorHex: "fff",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
+        {
+          colorName: "Green",
+          colorHex: "8fff73",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
       ],
+      modified: date,
     },
     {
       collection_id: 2,
       name: "cb coat",
-      price: 400,
+      price: 100,
       discount: 10,
-      in_stock: true,
       img: "/assets/collections/winter/cb-coat.png",
-      sizes: ["S", "M", "L", "XL", "XXL"],
-      colors: [
-        { name: "Pink", value: "#FFC0C0" },
-        { name: "Red", value: "#D81F29" },
+      stock: [
+        {
+          colorName: "White",
+          colorHex: "fff",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
+        {
+          colorName: "Green",
+          colorHex: "8fff73",
+          sizes: [
+            { size: "XS", quantity: 5 },
+            { size: "S", quantity: 5 },
+            { size: "M", quantity: 5 },
+            { size: "L", quantity: 5 },
+            { size: "XL", quantity: 5 },
+          ],
+        },
       ],
+      modified: date,
     },
   ];
 
@@ -86,7 +164,10 @@ const handleInit = async () => {
   // create products
   for (let i = 0; i < products.length; i++) {
     await prisma.products.create({
-      data: { ...products[i], colors: JSON.stringify(products[i].colors) },
+      data: {
+        ...products[i],
+        stock: JSON.stringify(products[i].stock),
+      },
     });
   }
   console.log("Database initialized successfully!");

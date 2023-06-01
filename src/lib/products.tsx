@@ -26,7 +26,7 @@ export const products: CollectionProduct[] = [
     discount: 20,
     in_stock: true,
     img: shirt,
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL"],
     colors: [
       { name: "White", value: "#fff" },
       { name: "Green", value: "#8FFF73" },
@@ -39,7 +39,7 @@ export const products: CollectionProduct[] = [
     discount: 10,
     in_stock: true,
     img: flessSet,
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL"],
     colors: [
       { name: "White", value: "#fff" },
       { name: "Red", value: "#D81F29" },
@@ -52,7 +52,7 @@ export const products: CollectionProduct[] = [
     discount: 15,
     in_stock: true,
     img: ocCoat,
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL"],
     colors: [
       { name: "White", value: "#fff" },
       { name: "Yellow", value: "#FFBE3F" },
@@ -66,7 +66,7 @@ export const products: CollectionProduct[] = [
     discount: 10,
     in_stock: true,
     img: cbCoat,
-    sizes: ["S", "M", "L", "XL", "XXL"],
+    sizes: ["S", "M", "L", "XL"],
     colors: [
       { name: "Pink", value: "#FFC0C0" },
       { name: "Red", value: "#D81F29" },

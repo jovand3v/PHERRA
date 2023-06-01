@@ -3,9 +3,14 @@ import { useEffect } from "react";
 import Head from "next/head";
 import AdminDashboard from "src/components/Admin/Dashboard";
 import { useRouter } from "next/router";
+import prisma from "src/lib/prisma";
+import { Collections } from "@prisma/client";
+import { Product } from "src/db/init_db";
 
 type Props = {
   authenticated: boolean;
+  collections: Collections[];
+  products: Product[];
 };
 
 export async function getServerSideProps(context: GetServerSidePropsContext) {
@@ -15,14 +20,21 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   })
     .then((res) => res.ok && res.json())
     .catch((err) => console.log(err));
+  const collections = await prisma.collections.findMany();
+  const products = await prisma.products.findMany();
+  // parse db products values to match with Product type
+  const parsedProducts: Product[] = products.map((product) => ({
+    ...product,
+    stock: JSON.parse(product.stock as string),
+  }));
 
   return {
-    props: { authenticated: authResponse?.authenticated ?? false },
+    props: { authenticated: authResponse?.authenticated ?? false, collections, products: parsedProducts },
   };
 }
 
 const AdminDashboardPage: NextPage<Props> = (props) => {
-  const { authenticated } = props;
+  const { authenticated, collections, products } = props;
   const router = useRouter();
 
   useEffect(() => {
@@ -38,7 +50,7 @@ const AdminDashboardPage: NextPage<Props> = (props) => {
         <link rel="icon" href="/assets/icons/favicon.ico" />
       </Head>
       <main>
-        <AdminDashboard />
+        <AdminDashboard collections={collections} products={products} />
       </main>
     </>
   ) : (

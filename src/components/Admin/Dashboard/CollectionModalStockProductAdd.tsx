@@ -2,68 +2,48 @@ import s from "./CollectionModalStock.module.scss";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import { useState, SetStateAction, Dispatch } from "react";
-import { AdminDashboardCollectionProductSizes } from "./CollectionModalStock";
-import { AdminDashboardCollectionProduct } from "./Collection";
+import { CollectionModalProductInputs, CollectionModalProductStock } from "./CollectionModal";
+import { ProductSizes } from "src/db/init_db";
 
 type Props = {
-  sizes: AdminDashboardCollectionProductSizes;
-  setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
-};
-export type AdminDashboardCollectionStockItem = {
-  id: number;
-  colorName: string;
-  colorHex: string;
-  quantity: string;
-  selectedSizes: {
-    XS: boolean;
-    S: boolean;
-    M: boolean;
-    L: boolean;
-    XL: boolean;
-    XXL: boolean;
-  };
+  product: CollectionModalProductInputs;
+  sizes: ProductSizes;
+  setProduct: Dispatch<SetStateAction<CollectionModalProductInputs>>;
 };
 
 const CollectionModalStockProductAdd = (props: Props) => {
-  const { sizes, setProduct } = props;
-  const errDefault = { colorName: false, colorHex: false, quantity: false, sizes: false };
-  const itemDefault = {
-    id: 0,
+  const { product, sizes, setProduct } = props;
+  const errDefault = { colorName: false, colorHex: false, sizes: false };
+  const productStockDefault: CollectionModalProductStock = {
     colorName: "",
     colorHex: "",
-    quantity: "",
-    selectedSizes: { XS: false, S: false, M: false, L: false, XL: false, XXL: false },
+    sizes: [
+      { size: "XS", quantity: "" },
+      { size: "S", quantity: "" },
+      { size: "M", quantity: "" },
+      { size: "L", quantity: "" },
+      { size: "XL", quantity: "" },
+    ],
   };
   const [err, setErr] = useState(errDefault);
-  const [item, setItem] = useState<AdminDashboardCollectionStockItem>(itemDefault);
+  const [productStock, setProductStock] = useState<CollectionModalProductStock>(productStockDefault);
 
   const handleSubmit = () => {
     const errors = {
-      colorName: !item.colorName,
-      colorHex: !item.colorHex,
-      quantity: !item.quantity || JSON.parse(item.quantity) < 1,
-      sizes: Object.values(item.selectedSizes).every((s) => !s),
+      colorName: !productStock.colorName || product.stock.some((s) => s.colorName === productStock.colorName),
+      colorHex: !productStock.colorHex || product.stock.some((s) => s.colorHex === productStock.colorHex),
+      sizes: productStock.sizes.some((size) => size.quantity === ""),
     };
     setErr(errors);
     if (Object.values(errors).every((e) => !e)) {
-      setProduct((prevState) => {
-        const id = prevState.stock[prevState.stock.length - 1]?.id + 1 || 0;
-        return { ...prevState, stock: [...prevState.stock, { ...item, id }] };
-      });
+      setProduct((prevState) => ({ ...prevState, stock: [...prevState.stock, { ...productStock }] }));
       handleClear();
     }
   };
 
   const handleClear = () => {
-    setItem(itemDefault);
+    setProductStock(productStockDefault);
     setErr(errDefault);
-  };
-
-  const handleChange = <K extends keyof AdminDashboardCollectionStockItem>(
-    field: K,
-    value: AdminDashboardCollectionStockItem[K]
-  ) => {
-    setItem((prevState) => ({ ...prevState, [field]: value }));
   };
 
   return (
@@ -72,8 +52,8 @@ const CollectionModalStockProductAdd = (props: Props) => {
         <input
           className={s.input}
           placeholder="White"
-          value={item.colorName}
-          onChange={(e) => handleChange("colorName", e.target.value)}
+          value={productStock.colorName}
+          onChange={(e) => setProductStock((prevState) => ({ ...prevState, colorName: e.target.value }))}
         />
       </td>
       <td className={`${s.tableData} ${err.colorHex ? s.tableDataErr : ""} `}>
@@ -82,36 +62,34 @@ const CollectionModalStockProductAdd = (props: Props) => {
           <input
             className={s.input}
             placeholder="FFFFFF"
-            value={item.colorHex}
-            onChange={(e) => handleChange("colorHex", e.target.value)}
+            value={productStock.colorHex}
+            onChange={(e) => setProductStock((prevState) => ({ ...prevState, colorHex: e.target.value }))}
           />
         </div>
       </td>
-      <td className={`${s.tableData} ${err.quantity ? s.tableDataErr : ""} `}>
-        <input
-          className={s.input}
-          placeholder="5"
-          value={item.quantity}
-          onChange={(e) => e.target.value.match("^(?!0)[0-9]*$") && handleChange("quantity", e.target.value)}
-        />
-      </td>
-      <td className={`${s.tableData} ${err.sizes ? s.tableDataErr : ""} `}>
-        <ul className={s.tableSizesList}>
-          {sizes.map((size, index) => {
-            const match = item.selectedSizes[size];
-            return (
-              <li
-                key={index}
-                className={`${s.tableSize} ${match ? s.tableSizeActive : ""}`}
-                onClick={() =>
-                  handleChange("selectedSizes", { ...item.selectedSizes, [size]: !item.selectedSizes[size] })
-                }
-              >
-                {size}
-              </li>
-            );
-          })}
-        </ul>
+      <td className={`${s.tableData} ${err.sizes ? s.tableDataErr : ""}`}>
+        <div className={s.sizesContainer}>
+          {sizes.map((size, index) => (
+            <label className={s.sizesLabel} key={index}>
+              {size}:
+              <input
+                className={s.sizesInput}
+                maxLength={3}
+                value={productStock.sizes.find((s) => s.size === size)?.quantity}
+                onChange={(e) => {
+                  if (e.target.value.match("^(?!0)[0-9]*$")) {
+                    setProductStock((prevState) => {
+                      const arr = prevState.sizes.map((s) =>
+                        s.size === size ? { ...s, quantity: e.target.value } : s
+                      );
+                      return { ...prevState, sizes: arr };
+                    });
+                  }
+                }}
+              />
+            </label>
+          ))}
+        </div>
       </td>
       <td className={s.tableData}>
         <div className={s.tableDataFuncWrapper}>

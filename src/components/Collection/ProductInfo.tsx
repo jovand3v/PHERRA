@@ -8,7 +8,7 @@ import TankTopIcon from "@public/assets/icons/tank-top.svg";
 import { useContext } from "react";
 import Image from "next/image";
 import useWindowWidth from "src/hooks/useWindowWidth";
-import { Product } from "src/db/init_db";
+import { Product, ProductSizes } from "src/db/init_db";
 
 type Props = {
   selectedProduct: Product;
@@ -19,13 +19,14 @@ type Props = {
 const ProductInfo = (props: Props) => {
   const { selectedProduct, showcaseActive, setShowcaseActive } = props;
   const { cartReducer } = useContext(CartContext);
-  const quantity = [1, 2, 3, 4, 5];
   const defaultSelected: CartProductSelected = {
-    size: selectedProduct.sizes[0],
-    quantity: quantity[0],
-    color: selectedProduct.colors[0],
+    size: selectedProduct.stock[0].sizes[0].size,
+    quantity: selectedProduct.stock[0].sizes[0].quantity >= 1 ? 1 : 0,
+    color: { colorName: selectedProduct.stock[0].colorName, colorHex: selectedProduct.stock[0].colorHex },
   };
   const [selected, setSelected] = useState(defaultSelected);
+  const quantity = [1, 2, 3, 4, 5];
+  const sizes: ProductSizes = ["XS", "S", "M", "L", "XL"];
   const windowWidth = useWindowWidth();
 
   useEffect(() => {
@@ -50,13 +51,7 @@ const ProductInfo = (props: Props) => {
       <div className={s.mainOverlay} onClick={() => setShowcaseActive(false)}></div>
       <div className={s.mainContent}>
         <div className={s.imageOverlay}></div>
-        <Image
-          className={s.image}
-          width={650}
-          height={1000}
-          src={selectedProduct.img}
-          alt={`${selectedProduct.colors[0].name} ${selectedProduct.name}`}
-        />
+        <Image className={s.image} width={650} height={1000} src={selectedProduct.img} alt={selectedProduct.name} />
         <div className={s.mainContainer}>
           <ExitIcon className={s.close} onClick={() => setShowcaseActive(false)} />
           <div className={s.discountBox}>-{selectedProduct.discount}%</div>
@@ -80,16 +75,23 @@ const ProductInfo = (props: Props) => {
                   <p className={s.selectDescription}>AVAILABLE COLORS</p>
                 </header>
                 <ul className={s.colors}>
-                  {selectedProduct.colors.map((color, index) => (
+                  {selectedProduct.stock.map((stockObj, index) => (
                     <li
                       className={`${s.color} ${
-                        color.name === selected.color.name && color.value === selected.color.value ? s.colorActive : ""
+                        stockObj.colorName === selected.color.colorName && stockObj.colorHex === selected.color.colorHex
+                          ? s.colorActive
+                          : ""
                       }`}
-                      onClick={() => setSelected((s) => ({ ...s, color: color }))}
+                      onClick={() =>
+                        setSelected((s) => ({
+                          ...s,
+                          color: { colorName: stockObj.colorName, colorHex: stockObj.colorHex },
+                        }))
+                      }
                       key={index}
                     >
-                      <div className={s.colorBox} style={{ background: color.value }}></div>
-                      <span className={s.colorName}>{color.name}</span>
+                      <div className={s.colorBox} style={{ background: `#${stockObj.colorHex}` }}></div>
+                      <span className={s.colorName}>{stockObj.colorName}</span>
                     </li>
                   ))}
                 </ul>
@@ -100,15 +102,23 @@ const ProductInfo = (props: Props) => {
                   <p className={s.selectDescription}>AVAILABLE SIZES</p>
                 </header>
                 <ul className={s.boxList}>
-                  {selectedProduct.sizes.map((size, index) => (
-                    <li
-                      className={`${s.boxListItem} ${size === selected.size ? s.boxListItemActive : ""}`}
-                      onClick={() => setSelected((s) => ({ ...s, size }))}
-                      key={index}
-                    >
-                      {size}
-                    </li>
-                  ))}
+                  {sizes.map((size, index) => {
+                    const selectedColorSizes = selectedProduct.stock
+                      .find((sp) => sp.colorName === selected.color.colorName)
+                      ?.sizes.map((sizeObj) => sizeObj.size);
+
+                    return (
+                      <li
+                        className={`${s.boxListItem} ${size === selected.size ? s.boxListItemActive : ""} ${
+                          selectedColorSizes?.includes(size) ? "" : s.boxListItemDisabled
+                        }`}
+                        onClick={() => setSelected((s) => ({ ...s, size }))}
+                        key={index}
+                      >
+                        {size}
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
               <li className={s.selectContainer}>
@@ -117,15 +127,25 @@ const ProductInfo = (props: Props) => {
                   <p className={s.selectDescription}>AVAILABLE QUANTITIES</p>
                 </header>
                 <ul className={s.boxList}>
-                  {quantity.map((quantity, index) => (
-                    <li
-                      className={`${s.boxListItem} ${quantity === selected.quantity ? s.boxListItemActive : ""}`}
-                      onClick={() => setSelected((s) => ({ ...s, quantity }))}
-                      key={index}
-                    >
-                      {quantity}
-                    </li>
-                  ))}
+                  {quantity.map((quantity, index) => {
+                    const productQuantity = selectedProduct.stock
+                      .find((sp) => sp.colorName === selected.color.colorName)
+                      ?.sizes.find((sizesObj) => sizesObj.size === selected.size)?.quantity;
+
+                    const productQuantityArr = Array.from({ length: productQuantity! }, (_, index) => index + 1);
+
+                    return (
+                      <li
+                        className={`${s.boxListItem} ${quantity === selected.quantity ? s.boxListItemActive : ""} ${
+                          productQuantityArr.includes(quantity) ? "" : s.boxListItemDisabled
+                        }`}
+                        onClick={() => setSelected((s) => ({ ...s, quantity }))}
+                        key={index}
+                      >
+                        {quantity}
+                      </li>
+                    );
+                  })}
                 </ul>
               </li>
             </ul>

@@ -1,17 +1,18 @@
-import { AdminDashboardCollection } from "./Collection";
+import { Collections } from "@prisma/client";
 import s from "./Inventory.module.scss";
+import { Product } from "src/db/init_db";
 
 type Props = {
-  collections: AdminDashboardCollection[];
+  collections: Collections[];
+  products: Product[];
 };
 
 const Inventory = (props: Props) => {
-  const { collections } = props;
-  const categoryAmount: number = collections.length;
-  const productAmount: number = collections.reduce((acc, curr) => (acc += curr.products.length), 0);
-  const outOfStockAmount: number = collections.reduce((acc, curr) => {
-    const stocks = curr.products.map((product) => product.stock);
-    stocks.forEach((stockArr) => stockArr.forEach((stock) => JSON.parse(stock.quantity) === 0 && (acc += 1)));
+  const { collections, products } = props;
+  const outOfStockAmount = products.reduce((acc, curr) => {
+    if (curr.stock.some((stock) => stock.sizes.some((size) => size.quantity === 0))) {
+      acc += 1;
+    }
     return acc;
   }, 0);
 
@@ -19,11 +20,11 @@ const Inventory = (props: Props) => {
     <ul className={s.main}>
       <li className={s.category}>
         <p className={s.title}>CATEGORIES:</p>
-        <p className={s.amount}>{categoryAmount}</p>
+        <p className={s.amount}>{collections.length}</p>
       </li>
       <li className={s.category}>
         <p className={s.title}>TOTAL PRODUCTS:</p>
-        <p className={s.amount}>{productAmount}</p>
+        <p className={s.amount}>{products.length}</p>
       </li>
       <li className={s.category}>
         <p className={s.title}>OUT OF STOCK:</p>

@@ -2,19 +2,19 @@ import s from "./CollectionModalStock.module.scss";
 import { Dispatch, SetStateAction } from "react";
 import CollectionModalStockProduct from "./CollectionModalStockProduct";
 import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
-import { AdminDashboardCollectionProduct } from "./Collection";
 import { InputErrors } from "./CollectionModal";
+import { CollectionModalProductInputs } from "./CollectionModal";
+import { ProductSizes } from "src/db/init_db";
 
-export type AdminDashboardCollectionProductSizes = ["XS", "S", "M", "L", "XL", "XXL"];
 type Props = {
-  product: AdminDashboardCollectionProduct;
-  setProduct: Dispatch<SetStateAction<AdminDashboardCollectionProduct>>;
+  product: CollectionModalProductInputs;
+  setProduct: Dispatch<SetStateAction<CollectionModalProductInputs>>;
   err: InputErrors;
 };
 
 const CollectionModalStock = (props: Props) => {
   const { product, setProduct, err } = props;
-  const sizes: AdminDashboardCollectionProductSizes = ["XS", "S", "M", "L", "XL", "XXL"];
+  const sizes: ProductSizes = ["XS", "S", "M", "L", "XL"];
 
   return (
     <div className={s.main}>
@@ -25,16 +25,21 @@ const CollectionModalStock = (props: Props) => {
             <tr className={s.tableRow}>
               <th className={s.tableHeader}>COLOR NAME</th>
               <th className={s.tableHeader}>COLOR HEX</th>
-              <th className={s.tableHeader}>QUANTITY</th>
               <th className={s.tableHeader}>SIZES</th>
               <th className={s.tableHeader}>FUNC</th>
             </tr>
           </thead>
           <tbody className={s.tableBody}>
-            {product.stock.map((item) => (
-              <CollectionModalStockProduct item={item} key={item.id} sizes={sizes} setProduct={setProduct} />
+            {product.stock.map((stock) => (
+              <CollectionModalStockProduct
+                product={product}
+                productStock={stock}
+                sizes={sizes}
+                key={Math.random().toString(36).substring(2, 10)}
+                setProduct={setProduct}
+              />
             ))}
-            <CollectionModalStockProductAdd sizes={sizes} setProduct={setProduct} />
+            <CollectionModalStockProductAdd product={product} sizes={sizes} setProduct={setProduct} />
           </tbody>
         </table>
       </div>

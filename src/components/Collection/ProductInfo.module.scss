@@ -189,6 +189,10 @@
   border-color: var(--secondary-color);
   color: var(--secondary-color);
 }
+.boxListItemDisabled {
+  // temp
+  background: red;
+}
 .buttonContainer {
   display: flex;
   flex-direction: column;
