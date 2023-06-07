@@ -36,7 +36,7 @@ const CollectionModal = (props: Props) => {
     name: "",
     price: "",
     discount: "",
-    stock: [{ colorName: "", colorHex: "", sizes: [{ size: "XS", quantity: "" }] }],
+    stock: [],
     img: "",
   };
   const modalType = modal.customDefaultInputs ? "edit_product" : "add_product";
