@@ -1,37 +1,9 @@
-import { GetServerSidePropsContext, NextPage } from "next";
+import { NextPage } from "next";
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useEffect } from "react";
 import AdminLogin from "src/components/Admin/Login";
 
-type Props = {
-  authenticated: boolean;
-};
-
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { req } = context;
-  const authResponse = await fetch(`${process.env.API_URL}/api/auth`, {
-    headers: { Cookie: req.headers.cookie ?? "" },
-  })
-    .then((res) => res.ok && res.json())
-    .catch((err) => console.log(err));
-
-  return {
-    props: { authenticated: authResponse?.authenticated ?? false },
-  };
-}
-
-const AdminLoginPage: NextPage<Props> = (props) => {
-  const { authenticated } = props;
-  const router = useRouter();
-
-  useEffect(() => {
-    if (authenticated) {
-      router.replace("/admin/dashboard");
-    }
-  }, [authenticated]);
-
-  return !authenticated ? (
+const AdminLoginPage: NextPage = () => {
+  return (
     <>
       <Head>
         <title>PHERRA | Admin Login</title>
@@ -41,8 +13,6 @@ const AdminLoginPage: NextPage<Props> = (props) => {
         <AdminLogin />
       </main>
     </>
-  ) : (
-    <></>
   );
 };
 

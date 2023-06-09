@@ -1,25 +1,16 @@
-import { GetServerSidePropsContext, NextPage } from "next";
-import { useEffect } from "react";
+import { NextPage } from "next";
 import Head from "next/head";
 import AdminDashboard from "src/components/Admin/Dashboard";
-import { useRouter } from "next/router";
 import prisma from "src/lib/prisma";
 import { Collections } from "@prisma/client";
 import { Product } from "src/db/init_db";
 
 type Props = {
-  authenticated: boolean;
   collections: Collections[];
   products: Product[];
 };
 
-export async function getServerSideProps(context: GetServerSidePropsContext) {
-  const { req } = context;
-  const authResponse = await fetch(`${process.env.API_URL}/api/auth`, {
-    headers: { Cookie: req.headers.cookie ?? "" },
-  })
-    .then((res) => res.ok && res.json())
-    .catch((err) => console.log(err));
+export async function getServerSideProps() {
   const collections = await prisma.collections.findMany();
   const products = await prisma.products.findMany();
   // parse db products values to match with Product type
@@ -29,21 +20,14 @@ export async function getServerSideProps(context: GetServerSidePropsContext) {
   }));
 
   return {
-    props: { authenticated: authResponse?.authenticated ?? false, collections, products: parsedProducts },
+    props: { collections, products: parsedProducts },
   };
 }
 
 const AdminDashboardPage: NextPage<Props> = (props) => {
-  const { authenticated, collections, products } = props;
-  const router = useRouter();
+  const { collections, products } = props;
 
-  useEffect(() => {
-    if (!authenticated) {
-      router.replace("/admin/login");
-    }
-  }, [authenticated]);
-
-  return authenticated ? (
+  return (
     <>
       <Head>
         <title>PHERRA | Admin Dashboard</title>
@@ -53,8 +37,6 @@ const AdminDashboardPage: NextPage<Props> = (props) => {
         <AdminDashboard collections={collections} products={products} />
       </main>
     </>
-  ) : (
-    <></>
   );
 };
 
