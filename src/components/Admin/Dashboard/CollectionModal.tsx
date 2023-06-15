@@ -5,7 +5,7 @@ import ExitIcon from "@public/assets/icons/x.svg";
 import CollectionModalStock from "./CollectionModalStock";
 import EditIcon from "@public/assets/icons/edit.svg";
 import { Collections } from "@prisma/client";
-import { ProductSize, ProductStock } from "src/db/init_db";
+import { Product, ProductSize, ProductStock } from "src/db/init_db";
 
 type Props = {
   modal: CollectionModal;
@@ -15,12 +15,12 @@ type Props = {
 
 export type CollectionModal = {
   open: boolean;
-  customDefaultInputs?: CollectionModalProductInputs;
+  product?: Product;
 };
 export type CollectionModalProductStock = Omit<ProductStock, "sizes"> & {
   sizes: { size: ProductSize; quantity: string }[];
 };
-export type CollectionModalProductInputs = {
+export type CollectionModalInputs = {
   name: string;
   price: string;
   discount: string;
@@ -32,31 +32,44 @@ export type InputErrors = { name: boolean; price: boolean; discount: boolean; im
 
 const CollectionModal = (props: Props) => {
   const { modal, setModal, collectionId } = props;
-  const defaultInputs: CollectionModalProductInputs = {
+  const inheritedInputs: CollectionModalInputs | undefined = modal.product && {
+    name: modal.product.name,
+    price: JSON.stringify(modal.product.price),
+    discount: JSON.stringify(modal.product.discount),
+    stock: modal.product.stock.map((stockObj) => ({
+      ...stockObj,
+      sizes: stockObj.sizes.map((sizeObj) => ({
+        ...sizeObj,
+        quantity: JSON.stringify(sizeObj.quantity),
+      })),
+    })),
+    img: modal.product.img,
+  };
+  const defaultInputs: CollectionModalInputs = {
     name: "",
     price: "",
     discount: "",
     stock: [],
     img: "",
   };
-  const modalType = modal.customDefaultInputs ? "edit_product" : "add_product";
-  const [product, setProduct] = useState<CollectionModalProductInputs>(modal.customDefaultInputs ?? defaultInputs);
+  const modalType = modal.product ? "update_product" : "add_product";
+  const [product, setProduct] = useState<CollectionModalInputs>(inheritedInputs ?? defaultInputs);
   const inputImgRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
 
-  // const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
-  //   if (e.target.files && e.target.files[0]) {
-  //     const imgFile = e.target.files[0];
-  //     const name = e.target.files[0].name;
-  //     const reader = new FileReader();
-  //     reader.readAsDataURL(imgFile);
-  //     reader.onload = () => {
-  //       if (!reader.result) return;
-  //       const value = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
-  //       handleChange("img", { name, value });
-  //     };
-  //   }
-  // };
+  const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
+    // if (e.target.files && e.target.files[0]) {
+    //   const imgFile = e.target.files[0];
+    //   const name = e.target.files[0].name;
+    //   const reader = new FileReader();
+    //   reader.readAsDataURL(imgFile);
+    //   reader.onload = () => {
+    //     if (!reader.result) return;
+    //     const value = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
+    //     handleChange("img", { name, value });
+    //   };
+    // }
+  };
 
   const handleChange = (input: "name" | "price" | "discount" | "img", value: string) => {
     setProduct((prevState) => ({ ...prevState, [input]: value }));
@@ -67,50 +80,57 @@ const CollectionModal = (props: Props) => {
       name: !product.name,
       price: !product.price,
       discount: !product.discount,
-      img: !product.img,
+      // img: !product.img,
       stock: product.stock.length === 0,
     };
     if (Object.values(errors).every((err) => !err)) {
-      const date = new Date().toLocaleDateString("en-GB");
-      // handle product add
+      // add product, send parsed input values and collection id
       if (modalType === "add_product") {
-        // setCollections((collections) => {
-        //   return collections.map((collection) => {
-        //     if (collection.id === collectionId) {
-        //       const id = collection.products[collection.products.length - 1]?.id + 1 || 0;
-        //       const productToAdd: AdminDashboardCollectionProduct = {
-        //         ...product,
-        //         id,
-        //         modifiedDate: date,
-        //       };
-        //       return {
-        //         ...collection,
-        //         products: [...collection.products, productToAdd],
-        //       };
-        //     }
-        //     return collection;
-        //   });
-        // });
+        fetch("/api/db/add_product", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product: {
+              ...product,
+              price: JSON.parse(product.price),
+              discount: JSON.parse(product.discount),
+              stock: JSON.stringify(
+                product.stock.map((stockObj) => ({
+                  ...stockObj,
+                  sizes: stockObj.sizes.map((sizeObj) => ({
+                    ...sizeObj,
+                    quantity: JSON.parse(sizeObj.quantity),
+                  })),
+                }))
+              ),
+            },
+            collectionId,
+          }),
+        });
       }
-      // handle product edit
-      else {
-        // setCollections((collections) => {
-        //   return collections.map((collection) => {
-        //     if (collection.id === collectionId) {
-        //       const index = collection.products.findIndex((p) => p.id === modal.customDefaultInputs!.id);
-        //       const productToAdd: AdminDashboardCollectionProduct = { ...product, modifiedDate: date };
-        //       return {
-        //         ...collection,
-        //         products: [
-        //           ...collection.products.slice(0, index),
-        //           productToAdd,
-        //           ...collection.products.slice(index + 1),
-        //         ],
-        //       };
-        //     }
-        //     return collection;
-        //   });
-        // });
+      // edit product, send product id and its parsed input values
+      else if (modalType === "update_product") {
+        fetch("/api/db/update_product", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            product: {
+              ...product,
+              id: modal.product!.id,
+              price: JSON.parse(product.price),
+              discount: JSON.parse(product.discount),
+              stock: JSON.stringify(
+                product.stock.map((stockObj) => ({
+                  ...stockObj,
+                  sizes: stockObj.sizes.map((sizeObj) => ({
+                    ...sizeObj,
+                    quantity: JSON.parse(sizeObj.quantity),
+                  })),
+                }))
+              ),
+            },
+          }),
+        });
       }
       setModal({
         open: false,
@@ -187,7 +207,7 @@ const CollectionModal = (props: Props) => {
                 ref={inputImgRef}
                 id="#inputImg"
                 className={`${s.input} ${s.inputImg}`}
-                // onChange={(e) => handleImagePreview(e)}
+                onChange={(e) => handleImagePreview(e)}
               />
             </div>
           </div>

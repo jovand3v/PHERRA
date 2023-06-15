@@ -71,15 +71,11 @@ const Collection = (props: Props) => {
   };
 
   const handleDelete = (id: number) => {
-    // setCollections((collections) =>
-    //   collections.map((collection) => {
-    //     if (collection.title === title) {
-    //       const filteredArr = collection.products.filter((collectionProduct) => collectionProduct.id !== id);
-    //       return { ...collection, products: [...filteredArr] };
-    //     }
-    //     return collection;
-    //   })
-    // );
+    fetch("/api/db/delete_product", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ id }),
+    });
   };
 
   return (
@@ -140,19 +136,7 @@ const Collection = (props: Props) => {
                       onClick={() =>
                         setModal({
                           open: true,
-                          customDefaultInputs: {
-                            name: product.name,
-                            price: JSON.stringify(product.price),
-                            discount: JSON.stringify(product.discount),
-                            stock: product.stock.map((stockObj) => ({
-                              ...stockObj,
-                              sizes: stockObj.sizes.map((sizeObj) => ({
-                                ...sizeObj,
-                                quantity: JSON.stringify(sizeObj.quantity),
-                              })),
-                            })),
-                            img: product.img,
-                          },
+                          product,
                         })
                       }
                     />
