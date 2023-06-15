@@ -7,49 +7,34 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
   switch (action) {
     case "add_product": {
-      try {
-        const date = new Date().toLocaleDateString("en-GB");
-        const data: Product = {
-          ...req.body.product,
-          collection_id: req.body.collectionId,
-          modified: date,
-        };
-        await prisma.products.create({
-          data,
-        });
-        res.json({ message: "product added successfully", error: false });
-      } catch (err) {
-        console.log(err);
-        res.json({ message: "failed to add product", error: true });
-      }
+      const date = new Date().toLocaleDateString("en-GB");
+      const data: Product = {
+        ...req.body.product,
+        collection_id: req.body.collectionId,
+        modified: date,
+      };
+      await prisma.products.create({
+        data,
+      });
+      res.status(201).end();
       break;
     }
     case "delete_product": {
-      try {
-        await prisma.products.delete({ where: { id: req.body.id } });
-        res.json({ message: "product deleted successfully", error: false });
-      } catch (err) {
-        console.log(err);
-        res.json({ message: "failed to delete product", error: true });
-      }
+      await prisma.products.delete({ where: { id: req.body.id } });
+      res.end();
       break;
     }
     case "update_product": {
-      try {
-        const date = new Date().toLocaleDateString("en-GB");
-        const data: Product = {
-          ...req.body.product,
-          modified: date,
-        };
-        await prisma.products.update({
-          where: { id: req.body.product.id },
-          data,
-        });
-        res.json({ message: "product update successfully", error: false });
-      } catch (err) {
-        console.log(err);
-        res.json({ message: "failed to update product", error: true });
-      }
+      const date = new Date().toLocaleDateString("en-GB");
+      const data: Product = {
+        ...req.body.product,
+        modified: date,
+      };
+      await prisma.products.update({
+        where: { id: req.body.product.id },
+        data,
+      });
+      res.end();
       break;
     }
     default:

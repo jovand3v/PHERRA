@@ -6,6 +6,7 @@ import CollectionModalStock from "./CollectionModalStock";
 import EditIcon from "@public/assets/icons/edit.svg";
 import { Collections } from "@prisma/client";
 import { Product, ProductSize, ProductStock } from "src/db/init_db";
+import { useRouter } from "next/router";
 
 type Props = {
   modal: CollectionModal;
@@ -56,6 +57,7 @@ const CollectionModal = (props: Props) => {
   const [product, setProduct] = useState<CollectionModalInputs>(inheritedInputs ?? defaultInputs);
   const inputImgRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
+  const router = useRouter();
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
     // if (e.target.files && e.target.files[0]) {
@@ -75,7 +77,7 @@ const CollectionModal = (props: Props) => {
     setProduct((prevState) => ({ ...prevState, [input]: value }));
   };
 
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     const errors: InputErrors = {
       name: !product.name,
       price: !product.price,
@@ -86,7 +88,7 @@ const CollectionModal = (props: Props) => {
     if (Object.values(errors).every((err) => !err)) {
       // add product, send parsed input values and collection id
       if (modalType === "add_product") {
-        fetch("/api/db/add_product", {
+        await fetch("/api/db/add_product", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -107,10 +109,11 @@ const CollectionModal = (props: Props) => {
             collectionId,
           }),
         });
+        router.replace(router.asPath);
       }
       // edit product, send product id and its parsed input values
       else if (modalType === "update_product") {
-        fetch("/api/db/update_product", {
+        await fetch("/api/db/update_product", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -131,6 +134,7 @@ const CollectionModal = (props: Props) => {
             },
           }),
         });
+        router.replace(router.asPath);
       }
       setModal({
         open: false,

@@ -7,6 +7,7 @@ import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import { Collections } from "@prisma/client";
 import { Product } from "src/db/init_db";
 import CollectionModal, { CollectionModal as CollectionModalType } from "./CollectionModal";
+import { useRouter } from "next/router";
 
 type DropdownType = [string, ...string[]];
 type Props = {
@@ -25,6 +26,7 @@ const Collection = (props: Props) => {
   });
   const tableWrapperRef = useRef<HTMLDivElement>(null);
   const tableRef = useRef<HTMLTableElement>(null);
+  const router = useRouter();
 
   // get height of first 11 table rows and set as max height
   useEffect(() => {
@@ -70,12 +72,13 @@ const Collection = (props: Props) => {
     return searchedProducts;
   };
 
-  const handleDelete = (id: number) => {
-    fetch("/api/db/delete_product", {
+  const handleDelete = async (id: number) => {
+    await fetch("/api/db/delete_product", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
+    router.replace(router.asPath);
   };
 
   return (
