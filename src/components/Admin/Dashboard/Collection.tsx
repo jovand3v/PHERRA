@@ -78,6 +78,11 @@ const Collection = (props: Props) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ id }),
     });
+    await fetch("/api/s3/deleteFile", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ url: products[products.findIndex((p) => p.id === id)].img }),
+    });
     router.replace(router.asPath);
   };
 

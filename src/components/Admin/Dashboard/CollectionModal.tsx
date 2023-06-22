@@ -28,6 +28,7 @@ export type CollectionModalInputs = {
   stock: CollectionModalProductStock[];
   img: string;
 };
+type Base64 = string;
 
 export type InputErrors = { name: boolean; price: boolean; discount: boolean; img: boolean; stock: boolean };
 
@@ -58,22 +59,60 @@ const CollectionModal = (props: Props) => {
   const inputImgRef = useRef<HTMLInputElement>(null);
   const [err, setErr] = useState<InputErrors>({ name: false, price: false, discount: false, img: false, stock: false });
   const router = useRouter();
+  const [img, setImg] = useState<{ file: File | null; preview: null | string | Base64 }>({
+    file: null,
+    preview: product.img ?? null,
+  });
 
   const handleImagePreview = (e: ChangeEvent<HTMLInputElement>) => {
-    // if (e.target.files && e.target.files[0]) {
-    //   const imgFile = e.target.files[0];
-    //   const name = e.target.files[0].name;
-    //   const reader = new FileReader();
-    //   reader.readAsDataURL(imgFile);
-    //   reader.onload = () => {
-    //     if (!reader.result) return;
-    //     const value = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
-    //     handleChange("img", { name, value });
-    //   };
-    // }
+    if (e.target.files && e.target.files[0]) {
+      const img = e.target.files[0];
+      const reader = new FileReader();
+      reader.readAsDataURL(img);
+      reader.onload = () => {
+        if (!reader.result) return;
+        const base64 = typeof reader.result === "string" ? reader.result : Buffer.from(reader.result).toString();
+        setImg({ file: img, preview: base64 });
+      };
+    }
   };
 
-  const handleChange = (input: "name" | "price" | "discount" | "img", value: string) => {
+  const handleImageUpload = async () => {
+    if (img.file) {
+      const { url } = await fetch("/api/s3/uploadFile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: img.file.name, type: img.file.type }),
+      }).then((res) => res.json());
+      await fetch(url, {
+        method: "PUT",
+        body: img.file,
+        headers: { "Content-Type": img.file.type },
+      });
+      // // delete old file, if exists, after uploading new
+      // if (product.img) {
+      //   const res = await fetch("/api/s3/deleteFile", {
+      //     method: "POST",
+      //     headers: { "Content-Type": "application/json" },
+      //     body: JSON.stringify({ url: product.img }),
+      //   });
+      //   console.log(res);
+      // }
+    }
+  };
+
+  const handleImageUrl = async () => {
+    if (img.file) {
+      const { url } = await fetch("/api/s3/viewFile", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: img.file.name }),
+      }).then((res) => res.json());
+      return url;
+    }
+  };
+
+  const handleChange = (input: "name" | "price" | "discount", value: string) => {
     setProduct((prevState) => ({ ...prevState, [input]: value }));
   };
 
@@ -82,10 +121,15 @@ const CollectionModal = (props: Props) => {
       name: !product.name,
       price: !product.price,
       discount: !product.discount,
-      // img: !product.img,
+      img: !img.file && !product.img,
       stock: product.stock.length === 0,
     };
     if (Object.values(errors).every((err) => !err)) {
+      let imgUrl = product.img;
+      if (img.file) {
+        await handleImageUpload();
+        imgUrl = await handleImageUrl();
+      }
       // add product, send parsed input values and collection id
       if (modalType === "add_product") {
         await fetch("/api/db/add_product", {
@@ -105,14 +149,21 @@ const CollectionModal = (props: Props) => {
                   })),
                 }))
               ),
+              img: imgUrl,
             },
             collectionId,
           }),
         });
+
         router.replace(router.asPath);
       }
       // edit product, send product id and its parsed input values
       else if (modalType === "update_product") {
+        let imgUrl = product.img;
+        if (img.file) {
+          await handleImageUpload();
+          imgUrl = await handleImageUrl();
+        }
         await fetch("/api/db/update_product", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -131,6 +182,7 @@ const CollectionModal = (props: Props) => {
                   })),
                 }))
               ),
+              img: imgUrl,
             },
           }),
         });
@@ -195,11 +247,11 @@ const CollectionModal = (props: Props) => {
               IMAGE*
             </label>
             <div className={s.inputImgContainer}>
-              {product.img ? (
+              {img.preview ? (
                 <>
                   <EditIcon className={s.editIcon} onClick={() => inputImgRef.current?.click()} />
-                  <img src={product.img} alt="" className={s.img} />
-                  <p className={s.imgName}>{product.img}</p>
+                  <img src={img.preview} alt="" className={s.img} />
+                  <p className={s.imgName}>{img.file ? img.file.name : img.preview}</p>
                 </>
               ) : (
                 <div className={s.inputImgAddContainer} onClick={() => inputImgRef.current?.click()}>
