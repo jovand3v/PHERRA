@@ -39,11 +39,20 @@ const reducer = <T extends DropdownType>(state: CartProduct[], action: CartActio
     case "ADD_PRODUCT": {
       const productIndex = state.findIndex((cp) => handleProductCompare(cp, action.payload));
       if (productIndex !== -1) {
-        const product = state[productIndex];
-        const quantitySum = product.selected.quantity + action.payload.selected.quantity;
+        const cartProduct = state[productIndex];
+        const quantityMax = cartProduct.product.stock
+          .find(
+            (s) =>
+              s.colorHex === cartProduct.selected.color.colorHex && s.colorName === cartProduct.selected.color.colorName
+          )
+          ?.sizes.find((s) => s.size === cartProduct.selected.size)!.quantity!;
+        const quantitySum = cartProduct.selected.quantity + action.payload.selected.quantity;
         return [
           ...state.slice(0, productIndex),
-          { ...product, selected: { ...product.selected, quantity: quantitySum > 5 ? 5 : quantitySum } },
+          {
+            ...cartProduct,
+            selected: { ...cartProduct.selected, quantity: quantitySum > quantityMax ? quantityMax : quantitySum },
+          },
           ...state.slice(productIndex + 1),
         ];
       } else {
@@ -53,9 +62,14 @@ const reducer = <T extends DropdownType>(state: CartProduct[], action: CartActio
     case "UPDATE_PRODUCT": {
       const productIndex = state.findIndex((cp) => cp.id === action.payload.product.id);
       if (productIndex !== -1) {
+        const cartProduct = state[productIndex];
         const product: CartProduct = {
-          ...action.payload.product,
-          selected: { ...action.payload.product.selected, [action.payload.type]: action.payload.value },
+          ...cartProduct,
+          selected: {
+            ...cartProduct.selected,
+            [action.payload.type]: action.payload.value,
+            quantity: action.payload.type === "quantity" ? (action.payload.value as number) : 1,
+          },
         };
         return [...state.slice(0, productIndex), product, ...state.slice(productIndex + 1)];
       } else {

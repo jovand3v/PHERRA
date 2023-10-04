@@ -16,7 +16,12 @@ export type DropdownValue = { size: ProductSize; color: { colorName: string; col
 const CartProduct = (props: Props) => {
   const { cartProduct } = props;
   const { cartReducer } = useContext(CartContext);
-  const quantity = [1, 2, 3, 4, 5];
+  const quantityMax = cartProduct.product.stock
+    .find(
+      (s) => s.colorHex === cartProduct.selected.color.colorHex && s.colorName === cartProduct.selected.color.colorName
+    )
+    ?.sizes.find((s) => s.size === cartProduct.selected.size)!.quantity!;
+  const quantityArr = Array.from({ length: quantityMax }, (_, index) => index + 1);
 
   const handleRemove = () => {
     cartReducer.dispatch({ type: "REMOVE_PRODUCT", payload: cartProduct });
@@ -48,7 +53,8 @@ const CartProduct = (props: Props) => {
               items={
                 cartProduct.product.stock
                   .find((stockObj) => stockObj.colorName === cartProduct.selected.color.colorName)
-                  ?.sizes.map((s) => s.size)!
+                  ?.sizes.map((s) => s.quantity !== 0 && s.size)
+                  .filter((s) => s) as ProductSize[]
               }
               customDefault={cartProduct.selected.size}
               onSelect={(value) => handleDropdownChange("size", value)}
@@ -68,7 +74,7 @@ const CartProduct = (props: Props) => {
           <li className={s.infoItemDropdown}>
             Quantity:&nbsp;
             <DropdownMenu
-              items={quantity}
+              items={quantityArr}
               customDefault={cartProduct.selected.quantity}
               onSelect={(value) => handleDropdownChange("quantity", value)}
             />

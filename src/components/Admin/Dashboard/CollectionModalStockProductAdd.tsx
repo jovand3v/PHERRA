@@ -2,13 +2,13 @@ import s from "./CollectionModalStock.module.scss";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import { useState, SetStateAction, Dispatch } from "react";
-import { CollectionModalProductInputs, CollectionModalProductStock } from "./CollectionModal";
+import { CollectionModalInputs, CollectionModalProductStock } from "./CollectionModal";
 import { ProductSizes } from "src/db/init_db";
 
 type Props = {
-  product: CollectionModalProductInputs;
+  product: CollectionModalInputs;
   sizes: ProductSizes;
-  setProduct: Dispatch<SetStateAction<CollectionModalProductInputs>>;
+  setProduct: Dispatch<SetStateAction<CollectionModalInputs>>;
 };
 
 const CollectionModalStockProductAdd = (props: Props) => {

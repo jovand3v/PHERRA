@@ -1,6 +1,6 @@
 import s from "./Product.module.scss";
 import Image from "next/legacy/image";
-import { Product } from "src/db/init_db";
+import { Product, ProductStock } from "src/db/init_db";
 import { handlePriceDiscount } from "src/lib/products";
 
 type Props = {
@@ -11,6 +11,20 @@ type Props = {
 
 const Product = (props: Props) => {
   const { product, setSelectedProduct, setShowcaseActive } = props;
+
+  const getLongestSizesArr = () => {
+    let arr: ProductStock["sizes"] = [];
+    let length = 0;
+
+    product.stock.forEach((item) => {
+      if (item.sizes.length > length) {
+        length = item.sizes.length;
+        arr = item.sizes;
+      }
+    });
+
+    return arr;
+  };
 
   return (
     <li
@@ -48,8 +62,7 @@ const Product = (props: Props) => {
               ))}
             </ul>
             <ul aria-label="available sizes" className={s.sizes}>
-              {/* temp displays only sizes of first found product in stock */}
-              {product.stock[0].sizes.map((sizeObj, index) => (
+              {getLongestSizesArr().map((sizeObj, index) => (
                 <li className={s.size} key={index}>
                   {sizeObj.size}
                 </li>

@@ -16,7 +16,6 @@ export type Product = {
 };
 
 const handleInit = async () => {
-  // temp defined here
   const collections: Collections[] = [
     { id: 1, name: "summer", thumbnail: "/assets/thumbnails/summer-model-2.png", year: 2023 },
     { id: 2, name: "winter", thumbnail: "/assets/thumbnails/winter-model-1.png", year: 2023 },

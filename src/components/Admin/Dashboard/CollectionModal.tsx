@@ -89,15 +89,6 @@ const CollectionModal = (props: Props) => {
         body: img.file,
         headers: { "Content-Type": img.file.type },
       });
-      // // delete old file, if exists, after uploading new
-      // if (product.img) {
-      //   const res = await fetch("/api/s3/deleteFile", {
-      //     method: "POST",
-      //     headers: { "Content-Type": "application/json" },
-      //     body: JSON.stringify({ url: product.img }),
-      //   });
-      //   console.log(res);
-      // }
     }
   };
 

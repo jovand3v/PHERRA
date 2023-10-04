@@ -171,6 +171,7 @@
   gap: max(5px, 0.26vw);
 }
 .boxListItem {
+  user-select: none;
   width: max(45px, 2.34vw);
   height: max(45px, 2.34vw);
   font-size: max(16px, 0.832vw);
@@ -190,8 +191,13 @@
   color: var(--secondary-color);
 }
 .boxListItemDisabled {
-  // temp
-  background: red;
+  border-color: rgb(156, 156, 156);
+  color: rgb(156, 156, 156);
+  cursor: not-allowed;
+  &:hover {
+    border-color: rgb(156, 156, 156);
+    color: rgb(156, 156, 156);
+  }
 }
 .buttonContainer {
   display: flex;

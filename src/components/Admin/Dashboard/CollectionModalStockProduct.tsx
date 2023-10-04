@@ -4,14 +4,14 @@ import CheckmarkIcon from "@public/assets/icons/checkmark.svg";
 import TrashcanIcon from "@public/assets/icons/trashcan.svg";
 import { Dispatch, useRef, useState } from "react";
 import { SetStateAction } from "react";
-import { CollectionModalProductInputs, CollectionModalProductStock } from "./CollectionModal";
+import { CollectionModalInputs, CollectionModalProductStock } from "./CollectionModal";
 import { ProductSizes } from "src/db/init_db";
 
 type Props = {
-  product: CollectionModalProductInputs;
+  product: CollectionModalInputs;
   productStock: CollectionModalProductStock;
   sizes: ProductSizes;
-  setProduct: Dispatch<SetStateAction<CollectionModalProductInputs>>;
+  setProduct: Dispatch<SetStateAction<CollectionModalInputs>>;
 };
 
 const CollectionModalStockProduct = (props: Props) => {
@@ -98,7 +98,7 @@ const CollectionModalStockProduct = (props: Props) => {
                 value={local.sizes.find((s) => s.size === size)?.quantity}
                 disabled={!editing}
                 onChange={(e) => {
-                  if (!editing || !e.target.value.match("^(?!0)[0-9]*$")) return;
+                  if (!editing || !e.target.value.match("^[0-9]*$")) return;
                   setLocal((prevState) => {
                     const arr = prevState.sizes.map((s) => (s.size === size ? { ...s, quantity: e.target.value } : s));
                     return { ...prevState, sizes: arr };

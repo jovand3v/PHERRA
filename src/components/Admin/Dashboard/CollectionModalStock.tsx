@@ -3,12 +3,12 @@ import { Dispatch, SetStateAction } from "react";
 import CollectionModalStockProduct from "./CollectionModalStockProduct";
 import CollectionModalStockProductAdd from "./CollectionModalStockProductAdd";
 import { InputErrors } from "./CollectionModal";
-import { CollectionModalProductInputs } from "./CollectionModal";
+import { CollectionModalInputs } from "./CollectionModal";
 import { ProductSizes } from "src/db/init_db";
 
 type Props = {
-  product: CollectionModalProductInputs;
-  setProduct: Dispatch<SetStateAction<CollectionModalProductInputs>>;
+  product: CollectionModalInputs;
+  setProduct: Dispatch<SetStateAction<CollectionModalInputs>>;
   err: InputErrors;
 };
 

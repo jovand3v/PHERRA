@@ -103,16 +103,22 @@ const ProductInfo = (props: Props) => {
                 </header>
                 <ul className={s.boxList}>
                   {sizes.map((size, index) => {
-                    const selectedColorSizes = selectedProduct.stock
-                      .find((sp) => sp.colorName === selected.color.colorName)
-                      ?.sizes.map((sizeObj) => sizeObj.size);
-
+                    const quantity =
+                      selectedProduct.stock
+                        .find((s) => s.colorName === selected.color.colorName && s.colorHex === selected.color.colorHex)
+                        ?.sizes.find((s) => s.size === size)?.quantity === 0
+                        ? 0
+                        : 1;
                     return (
                       <li
-                        className={`${s.boxListItem} ${size === selected.size ? s.boxListItemActive : ""} ${
-                          selectedColorSizes?.includes(size) ? "" : s.boxListItemDisabled
-                        }`}
-                        onClick={() => setSelected((s) => ({ ...s, size }))}
+                        className={`${s.boxListItem} ${size === selected.size ? s.boxListItemActive : ""} `}
+                        onClick={() =>
+                          setSelected((s) => ({
+                            ...s,
+                            size,
+                            quantity,
+                          }))
+                        }
                         key={index}
                       >
                         {size}
@@ -131,15 +137,15 @@ const ProductInfo = (props: Props) => {
                     const productQuantity = selectedProduct.stock
                       .find((sp) => sp.colorName === selected.color.colorName)
                       ?.sizes.find((sizesObj) => sizesObj.size === selected.size)?.quantity;
-
                     const productQuantityArr = Array.from({ length: productQuantity! }, (_, index) => index + 1);
+                    const disabled = !productQuantityArr.includes(quantity);
 
                     return (
                       <li
-                        className={`${s.boxListItem} ${quantity === selected.quantity ? s.boxListItemActive : ""} ${
-                          productQuantityArr.includes(quantity) ? "" : s.boxListItemDisabled
-                        }`}
-                        onClick={() => setSelected((s) => ({ ...s, quantity }))}
+                        className={`${s.boxListItem} ${
+                          quantity === selected.quantity && !disabled ? s.boxListItemActive : ""
+                        } ${disabled ? s.boxListItemDisabled : ""}`}
+                        onClick={() => !disabled && setSelected((s) => ({ ...s, quantity }))}
                         key={index}
                       >
                         {quantity}
@@ -157,7 +163,11 @@ const ProductInfo = (props: Props) => {
                 </div>
                 <p className={s.price}>${handlePriceDiscount(selectedProduct.price, selectedProduct.discount)}</p>
               </div>
-              <button className={s.button} onClick={handleCartAdd}>
+              <button
+                className={`${s.button} ${selected.quantity === 0 ? s.buttonDisabled : ""}`}
+                onClick={handleCartAdd}
+                disabled={selected.quantity === 0}
+              >
                 ADD TO CART
               </button>
             </div>
