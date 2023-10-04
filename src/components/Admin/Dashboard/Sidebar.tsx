@@ -70,7 +70,7 @@ const Sidebar = (props: Props) => {
       <div className={s.footer}>
         <div className={s.user}>
           <UserIcon className={s.userIcon} />
-          <p className={s.userName}>{process.env.ADMIN_NAME}</p>
+          <p className={s.userName}>{process.env.NEXT_PUBLIC_ADMIN_NAME}</p>
         </div>
         <ExitIcon className={s.logoutIcon} onClick={handleLogout} />
       </div>
