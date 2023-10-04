@@ -77,7 +77,7 @@ const CollectionModalStockProductAdd = (props: Props) => {
                 maxLength={3}
                 value={productStock.sizes.find((s) => s.size === size)?.quantity}
                 onChange={(e) => {
-                  if (e.target.value.match("^(?!0)[0-9]*$")) {
+                  if (e.target.value.match("^[0-9]*$")) {
                     setProductStock((prevState) => {
                       const arr = prevState.sizes.map((s) =>
                         s.size === size ? { ...s, quantity: e.target.value } : s
