@@ -3,14 +3,12 @@ import jwt from "jsonwebtoken";
 import { setCookie } from "cookies-next";
 
 const handler = (req: NextApiRequest, res: NextApiResponse) => {
-  // temp static admin until admins db table is created
-  const admin = { id: 1, name: "admin", password: "admin" };
-  if (req.body.name === admin.name && req.body.password === admin.password) {
+  if (req.body.name === process.env.ADMIN_NAME && req.body.password === process.env.ADMIN_PASSWORD) {
     const secret = process.env.JWT_SECRET;
     if (!secret) {
       res.status(404).json({ message: "error: jwt secret not found" });
     } else {
-      const jwtToken = jwt.sign({ sub: admin.id, name: admin.name, admin: true }, secret, { expiresIn: "1d" });
+      const jwtToken = jwt.sign({ sub: 1, name: process.env.ADMIN_NAME, admin: true }, secret, { expiresIn: "1d" });
       setCookie("jwt_token", jwtToken, {
         req,
         res,
