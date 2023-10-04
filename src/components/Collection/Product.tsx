@@ -1,6 +1,6 @@
 import s from "./Product.module.scss";
 import Image from "next/legacy/image";
-import { Product, ProductStock } from "src/db/init_db";
+import { Product, ProductSize, ProductSizes, ProductStock } from "src/db/init_db";
 import { handlePriceDiscount } from "src/lib/products";
 
 type Props = {
@@ -12,18 +12,18 @@ type Props = {
 const Product = (props: Props) => {
   const { product, setSelectedProduct, setShowcaseActive } = props;
 
-  const getLongestSizesArr = () => {
-    let arr: ProductStock["sizes"] = [];
-    let length = 0;
+  const getAvailableSizes = () => {
+    const stock = [...product.stock];
+    const sizes: ProductSizes = ["XS", "S", "M", "L", "XL"];
+    let outOfStockSizes: ProductSize[] = [];
 
-    product.stock.forEach((item) => {
-      if (item.sizes.length > length) {
-        length = item.sizes.length;
-        arr = item.sizes;
-      }
-    });
+    stock.forEach((stock) => stock.sizes.forEach((s) => s.quantity === 0 && outOfStockSizes.push(s.size)));
+    const countInArray = (size: ProductSize) => {
+      return outOfStockSizes.filter((s) => s === size).length;
+    };
+    outOfStockSizes = outOfStockSizes.filter((s) => countInArray(s) === stock.length);
 
-    return arr;
+    return sizes.filter((s) => !outOfStockSizes.includes(s));
   };
 
   return (
@@ -62,9 +62,9 @@ const Product = (props: Props) => {
               ))}
             </ul>
             <ul aria-label="available sizes" className={s.sizes}>
-              {getLongestSizesArr().map((sizeObj, index) => (
+              {getAvailableSizes().map((size, index) => (
                 <li className={s.size} key={index}>
-                  {sizeObj.size}
+                  {size}
                 </li>
               ))}
             </ul>

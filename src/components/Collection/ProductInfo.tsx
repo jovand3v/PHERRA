@@ -32,6 +32,8 @@ const ProductInfo = (props: Props) => {
   useEffect(() => {
     if (windowWidth !== 0 && windowWidth <= 1024) {
       document.getElementsByTagName("html")[0].style.overflowY = showcaseActive ? "hidden" : "visible";
+    } else {
+      document.getElementsByTagName("html")[0].style.overflowY = "visible";
     }
   }, [showcaseActive, windowWidth]);
 
