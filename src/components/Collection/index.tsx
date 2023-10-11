@@ -7,7 +7,7 @@ import DropdownMenu from "../common/DropdownMenu";
 import Cart from "../common/Cart";
 import Link from "next/link";
 import ProductInfo from "./ProductInfo";
-import { handlePriceDiscount } from "src/lib/products";
+import { handleDiscountedPrice } from "src/lib/handleDiscountedPrice";
 import { StaticProps } from "src/pages/collections/[collection]";
 import MagnifyingGlassIcon from "@public/assets/icons/magnifying-glass.svg";
 import { Product as ProductType } from "src/db/init_db";
@@ -50,11 +50,15 @@ const Collection = (props: StaticProps) => {
         return setProductsLocal([...products]);
       case "PRICE ASCENDING":
         return setProductsLocal((pl) =>
-          [...pl].sort((a, b) => handlePriceDiscount(a.price, a.discount) - handlePriceDiscount(b.price, b.discount))
+          [...pl].sort(
+            (a, b) => handleDiscountedPrice(a.price, a.discount) - handleDiscountedPrice(b.price, b.discount)
+          )
         );
       case "PRICE DESCENDING":
         return setProductsLocal((pl) =>
-          [...pl].sort((a, b) => handlePriceDiscount(b.price, b.discount) - handlePriceDiscount(a.price, a.discount))
+          [...pl].sort(
+            (a, b) => handleDiscountedPrice(b.price, b.discount) - handleDiscountedPrice(a.price, a.discount)
+          )
         );
     }
   };

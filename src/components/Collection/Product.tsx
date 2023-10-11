@@ -1,7 +1,7 @@
 import s from "./Product.module.scss";
 import Image from "next/legacy/image";
 import { Product, ProductSize, ProductSizes, ProductStock } from "src/db/init_db";
-import { handlePriceDiscount } from "src/lib/products";
+import { handleDiscountedPrice } from "src/lib/handleDiscountedPrice";
 
 type Props = {
   product: Product;
@@ -48,7 +48,7 @@ const Product = (props: Props) => {
               <span className={s.oldPrice}>${product.price}</span>{" "}
               <span className={s.discount}>-{product.discount}%</span>
             </div>
-            <div className={s.price}>${handlePriceDiscount(product.price, product.discount)}</div>
+            <div className={s.price}>${handleDiscountedPrice(product.price, product.discount)}</div>
           </div>
           <div className={s.colorsAndSizesContainer}>
             <ul className={s.colors} aria-label="available colors">
